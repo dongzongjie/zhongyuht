@@ -1,19 +1,21 @@
 <template>
-  <div class="BusinessDetails">
-    <el-tabs v-model="activeName">
+  <div class="app-container">
+    <el-tabs v-model="activeName" :tab-position="tabPosition">
       <el-tab-pane
         label="秒批录入信息表"
         name="first"
-        style="padding: 0 50px 50px"
+        style="padding: 0 50px 50px; font-size: 14px"
       >
-        <h4 style="font-size: 20px">基本信息</h4>
-        <el-row style="padding: 0 20px">
+        <h4>基本信息</h4>
+        <el-row>
           <el-col :span="8">销售团队：{{ userDetails.business.team }}</el-col>
           <el-col :span="8">大区经理：</el-col>
           <el-col :span="8">团队经理：</el-col>
+          <el-col :span="8">区域：</el-col>
+          <el-col :span="8">门店：</el-col>
         </el-row>
-        <h4 style="font-size: 20px">订单信息</h4>
-        <el-row style="padding: 0 20px">
+        <h4>订单信息</h4>
+        <el-row>
           <el-col :span="8"
             >车辆类型：
             <span v-if="userDetails.business.carInformation == 0">乘用车</span>
@@ -37,8 +39,8 @@
             >意向贷款期限：{{ userDetails.business.repayPeriod }}</el-col
           >
         </el-row>
-        <h4 style="font-size: 20px">借款人信息</h4>
-        <el-row style="padding: 0 20px">
+        <h4>借款人信息</h4>
+        <el-row>
           <el-col :span="8">姓名：{{ userDetails.borrower.userName }}</el-col>
           <el-col :span="8"
             >征信授权方式：
@@ -65,7 +67,7 @@
             >有效截止日：{{ userDetails.borrower.endDate }}</el-col
           >
           <el-col :span="8">
-            身份证正面：
+            身份证正面
             <el-image
               style="width: 100px; height: 100px"
               :src="userDetails.borrower.obverseAddress"
@@ -74,7 +76,7 @@
             </el-image>
           </el-col>
           <el-col :span="8">
-            身份证反面：
+            身份证反面
             <el-image
               style="width: 100px; height: 100px"
               :src="userDetails.borrower.backAddress"
@@ -83,7 +85,7 @@
             </el-image>
           </el-col>
           <el-col :span="8" v-if="userDetails.borrower.creditPower == 1">
-            征信授权书：
+            征信授权书
             <el-image
               style="width: 100px; height: 100px"
               :src="userDetails.borrower.powerAddress"
@@ -92,8 +94,8 @@
             </el-image>
           </el-col>
         </el-row>
-        <h4 style="font-size: 20px">关联人信息</h4>
-        <el-row style="padding: 0 20px">
+        <h4 v-if="userDetails.relation.useName">关联人信息</h4>
+        <el-row v-if="userDetails.relation.useName">
           <el-col :span="8">姓名：{{ userDetails.relation.userName }}</el-col>
           <el-col :span="8"
             >征信授权方式：
@@ -147,7 +149,7 @@
             >
           </el-col>
           <el-col :span="8">
-            身份证正面：
+            身份证正面
             <el-image
               style="width: 100px; height: 100px"
               :src="userDetails.relation.obverseAddress"
@@ -156,7 +158,7 @@
             </el-image>
           </el-col>
           <el-col :span="8">
-            身份证反面：
+            身份证反面
             <el-image
               style="width: 100px; height: 100px"
               :src="userDetails.relation.backAddress"
@@ -165,7 +167,7 @@
             </el-image>
           </el-col>
           <el-col :span="8" v-if="userDetails.relation.creditPower == 1">
-            征信授权书：
+            征信授权书
             <el-image
               style="width: 100px; height: 100px"
               :src="userDetails.relation.powerAddress"
@@ -174,8 +176,8 @@
             </el-image>
           </el-col>
         </el-row>
-        <h4 style="font-size: 20px">担保人信息</h4>
-        <el-row style="padding: 0 20px">
+        <h4 v-if="userDetails.guarantee.userName">担保人信息</h4>
+        <el-row v-if="userDetails.guarantee.userName">
           <el-col :span="8">姓名：{{ userDetails.guarantee.userName }}</el-col>
           <el-col :span="8"
             >征信授权方式：
@@ -216,7 +218,7 @@
             >个人年收入：{{ userDetails.guarantee.yearIncome }}</el-col
           >
           <el-col :span="8">
-            身份证正面：
+            身份证正面
             <el-image
               style="width: 100px; height: 100px"
               :src="userDetails.guarantee.obverseAddress"
@@ -225,7 +227,7 @@
             </el-image>
           </el-col>
           <el-col :span="8">
-            身份证反面：
+            身份证反面
             <el-image
               style="width: 100px; height: 100px"
               :src="userDetails.guarantee.backAddress"
@@ -234,7 +236,7 @@
             </el-image>
           </el-col>
           <el-col :span="8" v-if="userDetails.guarantee.creditPower == 1">
-            征信授权书：
+            征信授权书
             <el-image
               style="width: 100px; height: 100px"
               :src="userDetails.guarantee.powerAddress"
@@ -282,8 +284,18 @@
           </tr>
         </table>
       </el-tab-pane>
-      <el-tab-pane label="数据辅正" name="third">数据辅证</el-tab-pane>
-      <el-tab-pane label="详细版征信" name="fourth">定时任务补偿</el-tab-pane>
+      <el-tab-pane label="数据辅正" name="third">待开发</el-tab-pane>
+      <el-tab-pane label="详版征信" name="fourth">
+        <el-input
+          type="textarea"
+          :autosize="{ minRows: 3 }"
+          placeholder="请输入内容"
+          v-model="textarea"
+        />
+        <el-button type="primary" round style="margin: 20px 10px"
+          >确认</el-button
+        >
+      </el-tab-pane>
     </el-tabs>
   </div>
 </template>
@@ -294,7 +306,9 @@ export default {
   components: {},
   data() {
     return {
+      tabPosition: 'left', // tab 位置
       activeName: 'first', // Tabs
+      textarea: '', // 初审意见
       // 用户详情
       userDetails: {
         business: {}, // 基本信息
@@ -310,20 +324,32 @@ export default {
   computed: {},
   watch: {},
   methods: {},
-  created() {},
+  created() {
+    console.log(this.$route)
+    console.log(this.$route.query.userId)
+  },
 }
 </script>
 
 <style lang='scss' scoped>
-.BusinessDetails {
+.app-container {
   padding: 20px;
 }
 .el-tabs {
   background-color: #fff;
   padding: 20px;
   border-radius: 10px;
+  .el-row {
+    padding: 0 30px;
+  }
   .el-col {
-    margin: 10px 0;
+    display: flex;
+    flex-direction: column-reverse;
+    margin: 5px 0;
+  }
+  h4 {
+    margin: 5px;
+    font-size: 18px;
   }
 }
 </style>

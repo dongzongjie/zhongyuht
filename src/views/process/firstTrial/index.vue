@@ -58,50 +58,7 @@
         >
       </el-form-item>
     </el-form>
-    <!-- 新增修改删除导出 -->
     <el-row :gutter="10" class="mb8">
-      <el-col :span="1.5">
-        <el-button
-          type="primary"
-          icon="el-icon-plus"
-          size="mini"
-          @click="handleAdd"
-          v-hasPermi="['process:business:add']"
-          >新增</el-button
-        >
-      </el-col>
-      <el-col :span="1.5">
-        <el-button
-          type="success"
-          icon="el-icon-edit"
-          size="mini"
-          :disabled="single"
-          @click="handleUpdate"
-          v-hasPermi="['process:business:edit']"
-          >修改</el-button
-        >
-      </el-col>
-      <el-col :span="1.5">
-        <el-button
-          type="danger"
-          icon="el-icon-delete"
-          size="mini"
-          :disabled="multiple"
-          @click="handleDelete"
-          v-hasPermi="['process:business:remove']"
-          >删除</el-button
-        >
-      </el-col>
-      <el-col :span="1.5">
-        <el-button
-          type="warning"
-          icon="el-icon-download"
-          size="mini"
-          @click="handleExport"
-          v-hasPermi="['process:business:export']"
-          >导出</el-button
-        >
-      </el-col>
       <right-toolbar
         :showSearch.sync="showSearch"
         @queryTable="getList"
@@ -117,17 +74,7 @@
       </el-col>
     </el-row>
     <!-- 表格 -->
-    <el-table
-      v-loading="loading"
-      :data="businessList"
-      @selection-change="handleSelectionChange"
-    >
-      <el-table-column
-        type="selection"
-        width="55"
-        align="center"
-        v-if="checkRole(['admin'])"
-      />
+    <el-table v-loading="loading" :data="firstTrialList">
       <el-table-column label="编号" align="center" prop="id" />
       <el-table-column label="客户名称" align="center" prop="name" />
       <el-table-column label="销售团队" align="center" prop="team" />
@@ -169,55 +116,10 @@
       :limit.sync="queryParams.pageSize"
       @pagination="getList"
     />
-    <!-- 添加或修改秒批对话框 -->
-    <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
-      <el-form ref="form" :model="form" :rules="rules" label-width="80px">
-        <el-form-item label="销售团队" prop="team">
-          <el-input v-model="form.team" placeholder="请输入销售团队" />
-        </el-form-item>
-        <el-form-item label="车辆信息" prop="carInformation">
-          <el-input
-            v-model="form.carInformation"
-            placeholder="请输入车辆信息"
-          />
-        </el-form-item>
-        <el-form-item label="意向价格" prop="intentionPrice">
-          <el-input
-            v-model="form.intentionPrice"
-            placeholder="请输入意向价格"
-          />
-        </el-form-item>
-        <el-form-item label="意向贷款金额" prop="loanMoney">
-          <el-input v-model="form.loanMoney" placeholder="请输入意向贷款金额" />
-        </el-form-item>
-        <el-form-item label="意向贷款期限" prop="repayPeriod">
-          <el-input
-            v-model="form.repayPeriod"
-            placeholder="请输入意向贷款期限"
-          />
-        </el-form-item>
-        <el-form-item label="业务品种" prop="carType">
-          <el-select v-model="form.carType" placeholder="请选择业务品种">
-            <el-option label="请选择字典生成" value="" />
-          </el-select>
-        </el-form-item>
-        <el-form-item label="userId" prop="userId">
-          <el-input v-model="form.userId" placeholder="请输入userId" />
-        </el-form-item>
-        <el-form-item label="订单状态" prop="orderState">
-          <el-input v-model="form.orderState" placeholder="请输入订单状态" />
-        </el-form-item>
-      </el-form>
-      <div slot="footer" class="dialog-footer">
-        <el-button type="primary" @click="submitForm">确 定</el-button>
-        <el-button @click="cancel">取 消</el-button>
-      </div>
-    </el-dialog>
   </div>
 </template>
 
 <script>
-import { checkRole } from '@/utils/permission'
 import {
   listBusiness,
   getBusiness,
@@ -228,7 +130,7 @@ import {
 } from '@/api/process/business'
 
 export default {
-  name: 'Business',
+  name: 'FirstTrial',
   data() {
     return {
       // 遮罩层
@@ -243,8 +145,8 @@ export default {
       showSearch: true,
       // 总条数
       total: 0,
-      // 秒批表格数据
-      businessList: [],
+      // 初审表格数据
+      firstTrialList: [],
       // 弹出层标题
       title: '',
       // 是否显示弹出层
@@ -262,12 +164,6 @@ export default {
         userId: null,
         orderState: null,
       },
-      // 表单参数
-      form: {},
-      // 表单校验
-      rules: {},
-      // 弹出框
-      dialogVisible: false,
       // 文本域
       textarea: '',
     }
@@ -277,12 +173,11 @@ export default {
     console.log(this.$store.state.user)
   },
   methods: {
-    checkRole,
-    /** 查询秒批列表 */
+    /** 查询初审列表 */
     getList() {
       this.loading = true
       listBusiness(this.queryParams).then((response) => {
-        this.businessList = response.rows
+        this.firstTrialList = response.rows
         this.total = response.total
         this.loading = false
       })
@@ -317,90 +212,11 @@ export default {
       this.resetForm('queryForm')
       this.handleQuery()
     },
-    // 多选框选中数据
-    handleSelectionChange(selection) {
-      this.ids = selection.map((item) => item.id)
-      this.single = selection.length !== 1
-      this.multiple = !selection.length
-    },
-    /** 新增按钮操作 */
-    handleAdd() {
-      this.reset()
-      this.open = true
-      this.title = '添加秒批'
-    },
-    /** 修改按钮操作 */
-    handleUpdate(row) {
-      this.reset()
-      const id = row.id || this.ids
-      getBusiness(id).then((response) => {
-        this.form = response.data
-        this.open = true
-        this.title = '修改秒批'
-      })
-    },
-    /** 提交按钮 */
-    submitForm() {
-      this.$refs['form'].validate((valid) => {
-        if (valid) {
-          if (this.form.id != null) {
-            updateBusiness(this.form).then((response) => {
-              if (response.code === 200) {
-                this.msgSuccess('修改成功')
-                this.open = false
-                this.getList()
-              }
-            })
-          } else {
-            addBusiness(this.form).then((response) => {
-              if (response.code === 200) {
-                this.msgSuccess('新增成功')
-                this.open = false
-                this.getList()
-              }
-            })
-          }
-        }
-      })
-    },
-    /** 删除按钮操作 */
-    handleDelete(row) {
-      const ids = row.id || this.ids
-      this.$confirm('是否确认删除秒批编号为"' + ids + '"的数据项?', '警告', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'warning',
-      })
-        .then(function () {
-          return delBusiness(ids)
-        })
-        .then(() => {
-          this.getList()
-          this.msgSuccess('删除成功')
-        })
-        .catch(function () {})
-    },
-    /** 导出按钮操作 */
-    handleExport() {
-      const queryParams = this.queryParams
-      this.$confirm('是否确认导出所有秒批数据项?', '警告', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'warning',
-      })
-        .then(function () {
-          return exportBusiness(queryParams)
-        })
-        .then((response) => {
-          this.download(response.msg)
-        })
-        .catch(function () {})
-    },
     // 立即处理
     handle(userId) {
       this.$router.push({
-        path: '/process/businessDetails',
-        name: 'BusinessDetails',
+        path: '/process/firstTrialDetails',
+        name: 'FirstTrialDetails',
         query: {
           userId,
         },
