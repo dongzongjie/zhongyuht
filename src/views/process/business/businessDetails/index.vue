@@ -301,20 +301,24 @@
           </tr>
         </table>
       </el-tab-pane>
-      <el-tab-pane label="数据辅正" name="third">待开发</el-tab-pane>
       <el-tab-pane label="详版征信" name="fourth">
         <el-input
           type="textarea"
           :autosize="{ minRows: 3 }"
           placeholder="请输入内容"
           v-model="detailsCredit"
-          :disabled="isDisabled"
+          v-if="!isDisabled"
         />
+        <p
+          v-text="detailsCredit"
+          v-if="isDisabled"
+          style="font-size: 14px; color: #666"
+        ></p>
         <el-button
           type="primary"
           round
           style="margin: 20px 10px"
-          :disabled="isDisabled"
+          v-if="!isDisabled"
           @click="addCreidClick"
           >确认</el-button
         >
@@ -370,25 +374,34 @@ export default {
         this.userDetails.relation = data.relation
         this.userDetails.guarantee = data.guarantee
         if (data.borrower) {
+          this.borrowerSrcList = []
           this.borrowerSrcList.push(
             data.borrower.obverseAddress,
-            data.borrower.backAddress,
-            data.borrower.powerAddress
+            data.borrower.backAddress
           )
+          if (data.borrower.powerAddress) {
+            this.borrowerSrcList.push(data.borrower.powerAddress)
+          }
         }
         if (data.relation) {
+          this.relationSrcList = []
           this.relationSrcList.push(
             data.relation.obverseAddress,
-            data.relation.backAddress,
-            data.relation.powerAddress
+            data.relation.backAddress
           )
+          if (data.relation.powerAddress) {
+            this.borrowerSrcList.push(data.relation.powerAddress)
+          }
         }
         if (data.guarantee) {
+          this.guaranteeSrcList = []
           this.guaranteeSrcList.push(
             data.guarantee.obverseAddress,
-            data.guarantee.backAddress,
-            data.guarantee.powerAddress
+            data.guarantee.backAddress
           )
+          if (data.guarantee.powerAddress) {
+            this.borrowerSrcList.push(data.guarantee.powerAddress)
+          }
         }
         this.getDetailsCredit()
       } catch (error) {
