@@ -25,6 +25,9 @@ const user = {
         SET_NAME: (state, name) => {
             state.name = name
         },
+        SET_USERID: (state, userId) => {
+            state.userId = userId
+        },
         SET_PHONE: (state, phone) => {
             state.phone = phone
         },
@@ -75,6 +78,7 @@ const user = {
                         commit('SET_ROLES', ['ROLE_DEFAULT'])
                     }
                     commit('SET_NAME', user.nickName)
+                    commit('SET_USERID', user.userId)
                     commit('SET_PHONE', user.phonenumber)
                     commit('SET_AVATAR', avatar)
                     resolve(res)

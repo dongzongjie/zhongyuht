@@ -10,10 +10,10 @@ export function listBusiness(query) {
 }
 
 // 查询秒批详细
-export function getBusiness(id) {
+export function getBusiness(transactionCode) {
     return request({
-        url: '/system/business/' + id,
-        method: 'get'
+        url: '/stage/find?transactionCode=' + transactionCode,
+        method: 'get',
     })
 }
 
@@ -49,5 +49,22 @@ export function exportBusiness(query) {
         url: '/system/business/export',
         method: 'get',
         params: query
+    })
+}
+
+// 获取详版征信
+export function findDetailsCredit(transactionCode) {
+    return request({
+        url: '/stage/find/details?transactionCode=' + transactionCode,
+        method: 'get',
+    })
+}
+
+// 增加详版征信
+export function addDetailsCredit(data) {
+    return request({
+        url: '/stage/add/details',
+        method: 'post',
+        data: data
     })
 }

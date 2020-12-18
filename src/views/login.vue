@@ -6,7 +6,10 @@
       :rules="loginRules"
       class="login-form"
     >
-      <h3 class="title">中豫金融后台管理系统</h3>
+      <!-- <h3 class="title">中豫金融后台管理系统</h3> -->
+      <div style="text-align: center">
+        <img src="../assets/logo/login.png" alt="" style="height: 50px" />
+      </div>
       <el-form-item prop="username">
         <el-input
           v-model="loginForm.username"

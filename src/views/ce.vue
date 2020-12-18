@@ -3,7 +3,7 @@
     <el-upload
       ref="upload"
       :limit="1"
-      accept=".jpg, .png"
+      accept="*"
       :action="upload.url"
       :headers="upload.headers"
       :file-list="upload.fileList"
@@ -39,16 +39,13 @@ export default {
         // 是否禁用上传
         isUploading: false,
         // 设置上传的请求头部
-        headers: { Authorization: 'Bearer ' + getToken() },
+        // headers: { Authorization: 'Bearer ' + getToken() },
         // 上传的地址
-        url: 'http://192.168.31.82:8080/common/upload',
+        url: 'http://192.168.31.86:8070/dev-api/system/test/ceshi',
         // 上传的文件列表
         fileList: [],
       },
-      form: {
-        fileName: 'ceshi',
-        filePath: 'http://192.168.31.82:8080/common/upload',
-      },
+      form: {},
     }
   },
   computed: {},
@@ -76,6 +73,7 @@ export default {
       this.upload.isUploading = false
       this.form.filePath = response.url
       this.msgSuccess(response.msg)
+      console.log(file)
     },
   },
 

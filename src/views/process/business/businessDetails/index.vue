@@ -66,7 +66,7 @@
           <el-col :span="8"
             >有效截止日：{{ userDetails.borrower.endDate }}</el-col
           >
-          <el-col :span="8">
+          <el-col :span="8" class="img">
             身份证正面
             <el-image
               style="width: 100px; height: 100px"
@@ -75,7 +75,7 @@
             >
             </el-image>
           </el-col>
-          <el-col :span="8">
+          <el-col :span="8" class="img">
             身份证反面
             <el-image
               style="width: 100px; height: 100px"
@@ -84,7 +84,11 @@
             >
             </el-image>
           </el-col>
-          <el-col :span="8" v-if="userDetails.borrower.creditPower == 1">
+          <el-col
+            :span="8"
+            v-if="userDetails.borrower.creditPower == 1"
+            class="img"
+          >
             征信授权书
             <el-image
               style="width: 100px; height: 100px"
@@ -94,8 +98,8 @@
             </el-image>
           </el-col>
         </el-row>
-        <h4 v-if="userDetails.relation.useName">关联人信息</h4>
-        <el-row v-if="userDetails.relation.useName">
+        <h4 v-if="userDetails.relation">关联人信息</h4>
+        <el-row v-if="userDetails.relation">
           <el-col :span="8">姓名：{{ userDetails.relation.userName }}</el-col>
           <el-col :span="8"
             >征信授权方式：
@@ -148,7 +152,7 @@
               >担保人关系</span
             >
           </el-col>
-          <el-col :span="8">
+          <el-col :span="8" class="img">
             身份证正面
             <el-image
               style="width: 100px; height: 100px"
@@ -157,7 +161,7 @@
             >
             </el-image>
           </el-col>
-          <el-col :span="8">
+          <el-col :span="8" class="img">
             身份证反面
             <el-image
               style="width: 100px; height: 100px"
@@ -166,7 +170,11 @@
             >
             </el-image>
           </el-col>
-          <el-col :span="8" v-if="userDetails.relation.creditPower == 1">
+          <el-col
+            :span="8"
+            v-if="userDetails.relation.creditPower == 1"
+            class="img"
+          >
             征信授权书
             <el-image
               style="width: 100px; height: 100px"
@@ -176,8 +184,8 @@
             </el-image>
           </el-col>
         </el-row>
-        <h4 v-if="userDetails.guarantee.userName">担保人信息</h4>
-        <el-row v-if="userDetails.guarantee.userName">
+        <h4 v-if="userDetails.guarantee">担保人信息</h4>
+        <el-row v-if="userDetails.guarantee">
           <el-col :span="8">姓名：{{ userDetails.guarantee.userName }}</el-col>
           <el-col :span="8"
             >征信授权方式：
@@ -217,7 +225,7 @@
           <el-col :span="24"
             >个人年收入：{{ userDetails.guarantee.yearIncome }}</el-col
           >
-          <el-col :span="8">
+          <el-col :span="8" class="img">
             身份证正面
             <el-image
               style="width: 100px; height: 100px"
@@ -226,7 +234,7 @@
             >
             </el-image>
           </el-col>
-          <el-col :span="8">
+          <el-col :span="8" class="img">
             身份证反面
             <el-image
               style="width: 100px; height: 100px"
@@ -235,7 +243,11 @@
             >
             </el-image>
           </el-col>
-          <el-col :span="8" v-if="userDetails.guarantee.creditPower == 1">
+          <el-col
+            :span="8"
+            v-if="userDetails.guarantee.creditPower == 1"
+            class="img"
+          >
             征信授权书
             <el-image
               style="width: 100px; height: 100px"
@@ -258,7 +270,12 @@
           <el-col :span="3">姓名：张三</el-col>
           <el-col :span="4">身份证号：410725199911112222</el-col>
           <el-col :span="5">征信查询时间：2020-12-10 12:00</el-col>
-          <el-col :span="10"></el-col>
+          <el-col :span="5"
+            ><el-button type="primary" round size="mini"
+              >查询征信</el-button
+            ></el-col
+          >
+          <el-col :span="5"></el-col>
           <el-col :span="2"
             ><el-button
               type="primary"
@@ -272,7 +289,7 @@
         <table style="font-size: 14px; color: #55657a">
           <tr style="display: block; margin: 20px">
             <td><span style="color: red">*</span>征信是否通过：</td>
-            <td>通过</td>
+            <td></td>
           </tr>
           <tr style="display: block; margin: 20px; text-indent: 2em">
             <td>征信字段：</td>
@@ -290,9 +307,15 @@
           type="textarea"
           :autosize="{ minRows: 3 }"
           placeholder="请输入内容"
-          v-model="textarea"
+          v-model="detailsCredit"
+          :disabled="isDisabled"
         />
-        <el-button type="primary" round style="margin: 20px 10px"
+        <el-button
+          type="primary"
+          round
+          style="margin: 20px 10px"
+          :disabled="isDisabled"
+          @click="addCreidClick"
           >确认</el-button
         >
       </el-tab-pane>
@@ -301,6 +324,12 @@
 </template>
 
 <script>
+import {
+  getBusiness,
+  findDetailsCredit,
+  addDetailsCredit,
+} from '@/api/process/business'
+
 export default {
   name: 'BusinessDetails',
   components: {},
@@ -308,7 +337,8 @@ export default {
     return {
       tabPosition: 'left', // tab 位置
       activeName: 'first', // Tabs
-      textarea: '', // 初审意见
+      detailsCredit: '', // 详版征信
+      isDisabled: false, // 禁用按钮
       // 用户详情
       userDetails: {
         business: {}, // 基本信息
@@ -322,11 +352,95 @@ export default {
     }
   },
   computed: {},
-  watch: {},
-  methods: {},
+  watch: {
+    $route(to, from) {
+      //监听路由是否变化
+      if (to.path == '/process/businessDetails') {
+        this.getBusinesss()
+      }
+    },
+  },
+  methods: {
+    // 获取信息
+    async getBusinesss() {
+      try {
+        const { data } = await getBusiness(this.$route.query.transactionCode)
+        this.userDetails.business = data.business
+        this.userDetails.borrower = data.borrower
+        this.userDetails.relation = data.relation
+        this.userDetails.guarantee = data.guarantee
+        if (data.borrower) {
+          this.borrowerSrcList.push(
+            data.borrower.obverseAddress,
+            data.borrower.backAddress,
+            data.borrower.powerAddress
+          )
+        }
+        if (data.relation) {
+          this.relationSrcList.push(
+            data.relation.obverseAddress,
+            data.relation.backAddress,
+            data.relation.powerAddress
+          )
+        }
+        if (data.guarantee) {
+          this.guaranteeSrcList.push(
+            data.guarantee.obverseAddress,
+            data.guarantee.backAddress,
+            data.guarantee.powerAddress
+          )
+        }
+        this.getDetailsCredit()
+      } catch (error) {
+        console.log(error)
+      }
+    },
+    // 获取详版征信
+    async getDetailsCredit() {
+      try {
+        const { data } = await findDetailsCredit(
+          this.$route.query.transactionCode
+        )
+        this.detailsCredit = null
+        if (data) {
+          this.isDisabled = true
+          this.detailsCredit = data.details
+        } else {
+          this.isDisabled = false
+        }
+      } catch (error) {}
+    },
+    // 点击按钮
+    addCreidClick() {
+      this.$confirm('确认提交?提交之后无法修改', '警告', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning',
+      })
+        .then(
+          addDetailsCredit({
+            transactionCode: this.$route.query.transactionCode,
+            details: this.detailsCredit,
+          })
+        )
+        .then(() => {
+          this.msgSuccess('操作成功')
+          this.getDetailsCredit()
+        })
+        .catch(function () {})
+    },
+    // 填写详版征信
+    async addCreid() {
+      try {
+        await addDetailsCredit({
+          transactionCode: this.$route.query.transactionCode,
+          details: this.detailsCredit,
+        })
+      } catch (error) {}
+    },
+  },
   created() {
-    console.log(this.$route)
-    console.log(this.$route.query.userId)
+    this.getBusinesss()
   },
 }
 </script>
@@ -343,9 +457,11 @@ export default {
     padding: 0 30px;
   }
   .el-col {
+    margin: 5px 0;
+  }
+  .img {
     display: flex;
     flex-direction: column-reverse;
-    margin: 5px 0;
   }
   h4 {
     margin: 5px;

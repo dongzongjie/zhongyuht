@@ -102,7 +102,7 @@
             <el-col :span="8">本人是否有驾驶证：</el-col>
             <el-col :span="8">驾驶员与主贷人关系：</el-col>
             <el-col :span="24">驾照类型：</el-col>
-            <el-col :span="8">
+            <el-col :span="8" class="img">
               身份证正面
               <el-image
                 style="width: 100px; height: 100px"
@@ -111,7 +111,7 @@
               >
               </el-image>
             </el-col>
-            <el-col :span="8">
+            <el-col :span="8" class="img">
               身份证反面
               <el-image
                 style="width: 100px; height: 100px"
@@ -120,7 +120,11 @@
               >
               </el-image>
             </el-col>
-            <el-col :span="8" v-if="userDetails.borrower.creditPower == 1">
+            <el-col
+              :span="8"
+              v-if="userDetails.borrower.creditPower == 1"
+              class="img"
+            >
               征信授权书
               <el-image
                 style="width: 100px; height: 100px"
@@ -197,7 +201,7 @@
                 >担保人关系</span
               >
             </el-col>
-            <el-col :span="8">
+            <el-col :span="8" class="img">
               身份证正面
               <el-image
                 style="width: 100px; height: 100px"
@@ -206,7 +210,7 @@
               >
               </el-image>
             </el-col>
-            <el-col :span="8">
+            <el-col :span="8" class="img">
               身份证反面
               <el-image
                 style="width: 100px; height: 100px"
@@ -215,7 +219,11 @@
               >
               </el-image>
             </el-col>
-            <el-col :span="8" v-if="userDetails.relation.creditPower == 1">
+            <el-col
+              :span="8"
+              v-if="userDetails.relation.creditPower == 1"
+              class="img"
+            >
               征信授权书
               <el-image
                 style="width: 100px; height: 100px"
@@ -276,7 +284,7 @@
             >
             <el-col :span="8">担保人户籍省/市：</el-col>
             <el-col :span="16">担保人现居住省/市：</el-col>
-            <el-col :span="8">
+            <el-col :span="8" class="img">
               身份证正面
               <el-image
                 style="width: 100px; height: 100px"
@@ -285,7 +293,7 @@
               >
               </el-image>
             </el-col>
-            <el-col :span="8">
+            <el-col :span="8" class="img">
               身份证反面
               <el-image
                 style="width: 100px; height: 100px"
@@ -294,7 +302,11 @@
               >
               </el-image>
             </el-col>
-            <el-col :span="8" v-if="userDetails.guarantee.creditPower == 1">
+            <el-col
+              :span="8"
+              v-if="userDetails.guarantee.creditPower == 1"
+              class="img"
+            >
               征信授权书
               <el-image
                 style="width: 100px; height: 100px"
@@ -361,7 +373,7 @@
           <h4>图片信息</h4>
           <h4 style="font-size: 16px">车辆</h4>
           <el-row>
-            <el-col :span="6">
+            <el-col :span="6" class="img">
               前
               <el-image
                 style="width: 100px; height: 100px"
@@ -370,7 +382,7 @@
               >
               </el-image>
             </el-col>
-            <el-col :span="6">
+            <el-col :span="6" class="img">
               后
               <el-image
                 style="width: 100px; height: 100px"
@@ -379,7 +391,7 @@
               >
               </el-image>
             </el-col>
-            <el-col :span="6">
+            <el-col :span="6" class="img">
               左
               <el-image
                 style="width: 100px; height: 100px"
@@ -388,7 +400,7 @@
               >
               </el-image>
             </el-col>
-            <el-col :span="6">
+            <el-col :span="6" class="img">
               右
               <el-image
                 style="width: 100px; height: 100px"
@@ -397,7 +409,7 @@
               >
               </el-image>
             </el-col>
-            <el-col :span="6">
+            <el-col :span="6" class="img">
               发动机铭牌
               <el-image
                 style="width: 100px; height: 100px"
@@ -406,7 +418,7 @@
               >
               </el-image>
             </el-col>
-            <el-col :span="6">
+            <el-col :span="6" class="img">
               里程碑
               <el-image
                 style="width: 100px; height: 100px"
@@ -415,7 +427,7 @@
               >
               </el-image>
             </el-col>
-            <el-col :span="6">
+            <el-col :span="6" class="img">
               B柱铭牌
               <el-image
                 style="width: 100px; height: 100px"
@@ -424,7 +436,7 @@
               >
               </el-image>
             </el-col>
-            <el-col :span="6">
+            <el-col :span="6" class="img">
               备胎箱地板
               <el-image
                 style="width: 100px; height: 100px"
@@ -433,7 +445,7 @@
               >
               </el-image>
             </el-col>
-            <el-col :span="6">
+            <el-col :span="6" class="img">
               人车合照
               <el-image
                 style="width: 100px; height: 100px"
@@ -445,7 +457,7 @@
           </el-row>
           <h4 style="font-size: 16px">登记证</h4>
           <el-row>
-            <el-col :span="6">
+            <el-col :span="6" class="img">
               机动车登记证1
               <el-image
                 style="width: 100px; height: 100px"
@@ -454,7 +466,7 @@
               >
               </el-image>
             </el-col>
-            <el-col :span="6">
+            <el-col :span="6" class="img">
               机动车登记证2
               <el-image
                 style="width: 100px; height: 100px"
@@ -463,7 +475,7 @@
               >
               </el-image>
             </el-col>
-            <el-col :span="6">
+            <el-col :span="6" class="img">
               机动车登记证3
               <el-image
                 style="width: 100px; height: 100px"
@@ -472,7 +484,7 @@
               >
               </el-image>
             </el-col>
-            <el-col :span="6">
+            <el-col :span="6" class="img">
               机动车登记证4
               <el-image
                 style="width: 100px; height: 100px"
@@ -481,7 +493,7 @@
               >
               </el-image>
             </el-col>
-            <el-col :span="6">
+            <el-col :span="6" class="img">
               机动车登记证5
               <el-image
                 style="width: 100px; height: 100px"
@@ -493,7 +505,7 @@
           </el-row>
           <h4 style="font-size: 16px">补充资料</h4>
           <el-row>
-            <el-col :span="6">
+            <el-col :span="6" class="img">
               手持确认书与车合影
               <el-image
                 style="width: 100px; height: 100px"
@@ -502,7 +514,7 @@
               >
               </el-image>
             </el-col>
-            <el-col :span="6">
+            <el-col :span="6" class="img">
               车辆交接单
               <el-image
                 style="width: 100px; height: 100px"
@@ -511,7 +523,7 @@
               >
               </el-image>
             </el-col>
-            <el-col :span="6">
+            <el-col :span="6" class="img">
               流水
               <el-image
                 style="width: 100px; height: 100px"
@@ -520,7 +532,7 @@
               >
               </el-image>
             </el-col>
-            <el-col :span="6">
+            <el-col :span="6" class="img">
               房产
               <el-image
                 style="width: 100px; height: 100px"
@@ -532,7 +544,7 @@
           </el-row>
           <h4 style="font-size: 16px">主贷人</h4>
           <el-row>
-            <el-col :span="6">
+            <el-col :span="6" class="img">
               主贷人身份证（头像面）
               <el-image
                 style="width: 100px; height: 100px"
@@ -541,7 +553,7 @@
               >
               </el-image>
             </el-col>
-            <el-col :span="6">
+            <el-col :span="6" class="img">
               主贷人身份证（国徽面）
               <el-image
                 style="width: 100px; height: 100px"
@@ -550,7 +562,7 @@
               >
               </el-image>
             </el-col>
-            <el-col :span="6">
+            <el-col :span="6" class="img">
               主贷人驾驶证复联
               <el-image
                 style="width: 100px; height: 100px"
@@ -559,7 +571,7 @@
               >
               </el-image>
             </el-col>
-            <el-col :span="6">
+            <el-col :span="6" class="img">
               征信授权书
               <el-image
                 style="width: 100px; height: 100px"
@@ -571,7 +583,7 @@
           </el-row>
           <h4 style="font-size: 16px">配偶</h4>
           <el-row>
-            <el-col :span="6">
+            <el-col :span="6" class="img">
               配偶身份证（头像面）
               <el-image
                 style="width: 100px; height: 100px"
@@ -580,7 +592,7 @@
               >
               </el-image>
             </el-col>
-            <el-col :span="6">
+            <el-col :span="6" class="img">
               配偶身份证（国徽面）
               <el-image
                 style="width: 100px; height: 100px"
@@ -589,7 +601,7 @@
               >
               </el-image>
             </el-col>
-            <el-col :span="6">
+            <el-col :span="6" class="img">
               征信授权书
               <el-image
                 style="width: 100px; height: 100px"
@@ -601,7 +613,7 @@
           </el-row>
           <h4 style="font-size: 16px">担保人</h4>
           <el-row>
-            <el-col :span="6">
+            <el-col :span="6" class="img">
               担保人身份证（头像面）
               <el-image
                 style="width: 100px; height: 100px"
@@ -610,7 +622,7 @@
               >
               </el-image>
             </el-col>
-            <el-col :span="6">
+            <el-col :span="6" class="img">
               担保人身份证（国徽面）
               <el-image
                 style="width: 100px; height: 100px"
@@ -619,7 +631,7 @@
               >
               </el-image>
             </el-col>
-            <el-col :span="6">
+            <el-col :span="6" class="img">
               征信授权书
               <el-image
                 style="width: 100px; height: 100px"
@@ -671,6 +683,23 @@
         <h4>详版征信</h4>
       </el-tab-pane>
       <el-tab-pane label="数据辅正" name="third">待开发</el-tab-pane>
+      <el-tab-pane label="初审意见" name="fourth">
+        <el-input
+          type="textarea"
+          :autosize="{ minRows: 3 }"
+          placeholder="请输入内容"
+          v-model="textarea"
+        />
+        <el-button type="primary" round style="margin: 20px 10px"
+          >通过</el-button
+        >
+        <el-button type="warning" round style="margin: 20px 10px"
+          >退回</el-button
+        >
+        <el-button type="danger" round style="margin: 20px 10px"
+          >拒绝</el-button
+        >
+      </el-tab-pane>
     </el-tabs>
   </div>
 </template>
@@ -760,9 +789,11 @@ export default {
     padding: 0 30px;
   }
   .el-col {
+    margin: 5px 0;
+  }
+  .img {
     display: flex;
     flex-direction: column-reverse;
-    margin: 5px 0;
   }
   h4 {
     margin: 5px;

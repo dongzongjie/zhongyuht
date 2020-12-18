@@ -68,7 +68,7 @@
         <template slot-scope="scope">
           <div
             style="cursor: pointer; font-size: 13px"
-            @click="handle(scope.row.date)"
+            @click="handle(scope.row.id)"
           >
             <el-row style="background-color: #f3f4f9">
               <el-col :span="4">订单生成时间：{{ scope.row.date }}</el-col>
@@ -121,7 +121,10 @@ export default {
       // 总条数
       total: 2,
       // 秒批表格数据
-      MyCustomerList: [{ date: 1 }, { date: 2 }],
+      MyCustomerList: [
+        { id: 1, date: 11 },
+        { id: 2, date: 22 },
+      ],
       // 弹出层标题
       title: '',
       // 是否显示弹出层
@@ -170,12 +173,12 @@ export default {
       this.resetForm('queryForm')
     },
     // 立即处理
-    handle(date) {
+    handle(id) {
       this.$router.push({
         path: '/process/businessDetails',
         name: 'BusinessDetails',
         query: {
-          date,
+          id,
         },
       })
     },

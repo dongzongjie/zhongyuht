@@ -46,7 +46,7 @@
         <el-col :span="6">
           <el-form-item label="门店名称">
             <el-input
-              v-model="formData.storeName"
+              v-model="formData.dealerName"
               placeholder="请输入门店名称"
               :style="{ width: '100%' }"
             >
@@ -168,57 +168,46 @@
         <el-col :span="24" style="margin-bottom: 20px">
           <span style="font-size: 14px">门店照片：</span>
           <el-upload
-            ref="upload"
+            ref="upload1"
             :limit="9"
             accept=".jpg, .png"
             list-type="picture-card"
+            :on-preview="handlePictureCardPreview"
             :action="upload.url"
             :headers="upload.headers"
-            :file-list="upload.fileList"
+            :file-list="upload.fileList1"
             :on-progress="handleFileUploadProgress"
             :on-success="handleFileSuccess"
             :auto-upload="false"
+            :data="upload.data1"
           >
             <i slot="default" class="el-icon-plus"></i>
-            <div slot="file" slot-scope="{ file }">
-              <img
-                class="el-upload-list__item-thumbnail"
-                :src="file.url"
-                alt=""
-              />
-              <span class="el-upload-list__item-actions">
-                <span
-                  class="el-upload-list__item-preview"
-                  @click="handlePictureCardPreview(file)"
-                >
-                  <i class="el-icon-zoom-in"></i>
-                </span>
-                <span
-                  v-if="!disabled"
-                  class="el-upload-list__item-delete"
-                  @click="handleDownload(file)"
-                >
-                  <i class="el-icon-download"></i>
-                </span>
-                <span
-                  v-if="!disabled"
-                  class="el-upload-list__item-delete"
-                  @click="handleRemove(file)"
-                >
-                  <i class="el-icon-delete"></i>
-                </span>
-              </span>
-            </div>
             <div slot="tip" class="el-upload__tip">
               只能上传jpg/png文件，且不超过500kb,最多上传9张
             </div>
           </el-upload>
-          <el-dialog :visible.sync="dialogVisible">
-            <img width="100%" :src="dialogImageUrl" alt="" />
-          </el-dialog>
         </el-col>
         <el-col :span="24" style="margin-bottom: 20px">
           <span style="font-size: 14px">车位照片：</span>
+          <el-upload
+            ref="upload2"
+            :limit="9"
+            accept=".jpg, .png"
+            list-type="picture-card"
+            :action="upload.url"
+            :on-preview="handlePictureCardPreview"
+            :headers="upload.headers"
+            :file-list="upload.fileList2"
+            :on-progress="handleFileUploadProgress"
+            :on-success="handleFileSuccess"
+            :auto-upload="false"
+            :data="upload.data2"
+          >
+            <i slot="default" class="el-icon-plus"></i>
+            <div slot="tip" class="el-upload__tip">
+              只能上传jpg/png文件，且不超过500kb,最多上传9张
+            </div>
+          </el-upload>
         </el-col>
         <el-col :span="6">
           <el-form-item label="联系人姓名">
@@ -277,11 +266,11 @@
           </el-form-item>
         </el-col>
         <el-col :span="24" style="margin-bottom: 20px">
-          <el-table :data="tableData" border style="width: 100%">
+          <el-table :data="formData.zyjrCarAccount" border style="width: 100%">
             <el-table-column label="账户用途" width="180">
               <template slot-scope="scope">
                 <el-input
-                  v-model="scope.row.date"
+                  v-model="scope.row.accountUse"
                   :style="{ width: '100%', height: '100%' }"
                 ></el-input>
               </template>
@@ -289,7 +278,7 @@
             <el-table-column label="账户类型" width="180">
               <template slot-scope="scope">
                 <el-input
-                  v-model="scope.row.name"
+                  v-model="scope.row.accountType"
                   :style="{ width: '100%', height: '100%' }"
                 ></el-input>
               </template>
@@ -297,7 +286,7 @@
             <el-table-column label="收款账户姓名">
               <template slot-scope="scope">
                 <el-input
-                  v-model="scope.row.address"
+                  v-model="scope.row.accountName"
                   :style="{ width: '100%', height: '100%' }"
                 ></el-input>
               </template>
@@ -305,7 +294,7 @@
             <el-table-column label="收款账户证件号码">
               <template slot-scope="scope">
                 <el-input
-                  v-model="scope.row.address"
+                  v-model="scope.row.accountNumber"
                   :style="{ width: '100%', height: '100%' }"
                 ></el-input>
               </template>
@@ -313,7 +302,7 @@
             <el-table-column label="放款账户">
               <template slot-scope="scope">
                 <el-input
-                  v-model="scope.row.address"
+                  v-model="scope.row.loanAccount"
                   :style="{ width: '100%', height: '100%' }"
                 ></el-input>
               </template>
@@ -321,7 +310,7 @@
             <el-table-column label="收款借记卡卡号">
               <template slot-scope="scope">
                 <el-input
-                  v-model="scope.row.address"
+                  v-model="scope.row.payeeAccount"
                   :style="{ width: '100%', height: '100%' }"
                 ></el-input>
               </template>
@@ -329,7 +318,7 @@
             <el-table-column label="开户银行">
               <template slot-scope="scope">
                 <el-input
-                  v-model="scope.row.address"
+                  v-model="scope.row.accountLicence"
                   :style="{ width: '100%', height: '100%' }"
                 ></el-input>
               </template>
@@ -337,26 +326,82 @@
             <el-table-column label="支行">
               <template slot-scope="scope">
                 <el-input
-                  v-model="scope.row.address"
+                  v-model="scope.row.accountSubBranch"
                   :style="{ width: '100%', height: '100%' }"
                 ></el-input>
               </template>
             </el-table-column>
           </el-table>
-          <div class="addTr" @click="tableData.push({})">+添加收款账户</div>
+          <div class="addTr" @click="formData.zyjrCarAccount.push({})">
+            +添加收款账户
+          </div>
+        </el-col>
+        <el-col :span="24" style="margin-bottom: 20px">
+          <span style="font-size: 14px">收款人身份证+银行卡：</span>
+          <el-upload
+            ref="upload3"
+            :limit="9"
+            accept=".jpg, .png"
+            list-type="picture-card"
+            :action="upload.url"
+            :on-preview="handlePictureCardPreview"
+            :headers="upload.headers"
+            :file-list="upload.fileList3"
+            :on-progress="handleFileUploadProgress"
+            :on-success="handleFileSuccess"
+            :auto-upload="false"
+            :data="upload.data3"
+          >
+            <i slot="default" class="el-icon-plus"></i>
+            <div slot="tip" class="el-upload__tip">
+              只能上传jpg/png文件，且不超过500kb,最多上传9张
+            </div>
+          </el-upload>
+        </el-col>
+        <el-col :span="24" style="margin-bottom: 20px">
+          <span style="font-size: 14px"
+            >营业执照+法人+开户许可证（如有）：</span
+          >
+          <el-upload
+            ref="upload4"
+            :limit="9"
+            accept=".jpg, .png"
+            list-type="picture-card"
+            :action="upload.url"
+            :on-preview="handlePictureCardPreview"
+            :headers="upload.headers"
+            :file-list="upload.fileList4"
+            :on-progress="handleFileUploadProgress"
+            :on-success="handleFileSuccess"
+            :auto-upload="false"
+            :data="upload.data4"
+          >
+            <i slot="default" class="el-icon-plus"></i>
+            <div slot="tip" class="el-upload__tip">
+              只能上传jpg/png文件，且不超过500kb,最多上传9张
+            </div>
+          </el-upload>
+        </el-col>
+        <el-col :span="24" style="margin-bottom: 20px">
+          <el-form-item label="备注">
+            <el-input type="textarea" v-model="formData.remark"></el-input>
+          </el-form-item>
         </el-col>
         <el-col :span="24">
           <el-form-item size="large">
-            <el-button type="primary" @click="submitForm">提交</el-button>
-            <el-button @click="resetForm">重置</el-button>
+            <el-button type="primary" @click="submitUpload">提交</el-button>
           </el-form-item>
         </el-col>
       </el-form>
     </el-row>
+    <el-dialog :visible.sync="dialogVisible">
+      <img width="100%" :src="dialogImageUrl" alt="" />
+    </el-dialog>
   </div>
 </template>
 <script>
 import { getToken } from '@/utils/auth'
+import { getCar, updateCar } from '@/api/organization/car'
 
 export default {
   name: 'CarDetails',
@@ -364,6 +409,8 @@ export default {
   props: [],
   data() {
     return {
+      dialogImageUrl: '', // 弹框大图片url
+      dialogVisible: false, // 大图弹框
       formData: {
         state: '', // 状态
         city: '', // 城市
@@ -372,7 +419,7 @@ export default {
         typeOne: '', // 门店类型
         typeToo: '', // 有无门头
         stall: '', // 车位数
-        storeName: '', // 门店名称
+        dealerName: '', // 门店名称
         businessNature: '', // 经营性质
         typeThree: '', // 业务类型
         opponent: '', // 对手
@@ -385,31 +432,9 @@ export default {
         phoneNumber: '', // 联系人电话
         isLinkman: '', // 是否KP
         identity: '', // 身份
+        remark: '', // 备注
+        zyjrCarAccount: [], // 银行账户信息
       },
-      tableData: [
-        {
-          date: '2016-05-02',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄',
-        },
-        {
-          date: '2016-05-04',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1517 弄',
-        },
-        {
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1519 弄',
-        },
-        {
-          date: '2016-05-03',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1516 弄',
-        },
-      ],
-      dialogImageUrl: '',
-      dialogVisible: false,
       disabled: false,
       // 上传参数
       upload: {
@@ -418,29 +443,80 @@ export default {
         // 设置上传的请求头部
         headers: { Authorization: 'Bearer ' + getToken() },
         // 上传的地址
-        url: 'http://192.168.31.82:8080/common/upload/common/upload',
+        url: 'http://192.168.31.82:8080/system/test/ceshi',
         // 上传的文件列表
-        fileList: [],
+        fileList1: [
+          {
+            url:
+              'http://192.168.31.82/dev-api/profile/avatar/2020/12/16/f4801fee-c927-4e4e-9bbc-3b406674d6a8.jpg',
+          },
+        ],
+        fileList2: [],
+        fileList3: [],
+        fileList4: [],
+        data1: {
+          name: 'name1',
+        },
+        data2: {
+          name: 'name2',
+        },
+        data3: {
+          name: 'name3',
+        },
+        data4: {
+          name: 'name4',
+        },
       },
+      form: {},
     }
   },
   computed: {},
-  watch: {},
-  created() {},
+  watch: {
+    $route(to, from) {
+      //监听路由是否变化
+      if (to.path == '/organization/carDetails') {
+        this.getCars()
+      }
+    },
+  },
+  created() {
+    this.getCars()
+  },
   mounted() {},
   methods: {
-    submitForm() {
-      this.$refs['elForm'].validate((valid) => {
-        if (!valid) return
-        // TODO 提交表单
-      })
-    },
-    resetForm() {
-      this.$refs['elForm'].resetFields()
+    // 获取车商详细信息
+    async getCars() {
+      try {
+        const { data } = await getCar(this.$route.query.id)
+        this.formData = data
+      } catch (error) {}
     },
     // 文件提交处理
     submitUpload() {
-      this.$refs.upload.submit()
+      const that = this
+      this.$confirm('确认修改？', '警告', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning',
+      })
+        .then(function () {
+          return that.updateCars()
+        })
+        .then(() => {
+          getCar(that.$route.query.id)
+          that.msgSuccess('修改成功')
+        })
+        .catch(function () {})
+    },
+    // 车商信息修改
+    async updateCars() {
+      try {
+        await updateCar(this.formData)
+        this.$refs.upload1.submit()
+        this.$refs.upload2.submit()
+        this.$refs.upload3.submit()
+        this.$refs.upload4.submit()
+      } catch (error) {}
     },
     // 文件上传中处理
     handleFileUploadProgress(event, file, fileList) {
@@ -452,17 +528,10 @@ export default {
       this.form.filePath = response.url
       this.msgSuccess(response.msg)
     },
-    // 删除图片
-    handleRemove(file) {
-      // this.upload.fileList.remove = [{ name: file.name, url: file.url }]
-    },
     // 放大图片
     handlePictureCardPreview(file) {
       this.dialogImageUrl = file.url
       this.dialogVisible = true
-    },
-    handleDownload(file) {
-      console.log(file)
     },
   },
 }
@@ -473,8 +542,8 @@ export default {
   vertical-align: text-top;
 }
 .addTr {
-  height: 30px;
-  line-height: 30px;
+  height: 50px;
+  line-height: 50px;
   background-color: #fff;
   font-size: 16px;
   text-align: center;

@@ -239,3 +239,9 @@ export default {
   },
 }
 </script>
+
+<style lang="scss" scoped>
+/deep/.el-form-item__label {
+  width: 96px !important;
+}
+</style>

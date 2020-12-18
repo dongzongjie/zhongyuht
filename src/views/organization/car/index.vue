@@ -7,9 +7,9 @@
       v-show="showSearch"
       label-width="68px"
     >
-      <el-form-item label="车商名称" prop="userName">
+      <el-form-item label="车商名称" prop="dealerName">
         <el-input
-          v-model="queryParams.userName"
+          v-model="queryParams.dealerName"
           placeholder="请输入车商名称"
           clearable
           size="small"
@@ -124,7 +124,7 @@
     >
       <el-table-column type="selection" width="55" align="center" />
       <el-table-column label="id" align="center" prop="id" />
-      <el-table-column label="车商名称" align="center" prop="userName" />
+      <el-table-column label="车商名称" align="center" prop="dealerName" />
       <el-table-column label="所属区域" align="center">
         <template slot-scope="scope">
           {{ scope.row.city }} / {{ scope.row.area }} / {{ scope.row.bazaar }}
@@ -160,8 +160,8 @@
     <!-- 添加或修改车商信息对话框 -->
     <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
       <el-form ref="form" :model="form" :rules="rules" label-width="80px">
-        <el-form-item label="车商名称" prop="userName">
-          <el-input v-model="form.userName" placeholder="请输入车商名称" />
+        <el-form-item label="车商名称" prop="dealerName">
+          <el-input v-model="form.dealerName" placeholder="请输入车商名称" />
         </el-form-item>
         <el-form-item label="所属城市" prop="city">
           <el-input v-model="form.city" placeholder="请输入所属城市" />
@@ -172,11 +172,14 @@
         <el-form-item label="所属市场" prop="bazaar">
           <el-input v-model="form.bazaar" placeholder="请输入所属市场" />
         </el-form-item>
-        <el-form-item label="第一个门店类型" prop="typeOne">
-          <el-input v-model="form.typeOne" placeholder="请输入第一个门店类型" />
+        <el-form-item label="门店类型" prop="typeOne">
+          <el-input v-model="form.typeOne" placeholder="请输入门店类型" />
         </el-form-item>
-        <el-form-item label="第二个门店类型" prop="typeToo">
-          <el-input v-model="form.typeToo" placeholder="请输入第二个门店类型" />
+        <el-form-item label="有无门头" prop="typeToo">
+          <el-select v-model="form.typeToo" placeholder="请选择有无门头">
+            <el-option label="有" value="0" />
+            <el-option label="无" value="1" />
+          </el-select>
         </el-form-item>
         <el-form-item label="车位数" prop="stall">
           <el-input v-model="form.stall" placeholder="请输入车位数" />
@@ -190,11 +193,10 @@
         <el-form-item label="乘用车" prop="passengerCar">
           <el-input v-model="form.passengerCar" placeholder="请输入乘用车" />
         </el-form-item>
-        <el-form-item label="第三个门店类型" prop="typeThree">
-          <el-input
-            v-model="form.typeThree"
-            placeholder="请输入第三个门店类型"
-          />
+        <el-form-item label="业务类型" prop="typeThree">
+          <el-select v-model="form.typeThree" placeholder="请选择业务类型">
+            <el-option label="未知" value="0" />
+          </el-select>
         </el-form-item>
         <el-form-item label="月交易量" prop="monthDeal">
           <el-input v-model="form.monthDeal" placeholder="请输入月交易量" />
@@ -213,42 +215,6 @@
         </el-form-item>
         <el-form-item label="门店照片" prop="pic">
           <el-input v-model="form.pic" placeholder="请输入门店照片" />
-        </el-form-item>
-        <el-form-item label="账户名" prop="accountName">
-          <el-input v-model="form.accountName" placeholder="请输入账户名" />
-        </el-form-item>
-        <el-form-item label="账户用途" prop="accountUse">
-          <el-input v-model="form.accountUse" placeholder="请输入账户用途" />
-        </el-form-item>
-        <el-form-item label="账户类型" prop="accountType">
-          <el-input v-model="form.accountType" placeholder="请输入账户类型" />
-        </el-form-item>
-        <el-form-item label="账户卡号" prop="accountNumber">
-          <el-input v-model="form.accountNumber" placeholder="请输入账户卡号" />
-        </el-form-item>
-        <el-form-item label="账户开户行" prop="accountLicence">
-          <el-input
-            v-model="form.accountLicence"
-            placeholder="请输入账户开户行"
-          />
-        </el-form-item>
-        <el-form-item label="账户行所在城市" prop="accountCity">
-          <el-input
-            v-model="form.accountCity"
-            placeholder="请输入账户行所在城市"
-          />
-        </el-form-item>
-        <el-form-item label="账户所在省份" prop="accountProvinc">
-          <el-input
-            v-model="form.accountProvinc"
-            placeholder="请输入账户所在省份"
-          />
-        </el-form-item>
-        <el-form-item label="账户开户支行" prop="accountSubBranch">
-          <el-input
-            v-model="form.accountSubBranch"
-            placeholder="请输入账户开户支行"
-          />
         </el-form-item>
         <el-form-item label="状态" prop="state">
           <el-select v-model="form.state" placeholder="请选择状态">
@@ -301,33 +267,10 @@ export default {
       queryParams: {
         pageNum: 1,
         pageSize: 10,
-        userName: null,
-        gender: null,
-        phoneNumber: null,
-        isLinkman: null,
-        identity: null,
+        dealerName: null,
         area: null,
         city: null,
         bazaar: null,
-        typeOne: null,
-        typeToo: null,
-        stall: null,
-        businessNature: null,
-        passengerCar: null,
-        typeThree: null,
-        monthDeal: null,
-        monthInstallment: null,
-        matchAmount: null,
-        detailAddress: null,
-        pic: null,
-        accountName: null,
-        accountUse: null,
-        accountType: null,
-        accountNumber: null,
-        accountLicence: null,
-        accountCity: null,
-        accountProvinc: null,
-        accountSubBranch: null,
         state: null,
       },
       // 表单参数
@@ -357,6 +300,7 @@ export default {
     // 表单重置
     reset() {
       this.form = {
+        dealerName: null,
         userName: null,
         gender: null,
         phoneNumber: null,
@@ -377,14 +321,6 @@ export default {
         matchAmount: null,
         detailAddress: null,
         pic: null,
-        accountName: null,
-        accountUse: null,
-        accountType: null,
-        accountNumber: null,
-        accountLicence: null,
-        accountCity: null,
-        accountProvinc: null,
-        accountSubBranch: null,
         createBy: null,
         createTime: null,
         updateBy: null,
