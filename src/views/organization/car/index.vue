@@ -81,17 +81,6 @@
       </el-col>
       <el-col :span="1.5">
         <el-button
-          type="success"
-          icon="el-icon-edit"
-          size="mini"
-          :disabled="single"
-          @click="handleUpdate"
-          v-hasPermi="['organization:car:edit']"
-          >修改</el-button
-        >
-      </el-col>
-      <el-col :span="1.5">
-        <el-button
           type="danger"
           icon="el-icon-delete"
           size="mini"
@@ -212,9 +201,6 @@
         </el-form-item>
         <el-form-item label="详细地址" prop="detailAddress">
           <el-input v-model="form.detailAddress" placeholder="请输入详细地址" />
-        </el-form-item>
-        <el-form-item label="门店照片" prop="pic">
-          <el-input v-model="form.pic" placeholder="请输入门店照片" />
         </el-form-item>
         <el-form-item label="状态" prop="state">
           <el-select v-model="form.state" placeholder="请选择状态">

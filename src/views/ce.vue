@@ -24,14 +24,30 @@
         只能上传jpg/png文件，且不超过500kb
       </div>
     </el-upload>
+    <el-dialog title="提示" :visible.sync="dialogVisible" width="50%">
+      <pdf ref="pdf" v-for="i in numPages" :key="i" :src="url" :page="i"></pdf>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="dialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="dialogVisible = false"
+          >确 定</el-button
+        >
+      </span>
+    </el-dialog>
+    <button @click="dialogVisible = true">pdf</button>
+    <button @click="post">点击</button>
   </div>
 </template>
 
 <script>
+import axios from 'axios'
+import qs from 'querystring'
+import pdf from 'vue-pdf'
 import { getToken } from '@/utils/auth'
+import { ceshi } from '@/api/organization/car'
+
 export default {
   name: 'Ce',
-  components: {},
+  components: { pdf },
   data() {
     return {
       // 上传参数
@@ -41,11 +57,15 @@ export default {
         // 设置上传的请求头部
         // headers: { Authorization: 'Bearer ' + getToken() },
         // 上传的地址
-        url: 'http://192.168.31.86:8070/dev-api/system/test/ceshi',
+        url: 'http://192.168.31.82:8080/system/test/ceshi2',
         // 上传的文件列表
         fileList: [],
       },
       form: {},
+      url:
+        'http://192.168.31.82/dev-api/profile/2020/12/18/4944fa69-82f2-4eae-b1b8-b25be2303827.pdf',
+      numPages: null, // pdf 总页数
+      dialogVisible: false,
     }
   },
   computed: {},
@@ -75,8 +95,40 @@ export default {
       this.msgSuccess(response.msg)
       console.log(file)
     },
+    getNumPages() {
+      let loadingTask = pdf.createLoadingTask(this.url)
+      loadingTask.promise
+        .then((pdf) => {
+          this.numPages = pdf.numPages
+        })
+        .catch((err) => {
+          console.error('pdf 加载失败', err)
+        })
+    },
+    async post() {
+      try {
+        await ceshi()
+        console.log(1)
+      } catch (error) {
+        console.log(error)
+      }
+    },
+    ceshi1() {
+      axios.defaults.headers['Authorization'] =
+        'zyrzWEB_67005A073406B38369C9B9B50BFD767B'
+      axios.defaults.headers['Access-Control-Allow-Origin'] = '*'
+      axios
+        .post(
+          'https://loanexamine.100credit.com/#/approvalService/approvalReport/3004954_20201221173450_47243517A10/approvalhistory'
+        )
+        .then((res) => {
+          console.log(res)
+        })
+    },
   },
-
+  mounted() {
+    this.getNumPages()
+  },
   created() {},
 }
 </script>

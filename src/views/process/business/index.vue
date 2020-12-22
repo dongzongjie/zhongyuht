@@ -91,20 +91,35 @@
           <span v-else-if="scope.row.carType === 2">新能源</span>
         </template>
       </el-table-column>
-      <el-table-column label="当前操作人" align="center" />
+      <el-table-column label="当前操作人" align="center" prop="operator" />
       <el-table-column
         label="操作"
         align="center"
         class-name="small-padding fixed-width"
       >
         <template slot-scope="scope">
-          <el-button
-            size="mini"
-            type="text"
-            @click="handle(scope.row.transactionCode)"
-            >立即处理</el-button
-          >
-          <el-button size="mini" type="text" @click="unlock">解锁</el-button>
+          <div v-if="!scope.row.updateBy">
+            <el-button
+              size="mini"
+              type="text"
+              @click="handle(scope.row)"
+              v-hasPermi="['process:business:edit']"
+              >立即处理</el-button
+            >
+          </div>
+          <div v-else-if="scope.row.updateBy == $store.state.user.userId">
+            <el-button
+              size="mini"
+              type="text"
+              @click="handle(scope.row)"
+              v-hasPermi="['process:business:edit']"
+              >立即处理</el-button
+            >
+            <el-button size="mini" type="text" @click="unlock(scope.row.id)"
+              >解锁</el-button
+            >
+          </div>
+          <div v-else></div>
         </template>
       </el-table-column>
     </el-table>
@@ -128,6 +143,7 @@ import {
   addBusiness,
   updateBusiness,
   exportBusiness,
+  deleteOperator,
 } from '@/api/process/business'
 
 export default {
@@ -171,7 +187,6 @@ export default {
   },
   created() {
     this.getList()
-    console.log(this.$store.state.user)
   },
   methods: {
     checkRole,
@@ -202,18 +217,36 @@ export default {
       this.handleQuery()
     },
     // 立即处理
-    handle(transactionCode) {
-      this.$router.push({
-        path: '/process/businessDetails',
-        name: 'BusinessDetails',
-        query: {
-          transactionCode,
-        },
-      })
+    async handle(item) {
+      try {
+        await updateBusiness({
+          id: item.id,
+        })
+        this.getList()
+        this.$router.push({
+          path: '/process/businessDetails',
+          name: 'BusinessDetails',
+          query: {
+            transactionCode: item.transactionCode,
+          },
+        })
+      } catch (error) {
+        console.log(error)
+      }
     },
     // 解锁
-    unlock() {
-      console.log('解锁')
+    async unlock(id) {
+      this.$confirm('确认解锁?', '警告', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning',
+      })
+        .then(deleteOperator(id))
+        .then(() => {
+          this.msgSuccess('解锁成功')
+          this.getList()
+        })
+        .catch(function () {})
     },
     // 我的客户
     myCustomer() {

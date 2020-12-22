@@ -267,14 +267,9 @@
             border-top: 1px solid #ccc;
           "
         >
-          <el-col :span="3">姓名：张三</el-col>
-          <el-col :span="4">身份证号：410725199911112222</el-col>
-          <el-col :span="5">征信查询时间：2020-12-10 12:00</el-col>
-          <el-col :span="5"
-            ><el-button type="primary" round size="mini"
-              >查询征信</el-button
-            ></el-col
-          >
+          <el-col :span="3">姓名：{{ userDetails.borrower.userName }}</el-col>
+          <el-col :span="4">身份证号：{{ userDetails.borrower.idCard }}</el-col>
+          <el-col :span="10">征信查询时间：2020-12-10 12:00</el-col>
           <el-col :span="5"></el-col>
           <el-col :span="2"
             ><el-button
@@ -332,6 +327,7 @@ import {
   getBusiness,
   findDetailsCredit,
   addDetailsCredit,
+  getSelectState,
 } from '@/api/process/business'
 
 export default {
@@ -404,6 +400,14 @@ export default {
           }
         }
         this.getDetailsCredit()
+        this.findSelectState()
+      } catch (error) {}
+    },
+    // 获取征信结果
+    async findSelectState() {
+      try {
+        const { data } = await getSelectState(this.$route.query.transactionCode)
+        console.log(data)
       } catch (error) {
         console.log(error)
       }

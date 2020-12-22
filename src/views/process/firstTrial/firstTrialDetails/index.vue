@@ -45,15 +45,6 @@
               <span v-else-if="userDetails.business.carType == 1">二手车</span>
               <span v-else-if="userDetails.business.carType == 2">新能源</span>
             </el-col>
-            <el-col :span="8"
-              >意向价格：{{ userDetails.business.intentionPrice }}</el-col
-            >
-            <el-col :span="8"
-              >意向贷款金额：{{ userDetails.business.loanMoney }}</el-col
-            >
-            <el-col :span="8"
-              >意向贷款期限：{{ userDetails.business.repayPeriod }}</el-col
-            >
           </el-row>
         </div>
         <div ref="ref2">
@@ -531,6 +522,14 @@
                 :preview-src-list="srcList"
               >
               </el-image>
+              <el-button
+                type="primary"
+                round
+                size="mini"
+                style="width: 100px"
+                @click="dialogVisible = true"
+                >查看文件</el-button
+              >
             </el-col>
             <el-col :span="6" class="img">
               房产
@@ -701,15 +700,26 @@
         >
       </el-tab-pane>
     </el-tabs>
+    <el-dialog :visible.sync="dialogVisible" width="50%">
+      <pdf ref="pdf" v-for="i in numPages" :key="i" :src="url" :page="i"></pdf>
+    </el-dialog>
   </div>
 </template>
 
 <script>
+import pdf from 'vue-pdf'
+
 export default {
   name: 'FirstTrialDetails',
-  components: {},
+  components: {
+    pdf,
+  },
   data() {
     return {
+      dialogVisible: false, // 弹框
+      url:
+        'http://192.168.31.82/dev-api/profile/2020/12/18/4944fa69-82f2-4eae-b1b8-b25be2303827.pdf',
+      numPages: null, // pdf 总页数
       tabPosition: 'left', // tab 位置
       activeName: 'first', // Tabs
       textarea: '', // 初审意见
@@ -769,10 +779,24 @@ export default {
       }
       window.requestAnimationFrame(step)
     },
+    // pdf文件
+    getNumPages() {
+      let loadingTask = pdf.createLoadingTask(this.url)
+      loadingTask.promise
+        .then((pdf) => {
+          this.numPages = pdf.numPages
+        })
+        .catch((err) => {
+          console.error('pdf 加载失败', err)
+        })
+    },
   },
   created() {
     console.log(this.$route)
     console.log(this.$route.query.userId)
+  },
+  mounted() {
+    this.getNumPages()
   },
 }
 </script>

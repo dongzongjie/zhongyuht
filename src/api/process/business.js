@@ -52,6 +52,17 @@ export function exportBusiness(query) {
     })
 }
 
+// 获取征信结果
+export function getSelectState(transactionCode) {
+    return request({
+        url: '/system/test/selectState',
+        method: 'post',
+        data: {
+            transactionCode
+        }
+    })
+}
+
 // 获取详版征信
 export function findDetailsCredit(transactionCode) {
     return request({
@@ -66,5 +77,13 @@ export function addDetailsCredit(data) {
         url: '/stage/add/details',
         method: 'post',
         data: data
+    })
+}
+
+// 解锁删除当前操作人
+export function deleteOperator(id) {
+    return request({
+        url: '/system/business/edit?id=' + id,
+        method: 'get',
     })
 }

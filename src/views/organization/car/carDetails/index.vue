@@ -138,6 +138,15 @@
           </el-form-item>
         </el-col>
         <el-col :span="6">
+          <el-form-item label="竞对单量(台)">
+            <el-input
+              v-model="formData.matchAmount"
+              placeholder="请输入竞对单量竞对单量(台)"
+              :style="{ width: '100%' }"
+            ></el-input>
+          </el-form-item>
+        </el-col>
+        <el-col :span="18">
           <el-form-item label="产品竞争对象">
             <el-input
               v-model="formData.opponent"
@@ -145,15 +154,6 @@
               :style="{ width: '100%' }"
             >
             </el-input>
-          </el-form-item>
-        </el-col>
-        <el-col :span="6">
-          <el-form-item label="竞对单量(台)">
-            <el-input
-              v-model="formData.matchAmount"
-              placeholder="请输入竞对单量竞对单量(台)"
-              :style="{ width: '100%' }"
-            ></el-input>
           </el-form-item>
         </el-col>
         <el-col :span="24">
@@ -168,44 +168,48 @@
         <el-col :span="24" style="margin-bottom: 20px">
           <span style="font-size: 14px">门店照片：</span>
           <el-upload
-            ref="upload1"
+            ref="store"
             :limit="9"
             accept=".jpg, .png"
             list-type="picture-card"
             :on-preview="handlePictureCardPreview"
             :action="upload.url"
             :headers="upload.headers"
-            :file-list="upload.fileList1"
+            :file-list="upload.storeList"
             :on-progress="handleFileUploadProgress"
             :on-success="handleFileSuccess"
+            :before-remove="beforeRemove"
+            :on-remove="handleRemove"
             :auto-upload="false"
-            :data="upload.data1"
+            :data="upload.storeData"
           >
             <i slot="default" class="el-icon-plus"></i>
             <div slot="tip" class="el-upload__tip">
-              只能上传jpg/png文件，且不超过500kb,最多上传9张
+              只能上传jpg/png文件，最多上传9张
             </div>
           </el-upload>
         </el-col>
         <el-col :span="24" style="margin-bottom: 20px">
           <span style="font-size: 14px">车位照片：</span>
           <el-upload
-            ref="upload2"
+            ref="stall"
             :limit="9"
             accept=".jpg, .png"
             list-type="picture-card"
             :action="upload.url"
             :on-preview="handlePictureCardPreview"
             :headers="upload.headers"
-            :file-list="upload.fileList2"
+            :file-list="upload.stallList"
             :on-progress="handleFileUploadProgress"
             :on-success="handleFileSuccess"
+            :before-remove="beforeRemove"
+            :on-remove="handleRemove"
             :auto-upload="false"
-            :data="upload.data2"
+            :data="upload.stallData"
           >
             <i slot="default" class="el-icon-plus"></i>
             <div slot="tip" class="el-upload__tip">
-              只能上传jpg/png文件，且不超过500kb,最多上传9张
+              只能上传jpg/png文件，最多上传9张
             </div>
           </el-upload>
         </el-col>
@@ -331,6 +335,17 @@
                 ></el-input>
               </template>
             </el-table-column>
+            <el-table-column label="操作">
+              <template slot-scope="scope">
+                <el-button
+                  size="mini"
+                  round
+                  type="primary"
+                  @click="deleteAccount(scope.row.id)"
+                  >删除</el-button
+                >
+              </template>
+            </el-table-column>
           </el-table>
           <div class="addTr" @click="formData.zyjrCarAccount.push({})">
             +添加收款账户
@@ -339,22 +354,24 @@
         <el-col :span="24" style="margin-bottom: 20px">
           <span style="font-size: 14px">收款人身份证+银行卡：</span>
           <el-upload
-            ref="upload3"
+            ref="card"
             :limit="9"
             accept=".jpg, .png"
             list-type="picture-card"
             :action="upload.url"
             :on-preview="handlePictureCardPreview"
             :headers="upload.headers"
-            :file-list="upload.fileList3"
+            :file-list="upload.cardList"
             :on-progress="handleFileUploadProgress"
             :on-success="handleFileSuccess"
+            :before-remove="beforeRemove"
+            :on-remove="handleRemove"
             :auto-upload="false"
-            :data="upload.data3"
+            :data="upload.cardData"
           >
             <i slot="default" class="el-icon-plus"></i>
             <div slot="tip" class="el-upload__tip">
-              只能上传jpg/png文件，且不超过500kb,最多上传9张
+              只能上传jpg/png文件，最多上传9张
             </div>
           </el-upload>
         </el-col>
@@ -363,22 +380,24 @@
             >营业执照+法人+开户许可证（如有）：</span
           >
           <el-upload
-            ref="upload4"
+            ref="license"
             :limit="9"
             accept=".jpg, .png"
             list-type="picture-card"
             :action="upload.url"
             :on-preview="handlePictureCardPreview"
             :headers="upload.headers"
-            :file-list="upload.fileList4"
+            :file-list="upload.licenseList"
             :on-progress="handleFileUploadProgress"
             :on-success="handleFileSuccess"
+            :before-remove="beforeRemove"
+            :on-remove="handleRemove"
             :auto-upload="false"
-            :data="upload.data4"
+            :data="upload.licenseData"
           >
             <i slot="default" class="el-icon-plus"></i>
             <div slot="tip" class="el-upload__tip">
-              只能上传jpg/png文件，且不超过500kb,最多上传9张
+              只能上传jpg/png文，最多上传9张
             </div>
           </el-upload>
         </el-col>
@@ -401,7 +420,7 @@
 </template>
 <script>
 import { getToken } from '@/utils/auth'
-import { getCar, updateCar } from '@/api/organization/car'
+import { getCar, updateCar, deleteImg } from '@/api/organization/car'
 
 export default {
   name: 'CarDetails',
@@ -443,28 +462,31 @@ export default {
         // 设置上传的请求头部
         headers: { Authorization: 'Bearer ' + getToken() },
         // 上传的地址
-        url: 'http://192.168.31.82:8080/system/test/ceshi',
+        url: 'http://192.168.31.82:8080/system/test/ceshi2',
         // 上传的文件列表
-        fileList1: [
-          {
-            url:
-              'http://192.168.31.82/dev-api/profile/avatar/2020/12/16/f4801fee-c927-4e4e-9bbc-3b406674d6a8.jpg',
-          },
-        ],
-        fileList2: [],
-        fileList3: [],
-        fileList4: [],
-        data1: {
-          name: 'name1',
+        storeList: [], // 门店
+        stallList: [], // 车位
+        cardList: [], // 收款人身份证+银行卡
+        licenseList: [], // 营业执照+法人+开户许可证
+        // 门店
+        storeData: {
+          name: 'store',
+          id: this.$route.query.id,
         },
-        data2: {
-          name: 'name2',
+        // 车位
+        stallData: {
+          name: 'stall',
+          id: this.$route.query.id,
         },
-        data3: {
-          name: 'name3',
+        // 收款人身份证+银行卡
+        cardData: {
+          name: 'card',
+          id: this.$route.query.id,
         },
-        data4: {
-          name: 'name4',
+        // 营业执照+法人+开户许可证
+        licenseData: {
+          name: 'license',
+          id: this.$route.query.id,
         },
       },
       form: {},
@@ -476,6 +498,7 @@ export default {
       //监听路由是否变化
       if (to.path == '/organization/carDetails') {
         this.getCars()
+        this.upload.storeData.id = this.upload.stallData.id = this.upload.cardData.id = this.upload.licenseData.id = this.$route.query.id
       }
     },
   },
@@ -489,6 +512,29 @@ export default {
       try {
         const { data } = await getCar(this.$route.query.id)
         this.formData = data
+        this.upload.storeList = []
+        this.upload.stallList = []
+        this.upload.cardList = []
+        this.upload.licenseList = []
+        data.sysFileInfo.forEach((item) => {
+          if (item.fileName === 'store') {
+            this.upload.storeList.push({
+              url: 'http://192.168.31.82/dev-api' + item.filePath,
+            })
+          } else if (item.fileName === 'stall') {
+            this.upload.stallList.push({
+              url: 'http://192.168.31.82/dev-api' + item.filePath,
+            })
+          } else if (item.fileName === 'card') {
+            this.upload.cardList.push({
+              url: 'http://192.168.31.82/dev-api' + item.filePath,
+            })
+          } else if (item.fileName === 'license') {
+            this.upload.licenseList.push({
+              url: 'http://192.168.31.82/dev-api' + item.filePath,
+            })
+          }
+        })
       } catch (error) {}
     },
     // 文件提交处理
@@ -503,7 +549,6 @@ export default {
           return that.updateCars()
         })
         .then(() => {
-          getCar(that.$route.query.id)
           that.msgSuccess('修改成功')
         })
         .catch(function () {})
@@ -512,10 +557,10 @@ export default {
     async updateCars() {
       try {
         await updateCar(this.formData)
-        this.$refs.upload1.submit()
-        this.$refs.upload2.submit()
-        this.$refs.upload3.submit()
-        this.$refs.upload4.submit()
+        this.$refs.store.submit()
+        this.$refs.stall.submit()
+        this.$refs.card.submit()
+        this.$refs.license.submit()
       } catch (error) {}
     },
     // 文件上传中处理
@@ -528,10 +573,34 @@ export default {
       this.form.filePath = response.url
       this.msgSuccess(response.msg)
     },
+    // 删除处理
+    async handleRemove(file, fileList) {
+      if (file.status === 'success') {
+        try {
+          await deleteImg(file.url.slice(28))
+          this.msgSuccess('删除成功')
+        } catch (error) {
+          console.log(error)
+        }
+      }
+    },
+    beforeRemove(file, fileList) {
+      if (file.status === 'success') {
+        return this.$confirm('确认删除？删除后无法恢复', '警告', {
+          type: 'warning',
+        })
+      }
+    },
     // 放大图片
     handlePictureCardPreview(file) {
       this.dialogImageUrl = file.url
       this.dialogVisible = true
+    },
+    // 删除账户信息
+    deleteAccount(id) {
+      this.formData.zyjrCarAccount.some((item, index) => {
+        if (item.id == id) return this.formData.zyjrCarAccount.splice(index, 1)
+      })
     },
   },
 }
