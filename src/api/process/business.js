@@ -55,11 +55,8 @@ export function exportBusiness(query) {
 // 获取征信结果
 export function getSelectState(transactionCode) {
     return request({
-        url: '/system/test/selectState',
-        method: 'post',
-        data: {
-            transactionCode
-        }
+        url: '/system/test/selectState?codes=' + transactionCode,
+        method: 'get',
     })
 }
 

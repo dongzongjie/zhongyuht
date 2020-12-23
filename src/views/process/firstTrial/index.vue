@@ -33,7 +33,9 @@
           clearable
           size="small"
         >
-          <el-option label="请选择字典生成" value="" />
+          <el-option label="新车" value="0" />
+          <el-option label="二手车" value="1" />
+          <el-option label="新能源" value="2" />
         </el-select>
       </el-form-item>
       <el-form-item label="userId" prop="userId">
@@ -75,7 +77,7 @@
     </el-row>
     <!-- 表格 -->
     <el-table v-loading="loading" :data="firstTrialList">
-      <el-table-column label="编号" align="center" prop="id" />
+      <el-table-column label="订单编号" align="center" prop="transactionCode" />
       <el-table-column label="客户名称" align="center" prop="name" />
       <el-table-column label="销售团队" align="center" prop="team" />
       <el-table-column label="车辆类型" align="center">
@@ -94,17 +96,29 @@
           <span v-else-if="scope.row.carType === 2">新能源</span>
         </template>
       </el-table-column>
-      <el-table-column label="当前操作人" align="center" />
+      <el-table-column label="当前操作人" align="center" prop="falseOperator" />
       <el-table-column
         label="操作"
         align="center"
         class-name="small-padding fixed-width"
       >
         <template slot-scope="scope">
-          <el-button size="mini" type="text" @click="handle(scope.row.userId)"
-            >立即处理</el-button
+          <div v-if="!scope.row.falseOperatorId">
+            <el-button size="mini" type="text" @click="handle(scope.row)"
+              >立即处理</el-button
+            >
+          </div>
+          <div
+            v-else-if="scope.row.falseOperatorId == $store.state.user.userId"
           >
-          <el-button size="mini" type="text" @click="unlock">解锁</el-button>
+            <el-button size="mini" type="text" @click="handle(scope.row)"
+              >立即处理</el-button
+            >
+            <el-button size="mini" type="text" @click="unlock(scope.row.id)"
+              >解锁</el-button
+            >
+          </div>
+          <div v-else></div>
         </template>
       </el-table-column>
     </el-table>
@@ -128,6 +142,7 @@ import {
   updateBusiness,
   exportBusiness,
 } from '@/api/process/business'
+import { addFalseOperator } from '@/api/process/firstTrial'
 
 export default {
   name: 'FirstTrial',
@@ -170,7 +185,6 @@ export default {
   },
   created() {
     this.getList()
-    console.log(this.$store.state.user)
   },
   methods: {
     /** 查询初审列表 */
@@ -213,18 +227,42 @@ export default {
       this.handleQuery()
     },
     // 立即处理
-    handle(userId) {
-      this.$router.push({
-        path: '/process/firstTrialDetails',
-        name: 'FirstTrialDetails',
-        query: {
-          userId,
-        },
-      })
+    async handle(item) {
+      try {
+        await addFalseOperator({
+          falseOperator: this.$store.state.user.name,
+          falseOperatorId: this.$store.state.user.userId,
+          id: item.id,
+        })
+        this.getList()
+        this.$router.push({
+          path: '/process/firstTrialDetails',
+          name: 'FirstTrialDetails',
+          query: {
+            transactionCode: item.transactionCode,
+          },
+        })
+      } catch (error) {}
     },
     // 解锁
-    unlock() {
-      console.log('解锁')
+    async unlock(id) {
+      this.$confirm('确认解锁?', '警告', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning',
+      })
+        .then(
+          addFalseOperator({
+            falseOperator: null,
+            falseOperatorId: null,
+            id,
+          })
+        )
+        .then(() => {
+          this.msgSuccess('解锁成功')
+          this.getList()
+        })
+        .catch(function () {})
     },
     // 我的客户
     myCustomer() {

@@ -341,9 +341,10 @@
         <div ref="ref8">
           <h4>贷款信息</h4>
           <el-row>
-            <el-col :span="8">是否提供房产：</el-col>
             <el-col :span="8">实际销售价：</el-col>
             <el-col :span="8">车辆贷款金额：</el-col>
+            <el-col :span="8">贷款期限：</el-col>
+            <el-col :span="8">是否提供房产：</el-col>
             <el-col :span="8">利率换挡：</el-col>
             <el-col :span="8">GPS挡位：</el-col>
             <el-col :span="8">续保押金：</el-col>
@@ -653,8 +654,8 @@
         >
           <el-col :span="3">姓名：张三</el-col>
           <el-col :span="4">身份证号：410725199911112222</el-col>
-          <el-col :span="5">征信查询时间：2020-12-10 12:00</el-col>
-          <el-col :span="10"></el-col>
+          <!-- <el-col :span="10">征信查询时间：2020-12-10 12:00</el-col> -->
+          <el-col :span="5"></el-col>
           <el-col :span="2"
             ><el-button
               type="primary"
@@ -668,11 +669,26 @@
         <table style="font-size: 14px; color: #55657a">
           <tr style="display: block; margin: 20px">
             <td><span style="color: red">*</span>征信是否通过：</td>
-            <td>通过</td>
+            <td v-if="credit === 1">征信退回</td>
+            <td v-else-if="credit === 2">分期退回</td>
+            <td v-else-if="credit === 3">拒绝受理</td>
+            <td v-else-if="credit === 4">授信通过</td>
+            <td v-else-if="credit === 5">等待押品补录</td>
+            <td v-else-if="credit === 6">分期材料补录</td>
+            <td v-else-if="credit === 7">放款结果通知</td>
+            <td v-else-if="credit === 9">取消订单</td>
+            <td v-else-if="credit === 10">行方签署完合同通知</td>
+            <td v-else-if="credit === 11">上送分期信息超期提醒</td>
+            <td v-else-if="credit === 12">押品补录超期提醒</td>
+            <td v-else-if="credit === 17">放款失败通知</td>
+            <td v-else-if="credit === 19">客户合同签署完成通知</td>
+            <td v-else-if="credit === 20">机构请款通知</td>
+            <td v-else></td>
           </tr>
           <tr style="display: block; margin: 20px; text-indent: 2em">
             <td>征信字段：</td>
-            <td></td>
+            <td v-if="credit.msg">{{ credit.msg }}</td>
+            <td v-else>{{ credit }}</td>
           </tr>
           <tr style="display: block; margin: 20px; text-indent: 2em">
             <td>备注信息：</td>
@@ -680,8 +696,30 @@
           </tr>
         </table>
         <h4>详版征信</h4>
+        <p style="text-indent: 2em; font-size: 14px">{{ detailsCredit }}</p>
       </el-tab-pane>
-      <el-tab-pane label="数据辅正" name="third">待开发</el-tab-pane>
+      <el-tab-pane label="数据辅正" name="third" style="height: 100%">
+        <el-tabs v-model="activeName1">
+          <el-tab-pane label="贷前策略" name="first">
+            <iframe
+              width="100%"
+              height="100%"
+              frameborder="0"
+              :src="iframeSrc"
+              id="bdIframe"
+            />
+          </el-tab-pane>
+          <el-tab-pane label="验证流程" name="second">
+            <iframe
+              width="100%"
+              height="100%"
+              frameborder="0"
+              :src="iframeSrc1"
+              id="bdIframe1"
+            />
+          </el-tab-pane>
+        </el-tabs>
+      </el-tab-pane>
       <el-tab-pane label="初审意见" name="fourth">
         <el-input
           type="textarea"
@@ -708,6 +746,8 @@
 
 <script>
 import pdf from 'vue-pdf'
+import { getByToken, getByMelting } from '@/api/process/firstTrial'
+import { findDetailsCredit, getSelectState } from '@/api/process/business'
 
 export default {
   name: 'FirstTrialDetails',
@@ -716,12 +756,21 @@ export default {
   },
   data() {
     return {
+      iframeSrc: '',
+      iframeSrc1: '',
+      baiRongToken: '', // 百融token
+      baiRongMeltingData: '', // 百融详情
+      baiRongMeltingMsg: '', // 百融详情
+      watchNum: 0,
+      credit: '', // 征信结果
+      detailsCredit: '', // 详版征信
       dialogVisible: false, // 弹框
       url:
         'http://192.168.31.82/dev-api/profile/2020/12/18/4944fa69-82f2-4eae-b1b8-b25be2303827.pdf',
       numPages: null, // pdf 总页数
       tabPosition: 'left', // tab 位置
       activeName: 'first', // Tabs
+      activeName1: 'first', // Tabs1
       textarea: '', // 初审意见
       // 用户详情
       userDetails: {
@@ -737,7 +786,28 @@ export default {
     }
   },
   computed: {},
-  watch: {},
+  watch: {
+    watchNum(newName) {
+      if (newName === 2) {
+        this.iframeSrc =
+          'https://loanexamine.100credit.com/#/userReport/' +
+          this.baiRongMeltingMsg.swift_number +
+          '/' +
+          this.baiRongToken
+        this.iframeSrc1 =
+          'https://loanexamine.100credit.com/#/userReport/' +
+          this.baiRongMeltingData.swift_number +
+          '/' +
+          this.baiRongToken
+      }
+    },
+    $route(to, from) {
+      //监听路由是否变化
+      if (to.path == '/process/firstTrialDetails') {
+        console.log(1)
+      }
+    },
+  },
   methods: {
     // 页面滚动
     goAssignBlock(el, speed) {
@@ -790,13 +860,62 @@ export default {
           console.error('pdf 加载失败', err)
         })
     },
+    // 获取百融token
+    async getBaiRongToken() {
+      try {
+        const data = await getByToken()
+        this.baiRongToken = data.msg
+        this.watchNum++
+      } catch (error) {}
+    },
+    // 获取百融详细信息
+    async getBaiRongMelting() {
+      try {
+        const data = await getByMelting(this.$route.query.transactionCode)
+        this.baiRongMeltingData = JSON.parse(data.data)
+        this.baiRongMeltingMsg = JSON.parse(data.msg)
+        this.watchNum++
+      } catch (error) {}
+    },
+    // 获取征信结果
+    async findSelectState() {
+      try {
+        const { data } = await getSelectState(this.$route.query.transactionCode)
+        this.credit = data
+      } catch (error) {}
+    },
+    // 获取详版征信
+    async getDetailsCredit() {
+      try {
+        const { data } = await findDetailsCredit(
+          this.$route.query.transactionCode
+        )
+        // this.detailsCredit = null
+        // if (data) {
+        //   this.isDisabled = true
+        this.detailsCredit = data.details
+        // } else {
+        //   this.isDisabled = false
+        // }
+      } catch (error) {}
+    },
   },
   created() {
-    console.log(this.$route)
-    console.log(this.$route.query.userId)
+    this.getBaiRongToken()
+    this.getBaiRongMelting()
+    this.getDetailsCredit()
+    this.findSelectState()
   },
   mounted() {
     this.getNumPages()
+    /**
+     * iframe-高自适应显示
+     */
+    const oIframe = document.getElementById('bdIframe')
+    const oIframe1 = document.getElementById('bdIframe1')
+    const deviceHeight = document.querySelector('body').clientHeight
+    oIframe.style.height = Number(deviceHeight) - 280 + 'px' //数字是页面布局高度差
+    oIframe1.style.height = Number(deviceHeight) - 280 + 'px' //数字是页面布局高度差
   },
 }
 </script>

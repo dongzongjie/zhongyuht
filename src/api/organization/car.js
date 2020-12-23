@@ -59,11 +59,3 @@ export function deleteImg(filePath) {
         method: 'get',
     })
 }
-
-// 测试
-export function ceshi() {
-    return request({
-        url: '/system/test/ceshi5',
-        method: 'get',
-    })
-}

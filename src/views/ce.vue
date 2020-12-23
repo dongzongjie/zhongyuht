@@ -34,7 +34,7 @@
       </span>
     </el-dialog>
     <button @click="dialogVisible = true">pdf</button>
-    <button @click="post">点击</button>
+    <button @click="ceshi1">点击</button>
   </div>
 </template>
 
@@ -43,7 +43,7 @@ import axios from 'axios'
 import qs from 'querystring'
 import pdf from 'vue-pdf'
 import { getToken } from '@/utils/auth'
-import { ceshi } from '@/api/organization/car'
+import { getByToken } from '@/api/process/firstTrial'
 
 export default {
   name: 'Ce',
@@ -105,25 +105,13 @@ export default {
           console.error('pdf 加载失败', err)
         })
     },
-    async post() {
+    async ceshi1() {
       try {
-        await ceshi()
-        console.log(1)
+        const data = await getByToken()
+        console.log(data)
       } catch (error) {
         console.log(error)
       }
-    },
-    ceshi1() {
-      axios.defaults.headers['Authorization'] =
-        'zyrzWEB_67005A073406B38369C9B9B50BFD767B'
-      axios.defaults.headers['Access-Control-Allow-Origin'] = '*'
-      axios
-        .post(
-          'https://loanexamine.100credit.com/#/approvalService/approvalReport/3004954_20201221173450_47243517A10/approvalhistory'
-        )
-        .then((res) => {
-          console.log(res)
-        })
     },
   },
   mounted() {

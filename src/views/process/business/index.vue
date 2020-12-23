@@ -33,16 +33,19 @@
           clearable
           size="small"
         >
-          <el-option label="请选择字典生成" value="" />
+          <el-option label="新车" value="0" />
+          <el-option label="二手车" value="1" />
+          <el-option label="新能源" value="2" />
         </el-select>
       </el-form-item>
-      <el-form-item label="userId" prop="userId">
+      <el-form-item label="客户名称" prop="userId">
         <el-input
-          v-model="queryParams.userId"
-          placeholder="请输入userId"
+          v-model="queryParams.name"
+          placeholder="请输入客户名称"
           clearable
           size="small"
           @keyup.enter.native="handleQuery"
+          disabled
         />
       </el-form-item>
       <el-form-item>
@@ -72,7 +75,7 @@
     </el-row>
     <!-- 表格 -->
     <el-table v-loading="loading" :data="businessList">
-      <el-table-column label="编号" align="center" prop="id" />
+      <el-table-column label="订单编号" align="center" prop="transactionCode" />
       <el-table-column label="客户名称" align="center" prop="name" />
       <el-table-column label="销售团队" align="center" prop="team" />
       <el-table-column label="车辆类型" align="center">
@@ -230,9 +233,7 @@ export default {
             transactionCode: item.transactionCode,
           },
         })
-      } catch (error) {
-        console.log(error)
-      }
+      } catch (error) {}
     },
     // 解锁
     async unlock(id) {

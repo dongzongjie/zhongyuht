@@ -269,7 +269,7 @@
         >
           <el-col :span="3">姓名：{{ userDetails.borrower.userName }}</el-col>
           <el-col :span="4">身份证号：{{ userDetails.borrower.idCard }}</el-col>
-          <el-col :span="10">征信查询时间：2020-12-10 12:00</el-col>
+          <!-- <el-col :span="10">征信查询时间：2020-12-10 12:00</el-col> -->
           <el-col :span="5"></el-col>
           <el-col :span="2"
             ><el-button
@@ -284,11 +284,26 @@
         <table style="font-size: 14px; color: #55657a">
           <tr style="display: block; margin: 20px">
             <td><span style="color: red">*</span>征信是否通过：</td>
-            <td></td>
+            <td v-if="credit === 1">征信退回</td>
+            <td v-else-if="credit === 2">分期退回</td>
+            <td v-else-if="credit === 3">拒绝受理</td>
+            <td v-else-if="credit === 4">授信通过</td>
+            <td v-else-if="credit === 5">等待押品补录</td>
+            <td v-else-if="credit === 6">分期材料补录</td>
+            <td v-else-if="credit === 7">放款结果通知</td>
+            <td v-else-if="credit === 9">取消订单</td>
+            <td v-else-if="credit === 10">行方签署完合同通知</td>
+            <td v-else-if="credit === 11">上送分期信息超期提醒</td>
+            <td v-else-if="credit === 12">押品补录超期提醒</td>
+            <td v-else-if="credit === 17">放款失败通知</td>
+            <td v-else-if="credit === 19">客户合同签署完成通知</td>
+            <td v-else-if="credit === 20">机构请款通知</td>
+            <td v-else></td>
           </tr>
           <tr style="display: block; margin: 20px; text-indent: 2em">
             <td>征信字段：</td>
-            <td></td>
+            <td v-if="credit.msg">{{ credit.msg }}</td>
+            <td v-else>{{ credit }}</td>
           </tr>
           <tr style="display: block; margin: 20px; text-indent: 2em">
             <td>备注信息：</td>
@@ -337,6 +352,7 @@ export default {
     return {
       tabPosition: 'left', // tab 位置
       activeName: 'first', // Tabs
+      credit: '', // 征信结果
       detailsCredit: '', // 详版征信
       isDisabled: false, // 禁用按钮
       // 用户详情
@@ -407,10 +423,8 @@ export default {
     async findSelectState() {
       try {
         const { data } = await getSelectState(this.$route.query.transactionCode)
-        console.log(data)
-      } catch (error) {
-        console.log(error)
-      }
+        this.credit = data
+      } catch (error) {}
     },
     // 获取详版征信
     async getDetailsCredit() {
