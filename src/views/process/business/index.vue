@@ -45,7 +45,6 @@
           clearable
           size="small"
           @keyup.enter.native="handleQuery"
-          disabled
         />
       </el-form-item>
       <el-form-item>
@@ -102,20 +101,12 @@
       >
         <template slot-scope="scope">
           <div v-if="!scope.row.updateBy">
-            <el-button
-              size="mini"
-              type="text"
-              @click="handle(scope.row)"
-              v-hasPermi="['process:business:edit']"
+            <el-button size="mini" type="text" @click="handle(scope.row)"
               >立即处理</el-button
             >
           </div>
           <div v-else-if="scope.row.updateBy == $store.state.user.userId">
-            <el-button
-              size="mini"
-              type="text"
-              @click="handle(scope.row)"
-              v-hasPermi="['process:business:edit']"
+            <el-button size="mini" type="text" @click="handle(scope.row)"
               >立即处理</el-button
             >
             <el-button size="mini" type="text" @click="unlock(scope.row.id)"

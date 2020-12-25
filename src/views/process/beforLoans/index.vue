@@ -60,11 +60,8 @@
         >
       </el-form-item>
     </el-form>
+    <!-- 我的客户 -->
     <el-row :gutter="10" class="mb8">
-      <right-toolbar
-        :showSearch.sync="showSearch"
-        @queryTable="getList"
-      ></right-toolbar>
       <el-col :span="1.5">
         <el-button
           type="primary"
@@ -76,7 +73,7 @@
       </el-col>
     </el-row>
     <!-- 表格 -->
-    <el-table v-loading="loading" :data="firstTrialList">
+    <el-table v-loading="loading" :data="businessList">
       <el-table-column label="订单编号" align="center" prop="transactionCode" />
       <el-table-column label="客户名称" align="center" prop="name" />
       <el-table-column label="销售团队" align="center" prop="team" />
@@ -96,21 +93,19 @@
           <span v-else-if="scope.row.carType === 2">新能源</span>
         </template>
       </el-table-column>
-      <el-table-column label="当前操作人" align="center" prop="falseOperator" />
+      <el-table-column label="当前操作人" align="center" prop="operator" />
       <el-table-column
         label="操作"
         align="center"
         class-name="small-padding fixed-width"
       >
         <template slot-scope="scope">
-          <div v-if="!scope.row.falseOperatorId">
+          <div v-if="!scope.row.updateBy">
             <el-button size="mini" type="text" @click="handle(scope.row)"
               >立即处理</el-button
             >
           </div>
-          <div
-            v-else-if="scope.row.falseOperatorId == $store.state.user.userId"
-          >
+          <div v-else-if="scope.row.updateBy == $store.state.user.userId">
             <el-button size="mini" type="text" @click="handle(scope.row)"
               >立即处理</el-button
             >
@@ -134,6 +129,7 @@
 </template>
 
 <script>
+import { checkRole } from '@/utils/permission'
 import {
   listBusiness,
   getBusiness,
@@ -141,11 +137,11 @@ import {
   addBusiness,
   updateBusiness,
   exportBusiness,
+  deleteOperator,
 } from '@/api/process/business'
-import { addFalseOperator } from '@/api/process/firstTrial'
 
 export default {
-  name: 'FirstTrial',
+  name: 'BeforLoans',
   data() {
     return {
       // 遮罩层
@@ -160,8 +156,8 @@ export default {
       showSearch: true,
       // 总条数
       total: 0,
-      // 初审表格数据
-      firstTrialList: [],
+      // 秒批表格数据
+      businessList: [],
       // 弹出层标题
       title: '',
       // 是否显示弹出层
@@ -171,14 +167,14 @@ export default {
         pageNum: 1,
         pageSize: 10,
         team: null,
-        carInformation: null,
-        intentionPrice: null,
-        loanMoney: null,
         repayPeriod: null,
         carType: null,
         userId: null,
-        orderState: null,
       },
+      // 表单校验
+      rules: {},
+      // 弹出框
+      dialogVisible: false,
       // 文本域
       textarea: '',
     }
@@ -187,34 +183,15 @@ export default {
     this.getList()
   },
   methods: {
-    /** 查询初审列表 */
+    checkRole,
+    /** 查询秒批列表 */
     getList() {
       this.loading = true
       listBusiness(this.queryParams).then((response) => {
-        this.firstTrialList = response.rows
+        this.businessList = response.rows
         this.total = response.total
         this.loading = false
       })
-    },
-    // 取消按钮
-    cancel() {
-      this.open = false
-      this.reset()
-    },
-    // 表单重置
-    reset() {
-      this.form = {
-        id: null,
-        team: null,
-        carInformation: null,
-        intentionPrice: null,
-        loanMoney: null,
-        repayPeriod: null,
-        carType: null,
-        userId: null,
-        orderState: null,
-      }
-      this.resetForm('form')
     },
     /** 搜索按钮操作 */
     handleQuery() {
@@ -223,21 +200,26 @@ export default {
     },
     /** 重置按钮操作 */
     resetQuery() {
-      this.resetForm('queryForm')
+      this.queryParams = {
+        pageNum: 1,
+        pageSize: 10,
+        team: null,
+        repayPeriod: null,
+        carType: null,
+        userId: null,
+      }
       this.handleQuery()
     },
     // 立即处理
     async handle(item) {
       try {
-        await addFalseOperator({
-          falseOperator: this.$store.state.user.name,
-          falseOperatorId: this.$store.state.user.userId,
+        await updateBusiness({
           id: item.id,
         })
         this.getList()
         this.$router.push({
-          path: '/process/firstTrialDetails',
-          name: 'FirstTrialDetails',
+          path: '/process/beforLoansDetails',
+          name: 'BeforLoansDetails',
           query: {
             transactionCode: item.transactionCode,
           },
@@ -251,13 +233,7 @@ export default {
         cancelButtonText: '取消',
         type: 'warning',
       })
-        .then(
-          addFalseOperator({
-            falseOperator: null,
-            falseOperatorId: null,
-            id,
-          })
-        )
+        .then(deleteOperator(id))
         .then(() => {
           this.msgSuccess('解锁成功')
           this.getList()

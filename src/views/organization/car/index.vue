@@ -16,19 +16,19 @@
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="所属城市" prop="city">
+      <el-form-item label="所属省" prop="area">
         <el-input
-          v-model="queryParams.city"
-          placeholder="请输入所属城市"
+          v-model="queryParams.area"
+          placeholder="请输入所属省"
           clearable
           size="small"
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="所属区域" prop="area">
+      <el-form-item label="所属城市" prop="city">
         <el-input
-          v-model="queryParams.area"
-          placeholder="请输入所属区域"
+          v-model="queryParams.city"
+          placeholder="请输入所属城市"
           clearable
           size="small"
           @keyup.enter.native="handleQuery"
@@ -112,14 +112,19 @@
       @selection-change="handleSelectionChange"
     >
       <el-table-column type="selection" width="55" align="center" />
-      <el-table-column label="id" align="center" prop="id" />
-      <el-table-column label="车商名称" align="center" prop="dealerName" />
-      <el-table-column label="所属区域" align="center">
+      <!-- <el-table-column label="id" width="200" align="center" prop="id" /> -->
+      <el-table-column
+        label="车商名称"
+        width="200"
+        align="center"
+        prop="dealerName"
+      />
+      <el-table-column label="所属区域" width="400" align="center">
         <template slot-scope="scope">
-          {{ scope.row.city }} / {{ scope.row.area }} / {{ scope.row.bazaar }}
+          {{ scope.row.area }} / {{ scope.row.city }} / {{ scope.row.bazaar }}
         </template>
       </el-table-column>
-      <el-table-column label="状态" align="center">
+      <el-table-column label="状态" width="200" align="center">
         <template slot-scope="scope">
           <span v-if="scope.row.state === '0'">未合作</span>
           <span v-if="scope.row.state === '1'">已合作</span>
@@ -127,6 +132,7 @@
       </el-table-column>
       <el-table-column
         label="操作"
+        width="200"
         align="center"
         class-name="small-padding fixed-width"
       >
@@ -136,6 +142,7 @@
           >
         </template>
       </el-table-column>
+      <el-table-column />
     </el-table>
 
     <pagination
@@ -152,11 +159,11 @@
         <el-form-item label="车商名称" prop="dealerName">
           <el-input v-model="form.dealerName" placeholder="请输入车商名称" />
         </el-form-item>
+        <el-form-item label="所属省" prop="area">
+          <el-input v-model="form.area" placeholder="请输入所属省" />
+        </el-form-item>
         <el-form-item label="所属城市" prop="city">
           <el-input v-model="form.city" placeholder="请输入所属城市" />
-        </el-form-item>
-        <el-form-item label="所属区域" prop="area">
-          <el-input v-model="form.area" placeholder="请输入所属区域" />
         </el-form-item>
         <el-form-item label="所属市场" prop="bazaar">
           <el-input v-model="form.bazaar" placeholder="请输入所属市场" />

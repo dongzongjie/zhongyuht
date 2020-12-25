@@ -721,10 +721,17 @@
         </el-tabs>
       </el-tab-pane>
       <el-tab-pane label="意见" name="fourth">
+        <h4>初审意见</h4>
+        <p style="text-indent: 2em; font-size: 14px">
+          喜欢看你紧紧皱眉 叫我胆小鬼 你的表情大过于朋友的暧昧
+          寂寞的称谓甜蜜的责备 有独一无二，专属的特别 喜欢看你紧紧皱眉
+          叫我胆小鬼 我的心情就象和情人在斗嘴，诶 奇怪的直觉 错误的定位
+          对你唉唉唉唉呀 我有点胆怯
+        </p>
         <el-input
           type="textarea"
           :autosize="{ minRows: 3 }"
-          placeholder="请输入初审意见"
+          placeholder="请输入终审意见"
           v-model="textarea"
         />
         <el-button type="primary" round style="margin: 20px 10px"
@@ -750,7 +757,7 @@ import { getByToken, getByMelting } from '@/api/process/firstTrial'
 import { findDetailsCredit, getSelectState } from '@/api/process/business'
 
 export default {
-  name: 'FirstTrialDetails',
+  name: 'FinalTrialDetails',
   components: {
     pdf,
   },

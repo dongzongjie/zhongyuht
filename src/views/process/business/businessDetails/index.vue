@@ -1,9 +1,8 @@
 <template>
   <div class="app-container">
-    <el-tabs v-model="activeName" :tab-position="tabPosition">
+    <el-tabs tab-position="left">
       <el-tab-pane
         label="秒批录入信息表"
-        name="first"
         style="padding: 0 50px 50px; font-size: 14px"
       >
         <h4>基本信息</h4>
@@ -258,7 +257,7 @@
           </el-col>
         </el-row>
       </el-tab-pane>
-      <el-tab-pane label="征信结果" name="second">
+      <el-tab-pane label="征信结果">
         <h4>申请人</h4>
         <el-row
           style="
@@ -311,7 +310,7 @@
           </tr>
         </table>
       </el-tab-pane>
-      <el-tab-pane label="详版征信" name="fourth">
+      <el-tab-pane label="详版征信">
         <el-input
           type="textarea"
           :autosize="{ minRows: 3 }"
@@ -350,8 +349,6 @@ export default {
   components: {},
   data() {
     return {
-      tabPosition: 'left', // tab 位置
-      activeName: 'first', // Tabs
       credit: '', // 征信结果
       detailsCredit: '', // 详版征信
       isDisabled: false, // 禁用按钮

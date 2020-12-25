@@ -16,19 +16,19 @@
           </el-form-item>
         </el-col>
         <el-col :span="6">
-          <el-form-item label="所属城市">
+          <el-form-item label="所属省">
             <el-input
-              v-model="formData.city"
-              placeholder="请输入所属城市"
+              v-model="formData.area"
+              placeholder="请输入所属省"
               :style="{ width: '100%' }"
             ></el-input>
           </el-form-item>
         </el-col>
         <el-col :span="6">
-          <el-form-item label="所属区域">
+          <el-form-item label="所属城市">
             <el-input
-              v-model="formData.area"
-              placeholder="请输入所属区域"
+              v-model="formData.city"
+              placeholder="请输入所属城市"
               :style="{ width: '100%' }"
             ></el-input>
           </el-form-item>
@@ -56,7 +56,7 @@
         <el-col :span="6">
           <el-form-item label="门店类型">
             <el-select
-              v-model="formData.typeOne"
+              v-model="formData.shopType"
               placeholder="请选择门店类型"
               clearable
               :style="{ width: '100%' }"
@@ -67,11 +67,11 @@
             </el-select>
           </el-form-item>
         </el-col>
-        <el-col :span="6">
-          <el-form-item label="有无门头">
+        <!-- <el-col :span="6">
+          <el-form-item label="业务类型">
             <el-select
-              v-model="formData.typeToo"
-              placeholder="请选择有无门头"
+              v-model="formData.businessType"
+              placeholder="请选择业务类型"
               clearable
               :style="{ width: '100%' }"
             >
@@ -79,15 +79,20 @@
               <el-option label="无" value="1"></el-option>
             </el-select>
           </el-form-item>
-        </el-col>
+        </el-col> -->
         <el-col :span="6">
-          <el-form-item label="车位数（台）">
-            <el-input
-              v-model="formData.stall"
-              placeholder="请输入车位数"
+          <el-form-item label="业务类型">
+            <el-select
+              v-model="formData.businessType"
+              placeholder="请选择业务类型"
+              clearable
               :style="{ width: '100%' }"
             >
-            </el-input>
+              <el-option label="轻卡" value="0"></el-option>
+              <el-option label="半挂" value="1"></el-option>
+              <el-option label="自卸" value="2"></el-option>
+              <el-option label="渣土" value="3"></el-option>
+            </el-select>
           </el-form-item>
         </el-col>
         <el-col :span="6">
@@ -105,18 +110,13 @@
           </el-form-item>
         </el-col>
         <el-col :span="6">
-          <el-form-item label="业务类型">
-            <el-select
-              v-model="formData.typeThree"
-              placeholder="请选择业务类型"
-              clearable
+          <el-form-item label="车位数（台）">
+            <el-input
+              v-model="formData.stall"
+              placeholder="请输入车位数"
               :style="{ width: '100%' }"
             >
-              <el-option label="轻卡" value="0"></el-option>
-              <el-option label="半挂" value="1"></el-option>
-              <el-option label="自卸" value="2"></el-option>
-              <el-option label="渣土" value="3"></el-option>
-            </el-select>
+            </el-input>
           </el-form-item>
         </el-col>
         <el-col :span="6">
@@ -146,7 +146,7 @@
             ></el-input>
           </el-form-item>
         </el-col>
-        <el-col :span="18">
+        <el-col :span="24">
           <el-form-item label="产品竞争对象">
             <el-input
               v-model="formData.opponent"
@@ -433,14 +433,14 @@ export default {
       formData: {
         state: '', // 状态
         city: '', // 城市
-        area: '', // 区域
+        area: '', // 省
         bazaar: '', // 市场
-        typeOne: '', // 门店类型
-        typeToo: '', // 有无门头
+        shopType: '', // 门店类型
+        businessType: '', // 业务类型
         stall: '', // 车位数
         dealerName: '', // 门店名称
         businessNature: '', // 经营性质
-        typeThree: '', // 业务类型
+        // typeThree: '', // 业务类型
         opponent: '', // 对手
         monthDeal: '', // 月交易辆
         monthInstallment: '', // 月分期辆
