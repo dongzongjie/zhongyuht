@@ -34,6 +34,7 @@ import {
 import Pagination from "@/components/Pagination";
 //自定义表格工具扩展
 import RightToolbar from "@/components/RightToolbar"
+import './assets/font_gt9dqzdm1k/iconfont.css'
 
 // 全局方法挂载
 Vue.prototype.getDicts = getDicts

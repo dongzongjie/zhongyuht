@@ -25,6 +25,11 @@
             <el-col :span="8">销售团队：{{ userDetails.business.team }}</el-col>
             <el-col :span="8">大区经理：</el-col>
             <el-col :span="8">团队经理：</el-col>
+            <el-col :span="8">区域：</el-col>
+            <el-col :span="8">门店：</el-col>
+            <el-col :span="8" style="color: #999"
+              >真实业务发生地：{{ userDetails.business.realAddress }}</el-col
+            >
           </el-row>
         </div>
         <div ref="ref1">

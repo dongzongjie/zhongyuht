@@ -12,6 +12,9 @@
           <el-col :span="8">团队经理：</el-col>
           <el-col :span="8">区域：</el-col>
           <el-col :span="8">门店：</el-col>
+          <el-col :span="8" style="color: #999"
+            >真实业务发生地：{{ userDetails.business.realAddress }}</el-col
+          >
         </el-row>
         <h4>订单信息</h4>
         <el-row>
@@ -301,8 +304,7 @@
           </tr>
           <tr style="display: block; margin: 20px; text-indent: 2em">
             <td>征信字段：</td>
-            <td v-if="credit.msg">{{ credit.msg }}</td>
-            <td v-else>{{ credit }}</td>
+            <td>{{ credit.msg || credit }}</td>
           </tr>
           <tr style="display: block; margin: 20px; text-indent: 2em">
             <td>备注信息：</td>
@@ -369,6 +371,12 @@ export default {
     $route(to, from) {
       //监听路由是否变化
       if (to.path == '/process/businessDetails') {
+        this.userDetails = {
+          business: {}, // 基本信息
+          borrower: {}, // 借款人
+          relation: {}, // 关联人
+          guarantee: {}, // 担保人
+        }
         this.getBusinesss()
       }
     },
@@ -412,6 +420,8 @@ export default {
             this.borrowerSrcList.push(data.guarantee.powerAddress)
           }
         }
+        this.credit = ''
+        this.detailsCredit = ''
         this.getDetailsCredit()
         this.findSelectState()
       } catch (error) {}
@@ -429,7 +439,6 @@ export default {
         const { data } = await findDetailsCredit(
           this.$route.query.transactionCode
         )
-        this.detailsCredit = null
         if (data) {
           this.isDisabled = true
           this.detailsCredit = data.details

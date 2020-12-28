@@ -1,0 +1,16 @@
+{
+  "id": "2296070",
+  "name": "zyrz",
+  "font_family": "iconfont",
+  "css_prefix_text": "el-icon-zyrz-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "7434443",
+      "name": "百分号",
+      "font_class": "baifenhao",
+      "unicode": "e61e",
+      "unicode_decimal": 58910
+    }
+  ]
+}

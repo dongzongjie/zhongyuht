@@ -124,21 +124,8 @@
         class-name="small-padding fixed-width"
       >
         <template slot-scope="scope">
-          <el-button
-            size="mini"
-            type="text"
-            icon="el-icon-edit"
-            @click="handleUpdate(scope.row)"
-            v-hasPermi="['organization:bank:edit']"
-            >修改</el-button
-          >
-          <el-button
-            size="mini"
-            type="text"
-            icon="el-icon-delete"
-            @click="handleDelete(scope.row)"
-            v-hasPermi="['organization:bank:remove']"
-            >删除</el-button
+          <el-button size="mini" type="text" @click="handleDetails(scope.row)"
+            >详情</el-button
           >
         </template>
       </el-table-column>
@@ -281,9 +268,13 @@ export default {
     },
     /** 新增按钮操作 */
     handleAdd() {
-      this.reset()
-      this.open = true
-      this.title = '添加bank'
+      // this.reset()
+      // this.open = true
+      // this.title = '添加bank'
+      this.$router.push({
+        path: '/organization/bankDetails',
+        name: 'BankDetails',
+      })
     },
     /** 修改按钮操作 */
     handleUpdate(row) {
@@ -351,6 +342,16 @@ export default {
           this.download(response.msg)
         })
         .catch(function () {})
+    },
+    // 详情按钮
+    handleDetails(item) {
+      this.$router.push({
+        path: '/organization/bankDetails',
+        name: 'BankDetails',
+        query: {
+          id: item.id,
+        },
+      })
     },
   },
 }

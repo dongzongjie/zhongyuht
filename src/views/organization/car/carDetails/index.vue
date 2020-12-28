@@ -341,7 +341,7 @@
                   size="mini"
                   round
                   type="primary"
-                  @click="deleteAccount(scope.row.id)"
+                  @click="deleteAccount(scope.$index)"
                   >删除</el-button
                 >
               </template>
@@ -519,19 +519,19 @@ export default {
         data.sysFileInfo.forEach((item) => {
           if (item.fileName === 'store') {
             this.upload.storeList.push({
-              url: 'http://192.168.31.82/dev-api' + item.filePath,
+              url: item.filePath,
             })
           } else if (item.fileName === 'stall') {
             this.upload.stallList.push({
-              url: 'http://192.168.31.82/dev-api' + item.filePath,
+              url: item.filePath,
             })
           } else if (item.fileName === 'card') {
             this.upload.cardList.push({
-              url: 'http://192.168.31.82/dev-api' + item.filePath,
+              url: item.filePath,
             })
           } else if (item.fileName === 'license') {
             this.upload.licenseList.push({
-              url: 'http://192.168.31.82/dev-api' + item.filePath,
+              url: item.filePath,
             })
           }
         })
@@ -577,7 +577,7 @@ export default {
     async handleRemove(file, fileList) {
       if (file.status === 'success') {
         try {
-          await deleteImg(file.url.slice(28))
+          await deleteImg(file.url)
           this.msgSuccess('删除成功')
         } catch (error) {
           console.log(error)
@@ -597,10 +597,8 @@ export default {
       this.dialogVisible = true
     },
     // 删除账户信息
-    deleteAccount(id) {
-      this.formData.zyjrCarAccount.some((item, index) => {
-        if (item.id == id) return this.formData.zyjrCarAccount.splice(index, 1)
-      })
+    deleteAccount(index) {
+      this.formData.zyjrCarAccount.splice(index, 1)
     },
   },
 }

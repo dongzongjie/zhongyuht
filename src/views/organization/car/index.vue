@@ -168,15 +168,19 @@
         <el-form-item label="所属市场" prop="bazaar">
           <el-input v-model="form.bazaar" placeholder="请输入所属市场" />
         </el-form-item>
-        <el-form-item label="门店类型" prop="typeOne">
-          <el-input v-model="form.typeOne" placeholder="请输入门店类型" />
+        <el-form-item label="门店类型" prop="shopType">
+          <el-select v-model="form.shopType" placeholder="请选择门店类型">
+            <el-option label="固定" value="0"></el-option>
+            <el-option label="流动" value="1"></el-option>
+            <el-option label="竟对/黄牛" value="2"></el-option>
+          </el-select>
         </el-form-item>
-        <el-form-item label="有无门头" prop="typeToo">
+        <!-- <el-form-item label="有无门头" prop="typeToo">
           <el-select v-model="form.typeToo" placeholder="请选择有无门头">
             <el-option label="有" value="0" />
             <el-option label="无" value="1" />
           </el-select>
-        </el-form-item>
+        </el-form-item> -->
         <el-form-item label="车位数" prop="stall">
           <el-input v-model="form.stall" placeholder="请输入车位数" />
         </el-form-item>
@@ -189,9 +193,12 @@
         <el-form-item label="乘用车" prop="passengerCar">
           <el-input v-model="form.passengerCar" placeholder="请输入乘用车" />
         </el-form-item>
-        <el-form-item label="业务类型" prop="typeThree">
-          <el-select v-model="form.typeThree" placeholder="请选择业务类型">
-            <el-option label="未知" value="0" />
+        <el-form-item label="业务类型" prop="businessType">
+          <el-select v-model="form.businessType" placeholder="请选择业务类型">
+            <el-option label="轻卡" value="0"></el-option>
+            <el-option label="半挂" value="1"></el-option>
+            <el-option label="自卸" value="2"></el-option>
+            <el-option label="渣土" value="3"></el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="月交易量" prop="monthDeal">
@@ -303,12 +310,12 @@ export default {
         area: null,
         city: null,
         bazaar: null,
-        typeOne: null,
-        typeToo: null,
+        shopType: '', // 门店类型
+        businessType: '', // 业务类型
         stall: null,
         businessNature: null,
         passengerCar: null,
-        typeThree: null,
+        // typeThree: null,
         monthDeal: null,
         monthInstallment: null,
         matchAmount: null,
