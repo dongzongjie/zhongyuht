@@ -10,7 +10,7 @@ export function login(username, password, code, uuid) {
     // }
     return request({
         url: '/login?username=' + username + '&password=' + password,
-        method: 'post',
+        method: 'post'
     })
 }
 

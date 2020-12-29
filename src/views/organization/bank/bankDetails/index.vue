@@ -50,19 +50,24 @@
           <el-col :span="24" style="margin-left: 230px; margin-bottom: 20px">
             <span style="font-size: 14px">协议文件：</span>
             <el-upload
-              ref="store"
+              ref="bankFile"
               :limit="9"
               accept=".jpg, .png, .pdf"
               list-type="picture-card"
               :action="upload.url"
+              :on-preview="handlePictureCardPreview"
               :headers="upload.headers"
               :file-list="upload.uploadList"
+              :on-progress="handleFileUploadProgress"
+              :on-success="handleFileSuccess"
+              :before-remove="beforeRemove"
+              :on-remove="handleRemove"
               :auto-upload="false"
               :data="upload.uploadData"
             >
               <i slot="default" class="el-icon-plus"></i>
               <div slot="tip" class="el-upload__tip">
-                只能上传jpg/png/pdf文件，最多上传9张
+                只能上传jpg/png文，最多上传9张
               </div>
             </el-upload>
           </el-col>
@@ -203,7 +208,11 @@
             <div class="product-box-body">
               <el-row>
                 <el-col :span="8">汽车品牌：{{ item.productBrand }}</el-col>
-                <el-col :span="8">车辆类型：{{ item.carType }}</el-col>
+                <el-col :span="8"
+                  >车辆类型：<span v-if="item.carType === '0'">新车</span
+                  ><span v-if="item.carType === '1'">二手车</span
+                  ><span v-if="item.carType === '2'">商用车</span></el-col
+                >
                 <el-col :span="8">业务区域：{{ item.businessArea }}</el-col>
                 <el-col :span="24"
                   >费用方案：
@@ -311,13 +320,13 @@
         </div>
       </div>
     </el-form>
-    <!-- <el-button
+    <el-button
       type="primary"
       round
       style="float: right; margin: 20px 20px 200px"
-      @click="updateBank"
+      @click="updateBankData"
       >保存</el-button
-    > -->
+    >
     <el-dialog title="合作产品" :visible.sync="dialogFormVisible" center>
       <el-form :model="dialogData">
         <h4>基本信息</h4>
@@ -379,9 +388,9 @@
                 :style="{ width: '70%', height: '100%' }"
                 placeholder="请选择车辆类型"
               >
-                <el-option label="新车" value="1"></el-option>
-                <el-option label="二手车" value="2"></el-option>
-                <el-option label="商用车" value="3"></el-option>
+                <el-option label="新车" value="0"></el-option>
+                <el-option label="二手车" value="1"></el-option>
+                <el-option label="商用车" value="2"></el-option>
               </el-select>
             </el-form-item>
           </el-col>
@@ -423,6 +432,13 @@
                   :style="{ width: '70%', height: '100%' }"
                   placeholder="请选择分期期数"
                 >
+                  <el-option label="12" value="12"></el-option>
+                  <el-option label="18" value="18"></el-option>
+                  <el-option label="24" value="24"></el-option>
+                  <el-option label="30" value="30"></el-option>
+                  <el-option label="36" value="36"></el-option>
+                  <el-option label="48" value="48"></el-option>
+                  <el-option label="60" value="60"></el-option>
                 </el-select>
               </el-form-item>
             </el-col>
@@ -466,18 +482,24 @@
         <el-button type="primary" @click="dialogConfirm">确 定</el-button>
       </div>
     </el-dialog>
+    <el-dialog :visible.sync="dialogVisible">
+      <img width="100%" :src="dialogImageUrl" alt="" />
+    </el-dialog>
   </div>
 </template>
 
 <script>
 import options from '@/components/countryData/country-level2-data'
-import { getBankDetails, addBank } from '@/api/organization/bank'
+import { getBankDetails, addBank, updateBank } from '@/api/organization/bank'
+import { deleteImg } from '@/api/organization/car'
 
 export default {
   name: 'BankDetails',
   components: {},
   data() {
     return {
+      dialogImageUrl: '', // 弹框大图片url
+      dialogVisible: false, // 大图弹框
       dialogFormVisible: false, // 弹框
       dialogData: {}, // 弹框数据
       dialogStatus: '', // 弹框状态（是修改还是新增）
@@ -496,15 +518,16 @@ export default {
         // 设置上传的请求头部
         // headers: { Authorization: 'Bearer ' + getToken() },
         // 上传的地址
-        url: 'http://192.168.31.82:8080/system/test/ceshi2',
+        url: 'http://192.168.31.82:8080/system/bank/ceshi2',
         // 上传的文件列表
         uploadList: [], // 门店
         // 门店
         uploadData: {
-          name: 'upload',
+          name: 'bankFile',
           id: this.$route.query.id,
         },
       },
+      uploadForm: {},
     }
   },
   computed: {},
@@ -517,16 +540,6 @@ export default {
     },
   },
   methods: {
-    //  删除tr
-    deleteTr(index, name) {
-      if (name === 'flow') {
-        this.form.flow.splice(index, 1)
-      } else if (name === 'returns') {
-        this.form.returns.splice(index, 1)
-      } else if (name === 'extend') {
-        this.form.extend.splice(index, 1)
-      }
-    },
     // 获取合作银行详细信息
     async findBankDetails() {
       if (this.$route.query.id) {
@@ -543,6 +556,10 @@ export default {
           } else if (data.isSign === 1) {
             data.isSign = true
           }
+          data.bankLocation = data.bankLocation.split(',')
+          data.sysFileInfo.forEach((item) => {
+            this.upload.uploadList.push({ url: item.filePath })
+          })
           this.form = data
         } catch (error) {}
       } else {
@@ -564,7 +581,7 @@ export default {
     // 删除合作产品
     deleteProduct(index) {
       const that = this
-      this.$confirm('确认删除？删除后点击最下方保存按钮生效！', '警告', {
+      this.$confirm('确认删除？保存后生效！', '警告', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning',
@@ -585,28 +602,79 @@ export default {
       this.dialogFormVisible = false
     },
     // 保存按钮修改信息
-    async updateBank() {
+    updateBankData() {
       let submitFormData = this.form
       submitFormData.bankLocation = submitFormData.bankLocation.join(',')
-      if (submitFormData.isInsurance === false) {
-        submitFormData.isInsurance = 0
-      } else if (submitFormData.isInsurance === true) {
-        submitFormData.isInsurance = 1
-      }
-      if (submitFormData.isSign === false) {
-        submitFormData.isSign = 0
-      } else if (submitFormData.isSign === true) {
-        submitFormData.isSign = 1
-      }
+      submitFormData.isInsurance
+        ? (submitFormData.isInsurance = 1)
+        : (submitFormData.isInsurance = 0)
+      submitFormData.isSign
+        ? (submitFormData.isSign = 1)
+        : (submitFormData.isSign = 0)
       if (this.$route.query.id) {
-        console.log('修改')
+        this.$confirm('确认修改？', '警告', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning',
+        })
+          .then(function () {
+            return updateBank(submitFormData)
+          })
+          .then(() => {
+            this.$refs.bankFile.submit()
+            this.msgSuccess('修改成功')
+            this.findBankDetails()
+          })
+          .catch(function () {})
       } else {
+        this.$confirm('确认保存？', '警告', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning',
+        })
+          .then(function () {
+            return addBank(submitFormData)
+          })
+          .then((res) => {
+            this.upload.uploadData.id = res.data
+            this.$refs.bankFile.submit()
+            this.msgSuccess('保存成功')
+          })
+          .catch(function () {})
+      }
+    },
+    // 文件上传中处理
+    handleFileUploadProgress(event, file, fileList) {
+      this.upload.isUploading = true
+    },
+    // 文件上传成功处理
+    handleFileSuccess(response, file, fileList) {
+      this.upload.isUploading = false
+      this.uploadForm.filePath = response.url
+      this.msgSuccess(response.msg)
+    },
+    // 删除处理
+    async handleRemove(file, fileList) {
+      if (file.status === 'success') {
         try {
-          await addBank(submitFormData)
+          await deleteImg(file.url)
+          this.msgSuccess('删除成功')
         } catch (error) {
           console.log(error)
         }
       }
+    },
+    beforeRemove(file, fileList) {
+      if (file.status === 'success') {
+        return this.$confirm('确认删除？删除后无法恢复', '警告', {
+          type: 'warning',
+        })
+      }
+    },
+    // 放大图片
+    handlePictureCardPreview(file) {
+      this.dialogImageUrl = file.url
+      this.dialogVisible = true
     },
   },
   created() {
