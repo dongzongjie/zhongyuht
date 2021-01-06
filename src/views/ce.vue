@@ -35,6 +35,7 @@
     </el-dialog>
     <button @click="dialogVisible = true">pdf</button>
     <button @click="ceshi1">点击</button>
+    <button @click="ceshi2">点击2</button>
   </div>
 </template>
 
@@ -112,6 +113,9 @@ export default {
       } catch (error) {
         console.log(error)
       }
+    },
+    ceshi2() {
+      console.log(222)
     },
   },
   mounted() {

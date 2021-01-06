@@ -489,7 +489,6 @@ export default {
           id: this.$route.query.id,
         },
       },
-      form: {},
     }
   },
   computed: {},
@@ -570,7 +569,6 @@ export default {
     // 文件上传成功处理
     handleFileSuccess(response, file, fileList) {
       this.upload.isUploading = false
-      this.form.filePath = response.url
       this.msgSuccess(response.msg)
     },
     // 删除处理

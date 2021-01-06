@@ -5,8 +5,18 @@
       <button @click="goAssignBlock('ref1', 50)">订单信息</button>
       <button @click="goAssignBlock('ref2', 50)">借款人信息</button>
       <button @click="goAssignBlock('ref3', 50)">配偶信息</button>
-      <button @click="goAssignBlock('ref4', 50)">关联人信息</button>
-      <button @click="goAssignBlock('ref5', 50)">担保人信息</button>
+      <button
+        @click="goAssignBlock('ref4', 50)"
+        v-if="firstDetails.debtService"
+      >
+        共偿人信息
+      </button>
+      <button
+        @click="goAssignBlock('ref5', 50)"
+        v-if="firstDetails.peopleGuarantee || firstDetails.companyGuarantee"
+      >
+        担保信息
+      </button>
       <button @click="goAssignBlock('ref6', 50)">经销商信息</button>
       <button @click="goAssignBlock('ref7', 50)">车辆信息</button>
       <button @click="goAssignBlock('ref8', 50)">贷款信息</button>
@@ -19,8 +29,11 @@
         name="first"
         style="padding: 0 50px 50px; font-size: 14px"
       >
-        <div ref="ref0">
-          <h4>基本信息</h4>
+        <!-- 基本信息 -->
+        <el-card class="box-card">
+          <div slot="header" ref="ref0">
+            <span>基本信息</span>
+          </div>
           <el-row>
             <el-col :span="8">销售团队：{{ userDetails.business.team }}</el-col>
             <el-col :span="8">大区经理：</el-col>
@@ -31,9 +44,12 @@
               >真实业务发生地：{{ userDetails.business.realAddress }}</el-col
             >
           </el-row>
-        </div>
-        <div ref="ref1">
-          <h4>订单信息</h4>
+        </el-card>
+        <!-- 订单信息 -->
+        <el-card class="box-card">
+          <div slot="header" ref="ref1">
+            <span>订单信息</span>
+          </div>
           <el-row>
             <el-col :span="8"
               >车辆类型：
@@ -51,240 +67,259 @@
               <span v-else-if="userDetails.business.carType == 2">新能源</span>
             </el-col>
           </el-row>
-        </div>
-        <div ref="ref2">
-          <h4>借款人信息</h4>
-          <el-row>
-            <el-col :span="8">姓名：{{ userDetails.borrower.userName }}</el-col>
-            <el-col :span="8"
-              >征信授权方式：
-              <span v-if="userDetails.borrower.creditPower == 0">电子授权</span>
-              <span v-if="userDetails.borrower.creditPower == 1">纸质授权</span>
-            </el-col>
-            <el-col :span="8"
-              >身份证号：{{ userDetails.borrower.idCard }}</el-col
-            >
-            <el-col :span="8"
-              >银行卡号：{{ userDetails.borrower.bankCardNo }}</el-col
-            >
-            <el-col :span="8"
-              >常用手机号：{{ userDetails.borrower.phoneNumber }}</el-col
-            >
-            <el-col :span="8"
-              >家庭住址：{{ userDetails.borrower.familyAddress }}</el-col
-            >
-            <el-col :span="8"
-              >签发机关：{{ userDetails.borrower.issueAuthority }}</el-col
-            >
-            <el-col :span="8"
-              >有效起始日：{{ userDetails.borrower.startDate }}</el-col
-            >
-            <el-col :span="8"
-              >有效截止日：{{ userDetails.borrower.endDate }}</el-col
-            >
-            <el-col :span="8">住房所有权：</el-col>
-            <el-col :span="8">从事行业：</el-col>
-            <el-col :span="8">工作地址：</el-col>
-            <el-col :span="8">工作单位性质：</el-col>
-            <el-col :span="8">职位：</el-col>
-            <el-col :span="8">现居住地址：</el-col>
-            <el-col :span="8">工作单位规模：</el-col>
-            <el-col :span="8">现居住时间/年：</el-col>
-            <el-col :span="8">工作单位名称：</el-col>
-            <el-col :span="8">现单位工作年限：</el-col>
-            <el-col :span="8">税后收入：</el-col>
-            <el-col :span="8">学历：</el-col>
-            <el-col :span="8">婚姻状况：</el-col>
-            <el-col :span="8">本人是否有驾驶证：</el-col>
-            <el-col :span="8">驾驶员与主贷人关系：</el-col>
-            <el-col :span="24">驾照类型：</el-col>
-            <el-col :span="8" class="img">
-              身份证正面
-              <el-image
-                style="width: 100px; height: 100px"
-                :src="userDetails.borrower.obverseAddress"
-                :preview-src-list="borrowerSrcList"
-              >
-              </el-image>
-            </el-col>
-            <el-col :span="8" class="img">
-              身份证反面
-              <el-image
-                style="width: 100px; height: 100px"
-                :src="userDetails.borrower.backAddress"
-                :preview-src-list="borrowerSrcList"
-              >
-              </el-image>
-            </el-col>
-            <el-col
-              :span="8"
-              v-if="userDetails.borrower.creditPower == 1"
-              class="img"
-            >
-              征信授权书
-              <el-image
-                style="width: 100px; height: 100px"
-                :src="userDetails.borrower.powerAddress"
-                :preview-src-list="borrowerSrcList"
-              >
-              </el-image>
-            </el-col>
-          </el-row>
-        </div>
-        <div ref="ref3">
-          <h4>配偶信息</h4>
-          <el-row>
-            <el-col :span="8">姓名：</el-col>
-            <el-col :span="8">身份证号：</el-col>
-            <el-col :span="8">户籍地址：</el-col>
-            <el-col :span="8">手机号：</el-col>
-          </el-row>
-        </div>
-        <div ref="ref4">
-          <h4>关联人信息</h4>
-          <el-row>
-            <el-col :span="8">姓名：{{ userDetails.relation.userName }}</el-col>
-            <el-col :span="8"
-              >征信授权方式：
-              <span v-if="userDetails.relation.creditPower == 0">电子授权</span>
-              <span v-if="userDetails.relation.creditPower == 1">纸质授权</span>
-            </el-col>
-            <el-col :span="8"
-              >与借款人关系：{{ userDetails.relation.peopleShip }}</el-col
-            >
-            <el-col :span="8"
-              >身份证号：{{ userDetails.relation.idCard }}</el-col
-            >
-            <el-col :span="8"
-              >银行卡号：{{ userDetails.relation.bankCardNo }}</el-col
-            >
-            <el-col :span="8"
-              >常用手机号：{{ userDetails.relation.phoneNumber }}</el-col
-            >
-            <el-col :span="8"
-              >家庭住址：{{ userDetails.relation.familyAddress }}</el-col
-            >
-            <el-col :span="8"
-              >签发机关：{{ userDetails.relation.issueAuthority }}</el-col
-            >
-            <el-col :span="8"
-              >有效起始日：{{ userDetails.relation.startDate }}</el-col
-            >
-            <el-col :span="8"
-              >有效截止日：{{ userDetails.relation.endDate }}</el-col
-            >
-            <el-col :span="8"
-              >单位名称：{{ userDetails.relation.company }}</el-col
-            >
-            <el-col :span="8"
-              >单位地址：{{ userDetails.relation.companyAddress }}</el-col
-            >
-            <el-col :span="8"
-              >个人年收入：{{ userDetails.relation.yearIncome }}</el-col
-            >
-            <el-col :span="16"
-              >业务角色：
-              <span v-if="userDetails.relation.businessRole == 0"
-                >共同申请人</span
-              >
-              <span v-if="userDetails.relation.businessRole == 1"
-                >共同偿还人</span
-              >
-              <span v-if="userDetails.relation.businessRole == 2"
-                >财产公有人</span
-              >
-              <span v-if="userDetails.relation.businessRole == 3"
-                >担保人关系</span
-              >
-            </el-col>
-            <el-col :span="8" class="img">
-              身份证正面
-              <el-image
-                style="width: 100px; height: 100px"
-                :src="userDetails.relation.obverseAddress"
-                :preview-src-list="relationSrcList"
-              >
-              </el-image>
-            </el-col>
-            <el-col :span="8" class="img">
-              身份证反面
-              <el-image
-                style="width: 100px; height: 100px"
-                :src="userDetails.relation.backAddress"
-                :preview-src-list="relationSrcList"
-              >
-              </el-image>
-            </el-col>
-            <el-col
-              :span="8"
-              v-if="userDetails.relation.creditPower == 1"
-              class="img"
-            >
-              征信授权书
-              <el-image
-                style="width: 100px; height: 100px"
-                :src="userDetails.relation.powerAddress"
-                :preview-src-list="relationSrcList"
-              >
-              </el-image>
-            </el-col>
-          </el-row>
-        </div>
-        <div ref="ref5">
-          <h4>担保人信息</h4>
+        </el-card>
+        <!-- 借款人信息 -->
+        <el-card class="box-card">
+          <div slot="header" ref="ref2">
+            <span>借款人信息</span>
+          </div>
           <el-row>
             <el-col :span="8"
-              >姓名：{{ userDetails.guarantee.userName }}</el-col
+              >姓名：{{ firstDetails.borrower.userName }}</el-col
             >
             <el-col :span="8"
               >征信授权方式：
-              <span v-if="userDetails.guarantee.creditPower == 0"
+              <span v-if="firstDetails.borrower.creditPower == 0"
                 >电子授权</span
               >
-              <span v-if="userDetails.guarantee.creditPower == 1"
+              <span v-if="firstDetails.borrower.creditPower == 1"
                 >纸质授权</span
               >
             </el-col>
             <el-col :span="8"
-              >与借款人关系：{{ userDetails.guarantee.peopleShip }}</el-col
+              >身份证号：{{ firstDetails.borrower.idCard }}</el-col
             >
             <el-col :span="8"
-              >身份证号：{{ userDetails.guarantee.idCard }}</el-col
+              >银行卡号：{{ firstDetails.borrower.bankCardNo }}</el-col
             >
             <el-col :span="8"
-              >银行卡号：{{ userDetails.guarantee.bankCardNo }}</el-col
+              >联系电话：{{ firstDetails.applicant.phoneNumber }}</el-col
             >
             <el-col :span="8"
-              >常用手机号：{{ userDetails.guarantee.phoneNumber }}</el-col
+              >家庭住址：{{ firstDetails.borrower.familyAddress }}</el-col
             >
             <el-col :span="8"
-              >家庭住址：{{ userDetails.guarantee.familyAddress }}</el-col
+              >签发机关：{{ firstDetails.borrower.issueAuthority }}</el-col
             >
             <el-col :span="8"
-              >签发机关：{{ userDetails.guarantee.issueAuthority }}</el-col
+              >有效起始日：{{ firstDetails.borrower.startDate }}</el-col
             >
             <el-col :span="8"
-              >有效起始日：{{ userDetails.guarantee.startDate }}</el-col
+              >有效截止日：{{ firstDetails.borrower.endDate }}</el-col
             >
             <el-col :span="8"
-              >有效截止日：{{ userDetails.guarantee.endDate }}</el-col
+              >从事行业：{{ firstDetails.applicant.industry }}</el-col
             >
             <el-col :span="8"
-              >单位名称：{{ userDetails.guarantee.company }}</el-col
+              >工作地址：{{ firstDetails.applicant.workAddress }}</el-col
             >
             <el-col :span="8"
-              >单位地址：{{ userDetails.guarantee.companyAddress }}</el-col
+              >公司电话：{{ firstDetails.applicant.unitPhone }}</el-col
+            >
+            <el-col :span="8"
+              >工作单位性质：{{ firstDetails.applicant.unitNature }}</el-col
+            >
+            <!-- <el-col :span="8">工作单位规模：{{firstDetails.applicant.householdNature}}</el-col> -->
+            <el-col :span="8"
+              >工作单位名称：{{ firstDetails.applicant.unitName }}</el-col
+            >
+            <!-- <el-col :span="8">现单位工作年限：{{firstDetails.applicant.householdNature}}</el-col> -->
+            <el-col :span="8"
+              >职位：{{ firstDetails.applicant.position }}</el-col
+            >
+            <el-col :span="8"
+              >户口性质：{{ firstDetails.applicant.householdNature }}</el-col
+            >
+            <el-col :span="8"
+              >现居住地址：{{ firstDetails.applicant.liveAddress }}</el-col
+            >
+            <el-col :span="8"
+              >现居住时间/年：{{ firstDetails.applicant.liveTime }}</el-col
+            >
+            <el-col :span="8"
+              >住房所有权：{{ firstDetails.applicant.housePower }}</el-col
+            >
+            <el-col :span="8"
+              >税后月收入：{{ firstDetails.applicant.monthlyIncome }}</el-col
+            >
+            <el-col :span="8"
+              >学历：{{ firstDetails.applicant.education }}</el-col
+            >
+            <el-col :span="8"
+              >婚姻状况：{{ firstDetails.applicant.marriage }}</el-col
+            >
+            <el-col :span="8"
+              >本人是否有驾驶证：{{ firstDetails.applicant.isLicense }}</el-col
+            >
+            <el-col :span="8"
+              >驾驶员与主贷人关系：{{
+                firstDetails.applicant.driverShip
+              }}</el-col
             >
             <el-col :span="24"
-              >个人年收入：{{ userDetails.guarantee.yearIncome }}</el-col
+              >驾照类型：{{ firstDetails.applicant.licenseType }}</el-col
             >
-            <el-col :span="8">担保人户籍省/市：</el-col>
-            <el-col :span="16">担保人现居住省/市：</el-col>
             <el-col :span="8" class="img">
               身份证正面
               <el-image
                 style="width: 100px; height: 100px"
-                :src="userDetails.guarantee.obverseAddress"
+                :src="firstDetails.applicant.cardAddress"
+                :preview-src-list="borrowerSrcList"
+              >
+              </el-image>
+            </el-col>
+            <el-col :span="8" class="img">
+              身份证反面
+              <el-image
+                style="width: 100px; height: 100px"
+                :src="firstDetails.applicant.backAddress"
+                :preview-src-list="borrowerSrcList"
+              >
+              </el-image>
+            </el-col>
+          </el-row>
+        </el-card>
+        <!-- 配偶信息 -->
+        <el-card class="box-card">
+          <div slot="header" ref="ref3">
+            <span>配偶信息</span>
+          </div>
+          <el-row>
+            <el-col :span="8"
+              >姓名：{{ firstDetails.applicant.spouseName }}</el-col
+            >
+            <el-col :span="8"
+              >身份证号：{{ firstDetails.applicant.idNumber }}</el-col
+            >
+            <el-col :span="8"
+              >户籍地址：{{ firstDetails.applicant.permanentAddress }}</el-col
+            >
+            <el-col :span="8"
+              >手机号：{{ firstDetails.applicant.phoneNo }}</el-col
+            >
+            <el-col :span="8"
+              >学历：{{ firstDetails.applicant.spouseEducation }}</el-col
+            >
+            <el-col :span="8"
+              >工作单位名称：{{ firstDetails.applicant.spouseUnitName }}</el-col
+            >
+            <el-col :span="8"
+              >工作地址：{{ firstDetails.applicant.spouseWorkPlace }}</el-col
+            >
+            <el-col :span="8"
+              >工作电话：{{ firstDetails.applicant.spouseWorkPhone }}</el-col
+            >
+            <el-col :span="8"
+              >税后月收入：{{
+                firstDetails.applicant.spouseMonthlyIncome
+              }}</el-col
+            >
+          </el-row>
+        </el-card>
+        <!-- 共偿人信息 -->
+        <el-card class="box-card" v-if="firstDetails.debtService">
+          <div slot="header" ref="ref4">
+            <span>共偿人信息</span>
+          </div>
+          <el-row>
+            <el-col :span="8"
+              >姓名：{{ firstDetails.debtService.debtName }}</el-col
+            >
+            <el-col :span="8"
+              >与借款人关系：{{ firstDetails.debtService.peopleShip }}</el-col
+            >
+            <el-col :span="8"
+              >身份证号：{{ firstDetails.debtService.idCard }}</el-col
+            >
+            <el-col :span="8"
+              >手机号：{{ firstDetails.debtService.phoneNamber }}</el-col
+            >
+            <el-col :span="8"
+              >教育程度：{{ firstDetails.debtService.education }}</el-col
+            >
+            <el-col :span="8"
+              >现居地址：{{ firstDetails.debtService.nowPlace }}</el-col
+            >
+            <el-col :span="8"
+              >单位名称：{{ firstDetails.debtService.nowWork }}</el-col
+            >
+            <el-col :span="8"
+              >单位地址：{{ firstDetails.debtService.workPlace }}</el-col
+            >
+            <el-col :span="8"
+              >公司电话：{{ firstDetails.debtService.companyPhone }}</el-col
+            >
+            <el-col :span="8"
+              >公司性质：{{ firstDetails.debtService.companyNature }}</el-col
+            >
+            <el-col :span="16"
+              >税后月收入：{{ firstDetails.debtService.monthlyIncome }}</el-col
+            >
+            <el-col :span="8" class="img">
+              身份证正面
+              <el-image
+                style="width: 100px; height: 100px"
+                :src="firstDetails.debtService.cardAddress"
+                :preview-src-list="relationSrcList"
+              >
+              </el-image>
+            </el-col>
+            <el-col :span="8" class="img">
+              身份证反面
+              <el-image
+                style="width: 100px; height: 100px"
+                :src="firstDetails.debtService.backAddress"
+                :preview-src-list="relationSrcList"
+              >
+              </el-image>
+            </el-col>
+          </el-row>
+        </el-card>
+        <!-- 担保人信息 -->
+        <el-card class="box-card" v-if="firstDetails.peopleGuarantee">
+          <div slot="header" ref="ref5">
+            <span>担保人信息</span>
+          </div>
+          <el-row>
+            <el-col :span="8"
+              >姓名：{{ firstDetails.peopleGuarantee.guaranteeName }}</el-col
+            >
+            <el-col :span="8"
+              >与借款人关系：{{
+                firstDetails.peopleGuarantee.peopleShip
+              }}</el-col
+            >
+            <el-col :span="8"
+              >身份证号：{{ firstDetails.peopleGuarantee.idNumber }}</el-col
+            >
+            <el-col :span="8"
+              >常用手机号：{{
+                firstDetails.peopleGuarantee.phoneNumber
+              }}</el-col
+            >
+            <el-col :span="8"
+              >户籍省市：{{ firstDetails.peopleGuarantee.nativePlace }}</el-col
+            >
+            <el-col :span="8"
+              >现居省市：{{ firstDetails.peopleGuarantee.currentPlace }}</el-col
+            >
+            <el-col :span="8"
+              >现居地址：{{ firstDetails.peopleGuarantee.detailPlace }}</el-col
+            >
+            <el-col :span="8"
+              >单位名称：{{ firstDetails.peopleGuarantee.workUnit }}</el-col
+            >
+            <el-col :span="8"
+              >工作省市：{{ firstDetails.peopleGuarantee.workPlace }}</el-col
+            >
+            <el-col :span="24"
+              >单位地址：{{ firstDetails.peopleGuarantee.unitPlace }}</el-col
+            >
+            <el-col :span="8" class="img">
+              身份证正面
+              <el-image
+                style="width: 100px; height: 100px"
+                :src="firstDetails.peopleGuarantee.cardAddress"
                 :preview-src-list="guaranteeSrcList"
               >
               </el-image>
@@ -293,169 +328,209 @@
               身份证反面
               <el-image
                 style="width: 100px; height: 100px"
-                :src="userDetails.guarantee.backAddress"
+                :src="firstDetails.peopleGuarantee.backAddress"
                 :preview-src-list="guaranteeSrcList"
               >
               </el-image>
             </el-col>
             <el-col
               :span="8"
-              v-if="userDetails.guarantee.creditPower == 1"
+              v-if="firstDetails.peopleGuarantee.creditPower == 1"
               class="img"
             >
               征信授权书
               <el-image
                 style="width: 100px; height: 100px"
-                :src="userDetails.guarantee.powerAddress"
+                :src="firstDetails.peopleGuarantee.powerAddress"
                 :preview-src-list="guaranteeSrcList"
               >
               </el-image>
             </el-col>
           </el-row>
-        </div>
-        <div ref="ref6">
-          <h4>经销商信息</h4>
+        </el-card>
+        <!-- 担保公司信息 -->
+        <el-card class="box-card" v-if="firstDetails.companyGuarantee">
+          <div slot="header" ref="ref5">
+            <span>担保公司信息</span>
+          </div>
           <el-row>
-            <el-col :span="8">经销商门店：</el-col>
-            <el-col :span="8">车牌类型：</el-col>
-            <el-col :span="8">市场：</el-col>
-            <el-col :span="8">门店：</el-col>
-            <el-col :span="8">运营：</el-col>
+            <el-col :span="8"
+              >公司注册名称：{{
+                firstDetails.companyGuarantee.companyName
+              }}</el-col
+            >
+            <el-col :span="8"
+              >企业类型：{{
+                firstDetails.companyGuarantee.enterpriseType
+              }}</el-col
+            >
+            <el-col :span="8"
+              >注册资金（万元）：{{
+                firstDetails.companyGuarantee.registerMoney
+              }}</el-col
+            >
+            <el-col :span="8"
+              >成立日期：{{
+                firstDetails.companyGuarantee.establishTime
+              }}</el-col
+            >
+            <el-col :span="8"
+              >经营年限：{{
+                firstDetails.companyGuarantee.operationPeriod
+              }}</el-col
+            >
+            <el-col :span="8"
+              >公司所属城市：{{
+                firstDetails.companyGuarantee.companyCity
+              }}</el-col
+            >
+            <el-col :span="8"
+              >公司地址：{{
+                firstDetails.companyGuarantee.companyAddress
+              }}</el-col
+            >
+            <el-col :span="8"
+              >法人身份证号：{{
+                firstDetails.companyGuarantee.corporateId
+              }}</el-col
+            >
+            <el-col :span="8"
+              >法人手机号：{{
+                firstDetails.companyGuarantee.corporatePhone
+              }}</el-col
+            >
           </el-row>
-        </div>
-        <div ref="ref7">
-          <h4>车辆信息</h4>
+        </el-card>
+        <!-- 经销商信息 -->
+        <el-card class="box-card">
+          <div slot="header" ref="ref6">
+            <span>经销商信息</span>
+          </div>
           <el-row>
-            <el-col :span="8">车辆：</el-col>
-            <el-col :span="8">VIN码：</el-col>
-            <el-col :span="8">品牌：</el-col>
-            <el-col :span="8">车系：</el-col>
-            <el-col :span="8">车款年限：</el-col>
-            <el-col :span="8">排量/吨位：</el-col>
-            <el-col :span="8">挡位：</el-col>
-            <el-col :span="8">款式：</el-col>
-            <el-col :span="8">发动机号：</el-col>
-            <el-col :span="8">燃料类型：</el-col>
-            <el-col :span="8">二手车公里数：</el-col>
-            <el-col :span="8">首次登记日期：</el-col>
-            <el-col :span="8">卖方姓名：</el-col>
-            <el-col :span="8">卖方身份证号：</el-col>
-            <el-col :span="8">卖方车牌号：</el-col>
+            <el-col :span="8"
+              >经销商门店：{{ firstDetails.basics.dealerStores }}</el-col
+            >
+            <el-col :span="8"
+              >车牌类型：<span v-if="firstDetails.basics.plateType === 0"
+                >公牌</span
+              ><span v-if="firstDetails.basics.plateType === 1"
+                >私牌</span
+              ></el-col
+            >
+            <el-col :span="8"
+              >审批类型：{{ firstDetails.basics.approvalType }}</el-col
+            >
+            <el-col :span="8">市场：{{ firstDetails.basics.market }}</el-col>
+            <el-col :span="8">门店：{{ firstDetails.basics.store }}</el-col>
+            <el-col :span="8">运营：{{ firstDetails.basics.operate }}</el-col>
+            <el-col :span="8"
+              >补充说明：{{ firstDetails.basics.moreInfo }}</el-col
+            >
           </el-row>
-        </div>
-        <div ref="ref8">
-          <h4>贷款信息</h4>
+        </el-card>
+        <!-- 车辆信息 -->
+        <el-card class="box-card">
+          <div slot="header" ref="ref7">
+            <span>车辆信息</span>
+          </div>
           <el-row>
-            <el-col :span="8">实际销售价：</el-col>
-            <el-col :span="8">车辆贷款金额：</el-col>
-            <el-col :span="8">贷款期限：</el-col>
-            <el-col :span="8">是否提供房产：</el-col>
-            <el-col :span="8">利率换挡：</el-col>
-            <el-col :span="8">GPS挡位：</el-col>
-            <el-col :span="8">续保押金：</el-col>
+            <el-col :span="8">车类：{{ firstDetails.carLoan.carType }}</el-col>
+            <el-col :span="8">VIN码：{{ firstDetails.carLoan.vinCode }}</el-col>
+            <el-col :span="8">品牌：{{ firstDetails.carLoan.brand }}</el-col>
+            <el-col :span="8"
+              >车系：{{ firstDetails.carLoan.carSeries }}</el-col
+            >
+            <el-col :span="8"
+              >车款年代：{{ firstDetails.carLoan.carYear }}</el-col
+            >
+            <!-- <el-col :span="8">排量/吨位：{{firstDetails.carLoan.}}</el-col>
+            <el-col :span="8">挡位：{{firstDetails.carLoan.}}</el-col> -->
+            <el-col :span="8">款式：{{ firstDetails.carLoan.style }}</el-col>
+            <!-- <el-col :span="8">发动机号：{{firstDetails.carLoan.}}</el-col>
+            <el-col :span="8">燃料类型：{{firstDetails.carLoan.}}</el-col> -->
+            <el-col :span="8"
+              >二手车公里数：{{ firstDetails.carLoan.mileage }}</el-col
+            >
+            <!-- <el-col :span="8">首次登记日期：{{firstDetails.carLoan.}}</el-col> -->
+            <el-col :span="8"
+              >卖方姓名：{{ firstDetails.carLoan.sellerName }}</el-col
+            >
+            <el-col :span="8"
+              >卖方身份证号：{{ firstDetails.carLoan.sellerId }}</el-col
+            >
+            <el-col :span="8"
+              >卖方车牌号：{{ firstDetails.carLoan.sellerCarNo }}</el-col
+            >
           </el-row>
-        </div>
-        <div ref="ref9">
-          <h4>紧急联系人</h4>
+        </el-card>
+        <!-- 贷款信息 -->
+        <el-card class="box-card">
+          <div slot="header" ref="ref8">
+            <span>贷款信息</span>
+          </div>
           <el-row>
-            <el-col :span="8">紧急联系人1姓名：</el-col>
-            <el-col :span="8">紧急联系人1与主贷人关系：</el-col>
-            <el-col :span="8">紧急联系人1手机号：</el-col>
-            <el-col :span="8">紧急联系人2姓名：</el-col>
-            <el-col :span="8">紧急联系人2与主贷人关系：</el-col>
-            <el-col :span="8">紧急联系人2手机号：</el-col>
+            <el-col :span="8"
+              >实际销售价：{{ firstDetails.carLoan.actualPrice }}</el-col
+            >
+            <el-col :span="8"
+              >车辆贷款金额：{{ firstDetails.carLoan.loanAmount }}</el-col
+            >
+            <el-col :span="8"
+              >贷款期限：{{ firstDetails.carLoan.repaymentTerm }}</el-col
+            >
+            <el-col :span="8"
+              >是否提供房产：{{ firstDetails.carLoan.isHouseProperty }}</el-col
+            >
+            <el-col :span="8"
+              >利率换挡：{{ firstDetails.carLoan.interestRate }}</el-col
+            >
+            <el-col :span="8"
+              >GPS挡位：{{ firstDetails.carLoan.gpsGear }}</el-col
+            >
+            <el-col :span="8"
+              >续保押金：{{ firstDetails.carLoan.deposit }}</el-col
+            >
           </el-row>
-        </div>
-        <div ref="ref10">
-          <h4>图片信息</h4>
-          <h4 style="font-size: 16px">车辆</h4>
+        </el-card>
+        <!-- 紧急联系人 -->
+        <el-card class="box-card">
+          <div slot="header" ref="ref9">
+            <span>紧急联系人</span>
+          </div>
           <el-row>
-            <el-col :span="6" class="img">
-              前
-              <el-image
-                style="width: 100px; height: 100px"
-                src=""
-                :preview-src-list="srcList"
-              >
-              </el-image>
-            </el-col>
-            <el-col :span="6" class="img">
-              后
-              <el-image
-                style="width: 100px; height: 100px"
-                src=""
-                :preview-src-list="srcList"
-              >
-              </el-image>
-            </el-col>
-            <el-col :span="6" class="img">
-              左
-              <el-image
-                style="width: 100px; height: 100px"
-                src=""
-                :preview-src-list="srcList"
-              >
-              </el-image>
-            </el-col>
-            <el-col :span="6" class="img">
-              右
-              <el-image
-                style="width: 100px; height: 100px"
-                src=""
-                :preview-src-list="srcList"
-              >
-              </el-image>
-            </el-col>
-            <el-col :span="6" class="img">
-              发动机铭牌
-              <el-image
-                style="width: 100px; height: 100px"
-                src=""
-                :preview-src-list="srcList"
-              >
-              </el-image>
-            </el-col>
-            <el-col :span="6" class="img">
-              里程碑
-              <el-image
-                style="width: 100px; height: 100px"
-                src=""
-                :preview-src-list="srcList"
-              >
-              </el-image>
-            </el-col>
-            <el-col :span="6" class="img">
-              B柱铭牌
-              <el-image
-                style="width: 100px; height: 100px"
-                src=""
-                :preview-src-list="srcList"
-              >
-              </el-image>
-            </el-col>
-            <el-col :span="6" class="img">
-              备胎箱地板
-              <el-image
-                style="width: 100px; height: 100px"
-                src=""
-                :preview-src-list="srcList"
-              >
-              </el-image>
-            </el-col>
-            <el-col :span="6" class="img">
-              人车合照
-              <el-image
-                style="width: 100px; height: 100px"
-                src=""
-                :preview-src-list="srcList"
-              >
-              </el-image>
-            </el-col>
+            <el-col :span="8"
+              >紧急联系人1姓名：{{ firstDetails.contacts.nameOne }}</el-col
+            >
+            <el-col :span="8"
+              >紧急联系人1与主贷人关系：{{
+                firstDetails.contacts.shipOne
+              }}</el-col
+            >
+            <el-col :span="8"
+              >紧急联系人1手机号：{{ firstDetails.contacts.phoneOne }}</el-col
+            >
+            <el-col :span="8"
+              >紧急联系人2姓名：{{ firstDetails.contacts.nameTwo }}</el-col
+            >
+            <el-col :span="8"
+              >紧急联系人2与主贷人关系：{{
+                firstDetails.contacts.shipTwo
+              }}</el-col
+            >
+            <el-col :span="8"
+              >紧急联系人2手机号：{{ firstDetails.contacts.phoneTwo }}</el-col
+            >
           </el-row>
-          <h4 style="font-size: 16px">登记证</h4>
+        </el-card>
+        <!-- 图片信息 -->
+        <el-card class="box-card">
+          <div slot="header" ref="ref10">
+            <span>图片信息</span>
+          </div>
+          <span>车辆</span>
           <el-row>
             <el-col :span="6" class="img">
-              机动车登记证1
+              左前45度
               <el-image
                 style="width: 100px; height: 100px"
                 src=""
@@ -464,7 +539,7 @@
               </el-image>
             </el-col>
             <el-col :span="6" class="img">
-              机动车登记证2
+              右前45度
               <el-image
                 style="width: 100px; height: 100px"
                 src=""
@@ -473,7 +548,7 @@
               </el-image>
             </el-col>
             <el-col :span="6" class="img">
-              机动车登记证3
+              里程表
               <el-image
                 style="width: 100px; height: 100px"
                 src=""
@@ -482,7 +557,7 @@
               </el-image>
             </el-col>
             <el-col :span="6" class="img">
-              机动车登记证4
+              发动机舱左侧
               <el-image
                 style="width: 100px; height: 100px"
                 src=""
@@ -491,7 +566,106 @@
               </el-image>
             </el-col>
             <el-col :span="6" class="img">
-              机动车登记证5
+              发动机舱右侧
+              <el-image
+                style="width: 100px; height: 100px"
+                src=""
+                :preview-src-list="srcList"
+              >
+              </el-image>
+            </el-col>
+            <el-col :span="6" class="img">
+              车辆铭牌
+              <el-image
+                style="width: 100px; height: 100px"
+                src=""
+                :preview-src-list="srcList"
+              >
+              </el-image>
+            </el-col>
+            <el-col :span="6" class="img">
+              VIN码
+              <el-image
+                style="width: 100px; height: 100px"
+                src=""
+                :preview-src-list="srcList"
+              >
+              </el-image>
+            </el-col>
+            <el-col :span="6" class="img">
+              左后车门螺丝
+              <el-image
+                style="width: 100px; height: 100px"
+                src=""
+                :preview-src-list="srcList"
+              >
+              </el-image>
+            </el-col>
+            <el-col :span="6" class="img">
+              前排座椅
+              <el-image
+                style="width: 100px; height: 100px"
+                src=""
+                :preview-src-list="srcList"
+              >
+              </el-image>
+            </el-col>
+            <el-col :span="6" class="img">
+              后排座椅
+              <el-image
+                style="width: 100px; height: 100px"
+                src=""
+                :preview-src-list="srcList"
+              >
+              </el-image>
+            </el-col>
+            <el-col :span="6" class="img">
+              左后流水槽
+              <el-image
+                style="width: 100px; height: 100px"
+                src=""
+                :preview-src-list="srcList"
+              >
+              </el-image>
+            </el-col>
+            <el-col :span="6" class="img">
+              右后流水槽
+              <el-image
+                style="width: 100px; height: 100px"
+                src=""
+                :preview-src-list="srcList"
+              >
+              </el-image>
+            </el-col>
+            <el-col :span="6" class="img">
+              备胎槽全景
+              <el-image
+                style="width: 100px; height: 100px"
+                src=""
+                :preview-src-list="srcList"
+              >
+              </el-image>
+            </el-col>
+            <el-col :span="6" class="img">
+              右后车门螺丝
+              <el-image
+                style="width: 100px; height: 100px"
+                src=""
+                :preview-src-list="srcList"
+              >
+              </el-image>
+            </el-col>
+            <el-col :span="6" class="img">
+              后备箱底部
+              <el-image
+                style="width: 100px; height: 100px"
+                src=""
+                :preview-src-list="srcList"
+              >
+              </el-image>
+            </el-col>
+            <el-col :span="6" class="img">
+              中控台
               <el-image
                 style="width: 100px; height: 100px"
                 src=""
@@ -500,7 +674,28 @@
               </el-image>
             </el-col>
           </el-row>
-          <h4 style="font-size: 16px">补充资料</h4>
+          <span>登记证</span>
+          <el-row>
+            <el-col :span="6" class="img">
+              机动车登记证1-2
+              <el-image
+                style="width: 100px; height: 100px"
+                src=""
+                :preview-src-list="srcList"
+              >
+              </el-image>
+            </el-col>
+            <el-col :span="6" class="img">
+              机动车登记证3-4
+              <el-image
+                style="width: 100px; height: 100px"
+                src=""
+                :preview-src-list="srcList"
+              >
+              </el-image>
+            </el-col>
+          </el-row>
+          <span>补充资料</span>
           <el-row>
             <el-col :span="6" class="img">
               手持确认书与车合影
@@ -547,7 +742,7 @@
               </el-image>
             </el-col>
           </el-row>
-          <h4 style="font-size: 16px">主贷人</h4>
+          <span>主贷人</span>
           <el-row>
             <el-col :span="6" class="img">
               主贷人身份证（头像面）
@@ -586,7 +781,7 @@
               </el-image>
             </el-col>
           </el-row>
-          <h4 style="font-size: 16px">配偶</h4>
+          <span>配偶</span>
           <el-row>
             <el-col :span="6" class="img">
               配偶身份证（头像面）
@@ -616,7 +811,7 @@
               </el-image>
             </el-col>
           </el-row>
-          <h4 style="font-size: 16px">担保人</h4>
+          <span>担保人</span>
           <el-row>
             <el-col :span="6" class="img">
               担保人身份证（头像面）
@@ -646,7 +841,7 @@
               </el-image>
             </el-col>
           </el-row>
-        </div>
+        </el-card>
       </el-tab-pane>
       <el-tab-pane label="征信结果" name="second">
         <h4>申请人</h4>
@@ -725,22 +920,70 @@
           </el-tab-pane>
         </el-tabs>
       </el-tab-pane>
-      <el-tab-pane label="意见" name="fourth">
+      <el-tab-pane label="精真估" name="fourth">
+        <!-- <el-button
+          type="primary"
+          round
+          style="margin: 20px 10px"
+          @click="findJZG"
+          >点击查询精真估</el-button
+        > -->
+        <p>{{ JZGRes }}</p>
+      </el-tab-pane>
+      <el-tab-pane label="意见" name="fifth">
         <el-input
           type="textarea"
           :autosize="{ minRows: 3 }"
           placeholder="请输入初审意见"
           v-model="textarea"
         />
-        <el-button type="primary" round style="margin: 20px 10px"
-          >通过</el-button
+        <el-button
+          v-if="approvalType === 1"
+          type="primary"
+          round
+          style="margin: 20px 10px"
+          disabled
+          >已通过</el-button
         >
-        <el-button type="warning" round style="margin: 20px 10px"
-          >退回</el-button
+        <el-button
+          v-else-if="approvalType === 2"
+          type="warning"
+          round
+          style="margin: 20px 10px"
+          disabled
+          >已退回</el-button
         >
-        <el-button type="danger" round style="margin: 20px 10px"
-          >拒绝</el-button
+        <el-button
+          v-else-if="approvalType === 3"
+          type="danger"
+          round
+          style="margin: 20px 10px"
+          disabled
+          >已拒绝</el-button
         >
+        <div v-else>
+          <el-button
+            type="primary"
+            round
+            style="margin: 20px 10px"
+            @click="firstTrialHandle(1)"
+            >通过</el-button
+          >
+          <el-button
+            type="warning"
+            round
+            style="margin: 20px 10px"
+            @click="firstTrialHandle(2)"
+            >退回</el-button
+          >
+          <el-button
+            type="danger"
+            round
+            style="margin: 20px 10px"
+            @click="firstTrialHandle(3)"
+            >拒绝</el-button
+          >
+        </div>
       </el-tab-pane>
     </el-tabs>
     <el-dialog :visible.sync="dialogVisible" width="50%">
@@ -751,8 +994,16 @@
 
 <script>
 import pdf from 'vue-pdf'
-import { getByToken, getByMelting } from '@/api/process/firstTrial'
-import { findDetailsCredit, getSelectState } from '@/api/process/business'
+import {
+  getByToken,
+  getByMelting,
+  getFirstDetails,
+  firstHandle,
+  findJingZhenGu,
+  getJingZhenGuData,
+  getFirstHandle,
+} from '@/api/process/firstTrial'
+import { getSelectState } from '@/api/process/business'
 
 export default {
   name: 'FirstTrialDetails',
@@ -776,6 +1027,17 @@ export default {
       activeName: 'first', // Tabs
       activeName1: 'first', // Tabs1
       textarea: '', // 初审意见
+      approvalType: null, // 初审结果
+      firstDetails: {
+        applicant: {},
+        borrower: {},
+        peopleGuarantee: {},
+        companyGuarantee: {},
+        debtService: {},
+        basics: {},
+        carLoan: {},
+        contacts: {},
+      }, // 初审详情
       // 用户详情
       userDetails: {
         business: {}, // 基本信息
@@ -787,6 +1049,8 @@ export default {
       relationSrcList: [], // 关联人查看大图数组
       guaranteeSrcList: [], // 担保人查看大图数组
       srcList: [], // 图片数组
+      JZGRes: '', // 精真估返回结果
+      JZGData: '', // 精真估数据
     }
   },
   computed: {},
@@ -808,11 +1072,27 @@ export default {
     $route(to, from) {
       //监听路由是否变化
       if (to.path == '/process/firstTrialDetails') {
-        console.log('路由发生变化')
+        this.getFirstData()
       }
     },
   },
   methods: {
+    // 获取初审详情
+    async getFirstData() {
+      try {
+        const { data } = await getFirstDetails(
+          this.$route.query.userId,
+          this.$route.query.transactionCode
+        )
+        console.log(data)
+        this.firstDetails = data
+        this.getBaiRongToken()
+        this.getBaiRongMelting()
+        this.getDetailsCredit()
+        this.findSelectState()
+        this.findFirstHandle()
+      } catch (error) {}
+    },
     // 页面滚动
     goAssignBlock(el, speed) {
       let _this = this
@@ -903,12 +1183,60 @@ export default {
         // }
       } catch (error) {}
     },
+    // 初审处理
+    async firstTrialHandle(approvalType) {
+      if (this.textarea.trim()) {
+        const that = this
+        this.$confirm('确认操作?', '警告', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning',
+        })
+          .then(() => {
+            return firstHandle({
+              advise: that.textarea,
+              approvalType,
+              transactionCode: that.$route.query.transactionCode,
+              userId: Number(that.$route.query.userId),
+            })
+          })
+          .then(() => {
+            this.msgSuccess('操作成功')
+            this.findFirstHandle()
+          })
+          .catch(function () {})
+      } else {
+        this.msgError('请输入意见')
+      }
+    },
+    // 初审结果回显
+    async findFirstHandle() {
+      try {
+        const { data } = await getFirstHandle(this.$route.query.transactionCode)
+        this.textarea = data.advise
+        this.approvalType = data.approvalType
+      } catch (error) {}
+    },
+    // 查询精真估
+    async findJZG() {
+      try {
+        const data = await findJingZhenGu(this.$route.query.transactionCode)
+        this.JZGRes = JSON.parse(data.msg).Msg
+        this.getJZGData()
+      } catch (error) {}
+    },
+    // 查询精真估结果
+    async getJZGData() {
+      try {
+        const { data } = await getJingZhenGuData('ZYJR202012251419140003') // this.$route.query.transactionCode
+        console.log(JSON.parse(data))
+      } catch (error) {
+        console.log(error)
+      }
+    },
   },
   created() {
-    this.getBaiRongToken()
-    this.getBaiRongMelting()
-    this.getDetailsCredit()
-    this.findSelectState()
+    this.getFirstData()
   },
   mounted() {
     this.getNumPages()
@@ -970,5 +1298,8 @@ export default {
 }
 .btn-box button:focus {
   outline: 0;
+}
+.box-card {
+  margin-bottom: 10px;
 }
 </style>

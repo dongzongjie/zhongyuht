@@ -51,11 +51,3 @@ export function exportBank(query) {
         params: query
     })
 }
-
-// 获取合作银行详细信息
-export function getBankDetails(id) {
-    return request({
-        url: '/system/bank/' + id,
-        method: 'get',
-    })
-}

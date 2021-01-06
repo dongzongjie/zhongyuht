@@ -59,7 +59,7 @@
           >新增</el-button
         >
       </el-col>
-      <el-col :span="1.5">
+      <!-- <el-col :span="1.5">
         <el-button
           type="success"
           icon="el-icon-edit"
@@ -69,7 +69,7 @@
           v-hasPermi="['organization:insuranceType:edit']"
           >修改</el-button
         >
-      </el-col>
+      </el-col> -->
       <el-col :span="1.5">
         <el-button
           type="danger"
@@ -107,7 +107,7 @@
       <el-table-column label="保险名称" align="center" prop="name" />
       <el-table-column label="详细地址" align="center" prop="address" />
       <el-table-column label="联系人员" align="center" prop="linkman" />
-      <el-table-column label="备注" align="center" prop="remark" />
+      <!-- <el-table-column label="备注" align="center" prop="remark" /> -->
       <el-table-column
         label="操作"
         align="center"
@@ -117,18 +117,8 @@
           <el-button
             size="mini"
             type="text"
-            icon="el-icon-edit"
-            @click="handleUpdate(scope.row)"
-            v-hasPermi="['organization:insuranceType:edit']"
-            >修改</el-button
-          >
-          <el-button
-            size="mini"
-            type="text"
-            icon="el-icon-delete"
-            @click="handleDelete(scope.row)"
-            v-hasPermi="['organization:insuranceType:remove']"
-            >删除</el-button
+            @click="handleDetails(scope.row.id)"
+            >详情</el-button
           >
         </template>
       </el-table-column>
@@ -143,7 +133,7 @@
     />
 
     <!-- 添加或修改保险对话框 -->
-    <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
+    <!-- <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
       <el-form ref="form" :model="form" :rules="rules" label-width="80px">
         <el-form-item label="保险名称" prop="name">
           <el-input v-model="form.name" placeholder="请输入保险名称" />
@@ -162,7 +152,7 @@
         <el-button type="primary" @click="submitForm">确 定</el-button>
         <el-button @click="cancel">取 消</el-button>
       </div>
-    </el-dialog>
+    </el-dialog> -->
   </div>
 </template>
 
@@ -263,9 +253,13 @@ export default {
     },
     /** 新增按钮操作 */
     handleAdd() {
-      this.reset()
-      this.open = true
-      this.title = '添加保险'
+      // this.reset()
+      // this.open = true
+      // this.title = '添加保险'
+      this.$router.push({
+        path: '/organization/insuranceTypeDetails',
+        name: 'InsuranceTypeDetails',
+      })
     },
     /** 修改按钮操作 */
     handleUpdate(row) {
@@ -333,6 +327,16 @@ export default {
           this.download(response.msg)
         })
         .catch(function () {})
+    },
+    // 详情按钮
+    handleDetails(id) {
+      this.$router.push({
+        path: '/organization/insuranceTypeDetails',
+        name: 'InsuranceTypeDetails',
+        query: {
+          id,
+        },
+      })
     },
   },
 }

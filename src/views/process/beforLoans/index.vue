@@ -75,7 +75,11 @@
     <!-- 表格 -->
     <el-table v-loading="loading" :data="businessList">
       <el-table-column label="订单编号" align="center" prop="transactionCode" />
-      <el-table-column label="客户名称" align="center" prop="name" />
+      <el-table-column
+        label="客户名称"
+        align="center"
+        prop="daiqian.userName"
+      />
       <el-table-column label="销售团队" align="center" prop="team" />
       <el-table-column label="车辆类型" align="center">
         <template slot-scope="scope">
@@ -88,9 +92,9 @@
       <el-table-column label="意向贷款期限" align="center" prop="repayPeriod" />
       <el-table-column label="业务品种" align="center">
         <template slot-scope="scope">
-          <span v-if="scope.row.carType === 0">新车</span>
-          <span v-else-if="scope.row.carType === 1">二手车</span>
-          <span v-else-if="scope.row.carType === 2">新能源</span>
+          <span v-if="scope.row.daiqian.carType === '0'">新车</span>
+          <span v-else-if="scope.row.daiqian.carType === '1'">二手车</span>
+          <span v-else-if="scope.row.daiqian.carType === '2'">新能源</span>
         </template>
       </el-table-column>
       <el-table-column label="当前操作人" align="center" prop="operator" />
@@ -131,7 +135,6 @@
 <script>
 import { checkRole } from '@/utils/permission'
 import {
-  listBusiness,
   getBusiness,
   delBusiness,
   addBusiness,
@@ -139,6 +142,7 @@ import {
   exportBusiness,
   deleteOperator,
 } from '@/api/process/business'
+import { getBeforLoansList } from '@/api/process/beforLoans'
 
 export default {
   name: 'BeforLoans',
@@ -156,7 +160,7 @@ export default {
       showSearch: true,
       // 总条数
       total: 0,
-      // 秒批表格数据
+      // 贷前表格数据
       businessList: [],
       // 弹出层标题
       title: '',
@@ -184,10 +188,10 @@ export default {
   },
   methods: {
     checkRole,
-    /** 查询秒批列表 */
+    /** 查询贷前列表 */
     getList() {
       this.loading = true
-      listBusiness(this.queryParams).then((response) => {
+      getBeforLoansList(this.queryParams).then((response) => {
         this.businessList = response.rows
         this.total = response.total
         this.loading = false
@@ -212,19 +216,20 @@ export default {
     },
     // 立即处理
     async handle(item) {
-      try {
-        await updateBusiness({
+      // try {
+      //   await updateBusiness({
+      //     id: item.id,
+      //   })
+      //   this.getList()
+      this.$router.push({
+        path: '/process/beforLoansDetails',
+        name: 'BeforLoansDetails',
+        query: {
+          transactionCode: item.transactionCode,
           id: item.id,
-        })
-        this.getList()
-        this.$router.push({
-          path: '/process/beforLoansDetails',
-          name: 'BeforLoansDetails',
-          query: {
-            transactionCode: item.transactionCode,
-          },
-        })
-      } catch (error) {}
+        },
+      })
+      // } catch (error) {}
     },
     // 解锁
     async unlock(id) {

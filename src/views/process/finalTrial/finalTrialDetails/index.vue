@@ -318,6 +318,7 @@
           <el-row>
             <el-col :span="8">经销商门店：</el-col>
             <el-col :span="8">车牌类型：</el-col>
+            <el-col :span="8">审批类型：</el-col>
             <el-col :span="8">市场：</el-col>
             <el-col :span="8">门店：</el-col>
             <el-col :span="8">运营：</el-col>
@@ -338,9 +339,9 @@
             <el-col :span="8">燃料类型：</el-col>
             <el-col :span="8">二手车公里数：</el-col>
             <el-col :span="8">首次登记日期：</el-col>
-            <el-col :span="8">卖方姓名：</el-col>
+            <!-- <el-col :span="8">卖方姓名：</el-col>
             <el-col :span="8">卖方身份证号：</el-col>
-            <el-col :span="8">卖方车牌号：</el-col>
+            <el-col :span="8">卖方车牌号：</el-col> -->
           </el-row>
         </div>
         <div ref="ref8">
@@ -349,9 +350,9 @@
             <el-col :span="8">实际销售价：</el-col>
             <el-col :span="8">车辆贷款金额：</el-col>
             <el-col :span="8">贷款期限：</el-col>
-            <el-col :span="8">是否提供房产：</el-col>
+            <!-- <el-col :span="8">是否提供房产：</el-col> -->
             <el-col :span="8">利率换挡：</el-col>
-            <el-col :span="8">GPS挡位：</el-col>
+            <!-- <el-col :span="8">GPS挡位：</el-col> -->
             <el-col :span="8">续保押金：</el-col>
           </el-row>
         </div>

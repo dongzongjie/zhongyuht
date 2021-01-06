@@ -148,22 +148,64 @@
           placeholder="请输入初审意见"
           v-model="textarea"
         />
-        <el-button type="primary" round style="margin: 20px 10px"
-          >通过</el-button
+        <el-button
+          v-if="state === '1'"
+          type="primary"
+          round
+          style="margin: 20px 10px"
+          disabled
+          >已通过</el-button
         >
-        <el-button type="warning" round style="margin: 20px 10px"
-          >退回</el-button
+        <el-button
+          v-else-if="state === '2'"
+          type="warning"
+          round
+          style="margin: 20px 10px"
+          disabled
+          >已退回</el-button
         >
-        <el-button type="danger" round style="margin: 20px 10px"
-          >拒绝</el-button
+        <el-button
+          v-else-if="state === '3'"
+          type="danger"
+          round
+          style="margin: 20px 10px"
+          disabled
+          >已拒绝</el-button
         >
+        <div v-else>
+          <el-button
+            type="primary"
+            round
+            style="margin: 20px 10px"
+            @click="beforLoansHandlePost('1')"
+            >通过</el-button
+          >
+          <el-button
+            type="warning"
+            round
+            style="margin: 20px 10px"
+            @click="beforLoansHandlePost('2')"
+            >退回</el-button
+          >
+          <el-button
+            type="danger"
+            round
+            style="margin: 20px 10px"
+            @click="beforLoansHandlePost('3')"
+            >拒绝</el-button
+          >
+        </div>
       </el-tab-pane>
     </el-tabs>
   </div>
 </template>
 
 <script>
-import { getGPSdata, getInsuranceData } from '@/api/process/beforLoans'
+import {
+  getBeforLoansDetails,
+  beforLoansHandle,
+  findBeforLoansHandle,
+} from '@/api/process/beforLoans'
 
 export default {
   name: 'BeforLoansDetails',
@@ -172,37 +214,73 @@ export default {
     return {
       textarea: '', // 意见
       srcList: [], // 图片数组
+      Account: [], // 账户数据
       GPSdata: {}, // GPS数据
       insuranceData: {}, // 保险数据
+      state: '', // 贷前处理结果
     }
   },
   computed: {},
-  watch: {},
+  watch: {
+    $route(to, from) {
+      //监听路由是否变化
+      if (to.path == '/process/firstTrialDetails') {
+        this.getBeforLoansData()
+      }
+    },
+  },
   methods: {
-    // 获取GPS信息
-    async getGPSdatas() {
+    // 获取贷前详情
+    async getBeforLoansData() {
       try {
-        const { data } = await getGPSdata(this.$route.query.transactionCode)
-        if (data) {
-          this.GPSdata = data
-        }
+        const { data } = await getBeforLoansDetails(this.$route.query.id)
+        console.log(data)
+        this.Account = data.Account
+        this.GPSdata = data.Gps
+        this.insuranceData = data.Insurance
+        this.getBeforLoansHandle()
       } catch (error) {}
     },
-    // 获取保险信息
-    async getInsuranceDatas() {
+    // 贷前处理结果
+    async beforLoansHandlePost(state) {
+      if (this.textarea.trim()) {
+        const that = this
+        this.$confirm('确认操作?', '警告', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning',
+        })
+          .then(() => {
+            return beforLoansHandle({
+              state: state,
+              opinion: that.textarea,
+              transactionCode: that.$route.query.transactionCode,
+            })
+          })
+          .then(() => {
+            this.msgSuccess('操作成功')
+            this.getBeforLoansHandle()
+          })
+          .catch(function () {})
+      } else {
+        this.msgError('请输入意见')
+      }
+    },
+    // 贷前结果回显
+    async getBeforLoansHandle() {
       try {
-        const { data } = await getInsuranceData(
+        const { data } = await findBeforLoansHandle(
           this.$route.query.transactionCode
         )
         if (data) {
-          this.insuranceData = data
+          this.state = data.state
+          this.textarea = data.opinion
         }
       } catch (error) {}
     },
   },
   created() {
-    this.getGPSdatas()
-    this.getInsuranceDatas()
+    this.getBeforLoansData()
   },
 }
 </script>

@@ -73,7 +73,7 @@
       </el-col>
     </el-row>
     <!-- 表格 -->
-    <el-table v-loading="loading" :data="businessList">
+    <el-table v-loading="loading" :data="finalTailsList">
       <el-table-column label="订单编号" align="center" prop="transactionCode" />
       <el-table-column label="客户名称" align="center" prop="name" />
       <el-table-column label="销售团队" align="center" prop="team" />
@@ -131,7 +131,6 @@
 <script>
 import { checkRole } from '@/utils/permission'
 import {
-  listBusiness,
   getBusiness,
   delBusiness,
   addBusiness,
@@ -139,6 +138,7 @@ import {
   exportBusiness,
   deleteOperator,
 } from '@/api/process/business'
+import { getFinalTrialList } from '@/api/process/finalTrial'
 
 export default {
   name: 'FinalTrial',
@@ -156,8 +156,8 @@ export default {
       showSearch: true,
       // 总条数
       total: 0,
-      // 秒批表格数据
-      businessList: [],
+      // 终审表格数据
+      finalTailsList: [],
       // 弹出层标题
       title: '',
       // 是否显示弹出层
@@ -184,11 +184,12 @@ export default {
   },
   methods: {
     checkRole,
-    /** 查询秒批列表 */
+    /** 查询终审列表 */
     getList() {
       this.loading = true
-      listBusiness(this.queryParams).then((response) => {
-        this.businessList = response.rows
+      getFinalTrialList(this.queryParams).then((response) => {
+        console.log(response)
+        this.finalTailsList = response.rows
         this.total = response.total
         this.loading = false
       })

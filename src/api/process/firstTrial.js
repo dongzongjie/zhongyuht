@@ -24,3 +24,44 @@ export function addFalseOperator(params) {
         params
     })
 }
+
+// 获取初审详情
+export function getFirstDetails(userId, transactionCode) {
+    return request({
+        url: '/stage/' + userId + '/' + transactionCode,
+        method: 'get',
+    })
+}
+
+// 初审处理结果
+export function firstHandle(data) {
+    return request({
+        url: '/system/opinion',
+        method: 'post',
+        data: data
+    })
+}
+
+// 初审结果回显
+export function getFirstHandle(transactionCode) {
+    return request({
+        url: '/system/opinion/' + transactionCode,
+        method: 'get',
+    })
+}
+
+// 查询精真估
+export function findJingZhenGu(transactionCode) {
+    return request({
+        url: '/system/jzg/addOrder/ceshi?transactionCode=' + transactionCode,
+        method: 'get',
+    })
+}
+
+// 获取精真估结果
+export function getJingZhenGuData(transactionCode) {
+    return request({
+        url: '/system/jzg/addOrder/select?transactionCode=' + transactionCode,
+        method: 'get',
+    })
+}

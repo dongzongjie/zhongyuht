@@ -240,6 +240,7 @@ export default {
           name: 'FirstTrialDetails',
           query: {
             transactionCode: item.transactionCode,
+            userId: item.userId,
           },
         })
       } catch (error) {}

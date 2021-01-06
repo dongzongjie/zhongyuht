@@ -9,24 +9,30 @@
       <div class="module">
         <div class="module-top">
           <i class="el-icon-document"></i>
-          <span>银行资料</span>
+          <span>保险资料</span>
         </div>
         <div class="module-box">
           <el-col :span="12">
-            <el-form-item label="银行名称">
+            <el-form-item label="保险名称">
               <el-input
-                v-model="form.bankName"
+                v-model="form.name"
                 placeholder="请输入银行名称"
                 :style="{ width: '80%' }"
               ></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="12">
-            <el-form-item label="银行所在地">
-              <el-cascader
-                v-model="form.bankLocation"
-                :options="options"
-              ></el-cascader>
+            <el-form-item label="机构所在地">
+              <el-cascader v-model="form.area" :options="options"></el-cascader>
+            </el-form-item>
+          </el-col>
+          <el-col :span="24">
+            <el-form-item label="详细地址">
+              <el-input
+                v-model="form.address"
+                placeholder="请输入详细地址"
+                :style="{ width: '50%' }"
+              ></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="12">
@@ -50,7 +56,7 @@
           <el-col :span="24" style="margin-left: 230px; margin-bottom: 20px">
             <span style="font-size: 14px">协议文件：</span>
             <el-upload
-              ref="bankFile"
+              ref="insuranceFile"
               :limit="9"
               accept=".jpg, .png, .pdf"
               list-type="picture-card"
@@ -261,70 +267,12 @@
           </el-col>
         </div>
       </div>
-      <div class="module">
-        <div class="module-top">
-          <i class="el-icon-document"></i>
-          <span>关联模板</span>
-        </div>
-        <div class="module-box">
-          <el-col :span="8">
-            <el-form-item label="选择需要关联的字段模板">
-              <el-select
-                v-model="form.template"
-                :style="{ width: '100%', height: '100%' }"
-                placeholder="请选择需要关联的字段模板"
-              >
-              </el-select>
-            </el-form-item>
-          </el-col>
-        </div>
-      </div>
-      <div class="module">
-        <div class="module-top">
-          <i class="el-icon-document"></i>
-          <span>合同扩展字段配置</span>
-        </div>
-        <div class="module-box">
-          <el-table :data="form.extend" border style="width: 100%">
-            <el-table-column label="扩展合同编码">
-              <template slot-scope="scope">
-                <el-input
-                  v-model="scope.row.extendCode"
-                  :style="{ width: '100%', height: '100%' }"
-                ></el-input>
-              </template>
-            </el-table-column>
-            <el-table-column label="字段名称">
-              <template slot-scope="scope">
-                <el-input
-                  v-model="scope.row.extendField"
-                  :style="{ width: '100%', height: '100%' }"
-                ></el-input>
-              </template>
-            </el-table-column>
-            <el-table-column label="操作">
-              <template slot-scope="scope">
-                <el-button
-                  size="mini"
-                  round
-                  type="primary"
-                  @click="form.extend.splice(scope.$index, 1)"
-                  >删除</el-button
-                >
-              </template>
-            </el-table-column>
-          </el-table>
-          <div class="addTr" @click="form.extend.push({})">
-            +添加合同扩展字段
-          </div>
-        </div>
-      </div>
     </el-form>
     <el-button
       type="primary"
       round
       style="float: right; margin: 20px 20px 200px"
-      @click="handleBankData"
+      @click="handleInsuranceData"
       >保存</el-button
     >
     <el-dialog title="合作产品" :visible.sync="dialogFormVisible" center>
@@ -347,6 +295,22 @@
                 placeholder="请输入产品代码"
                 :style="{ width: '80%' }"
               ></el-input>
+            </el-form-item>
+          </el-col>
+          <el-col :span="24">
+            <el-form-item label="所属银行">
+              <el-select
+                v-model="dialogData.belongBank"
+                :style="{ width: '40%', height: '100%' }"
+                placeholder="请选择所属银行"
+              >
+                <el-option
+                  v-for="(item, index) in bankData"
+                  :key="index"
+                  :label="item.bankName"
+                  :value="item.id"
+                ></el-option>
+              </el-select>
             </el-form-item>
           </el-col>
           <el-col :span="8">
@@ -421,7 +385,7 @@
             :key="index"
             style="
               border: 1px solid #ccc;
-              padding: 20px 10px 0;
+              padding: 20px 10px;
               border-radius: 5px;
             "
           >
@@ -462,7 +426,17 @@
                 ></el-input>
               </el-form-item>
             </el-col>
-            <el-col :span="12" style="padding-left: 50px">
+            <el-col :span="12">
+              <el-form-item label="应收费率">
+                <el-input
+                  v-model="item.shouldPut"
+                  suffix-icon="el-icon-zyrz-baifenhao"
+                  placeholder="请输入应付费率"
+                  :style="{ width: '70%' }"
+                ></el-input>
+              </el-form-item>
+            </el-col>
+            <el-col :span="6" style="float: right">
               <el-button
                 type="primary"
                 round
@@ -490,11 +464,16 @@
 
 <script>
 import options from '@/components/countryData/country-level2-data'
-import { getBank, addBank, updateBank } from '@/api/organization/bank'
+import {
+  getInsuranceType,
+  addInsuranceType,
+  updateInsuranceType,
+} from '@/api/organization/insuranceType'
 import { deleteImg } from '@/api/organization/car'
+import { listBank } from '@/api/organization/bank'
 
 export default {
-  name: 'BankDetails',
+  name: 'InsuranceTypeDetails',
   components: {},
   data() {
     return {
@@ -507,9 +486,9 @@ export default {
       form: {
         flow: [],
         returns: [],
-        extend: [],
         product: [],
       },
+      bankData: [], //银行信息
       options: options, // 省市二级联动
       // 上传参数
       upload: {
@@ -518,12 +497,12 @@ export default {
         // 设置上传的请求头部
         // headers: { Authorization: 'Bearer ' + getToken() },
         // 上传的地址
-        url: 'http://192.168.31.82:8080/system/bank/ceshi2',
+        url: 'http://192.168.31.82:8080/system/insuranceType/ceshi2',
         // 上传的文件列表
         uploadList: [], // 门店
         // 门店
         uploadData: {
-          name: 'bankFile',
+          name: 'insuranceFile',
           id: this.$route.query.id,
         },
       },
@@ -533,31 +512,32 @@ export default {
   watch: {
     $route(to, from) {
       //监听路由是否变化
-      if (to.path == '/organization/bankDetails') {
-        this.findBankDetails()
+      if (to.path == '/organization/insuranceTypeDetails') {
+        this.findInsuranceTypeDetails()
       }
     },
   },
   methods: {
-    // 获取合作银行详细信息
-    async findBankDetails() {
+    // 获取保险详细信息
+    async findInsuranceTypeDetails() {
       if (this.$route.query.id) {
         try {
-          const { data } = await getBank(this.$route.query.id)
-          if (data.bankLocation) {
-            data.bankLocation = data.bankLocation.split(',')
+          const { data } = await getInsuranceType(this.$route.query.id)
+          if (data.area) {
+            data.area = data.area.split(',')
           }
           this.upload.uploadList = []
           data.sysFileInfo.forEach((item) => {
             this.upload.uploadList.push({ url: item.filePath })
           })
           this.form = data
-        } catch (error) {}
+        } catch (error) {
+          console.log(error)
+        }
       } else {
         this.form = {
           flow: [],
           returns: [],
-          extend: [],
           product: [],
         }
       }
@@ -593,10 +573,10 @@ export default {
       this.dialogFormVisible = false
     },
     // 保存按钮修改信息
-    handleBankData() {
+    handleInsuranceData() {
       let submitFormData = JSON.parse(JSON.stringify(this.form))
-      if (submitFormData.bankLocation) {
-        submitFormData.bankLocation = submitFormData.bankLocation.join(',')
+      if (submitFormData.area) {
+        submitFormData.area = submitFormData.area.join(',')
       }
       if (this.$route.query.id) {
         this.$confirm('确认修改？', '警告', {
@@ -605,10 +585,10 @@ export default {
           type: 'warning',
         })
           .then(function () {
-            return updateBank(submitFormData)
+            return updateInsuranceType(submitFormData)
           })
           .then(() => {
-            this.$refs.bankFile.submit()
+            this.$refs.insuranceFile.submit()
             this.msgSuccess('修改成功')
           })
           .catch(function () {})
@@ -619,11 +599,11 @@ export default {
           type: 'warning',
         })
           .then(function () {
-            return addBank(submitFormData)
+            return addInsuranceType(submitFormData)
           })
           .then((res) => {
             this.upload.uploadData.id = res.data
-            this.$refs.bankFile.submit()
+            this.$refs.insuranceFile.submit()
             this.msgSuccess('保存成功')
           })
           .catch(function () {})
@@ -661,9 +641,17 @@ export default {
       this.dialogImageUrl = file.url
       this.dialogVisible = true
     },
+    // 获取银行信息
+    async getBankData() {
+      try {
+        const data = await listBank()
+        this.bankData = data.rows
+      } catch (error) {}
+    },
   },
   created() {
-    this.findBankDetails()
+    this.findInsuranceTypeDetails()
+    this.getBankData()
   },
 }
 </script>
