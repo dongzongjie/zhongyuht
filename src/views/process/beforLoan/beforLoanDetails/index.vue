@@ -177,21 +177,21 @@
             type="primary"
             round
             style="margin: 20px 10px"
-            @click="beforLoansHandlePost('1')"
+            @click="beforLoanHandlePost('1')"
             >通过</el-button
           >
           <el-button
             type="warning"
             round
             style="margin: 20px 10px"
-            @click="beforLoansHandlePost('2')"
+            @click="beforLoanHandlePost('2')"
             >退回</el-button
           >
           <el-button
             type="danger"
             round
             style="margin: 20px 10px"
-            @click="beforLoansHandlePost('3')"
+            @click="beforLoanHandlePost('3')"
             >拒绝</el-button
           >
         </div>
@@ -202,13 +202,13 @@
 
 <script>
 import {
-  getBeforLoansDetails,
-  beforLoansHandle,
-  findBeforLoansHandle,
-} from '@/api/process/beforLoans'
+  getBeforLoanDetails,
+  beforLoanHandle,
+  findBeforLoanHandle,
+} from '@/api/process/beforLoan'
 
 export default {
-  name: 'BeforLoansDetails',
+  name: 'BeforLoanDetails',
   components: {},
   data() {
     return {
@@ -225,24 +225,24 @@ export default {
     $route(to, from) {
       //监听路由是否变化
       if (to.path == '/process/firstTrialDetails') {
-        this.getBeforLoansData()
+        this.getBeforLoanData()
       }
     },
   },
   methods: {
     // 获取贷前详情
-    async getBeforLoansData() {
+    async getBeforLoanData() {
       try {
-        const { data } = await getBeforLoansDetails(this.$route.query.id)
+        const { data } = await getBeforLoanDetails(this.$route.query.id)
         console.log(data)
         this.Account = data.Account
         this.GPSdata = data.Gps
         this.insuranceData = data.Insurance
-        this.getBeforLoansHandle()
+        this.getBeforLoanHandle()
       } catch (error) {}
     },
     // 贷前处理结果
-    async beforLoansHandlePost(state) {
+    async beforLoanHandlePost(state) {
       if (this.textarea.trim()) {
         const that = this
         this.$confirm('确认操作?', '警告', {
@@ -251,7 +251,7 @@ export default {
           type: 'warning',
         })
           .then(() => {
-            return beforLoansHandle({
+            return beforLoanHandle({
               state: state,
               opinion: that.textarea,
               transactionCode: that.$route.query.transactionCode,
@@ -259,7 +259,7 @@ export default {
           })
           .then(() => {
             this.msgSuccess('操作成功')
-            this.getBeforLoansHandle()
+            this.getBeforLoanHandle()
           })
           .catch(function () {})
       } else {
@@ -267,9 +267,9 @@ export default {
       }
     },
     // 贷前结果回显
-    async getBeforLoansHandle() {
+    async getBeforLoanHandle() {
       try {
-        const { data } = await findBeforLoansHandle(
+        const { data } = await findBeforLoanHandle(
           this.$route.query.transactionCode
         )
         if (data) {
@@ -280,7 +280,7 @@ export default {
     },
   },
   created() {
-    this.getBeforLoansData()
+    this.getBeforLoanData()
   },
 }
 </script>

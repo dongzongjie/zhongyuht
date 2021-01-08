@@ -6,6 +6,20 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "13507228",
+      "name": "m²",
+      "font_class": "m",
+      "unicode": "e6b9",
+      "unicode_decimal": 59065
+    },
+    {
+      "icon_id": "5477120",
+      "name": "元",
+      "font_class": "yuan",
+      "unicode": "e757",
+      "unicode_decimal": 59223
+    },
+    {
       "icon_id": "7434443",
       "name": "百分号",
       "font_class": "baifenhao",

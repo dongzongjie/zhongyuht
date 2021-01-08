@@ -73,9 +73,13 @@
       </el-col>
     </el-row>
     <!-- 表格 -->
-    <el-table v-loading="loading" :data="finalTailsList">
+    <el-table v-loading="loading" :data="beforLoanList">
       <el-table-column label="订单编号" align="center" prop="transactionCode" />
-      <el-table-column label="客户名称" align="center" prop="name" />
+      <el-table-column
+        label="客户名称"
+        align="center"
+        prop="daiqian.userName"
+      />
       <el-table-column label="销售团队" align="center" prop="team" />
       <el-table-column label="车辆类型" align="center">
         <template slot-scope="scope">
@@ -88,17 +92,9 @@
       <el-table-column label="意向贷款期限" align="center" prop="repayPeriod" />
       <el-table-column label="业务品种" align="center">
         <template slot-scope="scope">
-          <span v-if="scope.row.carType === 0">新车</span>
-          <span v-else-if="scope.row.carType === 1">二手车</span>
-          <span v-else-if="scope.row.carType === 2">新能源</span>
-        </template>
-      </el-table-column>
-      <el-table-column label="审批状态" align="center">
-        <template slot-scope="scope">
-          <span v-if="scope.row.approvalType === 1">通过</span>
-          <span v-else-if="scope.row.approvalType === 2">退回</span>
-          <span v-else-if="scope.row.approvalType === 3">拒绝</span>
-          <span v-else>未审核</span>
+          <span v-if="scope.row.daiqian.carType === '0'">新车</span>
+          <span v-else-if="scope.row.daiqian.carType === '1'">二手车</span>
+          <span v-else-if="scope.row.daiqian.carType === '2'">新能源</span>
         </template>
       </el-table-column>
       <el-table-column label="当前操作人" align="center" prop="operator" />
@@ -146,10 +142,10 @@ import {
   exportBusiness,
   deleteOperator,
 } from '@/api/process/business'
-import { getFinalTrialList } from '@/api/process/finalTrial'
+import { getBeforLoanList } from '@/api/process/beforLoan'
 
 export default {
-  name: 'FinalTrial',
+  name: 'BeforLoan',
   data() {
     return {
       // 遮罩层
@@ -164,8 +160,8 @@ export default {
       showSearch: true,
       // 总条数
       total: 0,
-      // 终审表格数据
-      finalTailsList: [],
+      // 贷前表格数据
+      beforLoanList: [],
       // 弹出层标题
       title: '',
       // 是否显示弹出层
@@ -192,11 +188,11 @@ export default {
   },
   methods: {
     checkRole,
-    /** 查询终审列表 */
+    /** 查询贷前列表 */
     getList() {
       this.loading = true
-      getFinalTrialList(this.queryParams).then((response) => {
-        this.finalTailsList = response.rows
+      getBeforLoanList(this.queryParams).then((response) => {
+        this.beforLoanList = response.rows
         this.total = response.total
         this.loading = false
       })
@@ -220,20 +216,20 @@ export default {
     },
     // 立即处理
     async handle(item) {
-      try {
-        await updateBusiness({
+      // try {
+      //   await updateBusiness({
+      //     id: item.id,
+      //   })
+      //   this.getList()
+      this.$router.push({
+        path: '/process/beforLoanDetails',
+        name: 'BeforLoanDetails',
+        query: {
+          transactionCode: item.transactionCode,
           id: item.id,
-        })
-        this.getList()
-        this.$router.push({
-          path: '/process/finalTrialDetails',
-          name: 'FinalTrialDetails',
-          query: {
-            transactionCode: item.transactionCode,
-            userId: item.userId,
-          },
-        })
-      } catch (error) {}
+        },
+      })
+      // } catch (error) {}
     },
     // 解锁
     async unlock(id) {

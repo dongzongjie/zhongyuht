@@ -10,6 +10,7 @@
       :on-progress="handleFileUploadProgress"
       :on-success="handleFileSuccess"
       :auto-upload="false"
+      :data="uploadData"
     >
       <el-button slot="trigger" size="small" type="primary">选取文件</el-button>
       <el-button
@@ -33,6 +34,24 @@
         >
       </span>
     </el-dialog>
+    <el-image
+      style="width: 100px; height: 100px"
+      :src="url1"
+      :preview-src-list="srcList"
+    >
+    </el-image>
+    <el-image
+      style="width: 100px; height: 100px"
+      :src="url2"
+      :preview-src-list="srcList"
+    >
+    </el-image>
+    <el-image
+      style="width: 100px; height: 100px"
+      :src="url3"
+      :preview-src-list="srcList"
+    >
+    </el-image>
     <button @click="dialogVisible = true">pdf</button>
     <button @click="ceshi1">点击</button>
     <button @click="ceshi2">点击2</button>
@@ -58,15 +77,30 @@ export default {
         // 设置上传的请求头部
         // headers: { Authorization: 'Bearer ' + getToken() },
         // 上传的地址
-        url: 'http://192.168.31.82:8080/system/test/ceshi2',
+        url: 'http://192.168.31.86:8080/system/test/ceshi2',
         // 上传的文件列表
         fileList: [],
+      },
+      uploadData: {
+        name: 'ceshi',
+        id: 1,
       },
       form: {},
       url:
         'http://192.168.31.82/dev-api/profile/2020/12/18/4944fa69-82f2-4eae-b1b8-b25be2303827.pdf',
       numPages: null, // pdf 总页数
       dialogVisible: false,
+      url1:
+        'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
+      url2:
+        'https://fuss10.elemecdn.com/8/27/f01c15bb73e1ef3793e64e6b7bbccjpeg.jpeg',
+      url3:
+        'https://fuss10.elemecdn.com/1/8e/aeffeb4de74e2fde4bd74fc7b4486jpeg.jpeg',
+      srcList: [
+        'https://fuss10.elemecdn.com/1/8e/aeffeb4de74e2fde4bd74fc7b4486jpeg.jpeg',
+        'https://fuss10.elemecdn.com/8/27/f01c15bb73e1ef3793e64e6b7bbccjpeg.jpeg',
+        'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
+      ],
     }
   },
   computed: {},
@@ -126,4 +160,8 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+/deep/.el-image-viewer__prev,
+/deep/.el-image-viewer__next {
+  display: none;
+}
 </style>

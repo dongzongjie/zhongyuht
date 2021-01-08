@@ -1086,6 +1086,7 @@ export default {
         )
         console.log(data)
         this.firstDetails = data
+        this.srcList = data.pic
         this.getBaiRongToken()
         this.getBaiRongMelting()
         this.getDetailsCredit()
