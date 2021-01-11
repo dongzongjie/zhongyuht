@@ -9,9 +9,9 @@ export function getBeforLoanList() {
 }
 
 // 获取贷前详细信息
-export function getBeforLoanDetails(id) {
+export function getBeforLoanDetails(transactionCode) {
   return request({
-    url: '/system/basics/get/' + id,
+    url: '/system/basics/get/' + transactionCode,
     method: 'get',
   })
 }

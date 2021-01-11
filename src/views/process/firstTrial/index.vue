@@ -176,7 +176,7 @@ export default {
         loanMoney: null,
         repayPeriod: null,
         carType: null,
-        userId: null,
+        name: null,
         orderState: null,
       },
       // 文本域
@@ -223,8 +223,19 @@ export default {
     },
     /** 重置按钮操作 */
     resetQuery() {
-      this.resetForm('queryForm')
-      this.handleQuery()
+      ;(this.queryParams = {
+        pageNum: 1,
+        pageSize: 10,
+        team: null,
+        carInformation: null,
+        intentionPrice: null,
+        loanMoney: null,
+        repayPeriod: null,
+        carType: null,
+        name: null,
+        orderState: null,
+      }),
+        this.handleQuery()
     },
     // 立即处理
     async handle(item) {

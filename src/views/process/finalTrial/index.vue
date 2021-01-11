@@ -177,7 +177,7 @@ export default {
         team: null,
         repayPeriod: null,
         carType: null,
-        userId: null,
+        name: null,
       },
       // 表单校验
       rules: {},
@@ -214,7 +214,7 @@ export default {
         team: null,
         repayPeriod: null,
         carType: null,
-        userId: null,
+        name: null,
       }
       this.handleQuery()
     },

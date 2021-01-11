@@ -112,7 +112,6 @@
           icon="el-icon-plus"
           size="mini"
           @click="handleAdd"
-          v-hasPermi="['overdue:overdue:add']"
           >新增</el-button
         >
       </el-col>
@@ -123,7 +122,6 @@
           size="mini"
           :disabled="single"
           @click="handleUpdate"
-          v-hasPermi="['overdue:overdue:edit']"
           >修改</el-button
         >
       </el-col>
@@ -134,7 +132,6 @@
           size="mini"
           :disabled="multiple"
           @click="handleDelete"
-          v-hasPermi="['overdue:overdue:remove']"
           >删除</el-button
         >
       </el-col>
@@ -144,7 +141,6 @@
           icon="el-icon-download"
           size="mini"
           @click="handleExport"
-          v-hasPermi="['overdue:overdue:export']"
           >导出</el-button
         >
       </el-col>
@@ -160,36 +156,13 @@
       @selection-change="handleSelectionChange"
     >
       <el-table-column type="selection" width="55" align="center" />
-      <el-table-column label="处理人员" align="center" prop="id" />
+      <el-table-column label="录入时间" align="center" />
       <el-table-column label="姓名" align="center" prop="userName" />
       <el-table-column label="身份证号" align="center" prop="identityCard" />
-      <el-table-column
-        label="分期期数"
-        align="center"
-        prop="installmentPeriod"
-      />
-      <el-table-column
-        label="分期金额"
-        align="center"
-        prop="instalmentAmount"
-      />
-      <el-table-column label="月还款额" align="center" prop="monthlyPayment" />
-      <el-table-column
-        label="还款日期"
-        align="center"
-        prop="repaymentDate"
-        width="180"
-      >
-        <template slot-scope="scope">
-          <span>{{ parseTime(scope.row.repaymentDate, '{y}-{m}-{d}') }}</span>
-        </template>
-      </el-table-column>
-      <el-table-column
-        label="应还期数"
-        align="center"
-        prop="shouldApplicable"
-      />
-      <el-table-column label="处理状态" align="center" prop="state" />
+      <el-table-column label="经办银行" align="center" prop="identityCard" />
+      <el-table-column label="安装地址" align="center" />
+      <el-table-column label="安装位置" align="center" />
+      <el-table-column label="安装人员" align="center" />
       <el-table-column label="处理人员" align="center" prop="processingStaff" />
       <el-table-column
         label="操作"
@@ -197,21 +170,8 @@
         class-name="small-padding fixed-width"
       >
         <template slot-scope="scope">
-          <el-button
-            size="mini"
-            type="text"
-            icon="el-icon-edit"
-            @click="handleUpdate(scope.row)"
-            v-hasPermi="['overdue:overdue:edit']"
-            >修改</el-button
-          >
-          <el-button
-            size="mini"
-            type="text"
-            icon="el-icon-delete"
-            @click="handleDelete(scope.row)"
-            v-hasPermi="['overdue:overdue:remove']"
-            >删除</el-button
+          <el-button size="mini" type="text" @click="handle(scope.row)"
+            >详情</el-button
           >
         </template>
       </el-table-column>
@@ -234,44 +194,17 @@
         <el-form-item label="身份证号" prop="identityCard">
           <el-input v-model="form.identityCard" placeholder="请输入身份证号" />
         </el-form-item>
-        <el-form-item label="分期期数" prop="installmentPeriod">
-          <el-input
-            v-model="form.installmentPeriod"
-            placeholder="请输入分期期数"
-          />
+        <el-form-item label="经办银行" prop="">
+          <el-input v-model="form.ce" placeholder="请输入经办银行" />
         </el-form-item>
-        <el-form-item label="分期金额" prop="instalmentAmount">
-          <el-input
-            v-model="form.instalmentAmount"
-            placeholder="请输入分期金额"
-          />
+        <el-form-item label="安装地址" prop="">
+          <el-input v-model="form.ce" placeholder="请输入安装地址" />
         </el-form-item>
-        <el-form-item label="月还款额" prop="monthlyPayment">
-          <el-input
-            v-model="form.monthlyPayment"
-            placeholder="请输入月还款额"
-          />
+        <el-form-item label="安装位置" prop="">
+          <el-input v-model="form.ce" placeholder="请输入安装位置" />
         </el-form-item>
-        <el-form-item label="还款日期" prop="repaymentDate">
-          <el-date-picker
-            clearable
-            size="small"
-            style="width: 200px"
-            v-model="form.repaymentDate"
-            type="date"
-            value-format="yyyy-MM-dd"
-            placeholder="选择还款日期"
-          >
-          </el-date-picker>
-        </el-form-item>
-        <el-form-item label="应还期数" prop="shouldApplicable">
-          <el-input
-            v-model="form.shouldApplicable"
-            placeholder="请输入应还期数"
-          />
-        </el-form-item>
-        <el-form-item label="处理状态" prop="state">
-          <el-input v-model="form.state" placeholder="请输入处理状态" />
+        <el-form-item label="安装人员" prop="">
+          <el-input v-model="form.ce" placeholder="请输入安装人员" />
         </el-form-item>
         <el-form-item label="处理人员" prop="processingStaff">
           <el-input
@@ -296,10 +229,10 @@ import {
   addOverdue,
   updateOverdue,
   exportOverdue,
-} from '@/api/overdue/overdue'
+} from '@/api/overdue/information'
 
 export default {
-  name: 'Overdue',
+  name: 'GPSAbnormal',
   data() {
     return {
       // 遮罩层
@@ -466,6 +399,16 @@ export default {
           this.download(response.msg)
         })
         .catch(function () {})
+    },
+    // 详情按钮
+    handle(item) {
+      this.$router.push({
+        path: '/overdue/GPSAbnormalDetails',
+        name: 'GPSAbnormalDetails',
+        query: {
+          id: item.id,
+        },
+      })
     },
   },
 }

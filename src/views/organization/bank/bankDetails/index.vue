@@ -86,7 +86,7 @@
       <div class="module">
         <div class="module-top">
           <i class="el-icon-document"></i>
-          <span>进件流程（若不清楚，请联系惠瀜工作人员，以免影响业务进件)</span>
+          <span>进件流程（若不清楚，请联系中豫工作人员，以免影响业务进件)</span>
         </div>
         <div class="module-box">
           <el-table :data="form.flow" border style="width: 100%">

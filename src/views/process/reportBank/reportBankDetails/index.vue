@@ -1288,7 +1288,7 @@
                       width: 20%;
                       border: 1px solid #dcdfe6;
                       padding: 0 1px;
-                      height: 28px;
+                      height: 35px;
                       font-size: 12px;
                       color: #ccc;
                       border-radius: 3px;

@@ -112,7 +112,6 @@
           icon="el-icon-plus"
           size="mini"
           @click="handleAdd"
-          v-hasPermi="['overdue:overdue:add']"
           >新增</el-button
         >
       </el-col>
@@ -123,7 +122,6 @@
           size="mini"
           :disabled="single"
           @click="handleUpdate"
-          v-hasPermi="['overdue:overdue:edit']"
           >修改</el-button
         >
       </el-col>
@@ -134,7 +132,6 @@
           size="mini"
           :disabled="multiple"
           @click="handleDelete"
-          v-hasPermi="['overdue:overdue:remove']"
           >删除</el-button
         >
       </el-col>
@@ -144,7 +141,6 @@
           icon="el-icon-download"
           size="mini"
           @click="handleExport"
-          v-hasPermi="['overdue:overdue:export']"
           >导出</el-button
         >
       </el-col>
@@ -160,9 +156,10 @@
       @selection-change="handleSelectionChange"
     >
       <el-table-column type="selection" width="55" align="center" />
-      <el-table-column label="处理人员" align="center" prop="id" />
+      <el-table-column label="录入时间" align="center" />
       <el-table-column label="姓名" align="center" prop="userName" />
       <el-table-column label="身份证号" align="center" prop="identityCard" />
+      <el-table-column label="经办银行" align="center" />
       <el-table-column
         label="分期期数"
         align="center"
@@ -197,21 +194,8 @@
         class-name="small-padding fixed-width"
       >
         <template slot-scope="scope">
-          <el-button
-            size="mini"
-            type="text"
-            icon="el-icon-edit"
-            @click="handleUpdate(scope.row)"
-            v-hasPermi="['overdue:overdue:edit']"
-            >修改</el-button
-          >
-          <el-button
-            size="mini"
-            type="text"
-            icon="el-icon-delete"
-            @click="handleDelete(scope.row)"
-            v-hasPermi="['overdue:overdue:remove']"
-            >删除</el-button
+          <el-button size="mini" type="text" @click="handle(scope.row)"
+            >详情</el-button
           >
         </template>
       </el-table-column>
@@ -296,10 +280,10 @@ import {
   addOverdue,
   updateOverdue,
   exportOverdue,
-} from '@/api/overdue/overdue'
+} from '@/api/overdue/information'
 
 export default {
-  name: 'Overdue',
+  name: 'Information',
   data() {
     return {
       // 遮罩层
@@ -466,6 +450,16 @@ export default {
           this.download(response.msg)
         })
         .catch(function () {})
+    },
+    // 详情按钮
+    handle(item) {
+      this.$router.push({
+        path: '/overdue/informationDetails',
+        name: 'InformationDetails',
+        query: {
+          id: item.id,
+        },
+      })
     },
   },
 }

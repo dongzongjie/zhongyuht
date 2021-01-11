@@ -899,7 +899,7 @@
         <p style="text-indent: 2em; font-size: 14px">{{ detailsCredit }}</p>
       </el-tab-pane>
       <el-tab-pane label="数据辅正" name="third" style="height: 100%">
-        <el-tabs v-model="activeName1">
+        <el-tabs v-model="activeName1" tab-position="right">
           <el-tab-pane label="贷前策略" name="first">
             <iframe
               width="100%"
@@ -1076,13 +1076,13 @@ export default {
     $route(to, from) {
       //监听路由是否变化
       if (to.path == '/process/firstTrialDetails') {
-        this.getFirstData()
+        this.getFinalData()
       }
     },
   },
   methods: {
     // 获取终审详情
-    async getFirstData() {
+    async getFinalData() {
       try {
         const { data } = await getFirstDetails(
           this.$route.query.userId,
@@ -1251,7 +1251,7 @@ export default {
     },
   },
   created() {
-    this.getFirstData()
+    this.getFinalData()
   },
   mounted() {
     this.getNumPages()
@@ -1261,8 +1261,8 @@ export default {
     const oIframe = document.getElementById('bdIframe')
     const oIframe1 = document.getElementById('bdIframe1')
     const deviceHeight = document.querySelector('body').clientHeight
-    oIframe.style.height = Number(deviceHeight) - 280 + 'px' //数字是页面布局高度差
-    oIframe1.style.height = Number(deviceHeight) - 280 + 'px' //数字是页面布局高度差
+    oIframe.style.height = Number(deviceHeight) - 170 + 'px' //数字是页面布局高度差
+    oIframe1.style.height = Number(deviceHeight) - 170 + 'px' //数字是页面布局高度差
   },
 }
 </script>
@@ -1273,7 +1273,7 @@ export default {
 }
 .el-tabs {
   background-color: #fff;
-  padding: 20px;
+  padding: 10px;
   border-radius: 10px;
   .el-row {
     padding: 0 30px;

@@ -87,14 +87,14 @@
           <span v-else-if="scope.row.carInformation === 1">商用车</span>
         </template>
       </el-table-column>
-      <el-table-column label="意向价格" align="center" prop="intentionPrice" />
-      <el-table-column label="意向贷款金额" align="center" prop="loanMoney" />
-      <el-table-column label="意向贷款期限" align="center" prop="repayPeriod" />
+      <el-table-column label="价格" align="center" prop="actualPrice" />
+      <el-table-column label="贷款金额" align="center" prop="loanAmount" />
+      <el-table-column label="贷款期限" align="center" prop="repaymentTerm" />
       <el-table-column label="业务品种" align="center">
         <template slot-scope="scope">
-          <span v-if="scope.row.daiqian.carType === '0'">新车</span>
-          <span v-else-if="scope.row.daiqian.carType === '1'">二手车</span>
-          <span v-else-if="scope.row.daiqian.carType === '2'">新能源</span>
+          <span v-if="scope.row.carType === '0'">新车</span>
+          <span v-else-if="scope.row.carType === '1'">二手车</span>
+          <span v-else-if="scope.row.carType === '2'">新能源</span>
         </template>
       </el-table-column>
       <el-table-column label="当前操作人" align="center" prop="operator" />
@@ -173,7 +173,7 @@ export default {
         team: null,
         repayPeriod: null,
         carType: null,
-        userId: null,
+        name: null,
       },
       // 表单校验
       rules: {},
@@ -192,6 +192,7 @@ export default {
     getList() {
       this.loading = true
       getBeforLoanList(this.queryParams).then((response) => {
+        console.log(response)
         this.beforLoanList = response.rows
         this.total = response.total
         this.loading = false
@@ -210,7 +211,7 @@ export default {
         team: null,
         repayPeriod: null,
         carType: null,
-        userId: null,
+        name: null,
       }
       this.handleQuery()
     },
@@ -226,7 +227,7 @@ export default {
         name: 'BeforLoanDetails',
         query: {
           transactionCode: item.transactionCode,
-          id: item.id,
+          // id: item.id,
         },
       })
       // } catch (error) {}
