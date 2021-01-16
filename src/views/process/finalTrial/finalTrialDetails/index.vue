@@ -25,7 +25,7 @@
     </div>
     <el-tabs v-model="activeName" tab-position="left">
       <el-tab-pane
-        label="秒批录入信息表"
+        label="信息详情"
         name="first"
         style="padding: 0 50px 50px; font-size: 14px"
       >
@@ -93,7 +93,7 @@
               >银行卡号：{{ firstDetails.borrower.bankCardNo }}</el-col
             >
             <el-col :span="8"
-              >联系电话：{{ firstDetails.applicant.phoneNumber }}</el-col
+              >联系电话：{{ firstDetails.borrower.phoneNumber }}</el-col
             >
             <el-col :span="8"
               >家庭住址：{{ firstDetails.borrower.familyAddress }}</el-col
@@ -108,63 +108,63 @@
               >有效截止日：{{ firstDetails.borrower.endDate }}</el-col
             >
             <el-col :span="8"
-              >从事行业：{{ firstDetails.applicant.industry }}</el-col
+              >从事行业：{{ firstDetails.borrower.industry }}</el-col
             >
             <el-col :span="8"
-              >工作地址：{{ firstDetails.applicant.workAddress }}</el-col
+              >工作地址：{{ firstDetails.borrower.workAddress }}</el-col
             >
             <el-col :span="8"
-              >公司电话：{{ firstDetails.applicant.unitPhone }}</el-col
+              >公司电话：{{ firstDetails.borrower.unitPhone }}</el-col
             >
             <el-col :span="8"
-              >工作单位性质：{{ firstDetails.applicant.unitNature }}</el-col
+              >工作单位性质：{{ firstDetails.borrower.unitNature }}</el-col
             >
             <!-- <el-col :span="8">工作单位规模：{{firstDetails.applicant.householdNature}}</el-col> -->
             <el-col :span="8"
-              >工作单位名称：{{ firstDetails.applicant.unitName }}</el-col
+              >工作单位名称：{{ firstDetails.borrower.unitName }}</el-col
             >
             <!-- <el-col :span="8">现单位工作年限：{{firstDetails.applicant.householdNature}}</el-col> -->
             <el-col :span="8"
-              >职位：{{ firstDetails.applicant.position }}</el-col
+              >职位：{{ firstDetails.borrower.position }}</el-col
             >
             <el-col :span="8"
-              >户口性质：{{ firstDetails.applicant.householdNature }}</el-col
+              >户口性质：{{ firstDetails.borrower.householdNature }}</el-col
             >
             <el-col :span="8"
-              >现居住地址：{{ firstDetails.applicant.liveAddress }}</el-col
+              >现居住地址：{{ firstDetails.borrower.liveAddress }}</el-col
             >
             <el-col :span="8"
-              >现居住时间/年：{{ firstDetails.applicant.liveTime }}</el-col
+              >现居住时间/年：{{ firstDetails.borrower.liveTime }}</el-col
             >
             <el-col :span="8"
-              >住房所有权：{{ firstDetails.applicant.housePower }}</el-col
+              >住房所有权：{{ firstDetails.borrower.housePower }}</el-col
             >
             <el-col :span="8"
-              >税后月收入：{{ firstDetails.applicant.monthlyIncome }}</el-col
+              >税后月收入：{{ firstDetails.borrower.monthlyIncome }}</el-col
             >
             <el-col :span="8"
-              >学历：{{ firstDetails.applicant.education }}</el-col
+              >学历：{{ firstDetails.borrower.education }}</el-col
             >
             <el-col :span="8"
-              >婚姻状况：{{ firstDetails.applicant.marriage }}</el-col
+              >婚姻状况：{{ firstDetails.borrower.marriage }}</el-col
             >
             <el-col :span="8"
-              >本人是否有驾驶证：{{ firstDetails.applicant.isLicense }}</el-col
+              >本人是否有驾驶证：{{ firstDetails.borrower.isLicense }}</el-col
             >
             <el-col :span="8"
               >驾驶员与主贷人关系：{{
-                firstDetails.applicant.driverShip
+                firstDetails.borrower.driverShip
               }}</el-col
             >
             <el-col :span="24"
-              >驾照类型：{{ firstDetails.applicant.licenseType }}</el-col
+              >驾照类型：{{ firstDetails.borrower.licenseType }}</el-col
             >
             <el-col :span="8" class="img">
               身份证正面
               <el-image
                 style="width: 100px; height: 100px"
-                :src="firstDetails.applicant.cardAddress"
-                :preview-src-list="borrowerSrcList"
+                :src="firstDetails.borrower.cardAddress"
+                :preview-src-list="srcList"
               >
               </el-image>
             </el-col>
@@ -172,8 +172,8 @@
               身份证反面
               <el-image
                 style="width: 100px; height: 100px"
-                :src="firstDetails.applicant.backAddress"
-                :preview-src-list="borrowerSrcList"
+                :src="firstDetails.borrower.backAddress"
+                :preview-src-list="srcList"
               >
               </el-image>
             </el-col>
@@ -214,10 +214,28 @@
                 firstDetails.applicant.spouseMonthlyIncome
               }}</el-col
             >
+            <el-col :span="8" class="img">
+              身份证正面
+              <el-image
+                style="width: 100px; height: 100px"
+                :src="firstDetails.applicant.cardAddress"
+                :preview-src-list="srcList"
+              >
+              </el-image>
+            </el-col>
+            <el-col :span="8" class="img">
+              身份证反面
+              <el-image
+                style="width: 100px; height: 100px"
+                :src="firstDetails.applicant.backAddress"
+                :preview-src-list="srcList"
+              >
+              </el-image>
+            </el-col>
           </el-row>
         </el-card>
         <!-- 共偿人信息 -->
-        <el-card class="box-card" v-if="firstDetails.debtService">
+        <el-card class="box-card" v-if="firstDetails.debtService.debtName">
           <div slot="header" ref="ref4">
             <span>共偿人信息</span>
           </div>
@@ -260,7 +278,7 @@
               <el-image
                 style="width: 100px; height: 100px"
                 :src="firstDetails.debtService.cardAddress"
-                :preview-src-list="relationSrcList"
+                :preview-src-list="srcList"
               >
               </el-image>
             </el-col>
@@ -269,14 +287,17 @@
               <el-image
                 style="width: 100px; height: 100px"
                 :src="firstDetails.debtService.backAddress"
-                :preview-src-list="relationSrcList"
+                :preview-src-list="srcList"
               >
               </el-image>
             </el-col>
           </el-row>
         </el-card>
         <!-- 担保人信息 -->
-        <el-card class="box-card" v-if="firstDetails.peopleGuarantee">
+        <el-card
+          class="box-card"
+          v-if="firstDetails.peopleGuarantee.guaranteeName"
+        >
           <div slot="header" ref="ref5">
             <span>担保人信息</span>
           </div>
@@ -320,7 +341,7 @@
               <el-image
                 style="width: 100px; height: 100px"
                 :src="firstDetails.peopleGuarantee.cardAddress"
-                :preview-src-list="guaranteeSrcList"
+                :preview-src-list="srcList"
               >
               </el-image>
             </el-col>
@@ -329,7 +350,7 @@
               <el-image
                 style="width: 100px; height: 100px"
                 :src="firstDetails.peopleGuarantee.backAddress"
-                :preview-src-list="guaranteeSrcList"
+                :preview-src-list="srcList"
               >
               </el-image>
             </el-col>
@@ -342,14 +363,17 @@
               <el-image
                 style="width: 100px; height: 100px"
                 :src="firstDetails.peopleGuarantee.powerAddress"
-                :preview-src-list="guaranteeSrcList"
+                :preview-src-list="srcList"
               >
               </el-image>
             </el-col>
           </el-row>
         </el-card>
         <!-- 担保公司信息 -->
-        <el-card class="box-card" v-if="firstDetails.companyGuarantee">
+        <el-card
+          class="box-card"
+          v-if="firstDetails.companyGuarantee.companyName"
+        >
           <div slot="header" ref="ref5">
             <span>担保公司信息</span>
           </div>
@@ -533,7 +557,7 @@
               左前45度
               <el-image
                 style="width: 100px; height: 100px"
-                src=""
+                :src="firstDetails[242]"
                 :preview-src-list="srcList"
               >
               </el-image>
@@ -542,7 +566,7 @@
               右前45度
               <el-image
                 style="width: 100px; height: 100px"
-                src=""
+                :src="firstDetails[253]"
                 :preview-src-list="srcList"
               >
               </el-image>
@@ -551,7 +575,7 @@
               里程表
               <el-image
                 style="width: 100px; height: 100px"
-                src=""
+                :src="firstDetails[244]"
                 :preview-src-list="srcList"
               >
               </el-image>
@@ -560,7 +584,7 @@
               发动机舱左侧
               <el-image
                 style="width: 100px; height: 100px"
-                src=""
+                :src="firstDetails[246]"
                 :preview-src-list="srcList"
               >
               </el-image>
@@ -569,7 +593,7 @@
               发动机舱右侧
               <el-image
                 style="width: 100px; height: 100px"
-                src=""
+                :src="firstDetails[245]"
                 :preview-src-list="srcList"
               >
               </el-image>
@@ -578,7 +602,7 @@
               车辆铭牌
               <el-image
                 style="width: 100px; height: 100px"
-                src=""
+                :src="firstDetails[247]"
                 :preview-src-list="srcList"
               >
               </el-image>
@@ -587,7 +611,7 @@
               VIN码
               <el-image
                 style="width: 100px; height: 100px"
-                src=""
+                :src="firstDetails[248]"
                 :preview-src-list="srcList"
               >
               </el-image>
@@ -596,7 +620,7 @@
               左后车门螺丝
               <el-image
                 style="width: 100px; height: 100px"
-                src=""
+                :src="firstDetails[257]"
                 :preview-src-list="srcList"
               >
               </el-image>
@@ -605,7 +629,7 @@
               前排座椅
               <el-image
                 style="width: 100px; height: 100px"
-                src=""
+                :src="firstDetails[243]"
                 :preview-src-list="srcList"
               >
               </el-image>
@@ -614,7 +638,7 @@
               后排座椅
               <el-image
                 style="width: 100px; height: 100px"
-                src=""
+                :src="firstDetails[251]"
                 :preview-src-list="srcList"
               >
               </el-image>
@@ -623,7 +647,7 @@
               左后流水槽
               <el-image
                 style="width: 100px; height: 100px"
-                src=""
+                :src="firstDetails[255]"
                 :preview-src-list="srcList"
               >
               </el-image>
@@ -632,7 +656,7 @@
               右后流水槽
               <el-image
                 style="width: 100px; height: 100px"
-                src=""
+                :src="firstDetails[254]"
                 :preview-src-list="srcList"
               >
               </el-image>
@@ -641,7 +665,7 @@
               备胎槽全景
               <el-image
                 style="width: 100px; height: 100px"
-                src=""
+                :src="firstDetails[256]"
                 :preview-src-list="srcList"
               >
               </el-image>
@@ -650,7 +674,7 @@
               右后车门螺丝
               <el-image
                 style="width: 100px; height: 100px"
-                src=""
+                :src="firstDetails[250]"
                 :preview-src-list="srcList"
               >
               </el-image>
@@ -659,7 +683,7 @@
               后备箱底部
               <el-image
                 style="width: 100px; height: 100px"
-                src=""
+                :src="firstDetails[279]"
                 :preview-src-list="srcList"
               >
               </el-image>
@@ -668,7 +692,7 @@
               中控台
               <el-image
                 style="width: 100px; height: 100px"
-                src=""
+                :src="firstDetails[252]"
                 :preview-src-list="srcList"
               >
               </el-image>
@@ -680,7 +704,7 @@
               机动车登记证1-2
               <el-image
                 style="width: 100px; height: 100px"
-                src=""
+                :src="firstDetails[240]"
                 :preview-src-list="srcList"
               >
               </el-image>
@@ -689,7 +713,7 @@
               机动车登记证3-4
               <el-image
                 style="width: 100px; height: 100px"
-                src=""
+                :src="firstDetails[241]"
                 :preview-src-list="srcList"
               >
               </el-image>
@@ -698,28 +722,10 @@
           <span>补充资料</span>
           <el-row>
             <el-col :span="6" class="img">
-              手持确认书与车合影
-              <el-image
-                style="width: 100px; height: 100px"
-                src=""
-                :preview-src-list="srcList"
-              >
-              </el-image>
-            </el-col>
-            <el-col :span="6" class="img">
-              车辆交接单
-              <el-image
-                style="width: 100px; height: 100px"
-                src=""
-                :preview-src-list="srcList"
-              >
-              </el-image>
-            </el-col>
-            <el-col :span="6" class="img">
               流水
               <el-image
                 style="width: 100px; height: 100px"
-                src=""
+                :src="firstDetails.detail"
                 :preview-src-list="srcList"
               >
               </el-image>
@@ -736,7 +742,25 @@
               房产
               <el-image
                 style="width: 100px; height: 100px"
-                src=""
+                :src="firstDetails.house"
+                :preview-src-list="srcList"
+              >
+              </el-image>
+            </el-col>
+            <el-col :span="6" class="img">
+              销售和车合影
+              <el-image
+                style="width: 100px; height: 100px"
+                :src="firstDetails.xxhchy"
+                :preview-src-list="srcList"
+              >
+              </el-image>
+            </el-col>
+            <el-col :span="6" class="img">
+              补充1
+              <el-image
+                style="width: 100px; height: 100px"
+                :src="firstDetails.supply"
                 :preview-src-list="srcList"
               >
               </el-image>
@@ -748,7 +772,7 @@
               主贷人身份证（头像面）
               <el-image
                 style="width: 100px; height: 100px"
-                src=""
+                :src="firstDetails.applicant.cardAddress"
                 :preview-src-list="srcList"
               >
               </el-image>
@@ -757,7 +781,7 @@
               主贷人身份证（国徽面）
               <el-image
                 style="width: 100px; height: 100px"
-                src=""
+                :src="firstDetails.applicant.backAddress"
                 :preview-src-list="srcList"
               >
               </el-image>
@@ -766,7 +790,7 @@
               主贷人驾驶证复联
               <el-image
                 style="width: 100px; height: 100px"
-                src=""
+                :src="firstDetails.jszzy"
                 :preview-src-list="srcList"
               >
               </el-image>
@@ -784,19 +808,10 @@
           <span>配偶</span>
           <el-row>
             <el-col :span="6" class="img">
-              配偶身份证（头像面）
+              配偶身份证
               <el-image
                 style="width: 100px; height: 100px"
-                src=""
-                :preview-src-list="srcList"
-              >
-              </el-image>
-            </el-col>
-            <el-col :span="6" class="img">
-              配偶身份证（国徽面）
-              <el-image
-                style="width: 100px; height: 100px"
-                src=""
+                :src="firstDetails.posfz"
                 :preview-src-list="srcList"
               >
               </el-image>
@@ -805,7 +820,16 @@
               征信授权书
               <el-image
                 style="width: 100px; height: 100px"
-                src=""
+                :src="firstDetails.pozxsqs"
+                :preview-src-list="srcList"
+              >
+              </el-image>
+            </el-col>
+            <el-col :span="6" class="img">
+              手持身份证+授权书
+              <el-image
+                style="width: 100px; height: 100px"
+                :src="firstDetails.poscsfzsqs"
                 :preview-src-list="srcList"
               >
               </el-image>
@@ -814,19 +838,10 @@
           <span>担保人</span>
           <el-row>
             <el-col :span="6" class="img">
-              担保人身份证（头像面）
+              担保人身份证
               <el-image
                 style="width: 100px; height: 100px"
-                src=""
-                :preview-src-list="srcList"
-              >
-              </el-image>
-            </el-col>
-            <el-col :span="6" class="img">
-              担保人身份证（国徽面）
-              <el-image
-                style="width: 100px; height: 100px"
-                src=""
+                :src="firstDetails.dbrsfz"
                 :preview-src-list="srcList"
               >
               </el-image>
@@ -835,7 +850,16 @@
               征信授权书
               <el-image
                 style="width: 100px; height: 100px"
-                src=""
+                :src="firstDetails.dbrzxsqs"
+                :preview-src-list="srcList"
+              >
+              </el-image>
+            </el-col>
+            <el-col :span="6" class="img">
+              手持身份证+授权书
+              <el-image
+                style="width: 100px; height: 100px"
+                :src="firstDetails.dbrscsfzsqs"
                 :preview-src-list="srcList"
               >
               </el-image>
@@ -1005,8 +1029,8 @@ import {
   getJingZhenGuData,
   getFirstHandle,
 } from '@/api/process/firstTrial'
-import { getSelectState } from '@/api/process/business'
-import { finalTrialHandle, getFinalTrialHandle } from '@/api/process/finalTrial'
+import { getSelectState, findDetailsCredit } from '@/api/process/business'
+import { finalHandle, getFinalTrialHandle } from '@/api/process/finalTrial'
 
 export default {
   name: 'FinalTrialDetails',
@@ -1025,7 +1049,7 @@ export default {
       detailsCredit: '', // 详版征信
       dialogVisible: false, // 弹框
       url:
-        'http://192.168.31.82/dev-api/profile/2020/12/18/4944fa69-82f2-4eae-b1b8-b25be2303827.pdf',
+        'http://192.168.31.86:8080/profile/2021/01/11/18ec8853-7584-45e0-ab25-0a8a1e6576f6.pdf',
       numPages: null, // pdf 总页数
       activeName: 'first', // Tabs
       activeName1: 'first', // Tabs1
@@ -1088,6 +1112,11 @@ export default {
           this.$route.query.userId,
           this.$route.query.transactionCode
         )
+        for (const key in data) {
+          if (!data[key]) {
+            data[key] = {}
+          }
+        }
         console.log(data)
         this.firstDetails = data
         this.srcList = data.pic
@@ -1097,6 +1126,18 @@ export default {
         this.findSelectState()
         this.findFirstHandle()
         this.findFinalHandle()
+        this.srcList.push(
+          data.borrower.cardAddress,
+          data.borrower.backAddress,
+          data.applicant.cardAddress,
+          data.applicant.backAddress
+        )
+        if (data.peopleGuarantee) {
+          this.srcList.push(
+            data.peopleGuarantee.cardAddress,
+            data.peopleGuarantee.backAddress
+          )
+        }
       } catch (error) {}
     },
     // 页面滚动
@@ -1199,7 +1240,7 @@ export default {
           type: 'warning',
         })
           .then(() => {
-            return finalTrialHandle({
+            return finalHandle({
               advise: that.textarea,
               approvalType,
               transactionCode: that.$route.query.transactionCode,

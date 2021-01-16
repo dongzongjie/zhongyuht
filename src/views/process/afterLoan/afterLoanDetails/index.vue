@@ -297,11 +297,47 @@
         :page="i"
       ></pdf>
     </el-dialog>
+    <!-- 意见 -->
+    <el-card>
+      <div slot="header">
+        <span>意见</span>
+      </div>
+      <el-input
+        type="textarea"
+        :autosize="{ minRows: 3 }"
+        placeholder="请输入终审意见"
+        v-model="textarea"
+      />
+      <el-button
+        v-if="afterData.shenpi.state === '1'"
+        type="primary"
+        round
+        style="margin: 20px 10px"
+        disabled
+        >已通过</el-button
+      >
+      <div v-else>
+        <el-button
+          type="primary"
+          round
+          style="margin: 20px 10px"
+          @click="creditExtensionHandle(1)"
+          >通过</el-button
+        >
+        <el-button
+          type="warning"
+          round
+          style="margin: 20px 10px"
+          @click="creditExtensionHandle(2)"
+          >退回</el-button
+        >
+      </div>
+    </el-card>
   </div>
 </template>
 
 <script>
-import { getAfterLoanDetails } from '@/api/process/afterLoan'
+import { getAfterLoanDetails, afterLoanHandle } from '@/api/process/afterLoan'
 
 export default {
   name: 'AfterLoanDetails',
@@ -312,17 +348,55 @@ export default {
       numPages: null, // pdf 总页数
       srcList: [],
       pdfUrl: '',
+      textarea: '',
+      approvalType: '',
+      afterData: { shenpi: {} },
     }
   },
   computed: {},
-  watch: {},
+  watch: {
+    $route(to, from) {
+      //监听路由是否变化
+      if (to.path == '/process/afterTrialDetails') {
+        this.findAfterLoanData()
+      }
+    },
+  },
   methods: {
+    // 获取贷后详情信息
     async findAfterLoanData() {
       try {
-        const data = await getAfterLoanDetails(this.$route.query.id)
+        const { data } = await getAfterLoanDetails(this.$route.query.id)
+        this.afterData = data
+        this.textarea = data.shenpi.opinion
         console.log(data)
       } catch (error) {
         console.log(error)
+      }
+    },
+    // 贷后
+    async creditExtensionHandle(state) {
+      if (this.textarea.trim()) {
+        const that = this
+        this.$confirm('确认操作?', '警告', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning',
+        })
+          .then(() => {
+            return afterLoanHandle({
+              state: state,
+              opinion: that.textarea,
+              transactionCode: that.$route.query.transactionCode,
+            })
+          })
+          .then(() => {
+            this.msgSuccess('操作成功')
+            this.findAfterLoanData()
+          })
+          .catch(function () {})
+      } else {
+        this.msgError('请输入意见')
       }
     },
   },

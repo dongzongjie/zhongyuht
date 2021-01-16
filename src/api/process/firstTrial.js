@@ -1,5 +1,14 @@
 import request from '@/utils/request'
 
+// 获取初审列表
+export function getFirstTrialList(params) {
+    return request({
+        url: '/stage/allow',
+        method: 'get',
+        params
+    })
+}
+
 // getByToken
 export function getByToken() {
     return request({

@@ -83,14 +83,22 @@
           <span v-else-if="scope.row.carInformation === 1">商用车</span>
         </template>
       </el-table-column>
-      <el-table-column label="意向价格" align="center" prop="intentionPrice" />
-      <el-table-column label="意向贷款金额" align="center" prop="loanMoney" />
-      <el-table-column label="意向贷款期限" align="center" prop="repayPeriod" />
+      <el-table-column label="价格" align="center" prop="actualPrice" />
+      <el-table-column label="贷款金额" align="center" prop="loanAmount" />
+      <el-table-column label="贷款期限" align="center" prop="repaymentTerm" />
       <el-table-column label="业务品种" align="center">
         <template slot-scope="scope">
           <span v-if="scope.row.carType === 0">新车</span>
           <span v-else-if="scope.row.carType === 1">二手车</span>
           <span v-else-if="scope.row.carType === 2">新能源</span>
+        </template>
+      </el-table-column>
+      <el-table-column label="审批状态" align="center">
+        <template slot-scope="scope">
+          <span v-if="scope.row.approvalType === 1">通过</span>
+          <span v-else-if="scope.row.approvalType === 2">退回</span>
+          <span v-else-if="scope.row.approvalType === 3">拒绝</span>
+          <span v-else>未审核</span>
         </template>
       </el-table-column>
       <el-table-column label="当前操作人" align="center" prop="operator" />
@@ -131,7 +139,6 @@
 <script>
 import { checkRole } from '@/utils/permission'
 import {
-  listBusiness,
   getBusiness,
   delBusiness,
   addBusiness,
@@ -139,6 +146,7 @@ import {
   exportBusiness,
   deleteOperator,
 } from '@/api/process/business'
+import { getCreditExtensionList } from '@/api/process/creditExtension'
 
 export default {
   name: 'creditExtension',
@@ -182,12 +190,21 @@ export default {
   created() {
     this.getList()
   },
+  watch: {
+    $route(to, from) {
+      //监听路由是否变化
+      if (to.path == '/process/creditExtension') {
+        this.getList()
+      }
+    },
+  },
   methods: {
     checkRole,
     /** 查询授信列表 */
     getList() {
       this.loading = true
-      listBusiness(this.queryParams).then((response) => {
+      getCreditExtensionList(this.queryParams).then((response) => {
+        console.log(response)
         this.businessList = response.rows
         this.total = response.total
         this.loading = false
@@ -215,6 +232,7 @@ export default {
       try {
         await updateBusiness({
           id: item.id,
+          createBy: this.$store.state.user.userId,
         })
         this.getList()
         this.$router.push({
@@ -222,6 +240,7 @@ export default {
           name: 'CreditExtensionDetails',
           query: {
             transactionCode: item.transactionCode,
+            userId: item.userId,
           },
         })
       } catch (error) {}

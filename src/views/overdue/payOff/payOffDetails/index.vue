@@ -37,33 +37,35 @@
         <el-col :span="12">单位电话：</el-col>
       </el-row>
     </el-card>
-    <!-- 贷后信息 -->
+    <!-- 贷款信息 -->
     <el-card>
       <div slot="header">
-        <span>贷后信息</span>
+        <span>贷款信息</span>
       </div>
-      <el-row>
-        <el-col :span="3">姓名：</el-col>
-        <el-col :span="5">身份证号：</el-col>
-        <el-col :span="4">联系方式：</el-col>
-      </el-row>
-      <h4 style="font-size: 16px">贷款信息</h4>
       <el-row>
         <el-col :span="8">经办行：</el-col>
         <el-col :span="8">银行卡号：</el-col>
-        <el-col :span="8">分期期数：</el-col>
-        <el-col :span="8">分期金额：</el-col>
-        <el-col :span="8">放款日期：</el-col>
-        <el-col :span="8">月还款金额：</el-col>
-        <el-col :span="8">卡余额：</el-col>
+        <el-col :span="8">实际销售价(元)：</el-col>
+        <el-col :span="8">车辆贷款金额(元)：</el-col>
+        <el-col :span="8">利率换档：</el-col>
+        <el-col :span="8">月还款金额：(元)</el-col>
+        <el-col :span="8">还款期限(月)：</el-col>
+        <el-col :span="8">附加费用(元)：</el-col>
+        <el-col :span="8">续保押金(元)：</el-col>
       </el-row>
-      <h4 style="font-size: 16px">逾期信息</h4>
+    </el-card>
+    <!-- 贷款信息 -->
+    <el-card>
+      <div slot="header">
+        <span>逾期信息</span>
+      </div>
       <el-row>
         <el-col :span="8">逾期还款日期：</el-col>
-        <el-col :span="8">昨日最优还款额：</el-col>
-        <el-col :span="8">当前逾期金额：</el-col>
+        <el-col :span="8">滞纳金(元)：</el-col>
+        <el-col :span="8">当前逾期金额：(元)</el-col>
         <el-col :span="8">当前连续违约次数：(次)</el-col>
         <el-col :span="8">累计违约次数：(次)</el-col>
+        <el-col :span="8">应还期数</el-col>
       </el-row>
     </el-card>
     <!-- 车辆信息 -->
@@ -83,7 +85,11 @@
           </el-input>
         </el-col>
         <el-col :span="8" style="line-height: 36px">
-          系统查询价
+          车辆类型
+          <el-input v-model="form.businessType"> </el-input>
+        </el-col>
+        <el-col :span="8" style="line-height: 36px">
+          精真估估价
           <el-input v-model="form.businessType" suffix-icon="el-icon-zyrz-yuan">
           </el-input>
         </el-col>
@@ -108,7 +114,7 @@
       </el-row>
     </el-card>
     <!-- 还款信息记录 -->
-    <el-card>
+    <!-- <el-card>
       <div slot="header">
         <span>还款信息记录</span>
       </div>
@@ -125,7 +131,7 @@
           </template>
         </el-table-column>
       </el-table>
-    </el-card>
+    </el-card> -->
     <!-- 附加费用明细 -->
     <el-card>
       <div slot="header">
@@ -218,6 +224,7 @@ export default {
     return {
       form: {},
       tableData: [],
+      subjoin: [],
     }
   },
   computed: {},

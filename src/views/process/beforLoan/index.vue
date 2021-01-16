@@ -75,11 +75,7 @@
     <!-- 表格 -->
     <el-table v-loading="loading" :data="beforLoanList">
       <el-table-column label="订单编号" align="center" prop="transactionCode" />
-      <el-table-column
-        label="客户名称"
-        align="center"
-        prop="daiqian.userName"
-      />
+      <el-table-column label="客户名称" align="center" prop="userName" />
       <el-table-column label="销售团队" align="center" prop="team" />
       <el-table-column label="车辆类型" align="center">
         <template slot-scope="scope">
@@ -92,11 +88,20 @@
       <el-table-column label="贷款期限" align="center" prop="repaymentTerm" />
       <el-table-column label="业务品种" align="center">
         <template slot-scope="scope">
-          <span v-if="scope.row.carType === '0'">新车</span>
-          <span v-else-if="scope.row.carType === '1'">二手车</span>
-          <span v-else-if="scope.row.carType === '2'">新能源</span>
+          <span v-if="scope.row.carType === 0">新车</span>
+          <span v-else-if="scope.row.carType === 1">二手车</span>
+          <span v-else-if="scope.row.carType === 2">新能源</span>
         </template>
       </el-table-column>
+      <el-table-column label="审批状态" align="center">
+        <template slot-scope="scope">
+          <span v-if="scope.row.state === '1'">通过</span>
+          <span v-else-if="scope.row.state === '2'">退回</span>
+          <span v-else-if="scope.row.state === '3'">拒绝</span>
+          <span v-else>未审核</span>
+        </template>
+      </el-table-column>
+      <el-table-column label="审批留言" align="center" prop="opinion" />
       <el-table-column label="当前操作人" align="center" prop="operator" />
       <el-table-column
         label="操作"
@@ -104,12 +109,17 @@
         class-name="small-padding fixed-width"
       >
         <template slot-scope="scope">
-          <div v-if="!scope.row.updateBy">
+          <span v-if="!scope.row.id">待APP端上传数据</span>
+          <div v-if="!scope.row.userId && scope.row.id">
             <el-button size="mini" type="text" @click="handle(scope.row)"
               >立即处理</el-button
             >
           </div>
-          <div v-else-if="scope.row.updateBy == $store.state.user.userId">
+          <div
+            v-else-if="
+              scope.row.userId == $store.state.user.userId && scope.row.id
+            "
+          >
             <el-button size="mini" type="text" @click="handle(scope.row)"
               >立即处理</el-button
             >
@@ -142,7 +152,10 @@ import {
   exportBusiness,
   deleteOperator,
 } from '@/api/process/business'
-import { getBeforLoanList } from '@/api/process/beforLoan'
+import {
+  getBeforLoanList,
+  beforLoanHandlePeople,
+} from '@/api/process/beforLoan'
 
 export default {
   name: 'BeforLoan',
@@ -186,13 +199,20 @@ export default {
   created() {
     this.getList()
   },
+  watch: {
+    $route(to, from) {
+      //监听路由是否变化
+      if (to.path == '/process/beforLoan') {
+        this.getList()
+      }
+    },
+  },
   methods: {
     checkRole,
     /** 查询贷前列表 */
     getList() {
       this.loading = true
       getBeforLoanList(this.queryParams).then((response) => {
-        console.log(response)
         this.beforLoanList = response.rows
         this.total = response.total
         this.loading = false
@@ -217,20 +237,24 @@ export default {
     },
     // 立即处理
     async handle(item) {
-      // try {
-      //   await updateBusiness({
-      //     id: item.id,
-      //   })
-      //   this.getList()
-      this.$router.push({
-        path: '/process/beforLoanDetails',
-        name: 'BeforLoanDetails',
-        query: {
-          transactionCode: item.transactionCode,
-          // id: item.id,
-        },
-      })
-      // } catch (error) {}
+      try {
+        await beforLoanHandlePeople({
+          id: item.id,
+          userId: this.$store.state.user.userId,
+          operator: this.$store.state.user.name,
+        })
+        this.getList()
+        // this.$router.push({
+        //   path: '/process/beforLoanDetails',
+        //   name: 'BeforLoanDetails',
+        //   query: {
+        //     transactionCode: item.transactionCode,
+        //     // id: item.id,
+        //   },
+        // })
+      } catch (error) {
+        console.log(error)
+      }
     },
     // 解锁
     async unlock(id) {
@@ -239,7 +263,7 @@ export default {
         cancelButtonText: '取消',
         type: 'warning',
       })
-        .then(deleteOperator(id))
+        .then(beforLoanHandlePeople({ id }))
         .then(() => {
           this.msgSuccess('解锁成功')
           this.getList()

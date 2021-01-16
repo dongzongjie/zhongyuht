@@ -86,14 +86,23 @@
           <span v-else-if="scope.row.carInformation === 1">商用车</span>
         </template>
       </el-table-column>
-      <el-table-column label="意向价格" align="center" prop="intentionPrice" />
-      <el-table-column label="意向贷款金额" align="center" prop="loanMoney" />
-      <el-table-column label="意向贷款期限" align="center" prop="repayPeriod" />
+      <el-table-column label="价格" align="center" prop="actualPrice" />
+      <el-table-column label="贷款金额" align="center" prop="loanAmount" />
+      <el-table-column label="贷款期限" align="center" prop="repaymentTerm" />
       <el-table-column label="业务品种" align="center">
         <template slot-scope="scope">
           <span v-if="scope.row.carType === 0">新车</span>
           <span v-else-if="scope.row.carType === 1">二手车</span>
           <span v-else-if="scope.row.carType === 2">新能源</span>
+        </template>
+      </el-table-column>
+      <el-table-column label="审批状态" align="center">
+        <template slot-scope="scope">
+          <span v-if="scope.row.approvalType === 1">通过</span>
+          <span v-else-if="scope.row.approvalType === 2">初审退回</span>
+          <span v-else-if="scope.row.approvalType === 3">拒绝</span>
+          <span v-else-if="scope.row.approvalType === 4">复审退回</span>
+          <span v-else>未审核</span>
         </template>
       </el-table-column>
       <el-table-column label="当前操作人" align="center" prop="falseOperator" />
@@ -135,14 +144,13 @@
 
 <script>
 import {
-  listBusiness,
   getBusiness,
   delBusiness,
   addBusiness,
   updateBusiness,
   exportBusiness,
 } from '@/api/process/business'
-import { addFalseOperator } from '@/api/process/firstTrial'
+import { addFalseOperator, getFirstTrialList } from '@/api/process/firstTrial'
 
 export default {
   name: 'FirstTrial',
@@ -186,11 +194,20 @@ export default {
   created() {
     this.getList()
   },
+  watch: {
+    $route(to, from) {
+      //监听路由是否变化
+      if (to.path == '/process/firstTrial') {
+        this.getList()
+      }
+    },
+  },
   methods: {
     /** 查询初审列表 */
     getList() {
       this.loading = true
-      listBusiness(this.queryParams).then((response) => {
+      getFirstTrialList(this.queryParams).then((response) => {
+        console.log(response)
         this.firstTrialList = response.rows
         this.total = response.total
         this.loading = false

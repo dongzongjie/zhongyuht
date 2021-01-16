@@ -102,7 +102,7 @@
           GPS编号
           <el-image
             style="width: 100px; height: 100px"
-            :src="GPSdata.biangaoPic"
+            :src="GPSdata.yxbh || GPSdata.wxbh"
             :preview-src-list="srcList"
           >
           </el-image>
@@ -111,7 +111,7 @@
           安装远景
           <el-image
             style="width: 100px; height: 100px"
-            :src="GPSdata.yuanjingPic"
+            :src="GPSdata.yxyj || GPSdata.wxyj"
             :preview-src-list="srcList"
           >
           </el-image>
@@ -120,7 +120,7 @@
           安装近景
           <el-image
             style="width: 100px; height: 100px"
-            :src="GPSdata.jinjingPic"
+            :src="GPSdata.yxjj || GPSdata.wxjj"
             :preview-src-list="srcList"
           >
           </el-image>
@@ -129,10 +129,28 @@
       <h4>补充资料</h4>
       <el-row>
         <el-col :span="8" class="img">
-          根据数据进行for循环
+          GPS安装单
           <el-image
             style="width: 100px; height: 100px"
-            src=""
+            :src="GPSdata.azd"
+            :preview-src-list="srcList"
+          >
+          </el-image>
+        </el-col>
+        <el-col :span="8" class="img">
+          车辆铭牌
+          <el-image
+            style="width: 100px; height: 100px"
+            :src="GPSdata.clmp"
+            :preview-src-list="srcList"
+          >
+          </el-image>
+        </el-col>
+        <el-col :span="8" class="img">
+          整车照片
+          <el-image
+            style="width: 100px; height: 100px"
+            :src="GPSdata.zczp"
             :preview-src-list="srcList"
           >
           </el-image>

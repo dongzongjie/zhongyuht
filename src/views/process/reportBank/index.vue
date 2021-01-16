@@ -75,7 +75,7 @@
     <!-- 表格 -->
     <el-table v-loading="loading" :data="reportBankList">
       <el-table-column label="订单编号" align="center" prop="transactionCode" />
-      <el-table-column label="客户名称" align="center" prop="name" />
+      <el-table-column label="客户名称" align="center" prop="userName" />
       <el-table-column label="销售团队" align="center" prop="team" />
       <el-table-column label="车辆类型" align="center">
         <template slot-scope="scope">
@@ -83,9 +83,9 @@
           <span v-else-if="scope.row.carInformation === 1">商用车</span>
         </template>
       </el-table-column>
-      <el-table-column label="意向价格" align="center" prop="intentionPrice" />
-      <el-table-column label="意向贷款金额" align="center" prop="loanMoney" />
-      <el-table-column label="意向贷款期限" align="center" prop="repayPeriod" />
+      <el-table-column label="价格" align="center" prop="actualPrice" />
+      <el-table-column label="贷款金额" align="center" prop="loanAmount" />
+      <el-table-column label="贷款期限" align="center" prop="repaymentTerm" />
       <el-table-column label="业务品种" align="center">
         <template slot-scope="scope">
           <span v-if="scope.row.carType === 0">新车</span>
@@ -100,12 +100,12 @@
         class-name="small-padding fixed-width"
       >
         <template slot-scope="scope">
-          <div v-if="!scope.row.updateBy">
+          <div v-if="!scope.row.userId">
             <el-button size="mini" type="text" @click="handle(scope.row)"
               >立即处理</el-button
             >
           </div>
-          <div v-else-if="scope.row.updateBy == $store.state.user.userId">
+          <div v-else-if="scope.row.userId == $store.state.user.userId">
             <el-button size="mini" type="text" @click="handle(scope.row)"
               >立即处理</el-button
             >
@@ -131,7 +131,6 @@
 <script>
 import { checkRole } from '@/utils/permission'
 import {
-  listBusiness,
   getBusiness,
   delBusiness,
   addBusiness,
@@ -139,6 +138,7 @@ import {
   exportBusiness,
   deleteOperator,
 } from '@/api/process/business'
+import { getReportBankList, handleReport } from '@/api/process/reportBank'
 
 export default {
   name: 'ReportBank',
@@ -181,13 +181,23 @@ export default {
   },
   created() {
     this.getList()
+    console.log(this.$store.state.user)
+  },
+  watch: {
+    $route(to, from) {
+      //监听路由是否变化
+      if (to.path == '/process/reportBank') {
+        this.getList()
+      }
+    },
   },
   methods: {
     checkRole,
     /** 查询上报银行列表 */
     getList() {
       this.loading = true
-      listBusiness(this.queryParams).then((response) => {
+      getReportBankList(this.queryParams).then((response) => {
+        console.log(response)
         this.reportBankList = response.rows
         this.total = response.total
         this.loading = false
@@ -213,18 +223,22 @@ export default {
     // 立即处理
     async handle(item) {
       try {
-        await updateBusiness({
+        await handleReport({
           id: item.id,
+          userId: this.$store.state.user.userId,
+          operator: this.$store.state.user.name,
         })
         this.getList()
         this.$router.push({
           path: '/process/reportBankDetails',
           name: 'ReportBankDetails',
-          //   query: {
-          //     transactionCode: item.transactionCode,
-          //   },
+          query: {
+            transactionCode: item.transactionCode,
+          },
         })
-      } catch (error) {}
+      } catch (error) {
+        this.getList()
+      }
     },
     // 解锁
     async unlock(id) {
@@ -233,7 +247,7 @@ export default {
         cancelButtonText: '取消',
         type: 'warning',
       })
-        .then(deleteOperator(id))
+        .then(handleReport({ id }))
         .then(() => {
           this.msgSuccess('解锁成功')
           this.getList()

@@ -182,6 +182,14 @@ export default {
   created() {
     this.getList()
   },
+  watch: {
+    $route(to, from) {
+      //监听路由是否变化
+      if (to.path == '/process/business') {
+        this.getList()
+      }
+    },
+  },
   methods: {
     checkRole,
     /** 查询秒批列表 */
@@ -215,6 +223,7 @@ export default {
       try {
         await updateBusiness({
           id: item.id,
+          createBy: this.$store.state.user.userId,
         })
         this.getList()
         this.$router.push({
@@ -224,7 +233,10 @@ export default {
             transactionCode: item.transactionCode,
           },
         })
-      } catch (error) {}
+      } catch (error) {
+        this.getList()
+        console.log(error)
+      }
     },
     // 解锁
     async unlock(id) {

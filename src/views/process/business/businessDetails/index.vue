@@ -341,7 +341,7 @@
           </tr>
           <tr style="display: block; margin: 20px; text-indent: 2em">
             <td>征信字段：</td>
-            <td>{{ credit.msg || credit }}</td>
+            <td>{{ credit || '获取失败' }}</td>
           </tr>
           <tr style="display: block; margin: 20px; text-indent: 2em">
             <td>备注信息：</td>

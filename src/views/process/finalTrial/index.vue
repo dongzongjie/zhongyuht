@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
     <!-- 搜索框 -->
-    <el-form
+    <!-- <el-form
       :model="queryParams"
       ref="queryForm"
       :inline="true"
@@ -59,7 +59,7 @@
           >重置</el-button
         >
       </el-form-item>
-    </el-form>
+    </el-form> -->
     <!-- 我的客户 -->
     <el-row :gutter="10" class="mb8">
       <el-col :span="1.5">
@@ -83,9 +83,9 @@
           <span v-else-if="scope.row.carInformation === 1">商用车</span>
         </template>
       </el-table-column>
-      <el-table-column label="意向价格" align="center" prop="intentionPrice" />
-      <el-table-column label="意向贷款金额" align="center" prop="loanMoney" />
-      <el-table-column label="意向贷款期限" align="center" prop="repayPeriod" />
+      <el-table-column label="价格" align="center" prop="actualPrice" />
+      <el-table-column label="贷款金额" align="center" prop="loanAmount" />
+      <el-table-column label="贷款期限" align="center" prop="repaymentTerm" />
       <el-table-column label="业务品种" align="center">
         <template slot-scope="scope">
           <span v-if="scope.row.carType === 0">新车</span>
@@ -96,7 +96,7 @@
       <el-table-column label="审批状态" align="center">
         <template slot-scope="scope">
           <span v-if="scope.row.approvalType === 1">通过</span>
-          <span v-else-if="scope.row.approvalType === 2">退回</span>
+          <span v-else-if="scope.row.approvalType === 2">退回至初审</span>
           <span v-else-if="scope.row.approvalType === 3">拒绝</span>
           <span v-else>未审核</span>
         </template>
@@ -190,6 +190,14 @@ export default {
   created() {
     this.getList()
   },
+  watch: {
+    $route(to, from) {
+      //监听路由是否变化
+      if (to.path == '/process/finalTrial') {
+        this.getList()
+      }
+    },
+  },
   methods: {
     checkRole,
     /** 查询终审列表 */
@@ -223,6 +231,7 @@ export default {
       try {
         await updateBusiness({
           id: item.id,
+          createBy: this.$store.state.user.userId,
         })
         this.getList()
         this.$router.push({
