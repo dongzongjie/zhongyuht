@@ -108,56 +108,56 @@
               >有效截止日：{{ firstDetails.borrower.endDate }}</el-col
             >
             <el-col :span="8"
-              >从事行业：{{ firstDetails.borrower.industry }}</el-col
+              >从事行业：{{ firstDetails.applicant.industry }}</el-col
             >
             <el-col :span="8"
-              >工作地址：{{ firstDetails.borrower.workAddress }}</el-col
+              >工作地址：{{ firstDetails.applicant.workAddress }}</el-col
             >
             <el-col :span="8"
-              >公司电话：{{ firstDetails.borrower.unitPhone }}</el-col
+              >公司电话：{{ firstDetails.applicant.unitPhone }}</el-col
             >
             <el-col :span="8"
-              >工作单位性质：{{ firstDetails.borrower.unitNature }}</el-col
+              >工作单位性质：{{ firstDetails.applicant.unitNature }}</el-col
             >
             <!-- <el-col :span="8">工作单位规模：{{firstDetails.applicant.householdNature}}</el-col> -->
             <el-col :span="8"
-              >工作单位名称：{{ firstDetails.borrower.unitName }}</el-col
+              >工作单位名称：{{ firstDetails.applicant.unitName }}</el-col
             >
             <!-- <el-col :span="8">现单位工作年限：{{firstDetails.applicant.householdNature}}</el-col> -->
             <el-col :span="8"
-              >职位：{{ firstDetails.borrower.position }}</el-col
+              >职位：{{ firstDetails.applicant.position }}</el-col
             >
             <el-col :span="8"
-              >户口性质：{{ firstDetails.borrower.householdNature }}</el-col
+              >户口性质：{{ firstDetails.applicant.householdNature }}</el-col
             >
             <el-col :span="8"
-              >现居住地址：{{ firstDetails.borrower.liveAddress }}</el-col
+              >现居住地址：{{ firstDetails.applicant.liveAddress }}</el-col
             >
             <el-col :span="8"
-              >现居住时间/年：{{ firstDetails.borrower.liveTime }}</el-col
+              >现居住时间/年：{{ firstDetails.applicant.liveTime }}</el-col
             >
             <el-col :span="8"
-              >住房所有权：{{ firstDetails.borrower.housePower }}</el-col
+              >住房所有权：{{ firstDetails.applicant.housePower }}</el-col
             >
             <el-col :span="8"
-              >税后月收入：{{ firstDetails.borrower.monthlyIncome }}</el-col
+              >税后月收入：{{ firstDetails.applicant.monthlyIncome }}</el-col
             >
             <el-col :span="8"
-              >学历：{{ firstDetails.borrower.education }}</el-col
+              >学历：{{ firstDetails.applicant.education }}</el-col
             >
             <el-col :span="8"
-              >婚姻状况：{{ firstDetails.borrower.marriage }}</el-col
+              >婚姻状况：{{ firstDetails.applicant.marriage }}</el-col
             >
             <el-col :span="8"
-              >本人是否有驾驶证：{{ firstDetails.borrower.isLicense }}</el-col
+              >本人是否有驾驶证：{{ firstDetails.applicant.isLicense }}</el-col
             >
             <el-col :span="8"
               >驾驶员与主贷人关系：{{
-                firstDetails.borrower.driverShip
+                firstDetails.applicant.driverShip
               }}</el-col
             >
             <el-col :span="24"
-              >驾照类型：{{ firstDetails.borrower.licenseType }}</el-col
+              >驾照类型：{{ firstDetails.applicant.licenseType }}</el-col
             >
             <el-col :span="8" class="img">
               身份证正面
