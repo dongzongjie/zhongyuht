@@ -119,6 +119,21 @@ export const constantRoutes = [{
                 title: '修改生成配置'
             }
         }]
+    },
+    {
+        path: '/process',
+        component: Layout,
+        hidden: true
+    },
+    {
+        path: '/organization',
+        component: Layout,
+        hidden: true
+    },
+    {
+        path: '/overdue',
+        component: Layout,
+        hidden: true
     }
 ]
 

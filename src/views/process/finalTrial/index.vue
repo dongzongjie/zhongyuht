@@ -101,23 +101,23 @@
           <span v-else>未审核</span>
         </template>
       </el-table-column>
-      <el-table-column label="当前操作人" align="center" prop="operator" />
+      <el-table-column label="当前操作人" align="center" prop="repeatBy" />
       <el-table-column
         label="操作"
         align="center"
         class-name="small-padding fixed-width"
       >
         <template slot-scope="scope">
-          <div v-if="!scope.row.updateBy">
+          <div v-if="!scope.row.repeatId">
             <el-button size="mini" type="text" @click="handle(scope.row)"
               >立即处理</el-button
             >
           </div>
-          <div v-else-if="scope.row.updateBy == $store.state.user.userId">
+          <div v-else-if="scope.row.repeatId == $store.state.user.userId">
             <el-button size="mini" type="text" @click="handle(scope.row)"
               >立即处理</el-button
             >
-            <el-button size="mini" type="text" @click="unlock(scope.row.id)"
+            <el-button size="mini" type="text" @click="unlock(scope.row)"
               >解锁</el-button
             >
           </div>
@@ -146,7 +146,7 @@ import {
   exportBusiness,
   deleteOperator,
 } from '@/api/process/business'
-import { getFinalTrialList } from '@/api/process/finalTrial'
+import { getFinalTrialList, finalTrialHandle } from '@/api/process/finalTrial'
 
 export default {
   name: 'FinalTrial',
@@ -207,6 +207,7 @@ export default {
         this.finalTailsList = response.rows
         this.total = response.total
         this.loading = false
+        console.log(response)
       })
     },
     /** 搜索按钮操作 */
@@ -229,9 +230,10 @@ export default {
     // 立即处理
     async handle(item) {
       try {
-        await updateBusiness({
-          id: item.id,
-          createBy: this.$store.state.user.userId,
+        await finalTrialHandle({
+          handleName: this.$store.state.user.name,
+          userId: this.$store.state.user.userId,
+          transactionCode: item.transactionCode,
         })
         this.getList()
         this.$router.push({
@@ -245,13 +247,18 @@ export default {
       } catch (error) {}
     },
     // 解锁
-    async unlock(id) {
+    async unlock(item) {
       this.$confirm('确认解锁?', '警告', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning',
       })
-        .then(deleteOperator(id))
+        .then(
+          finalTrialHandle({
+            userId: this.$store.state.user.userId,
+            transactionCode: item.transactionCode,
+          })
+        )
         .then(() => {
           this.msgSuccess('解锁成功')
           this.getList()

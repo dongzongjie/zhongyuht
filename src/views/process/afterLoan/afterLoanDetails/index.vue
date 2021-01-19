@@ -1,5 +1,6 @@
 <template>
   <div class="app-container">
+    <!-- 注册信息栏 -->
     <el-card style="margin-bottom: 10px">
       <div slot="header">
         <span>注册信息栏</span>
@@ -9,8 +10,8 @@
           注册信息栏1
           <el-image
             style="width: 100px; height: 100px"
-            src=""
-            :preview-src-list="srcList"
+            :src="afterData['注册信息栏第一页']"
+            :preview-src-list="afterData.zhengshu"
           >
           </el-image>
         </el-col>
@@ -18,13 +19,14 @@
           注册信息栏2
           <el-image
             style="width: 100px; height: 100px"
-            src=""
-            :preview-src-list="srcList"
+            :src="afterData['注册信息栏第二页']"
+            :preview-src-list="afterData.zhengshu"
           >
           </el-image>
         </el-col>
       </el-row>
     </el-card>
+    <!-- 行驶证 -->
     <el-card style="margin-bottom: 10px">
       <div slot="header">
         <span>行驶证</span>
@@ -34,8 +36,8 @@
           行驶证正页
           <el-image
             style="width: 100px; height: 100px"
-            src=""
-            :preview-src-list="srcList"
+            :src="afterData['行驶证正页']"
+            :preview-src-list="afterData.qita"
           >
           </el-image>
         </el-col>
@@ -43,13 +45,14 @@
           行驶证副页
           <el-image
             style="width: 100px; height: 100px"
-            src=""
-            :preview-src-list="srcList"
+            :src="afterData['行驶证副页']"
+            :preview-src-list="afterData.qita"
           >
           </el-image>
         </el-col>
       </el-row>
     </el-card>
+    <!-- 登记栏 -->
     <el-card style="margin-bottom: 10px">
       <div slot="header">
         <span>登记栏</span>
@@ -59,8 +62,8 @@
           登记栏1
           <el-image
             style="width: 100px; height: 100px"
-            src=""
-            :preview-src-list="srcList"
+            :src="afterData['登记栏第1页']"
+            :preview-src-list="afterData.zhengshu"
           >
           </el-image>
         </el-col>
@@ -68,8 +71,8 @@
           登记栏2
           <el-image
             style="width: 100px; height: 100px"
-            src=""
-            :preview-src-list="srcList"
+            :src="afterData['登记栏第2页']"
+            :preview-src-list="afterData.zhengshu"
           >
           </el-image>
         </el-col>
@@ -77,8 +80,8 @@
           登记栏3
           <el-image
             style="width: 100px; height: 100px"
-            src=""
-            :preview-src-list="srcList"
+            :src="afterData['登记栏第3页']"
+            :preview-src-list="afterData.zhengshu"
           >
           </el-image>
         </el-col>
@@ -86,8 +89,8 @@
           登记栏4
           <el-image
             style="width: 100px; height: 100px"
-            src=""
-            :preview-src-list="srcList"
+            :src="afterData['登记栏第4页']"
+            :preview-src-list="afterData.zhengshu"
           >
           </el-image>
         </el-col>
@@ -95,8 +98,8 @@
           登记栏5
           <el-image
             style="width: 100px; height: 100px"
-            src=""
-            :preview-src-list="srcList"
+            :src="afterData['登记栏第5页']"
+            :preview-src-list="afterData.zhengshu"
           >
           </el-image>
         </el-col>
@@ -104,42 +107,34 @@
           登记栏6
           <el-image
             style="width: 100px; height: 100px"
-            src=""
-            :preview-src-list="srcList"
+            :src="afterData['登记栏第6页']"
+            :preview-src-list="afterData.zhengshu"
           >
           </el-image>
         </el-col>
       </el-row>
     </el-card>
+    <!-- 保险信息 -->
     <el-card style="margin-bottom: 10px">
       <div slot="header">
         <span>保险信息</span>
       </div>
       <el-row>
         <el-col :span="4" class="img">
-          保险新单1
+          交强险
           <el-image
             style="width: 100px; height: 100px"
-            src=""
-            :preview-src-list="srcList"
+            :src="afterData['交强险']"
+            :preview-src-list="afterData.baoxian"
           >
           </el-image>
         </el-col>
         <el-col :span="4" class="img">
-          保险新单2
+          商业险
           <el-image
             style="width: 100px; height: 100px"
-            src=""
-            :preview-src-list="srcList"
-          >
-          </el-image>
-        </el-col>
-        <el-col :span="4" class="img">
-          保险新单3
-          <el-image
-            style="width: 100px; height: 100px"
-            src=""
-            :preview-src-list="srcList"
+            :src="afterData['商业险']"
+            :preview-src-list="afterData.baoxian"
           >
           </el-image>
         </el-col>
@@ -148,12 +143,13 @@
           <el-image
             style="width: 100px; height: 100px"
             src=""
-            :preview-src-list="srcList"
+            :preview-src-list="afterData.baoxian"
           >
           </el-image>
         </el-col>
       </el-row>
     </el-card>
+    <!-- 其他资料 -->
     <el-card style="margin-bottom: 10px">
       <div slot="header">
         <span>其他资料</span>
@@ -163,17 +159,17 @@
           购车发票
           <el-image
             style="width: 100px; height: 100px"
-            src=""
-            :preview-src-list="srcList"
+            :src="afterData['购车发票']"
+            :preview-src-list="afterData.qita"
           >
           </el-image>
         </el-col>
         <el-col :span="4" class="img">
-          车间合格证
+          车检合格证
           <el-image
             style="width: 100px; height: 100px"
-            src=""
-            :preview-src-list="srcList"
+            :src="afterData['车检合格证']"
+            :preview-src-list="afterData.qita"
           >
           </el-image>
         </el-col>
@@ -181,8 +177,8 @@
           税票
           <el-image
             style="width: 100px; height: 100px"
-            src=""
-            :preview-src-list="srcList"
+            :src="afterData['税票']"
+            :preview-src-list="afterData.qita"
           >
           </el-image>
         </el-col>
@@ -190,8 +186,8 @@
           税本
           <el-image
             style="width: 100px; height: 100px"
-            src=""
-            :preview-src-list="srcList"
+            :src="afterData['税本']"
+            :preview-src-list="afterData.qita"
           >
           </el-image>
         </el-col>
@@ -199,8 +195,8 @@
           销售+主贷人+车合影
           <el-image
             style="width: 100px; height: 100px"
-            src=""
-            :preview-src-list="srcList"
+            :src="afterData['销售+主贷人+车合影']"
+            :preview-src-list="afterData.qita"
           >
           </el-image>
         </el-col>
@@ -208,8 +204,8 @@
           身份证正面+VIN码
           <el-image
             style="width: 100px; height: 100px"
-            src=""
-            :preview-src-list="srcList"
+            :src="afterData['身份证正面+VIN码']"
+            :preview-src-list="afterData.qita"
           >
           </el-image>
         </el-col>
@@ -217,8 +213,8 @@
           身份证反面+VIN码
           <el-image
             style="width: 100px; height: 100px"
-            src=""
-            :preview-src-list="srcList"
+            :src="afterData['身份证反面+VIN码']"
+            :preview-src-list="afterData.qita"
           >
           </el-image>
         </el-col>
@@ -226,24 +222,25 @@
           其他补充
           <el-image
             style="width: 100px; height: 100px"
-            src=""
-            :preview-src-list="srcList"
+            :src="afterData['其他补充资料']"
+            :preview-src-list="afterData.qita"
           >
           </el-image>
         </el-col>
       </el-row>
     </el-card>
+    <!-- 提车补照 -->
     <el-card style="margin-bottom: 10px">
       <div slot="header">
         <span>提车补照</span>
       </div>
       <el-row>
         <el-col :span="4" class="img">
-          提车照合影
+          提车照及确认书
           <el-image
             style="width: 100px; height: 100px"
-            src=""
-            :preview-src-list="srcList"
+            :src="afterData['提车照及确认书']"
+            :preview-src-list="afterData.tiche"
           >
           </el-image>
         </el-col>
@@ -251,8 +248,8 @@
           手持确认书与车合影
           <el-image
             style="width: 100px; height: 100px"
-            src=""
-            :preview-src-list="srcList"
+            :src="afterData['手持确认书与车合影']"
+            :preview-src-list="afterData.tiche"
           >
           </el-image>
         </el-col>
@@ -260,24 +257,46 @@
           车辆交接确认书
           <el-image
             style="width: 100px; height: 100px"
-            src=""
-            :preview-src-list="srcList"
+            :src="afterData['车辆交接确认书']"
+            :preview-src-list="afterData.tiche"
           >
           </el-image>
         </el-col>
       </el-row>
     </el-card>
+    <!-- 绿本邮寄 -->
     <el-card style="margin-bottom: 10px">
       <div slot="header">
         <span>绿本邮寄</span>
       </div>
       <el-row style="font-size: 14px">
-        <el-col :span="8" style="margin: 5px 0">申请单号：</el-col>
-        <el-col :span="8" style="margin: 5px 0">客户姓名：</el-col>
-        <el-col :span="8" style="margin: 5px 0">快递公司：</el-col>
-        <el-col :span="8" style="margin: 5px 0">快递单号：</el-col>
-        <el-col :span="8" style="margin: 5px 0">附件类型：</el-col>
-        <el-col :span="24" style="margin: 5px 0">备注：</el-col>
+        <el-col :span="8" style="margin: 5px 0"
+          >申请单号：{{ afterData.lvben.shenqingdanhao }}</el-col
+        >
+        <el-col :span="8" style="margin: 5px 0"
+          >客户姓名：{{ afterData.lvben.name }}</el-col
+        >
+        <el-col :span="8" style="margin: 5px 0"
+          >快递公司：{{ afterData.lvben.gongsi }}</el-col
+        >
+        <el-col :span="8" style="margin: 5px 0"
+          >快递单号：{{ afterData.lvben.kuaididanhao }}</el-col
+        >
+        <el-col :span="8" style="margin: 5px 0"
+          >附件类型：{{ afterData.lvben.type }}</el-col
+        >
+        <el-col :span="8" style="margin: 5px 0"
+          >材料内容：{{ afterData.lvben.count }}</el-col
+        >
+        <el-col :span="4" class="img">
+          车辆交接确认书
+          <el-image
+            style="width: 100px; height: 100px"
+            :src="afterData.lvben.fujian"
+            :preview-src-list="afterData.tiche"
+          >
+          </el-image>
+        </el-col>
         <el-button
           v-if="pdfUrl"
           type="primary"
@@ -346,11 +365,10 @@ export default {
     return {
       dialogVisible: false,
       numPages: null, // pdf 总页数
-      srcList: [],
       pdfUrl: '',
       textarea: '',
       approvalType: '',
-      afterData: { shenpi: {} },
+      afterData: { shenpi: {}, lvben: {} },
     }
   },
   computed: {},
@@ -368,6 +386,7 @@ export default {
       try {
         const { data } = await getAfterLoanDetails(this.$route.query.id)
         this.afterData = data
+        this.afterData.tiche.push(data.lvben.fujian)
         this.textarea = data.shenpi.opinion
         console.log(data)
       } catch (error) {
@@ -412,5 +431,9 @@ export default {
   flex-direction: column-reverse;
   font-size: 14px;
   margin: 5px 0;
+}
+/deep/.el-image-viewer__next,
+/deep/.el-image-viewer__prev {
+  display: none;
 }
 </style>

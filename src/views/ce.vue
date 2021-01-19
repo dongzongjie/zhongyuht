@@ -36,7 +36,19 @@
     </el-dialog>
     <el-image
       style="width: 100px; height: 100px"
+      :src="ceshiList[241]"
+      :preview-src-list="srcList"
+    >
+    </el-image>
+    <el-image
+      style="width: 100px; height: 100px"
       :src="ceshiList[242]"
+      :preview-src-list="srcList"
+    >
+    </el-image>
+    <el-image
+      style="width: 100px; height: 100px"
+      :src="ceshiList[243]"
       :preview-src-list="srcList"
     >
     </el-image>
@@ -44,13 +56,6 @@
     <button @click="ceshi1">获取百融token</button>
     <button @click="ceshi2">点击下载pdf</button>
     <button @click="ceshi3">测试3</button>
-    <iframe
-      src="http://192.168.31.86:8080/profile/2021/01/15/985a7660-0af1-4aac-801f-1bbd9bf90f66.docx"
-      width="100%"
-      height="100%"
-      frameborder="1"
-    >
-    </iframe>
   </div>
 </template>
 
@@ -86,10 +91,14 @@ export default {
       numPages: null, // pdf 总页数
       dialogVisible: false,
       ceshiList: {
+        243: 'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg',
         242: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
+        241: 'https://fuss10.elemecdn.com/d/e6/c4d93a3805b3ce3f323f7974e6f78jpeg.jpeg',
       },
       srcList: [
         'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
+        'https://fuss10.elemecdn.com/d/e6/c4d93a3805b3ce3f323f7974e6f78jpeg.jpeg',
+        'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg',
       ],
     }
   },

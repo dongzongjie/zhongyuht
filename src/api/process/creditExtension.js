@@ -8,6 +8,15 @@ export function getCreditExtensionList() {
     })
 }
 
+// 授信列表立即处理+解锁
+export function creditExtensionHandle(data) {
+    return request({
+        url: '/system/loan/grant',
+        method: 'post',
+        data
+    })
+}
+
 // 获取授信详情
 export function creditExtensionDetails(transactionCode) {
     return request({

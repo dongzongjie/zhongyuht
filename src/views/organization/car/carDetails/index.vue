@@ -303,7 +303,7 @@
                 ></el-input>
               </template>
             </el-table-column>
-            <el-table-column label="放款账户">
+            <!-- <el-table-column label="放款账户">
               <template slot-scope="scope">
                 <el-input
                   v-model="scope.row.loanAccount"
@@ -318,7 +318,7 @@
                   :style="{ width: '100%', height: '100%' }"
                 ></el-input>
               </template>
-            </el-table-column>
+            </el-table-column> -->
             <el-table-column label="开户银行">
               <template slot-scope="scope">
                 <el-input

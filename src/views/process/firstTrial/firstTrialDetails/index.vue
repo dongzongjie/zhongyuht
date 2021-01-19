@@ -163,7 +163,7 @@
               身份证正面
               <el-image
                 style="width: 100px; height: 100px"
-                :src="firstDetails.borrower.cardAddress"
+                :src="firstDetails.borrower.obverseAddress"
                 :preview-src-list="srcList"
               >
               </el-image>
@@ -751,7 +751,7 @@
               销售和车合影
               <el-image
                 style="width: 100px; height: 100px"
-                :src="firstDetails.xxhchy"
+                :src="firstDetails.xshchy"
                 :preview-src-list="srcList"
               >
               </el-image>
@@ -772,7 +772,7 @@
               主贷人身份证（头像面）
               <el-image
                 style="width: 100px; height: 100px"
-                :src="firstDetails.applicant.cardAddress"
+                :src="firstDetails.borrower.obverseAddress"
                 :preview-src-list="srcList"
               >
               </el-image>
@@ -781,7 +781,7 @@
               主贷人身份证（国徽面）
               <el-image
                 style="width: 100px; height: 100px"
-                :src="firstDetails.applicant.backAddress"
+                :src="firstDetails.borrower.backAddress"
                 :preview-src-list="srcList"
               >
               </el-image>
@@ -799,7 +799,7 @@
               征信授权书
               <el-image
                 style="width: 100px; height: 100px"
-                src=""
+                :src="firstDetails.borrower.powerAddress"
                 :preview-src-list="srcList"
               >
               </el-image>
@@ -1256,8 +1256,9 @@ export default {
         this.findSelectState()
         this.findFirstHandle()
         this.srcList.push(
-          data.borrower.cardAddress,
+          data.borrower.obverseAddress,
           data.borrower.backAddress,
+          data.borrower.powerAddress,
           data.applicant.cardAddress,
           data.applicant.backAddress
         )
@@ -1494,6 +1495,10 @@ export default {
 }
 .box-card {
   margin-bottom: 10px;
+}
+/deep/.el-image-viewer__next,
+/deep/.el-image-viewer__prev {
+  display: none;
 }
 // #JZGPDF {
 //   float: right;

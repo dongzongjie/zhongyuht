@@ -246,8 +246,10 @@ export default {
           this.$route.query.transactionCode
         )
         console.log(data)
-        this.textarea = data.advise
-        this.approvalType = data.approvalType
+        if (data) {
+          this.textarea = data.advise
+          this.approvalType = data.approvalType
+        }
       } catch (error) {
         console.log(error)
       }
@@ -268,5 +270,9 @@ export default {
 }
 .el-col {
   margin: 5px 0;
+}
+/deep/.el-image-viewer__next,
+/deep/.el-image-viewer__prev {
+  display: none;
 }
 </style>

@@ -1,9 +1,10 @@
 <template>
   <div class="app-container">
-    <el-tabs tab-position="left">
+    <el-tabs tab-position="left" v-model="activeName">
       <el-tab-pane
         label="秒批录入信息表"
         style="padding: 0 50px 50px; font-size: 14px"
+        name="first"
       >
         <!-- 基本信息 -->
         <el-card class="box-card">
@@ -388,6 +389,7 @@ export default {
   components: {},
   data() {
     return {
+      activeName: 'first',
       credit: '', // 征信结果
       detailsCredit: '', // 详版征信
       isDisabled: false, // 禁用按钮
@@ -544,5 +546,9 @@ export default {
   .box-card {
     margin-bottom: 10px;
   }
+}
+/deep/.el-image-viewer__next,
+/deep/.el-image-viewer__prev {
+  display: none;
 }
 </style>

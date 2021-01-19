@@ -160,7 +160,7 @@ export default {
         uploadAvatar(formData).then((response) => {
           if (response.code === 200) {
             this.open = false
-            this.options.img = response.imgUrl // process.env.VUE_APP_BASE_API + response.imgUrl // 'http://192.168.31.82/dev-api' + response.imgUrl
+            this.options.img = response.imgUrl // process.env.VUE_APP_BASE_API + response.imgUrl
             store.commit('SET_AVATAR', this.options.img)
             this.msgSuccess('修改成功')
           }

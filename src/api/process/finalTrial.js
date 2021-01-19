@@ -8,6 +8,15 @@ export function getFinalTrialList() {
     })
 }
 
+// 终审列表立即处理+解锁
+export function finalTrialHandle(data) {
+    return request({
+        url: '/system/loan/repeat',
+        method: 'post',
+        data
+    })
+}
+
 // 终审处理结果
 export function finalHandle(data) {
     return request({

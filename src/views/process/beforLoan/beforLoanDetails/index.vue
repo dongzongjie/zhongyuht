@@ -5,13 +5,11 @@
         <span>车商收款账户设置</span>
       </div>
       <el-row>
-        <el-col :span="8">车商收款账户：</el-col>
-        <el-col :span="8">收款人姓名：</el-col>
-        <el-col :span="8">收款账户证件号码：</el-col>
-        <el-col :span="8">收款借记卡卡号：</el-col>
-        <el-col :span="8">账户类型：</el-col>
-        <el-col :span="8">首款开户银行：</el-col>
-        <el-col :span="8">收款开户支行：</el-col>
+        <el-col :span="8">收款人姓名：{{ Account.accountName }}</el-col>
+        <el-col :span="8">收款借记卡卡号：{{ Account.accountNumber }}</el-col>
+        <el-col :span="8">账户类型：{{ Account.accountType }}</el-col>
+        <el-col :span="8">收款开户银行：{{ Account.accountLicence }}</el-col>
+        <el-col :span="8">收款开户支行：{{ Account.accountSubBranch }}</el-col>
       </el-row>
     </el-card>
     <el-card>
@@ -19,47 +17,63 @@
         <span>返点方案</span>
       </div>
       <el-tabs>
-        <el-tab-pane label="全额分配">
+        <el-tab-pane label="全额分配" v-if="type === '全额分配'">
           <el-row>
-            <el-col :span="8">选择放款账户：</el-col>
-            <el-col :span="8">收款人姓名：</el-col>
-            <el-col :span="8">收款账户证件号码：</el-col>
-            <el-col :span="8">收款借记卡卡号：</el-col>
-            <el-col :span="8">账户类型：</el-col>
-            <el-col :span="8">首款开户银行：</el-col>
-            <el-col :span="8">收款开户支行：</el-col>
+            <el-col :span="8">收款人姓名：{{ Account.accountName }}</el-col>
+            <el-col :span="8"
+              >收款借记卡卡号：{{ Account.accountNumber }}</el-col
+            >
+            <el-col :span="8">账户类型：{{ Account.accountType }}</el-col>
+            <el-col :span="8"
+              >收款开户银行：{{ Account.accountLicence }}</el-col
+            >
+            <el-col :span="8"
+              >收款开户支行：{{ Account.accountSubBranch }}</el-col
+            >
           </el-row>
         </el-tab-pane>
-        <el-tab-pane label="单账户分配">
+        <el-tab-pane label="单账户全额" v-if="type === '单账户全额'">
           <el-row>
-            <el-col :span="8">选择放款账户：</el-col>
-            <el-col :span="8">收款人姓名：</el-col>
-            <el-col :span="8">收款账户证件号码：</el-col>
-            <el-col :span="8">收款借记卡卡号：</el-col>
-            <el-col :span="8">账户类型：</el-col>
-            <el-col :span="8">首款开户银行：</el-col>
-            <el-col :span="8">收款开户支行：</el-col>
+            <el-col :span="8">收款人姓名：{{ Account.accountName }}</el-col>
+            <el-col :span="8"
+              >收款借记卡卡号：{{ Account.accountNumber }}</el-col
+            >
+            <el-col :span="8">账户类型：{{ Account.accountType }}</el-col>
+            <el-col :span="8"
+              >收款开户银行：{{ Account.accountLicence }}</el-col
+            >
+            <el-col :span="8"
+              >收款开户支行：{{ Account.accountSubBranch }}</el-col
+            >
           </el-row>
         </el-tab-pane>
-        <el-tab-pane label="双账户定额">
+        <el-tab-pane label="双账户定额" v-if="type === '双账户定额'">
           <el-row>
-            <el-col :span="8">选择放款账户一：</el-col>
-            <el-col :span="8">收款人姓名：</el-col>
-            <el-col :span="8">收款账户证件号码：</el-col>
-            <el-col :span="8">收款借记卡卡号：</el-col>
-            <el-col :span="8">账户类型：</el-col>
-            <el-col :span="8">首款开户银行：</el-col>
-            <el-col :span="8">收款开户支行：</el-col>
+            <el-col :span="8">收款人姓名1：{{ Account.accountName }}</el-col>
+            <el-col :span="8"
+              >收款借记卡卡号：{{ Account.accountNumber }}</el-col
+            >
+            <el-col :span="8">账户类型：{{ Account.accountType }}</el-col>
+            <el-col :span="8"
+              >收款开户银行：{{ Account.accountLicence }}</el-col
+            >
+            <el-col :span="8"
+              >收款开户支行：{{ Account.accountSubBranch }}</el-col
+            >
           </el-row>
           <br />
           <el-row>
-            <el-col :span="8">选择放款账户二：</el-col>
-            <el-col :span="8">收款人姓名：</el-col>
-            <el-col :span="8">收款账户证件号码：</el-col>
-            <el-col :span="8">收款借记卡卡号：</el-col>
-            <el-col :span="8">账户类型：</el-col>
-            <el-col :span="8">首款开户银行：</el-col>
-            <el-col :span="8">收款开户支行：</el-col>
+            <el-col :span="8">收款人姓名2：{{ Account2.accountName }}</el-col>
+            <el-col :span="8"
+              >收款借记卡卡号：{{ Account2.accountNumber }}</el-col
+            >
+            <el-col :span="8">账户类型：{{ Account2.accountType }}</el-col>
+            <el-col :span="8"
+              >收款开户银行：{{ Account2.accountLicence }}</el-col
+            >
+            <el-col :span="8"
+              >收款开户支行：{{ Account2.accountSubBranch }}</el-col
+            >
           </el-row>
         </el-tab-pane>
       </el-tabs>
@@ -132,12 +146,12 @@
           GPS安装单
           <el-image
             style="width: 100px; height: 100px"
-            :src="GPSdata.azd"
+            :src="GPSdata.supplyFile"
             :preview-src-list="srcList"
           >
           </el-image>
         </el-col>
-        <el-col :span="8" class="img">
+        <!-- <el-col :span="8" class="img">
           车辆铭牌
           <el-image
             style="width: 100px; height: 100px"
@@ -154,7 +168,7 @@
             :preview-src-list="srcList"
           >
           </el-image>
-        </el-col>
+        </el-col> -->
       </el-row>
     </el-card>
     <el-card>
@@ -249,9 +263,11 @@ export default {
       textarea: '', // 意见
       srcList: [], // 图片数组
       Account: [], // 账户数据
+      Account2: [], // 账户数据
       GPSdata: {}, // GPS数据
       insuranceData: {}, // 保险数据
       state: '', // 贷前处理结果
+      type: '', // 返点类型
     }
   },
   computed: {},
@@ -272,8 +288,14 @@ export default {
         )
         console.log(data)
         this.Account = data.Account
+        this.Account2 = data.Account2
         this.GPSdata = data.Gps
         this.insuranceData = data.Insurance
+        this.type = data.type
+        data.pic.forEach((item) => {
+          this.GPSdata[item.fileName] = item.filePath
+          this.srcList.push(item.filePath)
+        })
         this.getBeforLoanHandle()
       } catch (error) {}
     },
@@ -342,5 +364,9 @@ h4 {
 }
 .el-card {
   margin-bottom: 10px;
+}
+/deep/.el-image-viewer__next,
+/deep/.el-image-viewer__prev {
+  display: none;
 }
 </style>

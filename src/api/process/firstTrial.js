@@ -9,6 +9,15 @@ export function getFirstTrialList(params) {
     })
 }
 
+// 初审列表立即处理+解锁
+export function firstTrialHandle(data) {
+    return request({
+        url: '/system/loan/allow',
+        method: 'post',
+        data
+    })
+}
+
 // getByToken
 export function getByToken() {
     return request({

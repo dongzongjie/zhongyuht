@@ -244,14 +244,14 @@ export default {
           operator: this.$store.state.user.name,
         })
         this.getList()
-        // this.$router.push({
-        //   path: '/process/beforLoanDetails',
-        //   name: 'BeforLoanDetails',
-        //   query: {
-        //     transactionCode: item.transactionCode,
-        //     // id: item.id,
-        //   },
-        // })
+        this.$router.push({
+          path: '/process/beforLoanDetails',
+          name: 'BeforLoanDetails',
+          query: {
+            transactionCode: item.transactionCode,
+            // id: item.id,
+          },
+        })
       } catch (error) {
         console.log(error)
       }
