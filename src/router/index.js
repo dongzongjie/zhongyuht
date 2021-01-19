@@ -123,17 +123,124 @@ export const constantRoutes = [{
     {
         path: '/process',
         component: Layout,
-        hidden: true
+        hidden: true,
+        children: [{
+                path: 'businessDetails',
+                component: (resolve) => require(['@/views/process/business/businessDetails'], resolve),
+                name: 'BusinessDetails',
+                meta: {
+                    title: '秒批详情'
+                }
+            },
+            {
+                path: 'firstTrialDetails',
+                component: (resolve) => require(['@/views/process/firstTrial/firstTrialDetails'], resolve),
+                name: 'FirstTrialDetails',
+                meta: {
+                    title: '初审详情'
+                }
+            },
+            {
+                path: 'finalTrialDetails',
+                component: (resolve) => require(['@/views/process/finalTrial/finalTrialDetails'], resolve),
+                name: 'FinalTrialDetails',
+                meta: {
+                    title: '终审详情'
+                }
+            },
+            {
+                path: 'creditExtensionDetails',
+                component: (resolve) => require(['@/views/process/creditExtension/creditExtensionDetails'], resolve),
+                name: 'CreditExtensionDetails',
+                meta: {
+                    title: '授信详情'
+                }
+            },
+            {
+                path: 'beforLoanDetails',
+                component: (resolve) => require(['@/views/process/beforLoan/beforLoanDetails'], resolve),
+                name: 'BeforLoanDetails',
+                meta: {
+                    title: '贷前详情'
+                }
+            },
+            {
+                path: 'afterLoanDetails',
+                component: (resolve) => require(['@/views/process/afterLoan/afterLoanDetails'], resolve),
+                name: 'AfterLoanDetails',
+                meta: {
+                    title: '贷后详情'
+                }
+            },
+            {
+                path: 'reportBankDetails',
+                component: (resolve) => require(['@/views/process/reportBank/reportBankDetails'], resolve),
+                name: 'ReportBankDetails',
+                meta: {
+                    title: '上报银行详情'
+                }
+            }
+        ]
     },
     {
         path: '/organization',
         component: Layout,
-        hidden: true
+        hidden: true,
+        children: [{
+                path: 'bankDetails',
+                component: (resolve) => require(['@/views/organization/bank/bankDetails'], resolve),
+                name: 'BankDetails',
+                meta: {
+                    title: '合作银行详情'
+                }
+            },
+            {
+                path: 'carDetails',
+                component: (resolve) => require(['@/views/organization/car/carDetails'], resolve),
+                name: 'CarDetails',
+                meta: {
+                    title: '车商详情'
+                }
+            },
+            {
+                path: 'insuranceTypeDetails',
+                component: (resolve) => require(['@/views/organization/insuranceType/insuranceTypeDetails'], resolve),
+                name: 'InsuranceTypeDetails',
+                meta: {
+                    title: '保险详情'
+                }
+            }
+        ]
     },
     {
         path: '/overdue',
         component: Layout,
-        hidden: true
+        hidden: true,
+        children: [{
+                path: 'informationDetails',
+                component: (resolve) => require(['@/views/overdue/information/informationDetails'], resolve),
+                name: 'InformationDetails',
+                meta: {
+                    title: '逾期信息详情'
+                }
+            },
+            {
+                path: 'payOffDetails',
+                component: (resolve) => require(['@/views/overdue/payOff/payOffDetails'], resolve),
+                name: 'PayOffDetails',
+                meta: {
+                    title: '逾期还清详情'
+                }
+            },
+            {
+                path: 'GPSAbnormalDetails',
+                component: (resolve) => require(['@/views/overdue/GPSAbnormal/GPSAbnormalDetails'], resolve),
+                name: 'GPSAbnormalDetails',
+                meta: {
+                    title: 'GPS异常详情'
+                }
+            }
+        ]
     }
 ]
 
