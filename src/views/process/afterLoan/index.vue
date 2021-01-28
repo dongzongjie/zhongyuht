@@ -102,6 +102,16 @@
         </template>
       </el-table-column>
       <el-table-column label="审批留言" align="center" prop="opinion" />
+      <el-table-column label="历史审批意见" align="center">
+        <template slot-scope="scope">
+          <el-button
+            size="mini"
+            type="text"
+            @click="historyOpinion(scope.row.transactionCode)"
+            >查看</el-button
+          >
+        </template>
+      </el-table-column>
       <el-table-column label="当前操作人" align="center" prop="operator" />
       <el-table-column
         label="操作"
@@ -134,6 +144,29 @@
       :limit.sync="queryParams.pageSize"
       @pagination="getList"
     />
+    <!-- 历史审批意见 -->
+    <el-dialog
+      title="历史审批意见"
+      :visible.sync="historyOpinionDialogVisible"
+      width="30%"
+      center
+    >
+      <div style="margin: 20px">
+        初审意见：{{ historyOpinionData.allowOpinion }}
+      </div>
+      <div style="margin: 20px">
+        复审意见：{{ historyOpinionData.repeatOpinion }}
+      </div>
+      <div style="margin: 20px">
+        授信意见：{{ historyOpinionData.grantOpinion }}
+      </div>
+      <div style="margin: 20px">
+        贷前意见：{{ historyOpinionData.daiqianOpinion }}
+      </div>
+      <div style="margin: 20px">
+        贷后意见：{{ historyOpinionData.daihouOpinion }}
+      </div>
+    </el-dialog>
   </div>
 </template>
 
@@ -151,6 +184,7 @@ import {
   getAfterLoanList,
   afterLoanHandlePeople,
 } from '@/api/process/afterLoan'
+import { getHistoryOpinion } from '@/api/process/firstTrial'
 
 export default {
   name: 'AfterLoan',
@@ -189,6 +223,8 @@ export default {
       dialogVisible: false,
       // 文本域
       textarea: '',
+      historyOpinionDialogVisible: false, // 历史审批意见dialog
+      historyOpinionData: {}, // 历史审批意见数据
     }
   },
   created() {
@@ -231,6 +267,19 @@ export default {
       }
       this.handleQuery()
     },
+    // 查看历史审批意见
+    async historyOpinion(transactionCode) {
+      try {
+        const { data } = await getHistoryOpinion(transactionCode)
+        console.log(data)
+        if (data) {
+          this.historyOpinionData = data
+        }
+        this.historyOpinionDialogVisible = true
+      } catch (error) {
+        console.log(error)
+      }
+    },
     // 立即处理
     async handle(item) {
       try {
@@ -248,7 +297,9 @@ export default {
             id: item.id,
           },
         })
-      } catch (error) {}
+      } catch (error) {
+        this.getList()
+      }
     },
     // 解锁
     async unlock(id) {

@@ -17,11 +17,28 @@ export function handleReport(data) {
     })
 }
 
+// 获取上报银行贷款信息
+export function getLoanData(transactionCode) {
+    return request({
+        url: '/system/cailiao/fenqi?transactionCode=' + transactionCode,
+        method: 'get',
+    })
+}
+
 // 获取上报银行开卡信息
 export function getCardData(transactionCode) {
     return request({
         url: '/system/test/kaika?transactionCode=' + transactionCode,
         method: 'get',
+    })
+}
+
+// 提交贷款信息
+export function loanSubmit(data) {
+    return request({
+        url: '/system/test/fangkuan',
+        method: 'post',
+        data
     })
 }
 

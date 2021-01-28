@@ -74,6 +74,12 @@
     </el-row>
     <!-- 表格 -->
     <el-table v-loading="loading" :data="businessList">
+      <el-table-column
+        label="订单创建时间"
+        align="center"
+        prop="createTime"
+        sortable
+      />
       <el-table-column label="订单编号" align="center" prop="transactionCode" />
       <el-table-column label="客户名称" align="center" prop="name" />
       <el-table-column label="销售团队" align="center" prop="team" />
@@ -235,7 +241,6 @@ export default {
         })
       } catch (error) {
         this.getList()
-        console.log(error)
       }
     },
     // 解锁

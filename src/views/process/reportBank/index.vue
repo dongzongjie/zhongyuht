@@ -252,7 +252,9 @@ export default {
           this.msgSuccess('解锁成功')
           this.getList()
         })
-        .catch(function () {})
+        .catch(function () {
+          this.getList()
+        })
     },
     // 我的客户
     myCustomer() {

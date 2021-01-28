@@ -1,1228 +1,6 @@
 <template>
   <div class="app-container">
     <el-tabs tab-position="left">
-      <el-tab-pane label="贷款信息">
-        <el-form ref="loanForm" :model="loanForm">
-          <!-- 订单信息 -->
-          <el-card>
-            <div slot="header">
-              <span>订单信息</span>
-            </div>
-            <el-row>
-              <el-col :span="12">
-                <el-form-item label="业务类型">
-                  <el-select
-                    v-model="loanForm.businessType"
-                    placeholder="请选择"
-                  >
-                    <el-option label="测" :value="1"></el-option>
-                  </el-select>
-                </el-form-item>
-              </el-col>
-              <el-col :span="12">
-                <el-form-item label="经办银行">
-                  <el-select
-                    v-model="loanForm.businessType"
-                    placeholder="请选择"
-                  >
-                  </el-select>
-                </el-form-item>
-              </el-col>
-              <el-col :span="12">
-                <el-form-item label="进件来源">
-                  <el-select
-                    v-model="loanForm.businessType"
-                    placeholder="请选择"
-                  >
-                  </el-select>
-                </el-form-item>
-              </el-col>
-              <el-col :span="12">
-                <el-form-item label="签约方式">
-                  <el-select
-                    v-model="loanForm.businessType"
-                    placeholder="请选择"
-                  >
-                  </el-select>
-                </el-form-item>
-              </el-col>
-            </el-row>
-          </el-card>
-          <!-- 车辆信息 -->
-          <el-card>
-            <div slot="header">
-              <span>车辆信息</span>
-            </div>
-            <el-row>
-              <el-col :span="12">
-                <el-form-item label="车辆型号">
-                  <el-select
-                    v-model="loanForm.businessType"
-                    placeholder="请选择"
-                  >
-                  </el-select>
-                </el-form-item>
-              </el-col>
-              <el-col :span="12">
-                <el-form-item label="车辆价格">
-                  <el-input
-                    v-model="loanForm.businessType"
-                    suffix-icon="el-icon-zyrz-yuan"
-                  >
-                  </el-input>
-                </el-form-item>
-              </el-col>
-              <el-col :span="12">
-                <el-form-item label="系统查询价">
-                  <el-input
-                    v-model="loanForm.businessType"
-                    suffix-icon="el-icon-zyrz-yuan"
-                  >
-                  </el-input>
-                </el-form-item>
-              </el-col>
-              <el-col :span="12">
-                <el-form-item label="车架号">
-                  <el-input v-model="loanForm.businessType"> </el-input>
-                </el-form-item>
-              </el-col>
-              <el-col :span="12">
-                <el-form-item label="发动机号">
-                  <el-input v-model="loanForm.businessType"> </el-input>
-                </el-form-item>
-              </el-col>
-              <el-col :span="12">
-                <el-form-item label="意向价格">
-                  <el-input
-                    v-model="loanForm.businessType"
-                    suffix-icon="el-icon-zyrz-yuan"
-                  >
-                  </el-input>
-                </el-form-item>
-              </el-col>
-            </el-row>
-          </el-card>
-          <!-- 分期信息 -->
-          <el-card>
-            <div slot="header">
-              <span>分期信息</span>
-            </div>
-            <el-row>
-              <el-col :span="12">
-                <el-form-item label="首付金额">
-                  <el-input
-                    v-model="loanForm.businessType"
-                    suffix-icon="el-icon-zyrz-yuan"
-                  >
-                  </el-input>
-                </el-form-item>
-              </el-col>
-              <el-col :span="12">
-                <el-form-item label="首付比例">
-                  <el-input
-                    v-model="loanForm.businessType"
-                    suffix-icon="el-icon-zyrz-baifenhao"
-                  >
-                  </el-input>
-                </el-form-item>
-              </el-col>
-              <el-col :span="12">
-                <el-form-item label="贷款金额">
-                  <el-input
-                    v-model="loanForm.businessType"
-                    suffix-icon="el-icon-zyrz-yuan"
-                  >
-                  </el-input>
-                </el-form-item>
-              </el-col>
-              <el-col :span="12">
-                <el-form-item label="分期金额">
-                  <el-input
-                    v-model="loanForm.businessType"
-                    suffix-icon="el-icon-zyrz-yuan"
-                  >
-                  </el-input>
-                </el-form-item>
-              </el-col>
-              <el-col :span="12">
-                <el-form-item label="还款期限">
-                  <el-select
-                    v-model="loanForm.businessType"
-                    placeholder="请选择"
-                  >
-                  </el-select>
-                </el-form-item>
-              </el-col>
-              <el-col :span="12">
-                <el-form-item label="银行基准利率">
-                  <el-input
-                    v-model="loanForm.businessType"
-                    suffix-icon="el-icon-zyrz-baifenhao"
-                  >
-                  </el-input>
-                </el-form-item>
-              </el-col>
-              <el-col :span="12">
-                <el-form-item label="首月还款金额">
-                  <el-input
-                    v-model="loanForm.businessType"
-                    suffix-icon="el-icon-zyrz-yuan"
-                  >
-                  </el-input>
-                </el-form-item>
-              </el-col>
-              <el-col :span="12">
-                <el-form-item label="月还款金额">
-                  <el-input
-                    v-model="loanForm.businessType"
-                    suffix-icon="el-icon-zyrz-yuan"
-                  >
-                  </el-input>
-                </el-form-item>
-              </el-col>
-              <el-col :span="12">
-                <el-form-item label="营销档案编号">
-                  <el-input v-model="loanForm.businessType"> </el-input>
-                </el-form-item>
-              </el-col>
-              <el-col :span="12">
-                <el-form-item label="手续费总额">
-                  <el-input
-                    v-model="loanForm.businessType"
-                    suffix-icon="el-icon-zyrz-yuan"
-                  >
-                  </el-input>
-                </el-form-item>
-              </el-col>
-              <el-col :span="12">
-                <el-form-item label="附加费">
-                  <el-input
-                    v-model="loanForm.businessType"
-                    suffix-icon="el-icon-zyrz-yuan"
-                  >
-                  </el-input>
-                </el-form-item>
-              </el-col>
-              <el-col :span="12">
-                <el-form-item label="个人总资产">
-                  <el-input
-                    v-model="loanForm.businessType"
-                    suffix-icon="el-icon-zyrz-yuan"
-                  >
-                  </el-input>
-                </el-form-item>
-              </el-col>
-              <el-col :span="12">
-                <el-form-item label="现住房面积">
-                  <el-input
-                    v-model="loanForm.businessType"
-                    suffix-icon="el-icon-zyrz-m"
-                  >
-                  </el-input>
-                </el-form-item>
-              </el-col>
-              <el-col :span="12">
-                <el-form-item label="其他负债余额">
-                  <el-input
-                    v-model="loanForm.businessType"
-                    suffix-icon="el-icon-zyrz-yuan"
-                  >
-                  </el-input>
-                </el-form-item>
-              </el-col>
-              <el-col :span="12">
-                <el-form-item label="其他月还款额">
-                  <el-input
-                    v-model="loanForm.businessType"
-                    suffix-icon="el-icon-zyrz-yuan"
-                  >
-                  </el-input>
-                </el-form-item>
-              </el-col>
-              <el-col :span="12">
-                <el-form-item label="营销代码">
-                  <el-input v-model="loanForm.businessType"> </el-input>
-                </el-form-item>
-              </el-col>
-              <el-col :span="12">
-                <el-form-item label="收入还贷比">
-                  <el-input
-                    v-model="loanForm.businessType"
-                    suffix-icon="el-icon-zyrz-baifenhao"
-                  >
-                  </el-input>
-                </el-form-item>
-              </el-col>
-            </el-row>
-          </el-card>
-          <!-- 主借款人信息 -->
-          <el-card>
-            <div slot="header">
-              <span>主借款人信息</span>
-            </div>
-            <el-row>
-              <el-col :span="12">
-                <el-form-item label="税后月收入">
-                  <el-input
-                    v-model="loanForm.businessType"
-                    suffix-icon="el-icon-zyrz-yuan"
-                  >
-                  </el-input>
-                </el-form-item>
-              </el-col>
-            </el-row>
-          </el-card>
-          <!-- 备注信息 -->
-          <el-card>
-            <div slot="header">
-              <span>备注信息</span>
-            </div>
-          </el-card>
-          <!-- 收款信息 -->
-          <el-card>
-            <div slot="header">
-              <span>收款信息</span>
-            </div>
-            <el-row>
-              <el-col :span="12">
-                <el-form-item label="支付模式">
-                  <el-select
-                    v-model="loanForm.businessType"
-                    placeholder="请选择"
-                  >
-                    <el-option label="测" :value="1"></el-option>
-                  </el-select>
-                </el-form-item>
-              </el-col>
-              <el-col :span="12">
-                <el-form-item label="收款对象类型">
-                  <el-select
-                    v-model="loanForm.businessType"
-                    placeholder="请选择"
-                  >
-                  </el-select>
-                </el-form-item>
-              </el-col>
-              <el-col :span="12">
-                <el-form-item label="融资担保机构编号">
-                  <el-input v-model="loanForm.businessType"> </el-input>
-                </el-form-item>
-              </el-col>
-              <el-col :span="12">
-                <el-form-item label="合作机构编号">
-                  <el-input v-model="loanForm.businessType"> </el-input>
-                </el-form-item>
-              </el-col>
-              <el-col :span="12">
-                <el-form-item label="保险机构编号">
-                  <el-input v-model="loanForm.businessType"> </el-input>
-                </el-form-item>
-              </el-col>
-            </el-row>
-          </el-card>
-          <!-- 担保信息 -->
-          <el-card>
-            <div slot="header">
-              <span>担保信息</span>
-            </div>
-            <el-row>
-              <el-col :span="12">
-                <el-form-item label="工行业务模式">
-                  <el-select
-                    v-model="loanForm.businessType"
-                    placeholder="请选择"
-                  >
-                    <el-option label="测" value="ce"></el-option>
-                  </el-select>
-                </el-form-item>
-              </el-col>
-              <el-col :span="12">
-                <el-form-item label="他顷权证号">
-                  <el-input v-model="loanForm.businessType"> </el-input>
-                </el-form-item>
-              </el-col>
-              <el-col :span="12">
-                <el-form-item label="抵押品名称">
-                  <el-input v-model="loanForm.businessType"> </el-input>
-                </el-form-item>
-              </el-col>
-              <el-col :span="12">
-                <el-form-item label="权属人姓名">
-                  <el-input v-model="loanForm.businessType"> </el-input>
-                </el-form-item>
-              </el-col>
-              <el-col :span="12">
-                <el-form-item label="申请人与抵押物权属人关系">
-                  <el-select
-                    v-model="loanForm.businessType"
-                    placeholder="请选择"
-                  >
-                  </el-select>
-                </el-form-item>
-              </el-col>
-              <el-col :span="12">
-                <el-form-item label="车牌号">
-                  <el-input v-model="loanForm.businessType"> </el-input>
-                </el-form-item>
-              </el-col>
-              <el-col :span="12">
-                <el-form-item label="抵押品类别">
-                  <el-select
-                    v-model="loanForm.businessType"
-                    placeholder="请选择"
-                  >
-                  </el-select>
-                </el-form-item>
-              </el-col>
-              <el-col :span="12">
-                <el-form-item label="抵押品价值">
-                  <el-input
-                    v-model="loanForm.businessType"
-                    suffix-icon="el-icon-zyrz-yuan"
-                  >
-                  </el-input>
-                </el-form-item>
-              </el-col>
-              <el-col :span="12">
-                <el-form-item label="抵押品地址">
-                  <el-input v-model="loanForm.businessType"> </el-input>
-                </el-form-item>
-              </el-col>
-              <el-col :span="12">
-                <el-form-item label="他项权证登记日期">
-                  <el-date-picker
-                    v-model="loanForm.date"
-                    type="date"
-                    placeholder="选择日期"
-                  >
-                  </el-date-picker>
-                </el-form-item>
-              </el-col>
-              <el-col :span="12">
-                <el-form-item label="预计可办理他项权日期">
-                  <el-date-picker
-                    v-model="loanForm.date"
-                    type="date"
-                    placeholder="选择日期"
-                  >
-                  </el-date-picker>
-                </el-form-item>
-              </el-col>
-              <el-col :span="12">
-                <el-form-item label="最高抵押率">
-                  <el-input
-                    v-model="loanForm.businessType"
-                    suffix-icon="el-icon-zyrz-baifenhao"
-                  >
-                  </el-input>
-                </el-form-item>
-              </el-col>
-              <el-col :span="12">
-                <el-form-item label="抵押起始日">
-                  <el-date-picker
-                    v-model="loanForm.date"
-                    type="date"
-                    placeholder="选择日期"
-                  >
-                  </el-date-picker>
-                </el-form-item>
-              </el-col>
-              <el-col :span="12">
-                <el-form-item label="抵押到期日">
-                  <el-date-picker
-                    v-model="loanForm.date"
-                    type="date"
-                    placeholder="选择日期"
-                  >
-                  </el-date-picker>
-                </el-form-item>
-              </el-col>
-              <el-col :span="12">
-                <el-form-item label="抵押合同编号">
-                  <el-input v-model="loanForm.businessType"> </el-input>
-                </el-form-item>
-              </el-col>
-            </el-row>
-          </el-card>
-          <el-card class="box-card">
-            <div style="overflow: hidden">
-              <el-button
-                type="primary"
-                round
-                style="float: right; margin-right: 100px"
-                >提交</el-button
-              >
-            </div>
-          </el-card>
-        </el-form>
-      </el-tab-pane>
-      <el-tab-pane label="申报材料">
-        <el-form ref="materialForm" :model="materialForm">
-          <!-- 借款人材料 -->
-          <el-card>
-            <div slot="header">
-              <span>借款人材料({{}})</span>
-            </div>
-            <el-row>
-              <el-col :span="6">
-                <el-upload
-                  ref="upload1"
-                  class="upload-demo"
-                  drag
-                  action="http://192.168.31.86:8080/system/test/ceshi2"
-                  multiple
-                  :auto-upload="false"
-                  show-file-list
-                  :limit="20"
-                  :data="uploadData"
-                >
-                  <i class="el-icon-upload"></i>
-                  <div class="el-upload__text">
-                    将文件拖到此处，或<em>点击上传</em>，至多20张
-                  </div>
-                  <div
-                    class="el-upload__text"
-                    slot="tip"
-                    style="text-align: center"
-                  >
-                    婚姻状况声明
-                  </div>
-                </el-upload>
-              </el-col>
-              <el-col :span="6">
-                <el-upload
-                  ref="upload2"
-                  class="upload-demo"
-                  drag
-                  action="http://192.168.31.86:8080/system/test/ceshi2"
-                  multiple
-                  :auto-upload="false"
-                  show-file-list
-                  :limit="20"
-                  :data="uploadData"
-                >
-                  <i class="el-icon-upload"></i>
-                  <div class="el-upload__text">
-                    将文件拖到此处，或<em>点击上传</em>，至多20张
-                  </div>
-                  <div
-                    class="el-upload__text"
-                    slot="tip"
-                    style="text-align: center"
-                  >
-                    收入证明
-                  </div>
-                </el-upload>
-              </el-col>
-              <el-col :span="6">
-                <el-upload
-                  ref="upload3"
-                  class="upload-demo"
-                  drag
-                  action="http://192.168.31.86:8080/system/test/ceshi2"
-                  multiple
-                  :auto-upload="false"
-                  show-file-list
-                  :limit="100"
-                  :data="uploadData"
-                >
-                  <i class="el-icon-upload"></i>
-                  <div class="el-upload__text">
-                    将文件拖到此处，或<em>点击上传</em>，至多100张
-                  </div>
-                  <div
-                    class="el-upload__text"
-                    slot="tip"
-                    style="text-align: center"
-                  >
-                    银行卡流水
-                  </div>
-                </el-upload>
-              </el-col>
-              <el-col :span="6">
-                <el-upload
-                  ref="upload4"
-                  class="upload-demo"
-                  drag
-                  action="http://192.168.31.86:8080/system/test/ceshi2"
-                  multiple
-                  :auto-upload="false"
-                  show-file-list
-                  :limit="100"
-                  :data="uploadData"
-                >
-                  <i class="el-icon-upload"></i>
-                  <div class="el-upload__text">
-                    将文件拖到此处，或<em>点击上传</em>，至多100张
-                  </div>
-                  <div
-                    class="el-upload__text"
-                    slot="tip"
-                    style="text-align: center"
-                  >
-                    购房合同等其他资产证明
-                  </div>
-                </el-upload>
-              </el-col>
-            </el-row>
-            <el-row>
-              <el-col :span="6">
-                <el-upload
-                  ref="upload1"
-                  class="upload-demo"
-                  drag
-                  action="http://192.168.31.86:8080/system/test/ceshi2"
-                  multiple
-                  :auto-upload="false"
-                  show-file-list
-                  :limit="20"
-                  :data="uploadData"
-                >
-                  <i class="el-icon-upload"></i>
-                  <div class="el-upload__text">
-                    将文件拖到此处，或<em>点击上传</em>，至多20张
-                  </div>
-                  <div
-                    class="el-upload__text"
-                    slot="tip"
-                    style="text-align: center"
-                  >
-                    签约照片
-                  </div>
-                </el-upload>
-              </el-col>
-              <el-col :span="6">
-                <el-upload
-                  ref="upload2"
-                  class="upload-demo"
-                  drag
-                  action="http://192.168.31.86:8080/system/test/ceshi2"
-                  multiple
-                  :auto-upload="false"
-                  show-file-list
-                  :limit="1"
-                  :data="uploadData"
-                >
-                  <i class="el-icon-upload"></i>
-                  <div class="el-upload__text">
-                    将文件拖到此处，或<em>点击上传</em>，至多1张
-                  </div>
-                  <div
-                    class="el-upload__text"
-                    slot="tip"
-                    style="text-align: center"
-                  >
-                    购车发票
-                  </div>
-                </el-upload>
-              </el-col>
-              <el-col :span="6">
-                <el-upload
-                  ref="upload3"
-                  class="upload-demo"
-                  drag
-                  action="http://192.168.31.86:8080/system/test/ceshi2"
-                  multiple
-                  :auto-upload="false"
-                  show-file-list
-                  :limit="10"
-                  :data="uploadData"
-                >
-                  <i class="el-icon-upload"></i>
-                  <div class="el-upload__text">
-                    将文件拖到此处，或<em>点击上传</em>，至多10张
-                  </div>
-                  <div
-                    class="el-upload__text"
-                    slot="tip"
-                    style="text-align: center"
-                  >
-                    合格证
-                  </div>
-                </el-upload>
-              </el-col>
-              <el-col :span="6">
-                <el-upload
-                  ref="upload4"
-                  class="upload-demo"
-                  drag
-                  action="http://192.168.31.86:8080/system/test/ceshi2"
-                  multiple
-                  :auto-upload="false"
-                  show-file-list
-                  :limit="20"
-                  :data="uploadData"
-                >
-                  <i class="el-icon-upload"></i>
-                  <div class="el-upload__text">
-                    将文件拖到此处，或<em>点击上传</em>，至多20张
-                  </div>
-                  <div
-                    class="el-upload__text"
-                    slot="tip"
-                    style="text-align: center"
-                  >
-                    车辆登记证书
-                  </div>
-                </el-upload>
-              </el-col>
-            </el-row>
-            <el-row>
-              <el-col :span="6">
-                <el-upload
-                  ref="upload1"
-                  class="upload-demo"
-                  drag
-                  action="http://192.168.31.86:8080/system/test/ceshi2"
-                  multiple
-                  :auto-upload="false"
-                  show-file-list
-                  :limit="20"
-                  :data="uploadData"
-                >
-                  <i class="el-icon-upload"></i>
-                  <div class="el-upload__text">
-                    将文件拖到此处，或<em>点击上传</em>，至多20张
-                  </div>
-                  <div
-                    class="el-upload__text"
-                    slot="tip"
-                    style="text-align: center"
-                  >
-                    家访照片
-                  </div>
-                </el-upload>
-              </el-col>
-              <el-col :span="6">
-                <el-upload
-                  ref="upload2"
-                  class="upload-demo"
-                  drag
-                  action="http://192.168.31.86:8080/system/test/ceshi2"
-                  multiple
-                  :auto-upload="false"
-                  show-file-list
-                  :limit="20"
-                  :data="uploadData"
-                >
-                  <i class="el-icon-upload"></i>
-                  <div class="el-upload__text">
-                    将文件拖到此处，或<em>点击上传</em>，至多20张
-                  </div>
-                  <div
-                    class="el-upload__text"
-                    slot="tip"
-                    style="text-align: center"
-                  >
-                    购车合同证明
-                  </div>
-                </el-upload>
-              </el-col>
-              <el-col :span="6">
-                <el-upload
-                  ref="upload3"
-                  class="upload-demo"
-                  drag
-                  action="http://192.168.31.86:8080/system/test/ceshi2"
-                  multiple
-                  :auto-upload="false"
-                  show-file-list
-                  :limit="5"
-                  :data="uploadData"
-                >
-                  <i class="el-icon-upload"></i>
-                  <div class="el-upload__text">
-                    将文件拖到此处，或<em>点击上传</em>，至多5张
-                  </div>
-                  <div
-                    class="el-upload__text"
-                    slot="tip"
-                    style="text-align: center"
-                  >
-                    签约视频
-                  </div>
-                </el-upload>
-              </el-col>
-              <el-col :span="6">
-                <el-upload
-                  ref="upload4"
-                  class="upload-demo"
-                  drag
-                  action="http://192.168.31.86:8080/system/test/ceshi2"
-                  multiple
-                  :auto-upload="false"
-                  show-file-list
-                  :limit="20"
-                  :data="uploadData"
-                >
-                  <i class="el-icon-upload"></i>
-                  <div class="el-upload__text">
-                    将文件拖到此处，或<em>点击上传</em>，至多20张
-                  </div>
-                  <div
-                    class="el-upload__text"
-                    slot="tip"
-                    style="text-align: center"
-                  >
-                    车辆保险单
-                  </div>
-                </el-upload>
-              </el-col>
-            </el-row>
-            <el-row>
-              <el-col :span="6">
-                <el-upload
-                  ref="upload1"
-                  class="upload-demo"
-                  drag
-                  action="http://192.168.31.86:8080/system/test/ceshi2"
-                  multiple
-                  :auto-upload="false"
-                  show-file-list
-                  :limit="50"
-                  :data="uploadData"
-                >
-                  <i class="el-icon-upload"></i>
-                  <div class="el-upload__text">
-                    将文件拖到此处，或<em>点击上传</em>，至多50张
-                  </div>
-                  <div
-                    class="el-upload__text"
-                    slot="tip"
-                    style="text-align: center"
-                  >
-                    补充说明材料
-                  </div>
-                </el-upload>
-              </el-col>
-              <el-col :span="6">
-                <el-upload
-                  ref="upload2"
-                  class="upload-demo"
-                  drag
-                  action="http://192.168.31.86:8080/system/test/ceshi2"
-                  multiple
-                  :auto-upload="false"
-                  show-file-list
-                  :limit="20"
-                  :data="uploadData"
-                >
-                  <i class="el-icon-upload"></i>
-                  <div class="el-upload__text">
-                    将文件拖到此处，或<em>点击上传</em>，至多20张
-                  </div>
-                  <div
-                    class="el-upload__text"
-                    slot="tip"
-                    style="text-align: center"
-                  >
-                    担保承诺函
-                  </div>
-                </el-upload>
-              </el-col>
-              <el-col :span="6">
-                <el-upload
-                  ref="upload3"
-                  class="upload-demo"
-                  drag
-                  action="http://192.168.31.86:8080/system/test/ceshi2"
-                  multiple
-                  :auto-upload="false"
-                  show-file-list
-                  :limit="20"
-                  :data="uploadData"
-                >
-                  <i class="el-icon-upload"></i>
-                  <div class="el-upload__text">
-                    将文件拖到此处，或<em>点击上传</em>，至多20张
-                  </div>
-                  <div
-                    class="el-upload__text"
-                    slot="tip"
-                    style="text-align: center"
-                  >
-                    二手车评估报告
-                  </div>
-                </el-upload>
-              </el-col>
-              <el-col :span="6">
-                <el-upload
-                  ref="upload4"
-                  class="upload-demo"
-                  drag
-                  action="http://192.168.31.86:8080/system/test/ceshi2"
-                  multiple
-                  :auto-upload="false"
-                  show-file-list
-                  :limit="20"
-                  :data="uploadData"
-                >
-                  <i class="el-icon-upload"></i>
-                  <div class="el-upload__text">
-                    将文件拖到此处，或<em>点击上传</em>，至多20张
-                  </div>
-                  <div
-                    class="el-upload__text"
-                    slot="tip"
-                    style="text-align: center"
-                  >
-                    工银信用卡申请表
-                  </div>
-                </el-upload>
-              </el-col>
-            </el-row>
-            <el-row>
-              <el-col :span="6">
-                <el-upload
-                  ref="upload1"
-                  class="upload-demo"
-                  drag
-                  action="http://192.168.31.86:8080/system/test/ceshi2"
-                  multiple
-                  :auto-upload="false"
-                  show-file-list
-                  :limit="20"
-                  :data="uploadData"
-                >
-                  <i class="el-icon-upload"></i>
-                  <div class="el-upload__text">
-                    将文件拖到此处，或<em>点击上传</em>，至多20张
-                  </div>
-                  <div
-                    class="el-upload__text"
-                    slot="tip"
-                    style="text-align: center"
-                  >
-                    共同偿债人承诺书
-                  </div>
-                </el-upload>
-              </el-col>
-              <el-col :span="6">
-                <el-upload
-                  ref="upload2"
-                  class="upload-demo"
-                  drag
-                  action="http://192.168.31.86:8080/system/test/ceshi2"
-                  multiple
-                  :auto-upload="false"
-                  show-file-list
-                  :limit="20"
-                  :data="uploadData"
-                >
-                  <i class="el-icon-upload"></i>
-                  <div class="el-upload__text">
-                    将文件拖到此处，或<em>点击上传</em>，至多20张
-                  </div>
-                  <div
-                    class="el-upload__text"
-                    slot="tip"
-                    style="text-align: center"
-                  >
-                    购车分期付款代理协议
-                  </div>
-                </el-upload>
-              </el-col>
-              <el-col :span="6">
-                <el-upload
-                  ref="upload3"
-                  class="upload-demo"
-                  drag
-                  action="http://192.168.31.86:8080/system/test/ceshi2"
-                  multiple
-                  :auto-upload="false"
-                  show-file-list
-                  :limit="1"
-                  :data="uploadData"
-                >
-                  <i class="el-icon-upload"></i>
-                  <div class="el-upload__text">
-                    将文件拖到此处，或<em>点击上传</em>，至多1张
-                  </div>
-                  <div
-                    class="el-upload__text"
-                    slot="tip"
-                    style="text-align: center"
-                  >
-                    购房发票
-                  </div>
-                </el-upload>
-              </el-col>
-              <el-col :span="6">
-                <el-upload
-                  ref="upload4"
-                  class="upload-demo"
-                  drag
-                  action="http://192.168.31.86:8080/system/test/ceshi2"
-                  multiple
-                  :auto-upload="false"
-                  show-file-list
-                  :limit="20"
-                  :data="uploadData"
-                >
-                  <i class="el-icon-upload"></i>
-                  <div class="el-upload__text">
-                    将文件拖到此处，或<em>点击上传</em>，至多20张
-                  </div>
-                  <div
-                    class="el-upload__text"
-                    slot="tip"
-                    style="text-align: center"
-                  >
-                    汽车专项分期申请表(客户签字)
-                  </div>
-                </el-upload>
-              </el-col>
-            </el-row>
-            <el-row>
-              <el-col :span="6">
-                <el-upload
-                  ref="upload1"
-                  class="upload-demo"
-                  drag
-                  action="http://192.168.31.86:8080/system/test/ceshi2"
-                  multiple
-                  :auto-upload="false"
-                  show-file-list
-                  :limit="20"
-                  :data="uploadData"
-                >
-                  <i class="el-icon-upload"></i>
-                  <div class="el-upload__text">
-                    将文件拖到此处，或<em>点击上传</em>，至多20张
-                  </div>
-                  <div
-                    class="el-upload__text"
-                    slot="tip"
-                    style="text-align: center"
-                  >
-                    汽车专项分期付款/担保合同
-                  </div>
-                </el-upload>
-              </el-col>
-              <el-col :span="6">
-                <el-upload
-                  ref="upload2"
-                  class="upload-demo"
-                  drag
-                  action="http://192.168.31.86:8080/system/test/ceshi2"
-                  multiple
-                  :auto-upload="false"
-                  show-file-list
-                  :limit="20"
-                  :data="uploadData"
-                >
-                  <i class="el-icon-upload"></i>
-                  <div class="el-upload__text">
-                    将文件拖到此处，或<em>点击上传</em>，至多20张
-                  </div>
-                  <div
-                    class="el-upload__text"
-                    slot="tip"
-                    style="text-align: center"
-                  >
-                    首付款收据及凭证
-                  </div>
-                </el-upload>
-              </el-col>
-              <el-col :span="6">
-                <el-upload
-                  ref="upload3"
-                  class="upload-demo"
-                  drag
-                  action="http://192.168.31.86:8080/system/test/ceshi2"
-                  multiple
-                  :auto-upload="false"
-                  show-file-list
-                  :limit="20"
-                  :data="uploadData"
-                >
-                  <i class="el-icon-upload"></i>
-                  <div class="el-upload__text">
-                    将文件拖到此处，或<em>点击上传</em>，至多20张
-                  </div>
-                  <div
-                    class="el-upload__text"
-                    slot="tip"
-                    style="text-align: center"
-                  >
-                    调查报告
-                  </div>
-                </el-upload>
-              </el-col>
-              <el-col :span="6">
-                <el-upload
-                  ref="upload4"
-                  class="upload-demo"
-                  drag
-                  action="http://192.168.31.86:8080/system/test/ceshi2"
-                  multiple
-                  :auto-upload="false"
-                  show-file-list
-                  :limit="20"
-                  :data="uploadData"
-                >
-                  <i class="el-icon-upload"></i>
-                  <div class="el-upload__text">
-                    将文件拖到此处，或<em>点击上传</em>，至多20张
-                  </div>
-                  <div
-                    class="el-upload__text"
-                    slot="tip"
-                    style="text-align: center"
-                  >
-                    保证书
-                  </div>
-                </el-upload>
-              </el-col>
-            </el-row>
-            <el-row>
-              <el-col :span="6">
-                <el-upload
-                  ref="upload1"
-                  class="upload-demo"
-                  drag
-                  action="http://192.168.31.86:8080/system/test/ceshi2"
-                  multiple
-                  :auto-upload="false"
-                  show-file-list
-                  :limit="20"
-                  :data="uploadData"
-                >
-                  <i class="el-icon-upload"></i>
-                  <div class="el-upload__text">
-                    将文件拖到此处，或<em>点击上传</em>，至多20张
-                  </div>
-                  <div
-                    class="el-upload__text"
-                    slot="tip"
-                    style="text-align: center"
-                  >
-                    房产证
-                  </div>
-                </el-upload>
-              </el-col>
-              <el-col :span="6">
-                <el-upload
-                  ref="upload2"
-                  class="upload-demo"
-                  drag
-                  action="http://192.168.31.86:8080/system/test/ceshi2"
-                  multiple
-                  :auto-upload="false"
-                  show-file-list
-                  :limit="20"
-                  :data="uploadData"
-                >
-                  <i class="el-icon-upload"></i>
-                  <div class="el-upload__text">
-                    将文件拖到此处，或<em>点击上传</em>，至多20张
-                  </div>
-                  <div
-                    class="el-upload__text"
-                    slot="tip"
-                    style="text-align: center"
-                  >
-                    抵押权证
-                  </div>
-                </el-upload>
-              </el-col>
-              <el-col :span="6">
-                <el-upload
-                  ref="upload3"
-                  class="upload-demo"
-                  drag
-                  action="http://192.168.31.86:8080/system/test/ceshi2"
-                  multiple
-                  :auto-upload="false"
-                  show-file-list
-                  :limit="100"
-                  :data="uploadData"
-                >
-                  <i class="el-icon-upload"></i>
-                  <div class="el-upload__text">
-                    将文件拖到此处，或<em>点击上传</em>，至多100张
-                  </div>
-                  <div
-                    class="el-upload__text"
-                    slot="tip"
-                    style="text-align: center"
-                  >
-                    其他贷款材料
-                  </div>
-                </el-upload>
-              </el-col>
-              <el-col :span="6">
-                <el-upload
-                  ref="upload4"
-                  class="upload-demo"
-                  drag
-                  action="http://192.168.31.86:8080/system/test/ceshi2"
-                  multiple
-                  :auto-upload="false"
-                  show-file-list
-                  :limit="20"
-                  :data="uploadData"
-                >
-                  <i class="el-icon-upload"></i>
-                  <div class="el-upload__text">
-                    将文件拖到此处，或<em>点击上传</em>，至多20张
-                  </div>
-                  <div
-                    class="el-upload__text"
-                    slot="tip"
-                    style="text-align: center"
-                  >
-                    居住/户籍证明
-                  </div>
-                </el-upload>
-              </el-col>
-            </el-row>
-          </el-card>
-          <!-- 电子签约材料 -->
-          <el-card>
-            <div slot="header">
-              <span>电子签约材料</span>
-            </div>
-            <el-row>
-              <el-col :span="6">
-                <el-upload
-                  ref="upload1"
-                  class="upload-demo"
-                  drag
-                  action="http://192.168.31.86:8080/system/test/ceshi2"
-                  multiple
-                  :auto-upload="false"
-                  show-file-list
-                  :limit="20"
-                  :data="uploadData"
-                >
-                  <i class="el-icon-upload"></i>
-                  <div class="el-upload__text">
-                    将文件拖到此处，或<em>点击上传</em>，至多20张
-                  </div>
-                  <!-- <div
-                    class="el-upload__text"
-                    slot="tip"
-                    style="text-align: center"
-                  >
-                    电子签约材料
-                  </div> -->
-                </el-upload>
-              </el-col>
-            </el-row>
-          </el-card>
-          <el-card class="box-card">
-            <div style="overflow: hidden">
-              <el-button
-                type="primary"
-                round
-                style="float: right; margin-right: 100px"
-                >提交</el-button
-              >
-            </div>
-          </el-card>
-        </el-form>
-      </el-tab-pane>
       <el-tab-pane label="开卡信息">
         <el-form ref="cardForm" :model="cardForm" :rules="cardRules">
           <!-- 基本资料 -->
@@ -1292,6 +70,7 @@
                 <el-form-item label="证件有效截至日期" prop="statdate">
                   <el-date-picker
                     v-model="cardForm.statdate"
+                    value-format="yyyy-MM-dd"
                     type="date"
                     placeholder="选择日期"
                     style="width: 80%"
@@ -1410,6 +189,7 @@
                 <el-form-item label="入住日期" prop="indate">
                   <el-date-picker
                     v-model="cardForm.indate"
+                    value-format="yyyy-MM-dd"
                     type="date"
                     placeholder="选择日期"
                   >
@@ -1483,13 +263,13 @@
                 <el-form-item
                   label=""
                   prop="cophoneno"
-                  style="position: absolute; top: 0; left: 28%"
+                  style="position: absolute; top: 0"
                 >
                   <el-input
                     maxlength="12"
                     show-word-limit
                     v-model="cardForm.cophoneno"
-                    style="width: 67%; z-index: 999"
+                    style="width: 67%; z-index: 999; float: right"
                   >
                   </el-input>
                 </el-form-item>
@@ -1592,6 +372,7 @@
                 <el-form-item label="何时进入现单位工作" prop="joindate">
                   <el-date-picker
                     v-model="cardForm.joindate"
+                    value-format="yyyy-MM"
                     type="date"
                     placeholder="选择日期"
                   >
@@ -1649,13 +430,13 @@
                 <el-form-item
                   label=""
                   prop="reltphone1"
-                  style="position: absolute; top: 0; left: 28%"
+                  style="position: absolute; top: 0"
                 >
                   <el-input
                     maxlength="12"
                     show-word-limit
                     v-model="cardForm.reltphone1"
-                    style="width: 67%; z-index: 999"
+                    style="width: 67%; z-index: 999; float: right"
                   >
                   </el-input>
                 </el-form-item>
@@ -1786,12 +567,1296 @@
           </el-card>
         </el-form>
       </el-tab-pane>
+      <el-tab-pane label="申报材料" v-if="isCardSubmit">
+        <!-- 借款人材料 -->
+        <el-card>
+          <div slot="header">
+            <span>借款人材料({{ loanForm.req.JKRCL.name }})</span>
+          </div>
+          <el-row>
+            <el-col :span="6">
+              <el-upload
+                ref="upload1"
+                class="upload-demo"
+                drag
+                action="http://192.168.31.82:8080/system/cailiao/ceshi2"
+                multiple
+                show-file-list
+                :limit="20"
+                :data="uploadData.uploadData1"
+              >
+                <i class="el-icon-upload"></i>
+                <div class="el-upload__text">
+                  将文件拖到此处，或<em>点击上传</em>，至多20张
+                </div>
+                <div
+                  class="el-upload__text"
+                  slot="tip"
+                  style="text-align: center"
+                >
+                  婚姻状况声明
+                </div>
+              </el-upload>
+            </el-col>
+            <el-col :span="6">
+              <el-upload
+                ref="upload2"
+                class="upload-demo"
+                drag
+                action="http://192.168.31.82:8080/system/cailiao/ceshi2"
+                multiple
+                show-file-list
+                :limit="20"
+                :data="uploadData.uploadData2"
+              >
+                <i class="el-icon-upload"></i>
+                <div class="el-upload__text">
+                  将文件拖到此处，或<em>点击上传</em>，至多20张
+                </div>
+                <div
+                  class="el-upload__text"
+                  slot="tip"
+                  style="text-align: center"
+                >
+                  收入证明
+                </div>
+              </el-upload>
+            </el-col>
+            <el-col :span="6">
+              <el-upload
+                ref="upload3"
+                class="upload-demo"
+                drag
+                action="http://192.168.31.82:8080/system/cailiao/ceshi2"
+                multiple
+                show-file-list
+                :limit="100"
+                :data="uploadData.uploadData3"
+              >
+                <i class="el-icon-upload"></i>
+                <div class="el-upload__text">
+                  将文件拖到此处，或<em>点击上传</em>，至多100张
+                </div>
+                <div
+                  class="el-upload__text"
+                  slot="tip"
+                  style="text-align: center"
+                >
+                  银行卡流水
+                </div>
+              </el-upload>
+            </el-col>
+            <el-col :span="6">
+              <el-upload
+                ref="upload4"
+                class="upload-demo"
+                drag
+                action="http://192.168.31.82:8080/system/cailiao/ceshi2"
+                multiple
+                show-file-list
+                :limit="100"
+                :data="uploadData.uploadData4"
+              >
+                <i class="el-icon-upload"></i>
+                <div class="el-upload__text">
+                  将文件拖到此处，或<em>点击上传</em>，至多100张
+                </div>
+                <div
+                  class="el-upload__text"
+                  slot="tip"
+                  style="text-align: center"
+                >
+                  购房合同等其他资产证明
+                </div>
+              </el-upload>
+            </el-col>
+          </el-row>
+          <el-row>
+            <el-col :span="6">
+              <el-upload
+                ref="upload5"
+                class="upload-demo"
+                drag
+                action="http://192.168.31.82:8080/system/cailiao/ceshi2"
+                multiple
+                show-file-list
+                :limit="20"
+                :data="uploadData.uploadData5"
+              >
+                <i class="el-icon-upload"></i>
+                <div class="el-upload__text">
+                  将文件拖到此处，或<em>点击上传</em>，至多20张
+                </div>
+                <div
+                  class="el-upload__text"
+                  slot="tip"
+                  style="text-align: center"
+                >
+                  签约照片
+                </div>
+              </el-upload>
+            </el-col>
+            <el-col :span="6">
+              <el-upload
+                ref="upload6"
+                class="upload-demo"
+                drag
+                action="http://192.168.31.82:8080/system/cailiao/ceshi2"
+                multiple
+                show-file-list
+                :limit="1"
+                :data="uploadData.uploadData6"
+              >
+                <i class="el-icon-upload"></i>
+                <div class="el-upload__text">
+                  将文件拖到此处，或<em>点击上传</em>，至多1张
+                </div>
+                <div
+                  class="el-upload__text"
+                  slot="tip"
+                  style="text-align: center"
+                >
+                  购车发票
+                </div>
+              </el-upload>
+            </el-col>
+            <el-col :span="6">
+              <el-upload
+                ref="upload7"
+                class="upload-demo"
+                drag
+                action="http://192.168.31.82:8080/system/cailiao/ceshi2"
+                multiple
+                show-file-list
+                :limit="10"
+                :data="uploadData.uploadData7"
+              >
+                <i class="el-icon-upload"></i>
+                <div class="el-upload__text">
+                  将文件拖到此处，或<em>点击上传</em>，至多10张
+                </div>
+                <div
+                  class="el-upload__text"
+                  slot="tip"
+                  style="text-align: center"
+                >
+                  合格证
+                </div>
+              </el-upload>
+            </el-col>
+            <el-col :span="6">
+              <el-upload
+                ref="upload8"
+                class="upload-demo"
+                drag
+                action="http://192.168.31.82:8080/system/cailiao/ceshi2"
+                multiple
+                show-file-list
+                :limit="20"
+                :data="uploadData.uploadData8"
+              >
+                <i class="el-icon-upload"></i>
+                <div class="el-upload__text">
+                  将文件拖到此处，或<em>点击上传</em>，至多20张
+                </div>
+                <div
+                  class="el-upload__text"
+                  slot="tip"
+                  style="text-align: center"
+                >
+                  车辆登记证书
+                </div>
+              </el-upload>
+            </el-col>
+          </el-row>
+          <el-row>
+            <el-col :span="6">
+              <el-upload
+                ref="upload9"
+                class="upload-demo"
+                drag
+                action="http://192.168.31.82:8080/system/cailiao/ceshi2"
+                multiple
+                show-file-list
+                :limit="20"
+                :data="uploadData.uploadData9"
+              >
+                <i class="el-icon-upload"></i>
+                <div class="el-upload__text">
+                  将文件拖到此处，或<em>点击上传</em>，至多20张
+                </div>
+                <div
+                  class="el-upload__text"
+                  slot="tip"
+                  style="text-align: center"
+                >
+                  家访照片
+                </div>
+              </el-upload>
+            </el-col>
+            <el-col :span="6">
+              <el-upload
+                ref="upload10"
+                class="upload-demo"
+                drag
+                action="http://192.168.31.82:8080/system/cailiao/ceshi2"
+                multiple
+                show-file-list
+                :limit="20"
+                :data="uploadData.uploadData10"
+              >
+                <i class="el-icon-upload"></i>
+                <div class="el-upload__text">
+                  将文件拖到此处，或<em>点击上传</em>，至多20张
+                </div>
+                <div
+                  class="el-upload__text"
+                  slot="tip"
+                  style="text-align: center"
+                >
+                  购车合同证明
+                </div>
+              </el-upload>
+            </el-col>
+            <el-col :span="6">
+              <el-upload
+                ref="upload11"
+                class="upload-demo"
+                drag
+                action="http://192.168.31.82:8080/system/cailiao/ceshi2"
+                multiple
+                show-file-list
+                :limit="5"
+                :data="uploadData.uploadData11"
+              >
+                <i class="el-icon-upload"></i>
+                <div class="el-upload__text">
+                  将文件拖到此处，或<em>点击上传</em>，至多5张
+                </div>
+                <div
+                  class="el-upload__text"
+                  slot="tip"
+                  style="text-align: center"
+                >
+                  签约视频
+                </div>
+              </el-upload>
+            </el-col>
+            <el-col :span="6">
+              <el-upload
+                ref="upload12"
+                class="upload-demo"
+                drag
+                action="http://192.168.31.82:8080/system/cailiao/ceshi2"
+                multiple
+                show-file-list
+                :limit="20"
+                :data="uploadData.uploadData12"
+              >
+                <i class="el-icon-upload"></i>
+                <div class="el-upload__text">
+                  将文件拖到此处，或<em>点击上传</em>，至多20张
+                </div>
+                <div
+                  class="el-upload__text"
+                  slot="tip"
+                  style="text-align: center"
+                >
+                  车辆保险单
+                </div>
+              </el-upload>
+            </el-col>
+          </el-row>
+          <el-row>
+            <el-col :span="6">
+              <el-upload
+                ref="upload13"
+                class="upload-demo"
+                drag
+                action="http://192.168.31.82:8080/system/cailiao/ceshi2"
+                multiple
+                show-file-list
+                :limit="50"
+                :data="uploadData.uploadData13"
+              >
+                <i class="el-icon-upload"></i>
+                <div class="el-upload__text">
+                  将文件拖到此处，或<em>点击上传</em>，至多50张
+                </div>
+                <div
+                  class="el-upload__text"
+                  slot="tip"
+                  style="text-align: center"
+                >
+                  补充说明材料
+                </div>
+              </el-upload>
+            </el-col>
+            <el-col :span="6">
+              <el-upload
+                ref="upload14"
+                class="upload-demo"
+                drag
+                action="http://192.168.31.82:8080/system/cailiao/ceshi2"
+                multiple
+                show-file-list
+                :limit="20"
+                :data="uploadData.uploadData14"
+              >
+                <i class="el-icon-upload"></i>
+                <div class="el-upload__text">
+                  将文件拖到此处，或<em>点击上传</em>，至多20张
+                </div>
+                <div
+                  class="el-upload__text"
+                  slot="tip"
+                  style="text-align: center"
+                >
+                  担保承诺函
+                </div>
+              </el-upload>
+            </el-col>
+            <el-col :span="6">
+              <el-upload
+                ref="upload15"
+                class="upload-demo"
+                drag
+                action="http://192.168.31.82:8080/system/cailiao/ceshi2"
+                multiple
+                show-file-list
+                :limit="20"
+                :data="uploadData.uploadData15"
+              >
+                <i class="el-icon-upload"></i>
+                <div class="el-upload__text">
+                  将文件拖到此处，或<em>点击上传</em>，至多20张
+                </div>
+                <div
+                  class="el-upload__text"
+                  slot="tip"
+                  style="text-align: center"
+                >
+                  二手车评估报告
+                </div>
+              </el-upload>
+            </el-col>
+            <el-col :span="6">
+              <el-upload
+                ref="upload16"
+                class="upload-demo"
+                drag
+                action="http://192.168.31.82:8080/system/cailiao/ceshi2"
+                multiple
+                show-file-list
+                :limit="20"
+                :data="uploadData.uploadData16"
+              >
+                <i class="el-icon-upload"></i>
+                <div class="el-upload__text">
+                  将文件拖到此处，或<em>点击上传</em>，至多20张
+                </div>
+                <div
+                  class="el-upload__text"
+                  slot="tip"
+                  style="text-align: center"
+                >
+                  工银信用卡申请表
+                </div>
+              </el-upload>
+            </el-col>
+          </el-row>
+          <el-row>
+            <el-col :span="6">
+              <el-upload
+                ref="upload17"
+                class="upload-demo"
+                drag
+                action="http://192.168.31.82:8080/system/cailiao/ceshi2"
+                multiple
+                show-file-list
+                :limit="20"
+                :data="uploadData.uploadData17"
+              >
+                <i class="el-icon-upload"></i>
+                <div class="el-upload__text">
+                  将文件拖到此处，或<em>点击上传</em>，至多20张
+                </div>
+                <div
+                  class="el-upload__text"
+                  slot="tip"
+                  style="text-align: center"
+                >
+                  共同偿债人承诺书
+                </div>
+              </el-upload>
+            </el-col>
+            <el-col :span="6">
+              <el-upload
+                ref="upload18"
+                class="upload-demo"
+                drag
+                action="http://192.168.31.82:8080/system/cailiao/ceshi2"
+                multiple
+                show-file-list
+                :limit="20"
+                :data="uploadData.uploadData18"
+              >
+                <i class="el-icon-upload"></i>
+                <div class="el-upload__text">
+                  将文件拖到此处，或<em>点击上传</em>，至多20张
+                </div>
+                <div
+                  class="el-upload__text"
+                  slot="tip"
+                  style="text-align: center"
+                >
+                  购车分期付款代理协议
+                </div>
+              </el-upload>
+            </el-col>
+            <el-col :span="6">
+              <el-upload
+                ref="upload19"
+                class="upload-demo"
+                drag
+                action="http://192.168.31.82:8080/system/cailiao/ceshi2"
+                multiple
+                show-file-list
+                :limit="1"
+                :data="uploadData.uploadData19"
+              >
+                <i class="el-icon-upload"></i>
+                <div class="el-upload__text">
+                  将文件拖到此处，或<em>点击上传</em>，至多1张
+                </div>
+                <div
+                  class="el-upload__text"
+                  slot="tip"
+                  style="text-align: center"
+                >
+                  购房发票
+                </div>
+              </el-upload>
+            </el-col>
+            <el-col :span="6">
+              <el-upload
+                ref="upload20"
+                class="upload-demo"
+                drag
+                action="http://192.168.31.82:8080/system/cailiao/ceshi2"
+                multiple
+                show-file-list
+                :limit="20"
+                :data="uploadData.uploadData20"
+              >
+                <i class="el-icon-upload"></i>
+                <div class="el-upload__text">
+                  将文件拖到此处，或<em>点击上传</em>，至多20张
+                </div>
+                <div
+                  class="el-upload__text"
+                  slot="tip"
+                  style="text-align: center"
+                >
+                  汽车专项分期申请表(客户签字)
+                </div>
+              </el-upload>
+            </el-col>
+          </el-row>
+          <el-row>
+            <el-col :span="6">
+              <el-upload
+                ref="upload21"
+                class="upload-demo"
+                drag
+                action="http://192.168.31.82:8080/system/cailiao/ceshi2"
+                multiple
+                show-file-list
+                :limit="20"
+                :data="uploadData.uploadData21"
+              >
+                <i class="el-icon-upload"></i>
+                <div class="el-upload__text">
+                  将文件拖到此处，或<em>点击上传</em>，至多20张
+                </div>
+                <div
+                  class="el-upload__text"
+                  slot="tip"
+                  style="text-align: center"
+                >
+                  汽车专项分期付款/担保合同
+                </div>
+              </el-upload>
+            </el-col>
+            <el-col :span="6">
+              <el-upload
+                ref="upload22"
+                class="upload-demo"
+                drag
+                action="http://192.168.31.82:8080/system/cailiao/ceshi2"
+                multiple
+                show-file-list
+                :limit="20"
+                :data="uploadData.uploadData22"
+              >
+                <i class="el-icon-upload"></i>
+                <div class="el-upload__text">
+                  将文件拖到此处，或<em>点击上传</em>，至多20张
+                </div>
+                <div
+                  class="el-upload__text"
+                  slot="tip"
+                  style="text-align: center"
+                >
+                  首付款收据及凭证
+                </div>
+              </el-upload>
+            </el-col>
+            <el-col :span="6">
+              <el-upload
+                ref="upload23"
+                class="upload-demo"
+                drag
+                action="http://192.168.31.82:8080/system/cailiao/ceshi2"
+                multiple
+                show-file-list
+                :limit="20"
+                :data="uploadData.uploadData23"
+              >
+                <i class="el-icon-upload"></i>
+                <div class="el-upload__text">
+                  将文件拖到此处，或<em>点击上传</em>，至多20张
+                </div>
+                <div
+                  class="el-upload__text"
+                  slot="tip"
+                  style="text-align: center"
+                >
+                  调查报告
+                </div>
+              </el-upload>
+            </el-col>
+            <el-col :span="6">
+              <el-upload
+                ref="upload24"
+                class="upload-demo"
+                drag
+                action="http://192.168.31.82:8080/system/cailiao/ceshi2"
+                multiple
+                show-file-list
+                :limit="20"
+                :data="uploadData.uploadData24"
+              >
+                <i class="el-icon-upload"></i>
+                <div class="el-upload__text">
+                  将文件拖到此处，或<em>点击上传</em>，至多20张
+                </div>
+                <div
+                  class="el-upload__text"
+                  slot="tip"
+                  style="text-align: center"
+                >
+                  保证书
+                </div>
+              </el-upload>
+            </el-col>
+          </el-row>
+          <el-row>
+            <el-col :span="6">
+              <el-upload
+                ref="upload25"
+                class="upload-demo"
+                drag
+                action="http://192.168.31.82:8080/system/cailiao/ceshi2"
+                multiple
+                show-file-list
+                :limit="20"
+                :data="uploadData.uploadData25"
+              >
+                <i class="el-icon-upload"></i>
+                <div class="el-upload__text">
+                  将文件拖到此处，或<em>点击上传</em>，至多20张
+                </div>
+                <div
+                  class="el-upload__text"
+                  slot="tip"
+                  style="text-align: center"
+                >
+                  房产证
+                </div>
+              </el-upload>
+            </el-col>
+            <el-col :span="6">
+              <el-upload
+                ref="upload26"
+                class="upload-demo"
+                drag
+                action="http://192.168.31.82:8080/system/cailiao/ceshi2"
+                multiple
+                show-file-list
+                :limit="20"
+                :data="uploadData.uploadData26"
+              >
+                <i class="el-icon-upload"></i>
+                <div class="el-upload__text">
+                  将文件拖到此处，或<em>点击上传</em>，至多20张
+                </div>
+                <div
+                  class="el-upload__text"
+                  slot="tip"
+                  style="text-align: center"
+                >
+                  抵押权证
+                </div>
+              </el-upload>
+            </el-col>
+            <el-col :span="6">
+              <el-upload
+                ref="upload27"
+                class="upload-demo"
+                drag
+                action="http://192.168.31.82:8080/system/cailiao/ceshi2"
+                multiple
+                show-file-list
+                :limit="100"
+                :data="uploadData.uploadData27"
+              >
+                <i class="el-icon-upload"></i>
+                <div class="el-upload__text">
+                  将文件拖到此处，或<em>点击上传</em>，至多100张
+                </div>
+                <div
+                  class="el-upload__text"
+                  slot="tip"
+                  style="text-align: center"
+                >
+                  其他贷款材料
+                </div>
+              </el-upload>
+            </el-col>
+            <el-col :span="6">
+              <el-upload
+                ref="upload28"
+                class="upload-demo"
+                drag
+                action="http://192.168.31.82:8080/system/cailiao/ceshi2"
+                multiple
+                show-file-list
+                :limit="20"
+                :data="uploadData.uploadData28"
+              >
+                <i class="el-icon-upload"></i>
+                <div class="el-upload__text">
+                  将文件拖到此处，或<em>点击上传</em>，至多20张
+                </div>
+                <div
+                  class="el-upload__text"
+                  slot="tip"
+                  style="text-align: center"
+                >
+                  居住/户籍证明
+                </div>
+              </el-upload>
+            </el-col>
+          </el-row>
+        </el-card>
+        <!-- 电子签约材料 -->
+        <el-card>
+          <div slot="header">
+            <span>电子签约材料</span>
+          </div>
+          <el-row>
+            <el-col :span="6">
+              <el-upload
+                ref="upload29"
+                class="upload-demo"
+                drag
+                action="http://192.168.31.82:8080/system/cailiao/ceshi2"
+                multiple
+                show-file-list
+                :limit="20"
+              >
+                <i class="el-icon-upload"></i>
+                <div class="el-upload__text">
+                  将文件拖到此处，或<em>点击上传</em>，至多20张
+                </div>
+                <!-- <div
+                    class="el-upload__text"
+                    slot="tip"
+                    style="text-align: center"
+                  >
+                    电子签约材料
+                  </div> -->
+              </el-upload>
+            </el-col>
+          </el-row>
+        </el-card>
+      </el-tab-pane>
+      <el-tab-pane label="贷款信息" v-if="isCardSubmit">
+        <el-form ref="loanForm" :model="loanForm" :rules="loanRules">
+          <!-- 订单信息 -->
+          <el-card>
+            <div slot="header">
+              <span>订单信息</span>
+            </div>
+            <el-row>
+              <el-col :span="12">
+                <el-form-item label="业务类型">
+                  <el-select
+                    v-model="loanForm.pub.productType"
+                    placeholder="请选择"
+                  >
+                  </el-select>
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="经办银行">
+                  <el-select
+                    v-model="loanForm.pub.bankCode"
+                    placeholder="请选择"
+                  >
+                    <el-option
+                      label="工商银行 襄阳胜利街支行"
+                      value="0180400023"
+                    ></el-option>
+                  </el-select>
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="进件来源">
+                  <el-select v-model="loanForm.a" placeholder="请选择">
+                  </el-select>
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="签约方式">
+                  <el-select
+                    v-model="loanForm.req.signMode"
+                    placeholder="请选择"
+                  >
+                    <el-option label="电子签约方式" :value="1"></el-option>
+                    <el-option label="影像上传方式" :value="2"></el-option>
+                  </el-select>
+                </el-form-item>
+              </el-col>
+            </el-row>
+          </el-card>
+          <!-- 车辆信息 -->
+          <el-card>
+            <div slot="header">
+              <span>车辆信息</span>
+            </div>
+            <el-row>
+              <el-col :span="12">
+                <el-form-item label="车辆品牌" prop="req.carInfo.carBrands">
+                  <el-input v-model="loanForm.req.carInfo.carBrands">
+                  </el-input>
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="车系" prop="req.carInfo.carSeries">
+                  <el-input v-model="loanForm.req.carInfo.carSeries">
+                  </el-input>
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="车型" prop="req.carInfo.carSpecs">
+                  <el-input v-model="loanForm.req.carInfo.carSpecs"> </el-input>
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="国产车还是进口车">
+                  <el-select
+                    v-model="loanForm.req.carInfo.carType"
+                    placeholder="请选择"
+                  >
+                    <el-option label="国产车" :value="0"></el-option>
+                    <el-option label="进口车" :value="1"></el-option>
+                  </el-select>
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="车辆价格" prop="req.carInfo.carPrice">
+                  <el-input
+                    v-model="loanForm.req.carInfo.carPrice"
+                    suffix-icon="el-icon-zyrz-yuan"
+                  >
+                  </el-input>
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="系统查询价">
+                  <el-input
+                    v-model="loanForm.req.carInfo.systemCarPrice"
+                    suffix-icon="el-icon-zyrz-yuan"
+                  >
+                  </el-input>
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="车架号">
+                  <el-input v-model="loanForm.req.carInfo.frameNo"> </el-input>
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="发动机号">
+                  <el-input v-model="loanForm.req.carInfo.engineNo"> </el-input>
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="意向价格">
+                  <el-input v-model="dataMsg" suffix-icon="el-icon-zyrz-yuan">
+                  </el-input>
+                </el-form-item>
+              </el-col>
+            </el-row>
+          </el-card>
+          <!-- 分期信息 -->
+          <el-card>
+            <div slot="header">
+              <span>分期信息</span>
+            </div>
+            <el-row>
+              <el-col :span="12">
+                <el-form-item label="首付金额" prop="req.stageInfo.sfMoney">
+                  <el-input
+                    v-model="loanForm.req.stageInfo.sfMoney"
+                    suffix-icon="el-icon-zyrz-yuan"
+                  >
+                  </el-input>
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="首付比例">
+                  <el-input
+                    v-model="loanForm.req.stageInfo.sfProportion"
+                    suffix-icon="el-icon-zyrz-baifenhao"
+                  >
+                  </el-input>
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="贷款金额" prop="req.stageInfo.loanMoney">
+                  <el-input
+                    v-model="loanForm.req.stageInfo.loanMoney"
+                    suffix-icon="el-icon-zyrz-yuan"
+                  >
+                  </el-input>
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="分期金额">
+                  <el-input
+                    v-model="loanForm.req.stageInfo.stageMoney"
+                    suffix-icon="el-icon-zyrz-yuan"
+                  >
+                  </el-input>
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="还款期限" prop="req.stageInfo.repayPeriod">
+                  <el-select
+                    v-model="loanForm.req.stageInfo.repayPeriod"
+                    placeholder="请选择"
+                  >
+                    <el-option label="12" :value="12"></el-option>
+                    <el-option label="24" :value="24"></el-option>
+                    <el-option label="36" :value="36"></el-option>
+                  </el-select>
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item
+                  label="银行基准利率"
+                  prop="req.stageInfo.annualInterestRate"
+                >
+                  <el-input
+                    v-model="loanForm.req.stageInfo.annualInterestRate"
+                    suffix-icon="el-icon-zyrz-baifenhao"
+                  >
+                  </el-input>
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="首月还款金额">
+                  <el-input
+                    v-model="loanForm.req.stageInfo.firstMonthMoney"
+                    suffix-icon="el-icon-zyrz-yuan"
+                  >
+                  </el-input>
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="月还款金额">
+                  <el-input
+                    v-model="loanForm.req.stageInfo.monrepayamt"
+                    suffix-icon="el-icon-zyrz-yuan"
+                  >
+                  </el-input>
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item
+                  label="营销档案编号"
+                  prop="req.stageInfo.marketingArchivesNum"
+                >
+                  <el-input
+                    v-model="loanForm.req.stageInfo.marketingArchivesNum"
+                  >
+                  </el-input>
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="手续费总额">
+                  <el-input
+                    v-model="loanForm.req.stageInfo.poundageAmount"
+                    suffix-icon="el-icon-zyrz-yuan"
+                  >
+                  </el-input>
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="附加费">
+                  <el-input
+                    v-model="loanForm.req.financeChargeCardInfo.financeCharge"
+                    suffix-icon="el-icon-zyrz-yuan"
+                  >
+                  </el-input>
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="个人总资产" prop="req.stageInfo.property">
+                  <el-input
+                    v-model="loanForm.req.stageInfo.property"
+                    suffix-icon="el-icon-zyrz-yuan"
+                  >
+                  </el-input>
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="现住房面积" prop="req.stageInfo.houseArea">
+                  <el-input
+                    v-model="loanForm.req.stageInfo.houseArea"
+                    suffix-icon="el-icon-zyrz-m"
+                  >
+                  </el-input>
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item
+                  label="其他负债余额"
+                  prop="req.stageInfo.othdebtbal"
+                >
+                  <el-input
+                    v-model="loanForm.req.stageInfo.othdebtbal"
+                    suffix-icon="el-icon-zyrz-yuan"
+                  >
+                  </el-input>
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="其他月还款额">
+                  <el-input
+                    v-model="loanForm.req.stageInfo.monrepayamt"
+                    suffix-icon="el-icon-zyrz-yuan"
+                  >
+                  </el-input>
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="营销代码" prop="req.stageInfo.dscode">
+                  <el-input v-model="loanForm.req.stageInfo.dscode"> </el-input>
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="收入还贷比">
+                  <el-input
+                    v-model="loanForm.req.stageInfo.contractSfRatio"
+                    suffix-icon="el-icon-zyrz-baifenhao"
+                  >
+                  </el-input>
+                </el-form-item>
+              </el-col>
+            </el-row>
+          </el-card>
+          <!-- 主借款人信息 -->
+          <el-card>
+            <div slot="header">
+              <span>主借款人信息</span>
+            </div>
+            <el-row>
+              <el-col :span="12">
+                <el-form-item
+                  label="税后月收入"
+                  prop="req.stageInfo.monthincome"
+                >
+                  <el-input
+                    v-model="loanForm.req.stageInfo.monthincome"
+                    suffix-icon="el-icon-zyrz-yuan"
+                  >
+                  </el-input>
+                </el-form-item>
+              </el-col>
+            </el-row>
+          </el-card>
+          <!-- 备注信息 -->
+          <el-card>
+            <div slot="header">
+              <span>备注信息</span>
+            </div>
+          </el-card>
+          <!-- 收款信息 -->
+          <el-card>
+            <div slot="header">
+              <span>收款信息</span>
+            </div>
+            <el-row>
+              <el-col :span="12">
+                <el-form-item label="支付模式" prop="req.payMentInfo.payMode">
+                  <el-select
+                    v-model="loanForm.req.payMentInfo.payMode"
+                    placeholder="请选择"
+                  >
+                    <el-option label="受托支付" :value="1"></el-option>
+                    <el-option label="实体POS刷卡分期" :value="2"></el-option>
+                  </el-select>
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item
+                  label="收款对象类型"
+                  prop="req.payMentInfo.payeeType"
+                >
+                  <el-select
+                    v-model="loanForm.req.payMentInfo.payeeType"
+                    placeholder="请选择"
+                  >
+                    <el-option label="第三方机构" :value="1"></el-option>
+                    <el-option label="合作单位" :value="2"></el-option>
+                    <el-option
+                      label="第三方机构+合作单位"
+                      :value="3"
+                    ></el-option>
+                  </el-select>
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="融资担保机构编号">
+                  <el-input
+                    v-model="loanForm.req.payMentInfo.recommendAgencyCode"
+                  >
+                  </el-input>
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="合作机构编号">
+                  <el-input
+                    v-model="loanForm.req.payMentInfo.cooperateAgencyCode"
+                  >
+                  </el-input>
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="保险机构编号">
+                  <el-input
+                    v-model="loanForm.req.payMentInfo.insuranceAgencyCode"
+                  >
+                  </el-input>
+                </el-form-item>
+              </el-col>
+            </el-row>
+          </el-card>
+          <!-- 担保信息 -->
+          <el-card>
+            <div slot="header">
+              <span>担保信息</span>
+            </div>
+            <el-row>
+              <el-col :span="12">
+                <el-form-item label="工行业务模式">
+                  <el-select
+                    v-model="loanForm.req.stageInfo.businessModel"
+                    placeholder="请选择"
+                  >
+                    <el-option label="抵押" :value="1"></el-option>
+                    <el-option label="质押" :value="2"></el-option>
+                    <el-option label="保证" :value="3"></el-option>
+                    <el-option label="组合及其他" :value="4"></el-option>
+                    <el-option
+                      label="抵押+第三方机构管理(先放款后抵押)"
+                      :value="5"
+                    ></el-option>
+                    <el-option
+                      label="抵押+第三方机构管理(先抵押后放款)"
+                      :value="6"
+                    ></el-option>
+                    <el-option label="阶段性保证+抵押" :value="7"></el-option>
+                    <el-option label="第三方机构管理" :value="8"></el-option>
+                    <el-option label="信用类" :value="9"></el-option>
+                    <el-option
+                      label="信用类(ISPS产品化)"
+                      :value="10"
+                    ></el-option>
+                  </el-select>
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="他顷权证号">
+                  <el-input v-model="loanForm.req.guaranteeInfo.encbno">
+                  </el-input>
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item
+                  label="抵押品名称"
+                  prop="req.guaranteeInfo.mortname"
+                >
+                  <el-input v-model="loanForm.req.guaranteeInfo.mortname">
+                  </el-input>
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item
+                  label="权属人姓名"
+                  prop="req.guaranteeInfo.chnsname"
+                >
+                  <el-input v-model="loanForm.req.guaranteeInfo.chnsname">
+                  </el-input>
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="申请人与抵押物权属人关系">
+                  <el-select
+                    v-model="loanForm.req.guaranteeInfo.apprel"
+                    placeholder="请选择"
+                  >
+                    <el-option label="本人" :value="1"></el-option>
+                    <el-option label="父母" :value="2"></el-option>
+                    <el-option label="父母" :value="3"></el-option>
+                    <el-option label="子女" :value="4"></el-option>
+                  </el-select>
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="车牌号">
+                  <el-input v-model="loanForm.req.carInfo.licensePlateNo">
+                  </el-input>
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="抵押品类别" prop="mortTypeData">
+                  <el-cascader
+                    v-model="loanForm.mortTypeData"
+                    :options="mortType"
+                  ></el-cascader>
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item
+                  label="抵押品价值"
+                  prop="req.guaranteeInfo.mortvalue"
+                >
+                  <el-input
+                    v-model="loanForm.req.guaranteeInfo.mortvalue"
+                    suffix-icon="el-icon-zyrz-yuan"
+                  >
+                  </el-input>
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="抵押品地址">
+                  <el-input v-model="loanForm.req.guaranteeInfo.mortaddr">
+                  </el-input>
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="他项权证登记日期">
+                  <el-date-picker
+                    v-model="loanForm.req.guaranteeInfo.encbregdate"
+                    value-format="yyyy-MM-dd"
+                    type="date"
+                    placeholder="选择日期"
+                  >
+                  </el-date-picker>
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="预计可办理他项权日期">
+                  <el-date-picker
+                    v-model="loanForm.req.guaranteeInfo.encbpreddate"
+                    value-format="yyyy-MM-dd"
+                    type="date"
+                    placeholder="选择日期"
+                  >
+                  </el-date-picker>
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item
+                  label="最高抵押率"
+                  prop="req.guaranteeInfo.maxmortrate"
+                >
+                  <el-input
+                    v-model="loanForm.req.guaranteeInfo.maxmortrate"
+                    suffix-icon="el-icon-zyrz-baifenhao"
+                  >
+                  </el-input>
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="抵押起始日">
+                  <el-date-picker
+                    v-model="loanForm.req.guaranteeInfo.mortbegdate"
+                    value-format="yyyy-MM-dd"
+                    type="date"
+                    placeholder="选择日期"
+                  >
+                  </el-date-picker>
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="抵押到期日">
+                  <el-date-picker
+                    v-model="loanForm.req.guaranteeInfo.mortenddate"
+                    value-format="yyyy-MM-dd"
+                    type="date"
+                    placeholder="选择日期"
+                  >
+                  </el-date-picker>
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="抵押合同编号">
+                  <el-input v-model="loanForm.req.guaranteeInfo.mortcontrno">
+                  </el-input>
+                </el-form-item>
+              </el-col>
+            </el-row>
+          </el-card>
+          <el-card class="box-card">
+            <div style="overflow: hidden">
+              <el-button
+                type="primary"
+                round
+                style="float: right; margin-right: 100px"
+                @click="loanFormSubmit"
+                >提交</el-button
+              >
+            </div>
+          </el-card>
+        </el-form>
+      </el-tab-pane>
     </el-tabs>
   </div>
 </template>
 
 <script>
-import { getCardData, cardSubmit } from '@/api/process/reportBank'
+import {
+  getCardData,
+  cardSubmit,
+  getLoanData,
+  loanSubmit,
+} from '@/api/process/reportBank'
 
 export default {
   name: 'ReportBankDetails',
@@ -1800,14 +1865,367 @@ export default {
     return {
       longDate: false, // 身份证有效期是否长期
       no: null, // 垃圾数据不用管
-      loanForm: {}, // 贷款信息表单
+      dataMsg: '',
+      loanForm: {
+        pub: {},
+        req: {
+          carInfo: {},
+          contractInfo: {},
+          stageInfo: {},
+          guaranteeInfo: {},
+          financeChargeCardInfo: {},
+          payMentInfo: {},
+          JKRCL: {},
+        },
+      }, // 贷款信息表单
       materialForm: {}, // 申报材料表单
       cardForm: {}, // 开卡信息表单
+      // 上传携带参数
       uploadData: {
-        name: 'ceshiupload',
-        id: 123,
+        uploadData1: {
+          code: 'hyzkzm',
+          id: this.$route.query.transactionCode,
+          type: '0',
+        },
+        uploadData2: {
+          code: 'srzm',
+          id: this.$route.query.transactionCode,
+          type: '0',
+        },
+        uploadData3: {
+          code: 'yhls',
+          id: this.$route.query.transactionCode,
+          type: '0',
+        },
+        uploadData4: {
+          code: 'gfhtdqtfczm',
+          id: this.$route.query.transactionCode,
+          type: '0',
+        },
+        uploadData5: {
+          code: 'qyzp',
+          id: this.$route.query.transactionCode,
+          type: '0',
+        },
+        uploadData6: {
+          code: 'gcfp',
+          id: this.$route.query.transactionCode,
+          type: '0',
+        },
+        uploadData7: {
+          code: 'hgz',
+          id: this.$route.query.transactionCode,
+          type: '0',
+        },
+        uploadData8: {
+          code: 'cldjzs',
+          id: this.$route.query.transactionCode,
+          type: '0',
+        },
+        uploadData9: {
+          code: 'jfzp',
+          id: this.$route.query.transactionCode,
+          type: '0',
+        },
+        uploadData10: {
+          code: 'gchtzm',
+          id: this.$route.query.transactionCode,
+          type: '0',
+        },
+        uploadData11: {
+          code: 'qysp',
+          id: this.$route.query.transactionCode,
+          type: '1',
+        },
+        uploadData12: {
+          code: 'clbxd',
+          id: this.$route.query.transactionCode,
+          type: '0',
+        },
+        uploadData13: {
+          code: 'deykqksm',
+          id: this.$route.query.transactionCode,
+          type: '0',
+        },
+        uploadData14: {
+          code: 'dbcnh',
+          id: this.$route.query.transactionCode,
+          type: '0',
+        },
+        uploadData15: {
+          code: 'escpgbg',
+          id: this.$route.query.transactionCode,
+          type: '0',
+        },
+        uploadData16: {
+          code: 'gyxyksqb',
+          id: this.$route.query.transactionCode,
+          type: '0',
+        },
+        uploadData17: {
+          code: 'gtczrcns',
+          id: this.$route.query.transactionCode,
+          type: '0',
+        },
+        uploadData18: {
+          code: 'gcfqfkdlxy',
+          id: this.$route.query.transactionCode,
+          type: '0',
+        },
+        uploadData19: {
+          code: 'gffp',
+          id: this.$route.query.transactionCode,
+          type: '0',
+        },
+        uploadData20: {
+          code: 'mdcdydcscspb',
+          id: this.$route.query.transactionCode,
+          type: '0',
+        },
+        uploadData21: {
+          code: 'qczxfqfkdbht',
+          id: this.$route.query.transactionCode,
+          type: '0',
+        },
+        uploadData22: {
+          code: 'sfksjjpz',
+          id: this.$route.query.transactionCode,
+          type: '0',
+        },
+        uploadData23: {
+          code: 'dcbg',
+          id: this.$route.query.transactionCode,
+          type: '0',
+        },
+        uploadData24: {
+          code: 'bzs',
+          id: this.$route.query.transactionCode,
+          type: '0',
+        },
+        uploadData25: {
+          code: 'fcz',
+          id: this.$route.query.transactionCode,
+          type: '0',
+        },
+        uploadData26: {
+          code: 'dyqz',
+          id: this.$route.query.transactionCode,
+          type: '0',
+        },
+        uploadData27: {
+          code: 'WGDCL',
+          id: this.$route.query.transactionCode,
+          type: '0',
+        },
+        uploadData28: {
+          code: 'jzhjzm',
+          id: this.$route.query.transactionCode,
+          type: '0',
+        },
       },
-      // 表单验证
+      mortTypeData: null,
+      // 抵押品分类
+      mortType: [
+        {
+          value: '001',
+          label: '房地产',
+          children: [
+            {
+              value: '001001',
+              label: '居住用房',
+              children: [
+                {
+                  value: '001001001',
+                  label: '保障房',
+                },
+                {
+                  value: '001001002',
+                  label: '普通用房',
+                },
+                {
+                  value: '001001003',
+                  label: '高档住房(含别墅)',
+                },
+                {
+                  value: '001001004',
+                  label: '其他居住用房',
+                },
+              ],
+            },
+            {
+              value: '001002',
+              label: '办公用房',
+              children: [
+                {
+                  value: '001002001',
+                  label: '办公楼(写字楼)',
+                },
+                {
+                  value: '001002002',
+                  label: '其他办公用房',
+                },
+              ],
+            },
+            {
+              value: '001003',
+              label: '商业用房',
+              children: [
+                {
+                  value: '001003001',
+                  label: '商铺',
+                },
+                {
+                  value: '001003002',
+                  label: '宾馆酒店',
+                },
+                {
+                  value: '001003003',
+                  label: '商场超市购物中心',
+                },
+                {
+                  value: '001003004',
+                  label: '其他商业用房',
+                },
+                {
+                  value: '001003005',
+                  label: '娱乐场所',
+                },
+                {
+                  value: '001003006',
+                  label: '商住两用房',
+                },
+              ],
+            },
+            {
+              value: '001004',
+              label: '工业用房',
+              children: [
+                {
+                  value: '001004001',
+                  label: '工业厂房',
+                },
+                {
+                  value: '001004002',
+                  label: '其他工业用房',
+                },
+              ],
+            },
+            {
+              value: '001005',
+              label: '房屋建筑物/地上附着物',
+              children: [
+                {
+                  value: '001005001',
+                  label: '其他不属于以上类型的房地产',
+                },
+              ],
+            },
+          ],
+        },
+        {
+          value: '002',
+          label: '交通运输设备',
+          children: [
+            {
+              value: '002001',
+              label: '车辆',
+              children: [
+                {
+                  value: '002001001',
+                  label: '家用轿车',
+                },
+              ],
+            },
+            {
+              value: '002002',
+              label: '船舶',
+              children: [
+                {
+                  value: '002002001',
+                  label: '游艇',
+                },
+              ],
+            },
+            {
+              value: '002003',
+              label: '其他运输设备',
+              children: [
+                {
+                  value: '002003001',
+                  label: '其他运输设备',
+                },
+              ],
+            },
+          ],
+        },
+      ],
+      // 贷款表单验证
+      loanRules: {
+        'req.carInfo.carBrands': [
+          { required: true, message: '请输入车辆品牌', trigger: 'blur' },
+        ],
+        'req.carInfo.carSeries': [
+          { required: true, message: '请输入车系', trigger: 'blur' },
+        ],
+        'req.carInfo.carSpecs': [
+          { required: true, message: '请输入车型', trigger: 'blur' },
+        ],
+        'req.carInfo.carPrice': [
+          { required: true, message: '请输入车辆价格', trigger: 'blur' },
+        ],
+        'req.stageInfo.sfMoney': [
+          { required: true, message: '请输入首付金额', trigger: 'blur' },
+        ],
+        'req.stageInfo.loanMoney': [
+          { required: true, message: '请输入贷款金额', trigger: 'blur' },
+        ],
+        'req.stageInfo.repayPeriod': [
+          { required: true, message: '请选择还款期限', trigger: 'change' },
+        ],
+        'req.stageInfo.annualInterestRate': [
+          { required: true, message: '请输入银行基准利率', trigger: 'blur' },
+        ],
+        'req.stageInfo.marketingArchivesNum': [
+          { required: true, message: '请输入营销档案编号', trigger: 'blur' },
+        ],
+        'req.stageInfo.property': [
+          { required: true, message: '请输入个人总资产', trigger: 'blur' },
+        ],
+        'req.stageInfo.houseArea': [
+          { required: true, message: '请输入现住房面积', trigger: 'blur' },
+        ],
+        'req.stageInfo.othdebtbal': [
+          { required: true, message: '请输入其他负债余额', trigger: 'blur' },
+        ],
+        'req.stageInfo.dscode': [
+          { required: true, message: '请输入营销代码', trigger: 'blur' },
+        ],
+        'req.stageInfo.monthincome': [
+          { required: true, message: '请输入税后月收入', trigger: 'blur' },
+        ],
+        'req.payMentInfo.payMode': [
+          { required: true, message: '请选择支付模式', trigger: 'change' },
+        ],
+        'req.payMentInfo.payeeType': [
+          { required: true, message: '请选择收款对象类型', trigger: 'change' },
+        ],
+        'req.guaranteeInfo.mortname': [
+          { required: true, message: '请输入抵押品名称', trigger: 'blur' },
+        ],
+        'req.guaranteeInfo.chnsname': [
+          { required: true, message: '请输入权属人姓名', trigger: 'blur' },
+        ],
+        mortTypeData: [
+          { required: true, message: '请选择抵押品类别', trigger: 'change' },
+        ],
+        'req.guaranteeInfo.mortvalue': [
+          { required: true, message: '请输入抵押品价值', trigger: 'blur' },
+        ],
+        'req.guaranteeInfo.maxmortrate': [
+          { required: true, message: '请输入最高抵押率', trigger: 'blur' },
+        ],
+      },
+      // 开卡表单验证
       cardRules: {
         chnsname: [
           { required: true, message: '请输入中文名', trigger: 'blur' },
@@ -1935,10 +2353,16 @@ export default {
           { required: true, message: '请选择亲见客户签名', trigger: 'change' },
         ],
       },
+      isCardSubmit: null, // 开卡信息是否提交
     }
   },
   computed: {},
   watch: {
+    mortTypeData: function (newName) {
+      this.loanForm.req.guaranteeInfo.mortltype = newName[0]
+      this.loanForm.req.guaranteeInfo.mortmtype = newName[1]
+      this.loanForm.req.guaranteeInfo.mortstype = newName[2]
+    },
     longDate: function (newName) {
       if (newName) {
         this.cardForm.statdate = '9999-12-30'
@@ -1957,13 +2381,47 @@ export default {
     // 开局加载信息
     async getReportBankData() {
       try {
-        const { data } = await getCardData(this.$route.query.transactionCode)
-        console.log(data)
-        this.cardForm = JSON.parse(data)
-        console.log(JSON.parse(data))
+        const data = await getCardData(this.$route.query.transactionCode)
+        console.log(JSON.parse(data.data))
+        this.cardForm = JSON.parse(data.data)
+        this.isCardSubmit = data.state
       } catch (error) {
         console.log(error)
       }
+      try {
+        const data = await getLoanData(this.$route.query.transactionCode)
+        console.log(JSON.parse(data.data))
+        this.loanForm = JSON.parse(data.data)
+        this.dataMsg = data.msg
+        this.loanForm.req.payMentInfo.cooperateAgencyCode = 'zyhzjg01'
+        this.loanForm.req.payMentInfo.recommendAgencyCode = '46009102'
+      } catch (error) {
+        console.log(error)
+      }
+    },
+    // 贷款信息提交
+    async loanFormSubmit() {
+      this.$refs['loanForm'].validate((valid) => {
+        if (valid) {
+          delete this.loanForm.mortTypeData
+          this.$confirm('请确认已提交申报材料?', '警告', {
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+            type: 'warning',
+          })
+            .then(() => {
+              return loanSubmit(this.loanForm)
+            })
+            .then(() => {
+              this.msgSuccess('提交成功')
+            })
+            .catch(function (error) {
+              console.log(error)
+            })
+        } else {
+          return false
+        }
+      })
     },
     // 开卡信息提交
     async cardFormSubmit() {
@@ -1986,6 +2444,24 @@ export default {
           return false
         }
       })
+    },
+    materialFormSubmit() {
+      this.$confirm('确认提交?', '警告', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning',
+      })
+        .then(() => {
+          for (let i = 1; i < 29; i++) {
+            this.$refs['upload' + i].submit()
+          }
+        })
+        .then(() => {
+          this.msgSuccess('提交成功')
+        })
+        .catch(function (error) {
+          console.log(error)
+        })
     },
   },
   created() {
@@ -2021,6 +2497,7 @@ export default {
 }
 .el-input,
 .el-select,
+.el-cascader,
 /deep/.el-form-item__content {
   width: 280px;
 }

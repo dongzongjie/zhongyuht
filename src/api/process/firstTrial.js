@@ -83,3 +83,11 @@ export function getJingZhenGuData(transactionCode) {
         method: 'get',
     })
 }
+
+// 获取历史审批意见
+export function getHistoryOpinion(transactionCode) {
+    return request({
+        url: '/system/opinion/advise?transactionCode=' + transactionCode,
+        method: 'get',
+    })
+}

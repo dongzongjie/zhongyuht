@@ -121,70 +121,44 @@
           </el-row>
         </el-card>
         <!-- 关联人信息 -->
-        <el-card class="box-card" v-if="userDetails.relation">
+        <el-card
+          class="box-card"
+          :key="index"
+          v-for="(item, index) in userDetails.relation"
+        >
           <div slot="header">
-            <span>关联人信息</span>
+            <span>关联人信息{{ index + 1 }}</span>
           </div>
           <el-row>
-            <el-col :span="8">姓名：{{ userDetails.relation.userName }}</el-col>
+            <el-col :span="8">姓名：{{ item.userName }}</el-col>
             <el-col :span="8"
               >征信授权方式：
-              <span v-if="userDetails.relation.creditPower == 0">电子授权</span>
-              <span v-if="userDetails.relation.creditPower == 1">纸质授权</span>
+              <span v-if="item.creditPower == 0">电子授权</span>
+              <span v-if="item.creditPower == 1">纸质授权</span>
             </el-col>
-            <el-col :span="8"
-              >与借款人关系：{{ userDetails.relation.peopleShip }}</el-col
-            >
-            <el-col :span="8"
-              >身份证号：{{ userDetails.relation.idCard }}</el-col
-            >
-            <el-col :span="8"
-              >银行卡号：{{ userDetails.relation.bankCardNo }}</el-col
-            >
-            <el-col :span="8"
-              >常用手机号：{{ userDetails.relation.phoneNumber }}</el-col
-            >
-            <el-col :span="8"
-              >家庭住址：{{ userDetails.relation.familyAddress }}</el-col
-            >
-            <el-col :span="8"
-              >签发机关：{{ userDetails.relation.issueAuthority }}</el-col
-            >
-            <el-col :span="8"
-              >有效起始日：{{ userDetails.relation.startDate }}</el-col
-            >
-            <el-col :span="8"
-              >有效截止日：{{ userDetails.relation.endDate }}</el-col
-            >
-            <el-col :span="8"
-              >单位名称：{{ userDetails.relation.company }}</el-col
-            >
-            <el-col :span="8"
-              >单位地址：{{ userDetails.relation.companyAddress }}</el-col
-            >
-            <el-col :span="8"
-              >个人年收入：{{ userDetails.relation.yearIncome }}</el-col
-            >
+            <el-col :span="8">与借款人关系：{{ item.peopleShip }}</el-col>
+            <el-col :span="8">身份证号：{{ item.idCard }}</el-col>
+            <el-col :span="8">银行卡号：{{ item.bankCardNo }}</el-col>
+            <el-col :span="8">常用手机号：{{ item.phoneNumber }}</el-col>
+            <el-col :span="8">家庭住址：{{ item.familyAddress }}</el-col>
+            <el-col :span="8">签发机关：{{ item.issueAuthority }}</el-col>
+            <el-col :span="8">有效起始日：{{ item.startDate }}</el-col>
+            <el-col :span="8">有效截止日：{{ item.endDate }}</el-col>
+            <el-col :span="8">单位名称：{{ item.company }}</el-col>
+            <el-col :span="8">单位地址：{{ item.companyAddress }}</el-col>
+            <el-col :span="8">个人年收入：{{ item.yearIncome }}</el-col>
             <el-col :span="16"
               >业务角色：
-              <span v-if="userDetails.relation.businessRole == 0"
-                >共同申请人</span
-              >
-              <span v-if="userDetails.relation.businessRole == 1"
-                >共同偿还人</span
-              >
-              <span v-if="userDetails.relation.businessRole == 2"
-                >财产公有人</span
-              >
-              <span v-if="userDetails.relation.businessRole == 3"
-                >担保人关系</span
-              >
+              <span v-if="item.businessRole == 0">共同申请人</span>
+              <span v-else-if="item.businessRole == 1">共同偿还人</span>
+              <span v-else-if="item.businessRole == 2">财产公有人</span>
+              <span v-else-if="item.businessRole == 3">担保人关系</span>
             </el-col>
             <el-col :span="8" class="img">
               身份证正面
               <el-image
                 style="width: 100px; height: 100px"
-                :src="userDetails.relation.obverseAddress"
+                :src="item.obverseAddress"
                 :preview-src-list="relationSrcList"
               >
               </el-image>
@@ -193,20 +167,16 @@
               身份证反面
               <el-image
                 style="width: 100px; height: 100px"
-                :src="userDetails.relation.backAddress"
+                :src="item.backAddress"
                 :preview-src-list="relationSrcList"
               >
               </el-image>
             </el-col>
-            <el-col
-              :span="8"
-              v-if="userDetails.relation.creditPower == 1"
-              class="img"
-            >
+            <el-col :span="8" v-if="item.creditPower == 1" class="img">
               征信授权书
               <el-image
                 style="width: 100px; height: 100px"
-                :src="userDetails.relation.powerAddress"
+                :src="item.powerAddress"
                 :preview-src-list="relationSrcList"
               >
               </el-image>
@@ -214,61 +184,37 @@
           </el-row>
         </el-card>
         <!-- 担保人信息 -->
-        <el-card class="box-card" v-if="userDetails.guarantee">
+        <el-card
+          class="box-card"
+          :key="index"
+          v-for="(item, index) in userDetails.guarantee"
+        >
           <div slot="header">
-            <span>担保人信息</span>
+            <span>担保人信息{{ index + 1 }}</span>
           </div>
           <el-row>
-            <el-col :span="8"
-              >姓名：{{ userDetails.guarantee.userName }}</el-col
-            >
+            <el-col :span="8">姓名：{{ item.userName }}</el-col>
             <el-col :span="8"
               >征信授权方式：
-              <span v-if="userDetails.guarantee.creditPower == 0"
-                >电子授权</span
-              >
-              <span v-if="userDetails.guarantee.creditPower == 1"
-                >纸质授权</span
-              >
+              <span v-if="item.creditPower == 0">电子授权</span>
+              <span v-if="item.creditPower == 1">纸质授权</span>
             </el-col>
-            <el-col :span="8"
-              >与借款人关系：{{ userDetails.guarantee.peopleShip }}</el-col
-            >
-            <el-col :span="8"
-              >身份证号：{{ userDetails.guarantee.idCard }}</el-col
-            >
-            <el-col :span="8"
-              >银行卡号：{{ userDetails.guarantee.bankCardNo }}</el-col
-            >
-            <el-col :span="8"
-              >常用手机号：{{ userDetails.guarantee.phoneNumber }}</el-col
-            >
-            <el-col :span="8"
-              >家庭住址：{{ userDetails.guarantee.familyAddress }}</el-col
-            >
-            <el-col :span="8"
-              >签发机关：{{ userDetails.guarantee.issueAuthority }}</el-col
-            >
-            <el-col :span="8"
-              >有效起始日：{{ userDetails.guarantee.startDate }}</el-col
-            >
-            <el-col :span="8"
-              >有效截止日：{{ userDetails.guarantee.endDate }}</el-col
-            >
-            <el-col :span="8"
-              >单位名称：{{ userDetails.guarantee.company }}</el-col
-            >
-            <el-col :span="8"
-              >单位地址：{{ userDetails.guarantee.companyAddress }}</el-col
-            >
-            <el-col :span="24"
-              >个人年收入：{{ userDetails.guarantee.yearIncome }}</el-col
-            >
+            <el-col :span="8">与借款人关系：{{ item.peopleShip }}</el-col>
+            <el-col :span="8">身份证号：{{ item.idCard }}</el-col>
+            <el-col :span="8">银行卡号：{{ item.bankCardNo }}</el-col>
+            <el-col :span="8">常用手机号：{{ item.phoneNumber }}</el-col>
+            <el-col :span="8">家庭住址：{{ item.familyAddress }}</el-col>
+            <el-col :span="8">签发机关：{{ item.issueAuthority }}</el-col>
+            <el-col :span="8">有效起始日：{{ item.startDate }}</el-col>
+            <el-col :span="8">有效截止日：{{ item.endDate }}</el-col>
+            <el-col :span="8">单位名称：{{ item.company }}</el-col>
+            <el-col :span="8">单位地址：{{ item.companyAddress }}</el-col>
+            <el-col :span="24">个人年收入：{{ item.yearIncome }}</el-col>
             <el-col :span="8" class="img">
               身份证正面
               <el-image
                 style="width: 100px; height: 100px"
-                :src="userDetails.guarantee.obverseAddress"
+                :src="item.obverseAddress"
                 :preview-src-list="guaranteeSrcList"
               >
               </el-image>
@@ -277,20 +223,16 @@
               身份证反面
               <el-image
                 style="width: 100px; height: 100px"
-                :src="userDetails.guarantee.backAddress"
+                :src="item.backAddress"
                 :preview-src-list="guaranteeSrcList"
               >
               </el-image>
             </el-col>
-            <el-col
-              :span="8"
-              v-if="userDetails.guarantee.creditPower == 1"
-              class="img"
-            >
+            <el-col :span="8" v-if="item.creditPower == 1" class="img">
               征信授权书
               <el-image
                 style="width: 100px; height: 100px"
-                :src="userDetails.guarantee.powerAddress"
+                :src="item.powerAddress"
                 :preview-src-list="guaranteeSrcList"
               >
               </el-image>
@@ -425,10 +367,11 @@ export default {
     async getBusinesss() {
       try {
         const { data } = await getBusiness(this.$route.query.transactionCode)
-        this.userDetails.business = data.business
-        this.userDetails.borrower = data.borrower
-        this.userDetails.relation = data.relation
-        this.userDetails.guarantee = data.guarantee
+        console.log(data)
+        this.userDetails.business = data.zyjrBusiness
+        this.userDetails.borrower = data.zyjrBorrower
+        this.userDetails.relation = data.zyjrRelation
+        this.userDetails.guarantee = data.zyjrGuarantee
         if (data.borrower) {
           this.borrowerSrcList = []
           this.borrowerSrcList.push(

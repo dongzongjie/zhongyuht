@@ -149,7 +149,9 @@
               >婚姻状况：{{ firstDetails.applicant.marriage }}</el-col
             >
             <el-col :span="8"
-              >本人是否有驾驶证：{{ firstDetails.applicant.isLicense }}</el-col
+              >本人是否有驾驶证：
+              <span v-if="firstDetails.applicant.isLicense === 1">是</span>
+              <span v-else>否</span></el-col
             >
             <el-col :span="8"
               >驾驶员与主贷人关系：{{
@@ -250,7 +252,7 @@
               >身份证号：{{ firstDetails.debtService.idCard }}</el-col
             >
             <el-col :span="8"
-              >手机号：{{ firstDetails.debtService.phoneNamber }}</el-col
+              >手机号：{{ firstDetails.debtService.phoneNumber }}</el-col
             >
             <el-col :span="8"
               >教育程度：{{ firstDetails.debtService.education }}</el-col
