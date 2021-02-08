@@ -13,12 +13,16 @@
           </div>
           <el-row>
             <el-col :span="8">销售团队：{{ userDetails.business.team }}</el-col>
-            <el-col :span="8">大区经理：</el-col>
-            <el-col :span="8">团队经理：</el-col>
-            <el-col :span="8">区域：</el-col>
-            <el-col :span="8">门店：</el-col>
+            <!-- <el-col :span="8">大区经理：</el-col> -->
+            <el-col :span="8"
+              >资金方：{{ userDetails.startPage.fundSide }}</el-col
+            >
+            <el-col :span="8"
+              >区域：{{ userDetails.startPage.businessPlace }}</el-col
+            >
+            <!-- <el-col :span="8">门店：</el-col> -->
             <el-col :span="8" style="color: #999"
-              >真实业务发生地：{{ userDetails.business.realAddress }}</el-col
+              >真实业务发生地：{{ userDetails.startPage.realAddress }}</el-col
             >
           </el-row>
         </el-card>
@@ -69,6 +73,9 @@
             <el-col :span="8"
               >身份证号：{{ userDetails.borrower.idCard }}</el-col
             >
+            <el-col :span="8">性别：{{ borrowerSex }}</el-col>
+            <el-col :span="8">民族：{{ userDetails.borrower.nation }}</el-col>
+            <el-col :span="8">出生年月：{{ userDetails.borrower.date }}</el-col>
             <el-col :span="8"
               >银行卡号：{{ userDetails.borrower.bankCardNo }}</el-col
             >
@@ -87,6 +94,8 @@
             <el-col :span="8"
               >有效截止日：{{ userDetails.borrower.endDate }}</el-col
             >
+          </el-row>
+          <el-row>
             <el-col :span="8" class="img">
               身份证正面
               <el-image
@@ -123,7 +132,7 @@
         <!-- 关联人信息 -->
         <el-card
           class="box-card"
-          :key="index"
+          :key="'relation-' + index"
           v-for="(item, index) in userDetails.relation"
         >
           <div slot="header">
@@ -154,6 +163,8 @@
               <span v-else-if="item.businessRole == 2">财产公有人</span>
               <span v-else-if="item.businessRole == 3">担保人关系</span>
             </el-col>
+          </el-row>
+          <el-row>
             <el-col :span="8" class="img">
               身份证正面
               <el-image
@@ -186,7 +197,7 @@
         <!-- 担保人信息 -->
         <el-card
           class="box-card"
-          :key="index"
+          :key="'guarantee-' + index"
           v-for="(item, index) in userDetails.guarantee"
         >
           <div slot="header">
@@ -210,6 +221,8 @@
             <el-col :span="8">单位名称：{{ item.company }}</el-col>
             <el-col :span="8">单位地址：{{ item.companyAddress }}</el-col>
             <el-col :span="24">个人年收入：{{ item.yearIncome }}</el-col>
+          </el-row>
+          <el-row>
             <el-col :span="8" class="img">
               身份证正面
               <el-image
@@ -341,13 +354,26 @@ export default {
         borrower: {}, // 借款人
         relation: {}, // 关联人
         guarantee: {}, // 担保人
+        startPage: {},
       },
       borrowerSrcList: [], // 借款人查看大图数组
       relationSrcList: [], // 关联人查看大图数组
       guaranteeSrcList: [], // 担保人查看大图数组
     }
   },
-  computed: {},
+  computed: {
+    borrowerSex: function () {
+      let str = this.userDetails.borrower.idCard || ''
+      let sexStr = str.charAt(str.length - 2) % 2
+      if (sexStr === 0) {
+        return '女'
+      } else if (sexStr === 1) {
+        return '男'
+      } else {
+        return '未知'
+      }
+    },
+  },
   watch: {
     $route(to, from) {
       //监听路由是否变化
@@ -368,10 +394,11 @@ export default {
       try {
         const { data } = await getBusiness(this.$route.query.transactionCode)
         console.log(data)
-        this.userDetails.business = data.zyjrBusiness
-        this.userDetails.borrower = data.zyjrBorrower
-        this.userDetails.relation = data.zyjrRelation
-        this.userDetails.guarantee = data.zyjrGuarantee
+        // this.userDetails.business = data.zyjrBusiness
+        // this.userDetails.borrower = data.zyjrBorrower
+        // this.userDetails.relation = data.zyjrRelation
+        // this.userDetails.guarantee = data.zyjrGuarantee
+        this.userDetails = data
         if (data.borrower) {
           this.borrowerSrcList = []
           this.borrowerSrcList.push(

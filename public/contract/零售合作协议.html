@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>零售合作协议</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .box {
+            width: 794px;
+            background-color: #fff;
+            padding: 80px 70px 145px;
+            box-sizing: border-box;
+        }
+        
+        h1 {
+            font-size: 20px;
+            text-align: center;
+            margin: 0;
+        }
+        
+        p {
+            font-size: 14px;
+            margin: 0;
+        }
+        
+        button {
+            position: fixed;
+            top: 100px;
+            left: 0;
+        }
+        
+        #bt {
+            position: fixed;
+            top: 150px;
+            left: 0;
+        }
+    </style>
+    <script src="https://cdn.bootcss.com/html2canvas/0.5.0-beta4/html2canvas.js"></script>
+    <script src="https://cdn.bootcss.com/jspdf/1.3.4/jspdf.debug.js"></script>
+</head>
+
+<body>
+    <button onclick="printOut('零售合作协议')">点击下载合同</button>
+    <button id="bt">点击打印</button>
+    <div class="box" id="PDF">
+        <h1>零售合作协议</h1>
+        <br>
+        <p style="font-weight: 700;text-indent: 1em;">本协议于<span style="color: red;">{{签约日期}}</span>日由以下两方于中华人民共和国河南省郑州市签订；</p>
+        <br>
+        <p style="font-weight: 700;text-indent: 1em;">甲方：中豫融资租赁有限公司 <span style="margin-left: 200px;">乙方:<span style="color: red;">{{车商名称}}</span></span>
+        </p>
+        <p style="font-weight: 700;text-indent: 1em;">法定代表人：周新辉 <span style="margin-left: 256px;">签约人：</span> </p>
+        <p style="text-indent: 1em;"><span style="font-weight: 700;">地址：</span>河南省郑州市郑东新区东风南路商鼎路升龙广场3号楼 <span style="font-weight: 700; margin-left: 12px;">地址：</span></p>
+        <p><span style="font-weight: 700;">1.释义：</span>服务人合作的银行、汽车金融公司、金融租赁公司、融资租赁公司的出借人等为购车人提供借款的机构或个人统称为“资金方”。</p>
+        <p><span style="font-weight: 700;">2.合作基本内容：</span>甲方为乙方零售客户提供融资购车服务，乙方将需要通过融资购车的零售客户推荐给甲方。</p>
+        <p><span style="font-weight: 700;">3.合作项下的放款条件：</span>1）甲方取得该零售客户相关融资购车的申请及批准的全部资料，并同意为其提供融资购车咨询服务管理；2）零售客户签订资金方相关合同或咨询管理服务协议等法律文件并办理完毕GPS安装手续（如有）。前述两个放款条件必须同时满足，但甲方有权决定是否在车辆抵押登记完成前向零售客户付款，以及确定是否需要安装GPS设备。</p>
+        <p><span style="font-weight: 700;">4.甲方的义务</span></p>
+        <p>4.1.甲方保证具有合法从事汽车融资租赁的资质。</p>
+        <p>4.2.甲方接受乙方推荐的零售客户，在零售客户提供了相关的申请信息，并通过甲方及/或其资金方的审核，且完成了相关甲方要求后，甲方向零售客户提供咨询管理服务。甲方及/或其资金方应向乙方提供的账户转入咨询管理服务协议或资金方相关合同项下标的车辆的对价，完成零售客户所购车辆的尾款及相关费用支付。</p>
+        <p>4.3.甲方及其雇员应对乙方提供金融产品和业务的介绍和培训，相关款项和费用的支付等服务。甲方及其雇员负责零售客户的融资购车服务的申请流程，办理车辆抵押登记手续，GPS安装，零售客户还清融资款或借款后的解除抵押登记手续等工作。</p>
+        <p><span style="font-weight: 700;">5.乙方的义务</span></p>
+        <p>5.1.乙方应负责办理零售客户所购车辆上牌工作和保险购买手续（以甲方或其指定的第三方作为第一/唯一受益人），并提供用于车辆抵押的相关资料，乙方应按甲方的指示协助办理车辆的抵押登记手续（抵押登记的抵押权人应该是甲方或其指定的第三方）、GPS安装手续以及零售客户还清融资款后的解除抵押登记手续等，并将办理上述手续中取得的资料及文件交至甲方。</p>
+        <p>5.2.将除标的车辆抵押至甲方或其指定的第三方名下外，乙方承诺不会协助零售客户以车辆设置任何留置权、质押权或其他权利。乙方保证在甲方或其相关资金方支付车辆价款后，及时将融资租赁或借款所涉车辆交付零售客户，不得提出对车辆享有任何留置权、质押权或其他权利。</p>
+        <p>5.3.乙方及其雇员或其他代理商均不得对甲方刻意隐藏隐瞒或不披露任何事先知情的、与零售客户相关的任何对融资租赁或借款审批不利的信息。</p>
+        <p>6.甲方对乙方的贷款购车客户可实行上牌抵押前放款,乙方承诺:在客户所购车辆无法完成上牌抵押时，收回车辆并向甲方退还购车款。</p>
+        <p>7.凡实行上牌前放款,乙方必须尽快办理贷款客户车辆的上牌手续。</p>
+        <p>8.乙方收到甲方支付车款的个3工作日之内将办理抵押所需的购车发票、商业保单、登记证书的原件交给甲方,否则,乙方将向甲方支付资金占用费:</p>
+        <p>8.1.乙方收到甲方支付车款的2个工作日内向甲方交付上述上牌资料的，甲方不收取资占用费;</p>
+        <p>8.2.乙方收到甲方支付车款超过3个工作日向甲方交付上述上牌资料的,甲方按银行贷款金额日万分之八的标准向乙方收取资金占用费；</p>
+        <p>8.3.乙方收到甲方支付车款超过10个工作日向甲方交付上述上牌资料的,乙方除支付资金占用费外,还必须为贷款客户垫付当月银行贷款月供;</p>
+        <p>8.4.乙方收到甲方支付车款超过30天仍不能向甲方交付上述上牌资料的，按甲方与银行的协议,乙方必须还清贷款客户的全部贷款本息并承担相关的费用。</p>
+        <p><span style="font-weight: 700;">9.乙方保证（违反该等保证将构成对本协议的违约）</span></p>
+        <p>9.1.乙方保证合法从事汽车经营的资质，并且承诺经营汽车是乙方的主营业务。</p>
+        <p>9.2.乙方承诺推荐给甲方的零售客户的融资租赁或借款申请，都是以真实的车辆买卖交易为基础的。乙方保证乙方及乙方雇员、代理商及其雇员没有从事任何高报车辆价格等骗取融资款或借款的套现活动或商业欺诈。</p>
+
+        <p>9.3.乙方没有就零售客户所购车辆在甲方及甲方合作方之外另行提供其他资金出借方，即乙方承诺并保证推荐给甲方的购车客户需求不存在套款或一车多贷的情形。</p>
+        <p>9.4.乙方保证，每一零售客户均按资金方合同及咨询管理服务协议确定的首付比例收取了车辆首付款，并在甲方需要时乙方将无条件的出具收取首付款的凭证。</p>
+        <p>9.5.乙方及其雇员代、理商或其他关联人员及其雇员均不得违反法律法规及行业惯例，进行欺诈性或非诚信地车辆销售。乙方应确保每一资金方合同及咨询管理服务协议合同项下的车辆在零售客户提车时完好无损;并保证其自身或/及其代理商根据本协议出售给零售客户的车辆以及乙方协助第三方出售给零售客户的车辆不存在法律法规所限制或禁止销售的任何情形，亦不存在任何抵押、质押、留置或其他权利受到限制的情形，出售方有权销售该等车辆并将该车辆所有权转移给零售客户。如资金方合同及咨询管理服务协议合同项下的车辆是二手车，乙方必须在仔细及全面的检测后证实其处于良好可维修状态；除非乙方在融资租赁、借款申请递交时书面向甲方作出披露，在任何情况下，车辆不得是曾经被用于出租车，个人出租车或警车等用途的车辆。</p>
+        <p><span style="font-weight: 700;">10.赔偿及罚则</span></p>
+        <p>如发生如下情形，乙方应赔偿甲方因此而遭受的全部损失；</p>
+        <p>（a）由于乙方的原因（如乙方未能及时提供车辆合格证，未能及时办理零售客户所购车辆上牌工作等，不包括因为车管所等客观情况造成的）车辆抵押登记未能完成或甲方或其指定的第三方未能取得抵押权；</p>
+        <p>（b）乙方未按本协议约定协助零售客户办理完成车辆保险购买手续；</p>
+        <p>（c）乙方向甲方提交的零售客户融资租赁或借款申请资料或资金方合同及咨询管理服务协议合同项下车辆信息不真实、不准确、不完整或已失效；</p>
+        <p>（d）乙方、其雇员或其代理商向零售客户所做出的任何与车辆、销售报价、融资租赁或借款相关保证、陈述等不真实的；</p>
+        <p>（e）任何乙方实际发生的或涉嫌发生本协议项下的商业欺诈行为的；</p>
+        <p>（f）乙方违反其在本协议项下的义务或承诺，陈述，保证，或发生其他本协议项下的违约行为的。</p>
+        <p>本协议下条款5.1中的赔偿适用于所有融资租赁合同或借款服务合同项下的车辆。</p>
+        <p><span style="font-weight: 700;">11.乙方账户</span></p>
+        <p>零售合作业务中乙方用于接受融资租赁或借款相关合同项下标的车辆的对价及相关费用的账户为如下指定账户；</p>
+        <p>账户名称：<span style="color: red;">{{收款人姓名}}</span></p>
+        <p>银行帐号：<span style="color: red;">{{收款账号}}</span></p>
+        <p>开户行：<span style="color: red;">{{收款开户行}}</span></p>
+        <p>手机号码：<span style="color: red;">{{收款人电话}}</span></p>
+        <p>甲方及/或资金方向上述账户划转相应款项即视为零售客户已经向乙方履行完毕付款义务；乙方将妥善保存支付至上述账户的相关费用，如因乙方及其雇员或其他关联人员的保管不善或其他原因导致的任何风险由乙方自行承担，与甲方及/或资金方无关。</p>
+        <p><span style="font-weight: 700;">12.争议解决：</span>因本协议所发生的或与之相关的一切争议，双方应首先通过友好协商解决；协商不成或一方不愿通过协商解决时，任何一方有权向甲方所在地有管辖权的人民法院提起诉讼。
+        </p>
+        <p style="text-indent: 1em;">本协议一式贰份，双方各持一份，自双方签字或盖章之日起生效，具有同等法律效力。</p>
+        <p style="text-indent: 1em;">（以下无正文）</p>
+        <br>
+        <p>双方签署：</p>
+        <br>
+        <p style="font-weight: 700;">甲方(公章）：中豫融资租赁有限公司 <span style="margin-left: 200px;">乙方（公章/签字+手印）：</span></p>
+        <p style="font-weight: 700;">甲方电话：4000-382-975 <span style="margin-left: 260px;">乙方电话：</span></p>
+        <p style="font-weight: 700;">签约人 ： <span style="margin-left: 370px;">签约人（签字+手印）：</span></p>
+    </div>
+</body>
+
+<script>
+    // 接收VUE数据
+    window.addEventListener("message", function(event) {
+        console.log(event);
+        // let sname = document.querySelector('#sname')
+        // sname.innerHTML = event.data.name
+        // if (event.data.isDownload) return printOut('零售合作协议')
+    })
+
+    // PDF
+    function printOut(name) {
+        let shareContent = document.querySelector('#PDF'), //需要截图的包裹的（原生的）DOM 对象
+            width = shareContent.clientWidth, //获取dom 宽度
+            height = shareContent.clientHeight, //获取dom 高度
+            canvas = document.createElement("canvas"), //创建一个canvas节点
+            scale = 2; //定义任意放大倍数 支持小数
+        canvas.width = width * scale; //定义canvas 宽度 * 缩放
+        canvas.height = height * scale; //定义canvas高度 *缩放
+        canvas.style.width = shareContent.clientWidth * scale + "px";
+        canvas.style.height = shareContent.clientHeight * scale + "px";
+        canvas.getContext("2d").scale(scale, scale); //获取context,设置scale
+        let opts = {
+            scale: scale, // 添加的scale 参数
+            canvas: canvas, //自定义 canvas
+            logging: false, //日志开关，便于查看html2canvas的内部执行流程
+            width: width, //dom 原始宽度
+            height: height,
+            useCORS: true, // 【重要】开启跨域配置
+        };
+
+        html2canvas(shareContent, opts).then(() => {
+            var contentWidth = canvas.width;
+            var contentHeight = canvas.height;
+            //一页pdf显示html页面生成的canvas高度;
+            var pageHeight = (contentWidth / 592.28) * 841.89;
+            //未生成pdf的html页面高度
+            var leftHeight = contentHeight;
+            //页面偏移
+            var position = 0;
+            //a4纸的尺寸[595.28,841.89]，html页面生成的canvas在pdf中图片的宽高
+            var imgWidth = 595.28;
+            var imgHeight = (592.28 / contentWidth) * contentHeight;
+            var pageData = canvas.toDataURL("image/jpeg", 1.0);
+            var PDF = new jsPDF("", "pt", "a4");
+            if (leftHeight < pageHeight) {
+                PDF.addImage(pageData, "JPEG", 0, 0, imgWidth, imgHeight);
+            } else {
+                while (leftHeight > 0) {
+                    PDF.addImage(pageData, "JPEG", 0, position, imgWidth, imgHeight);
+                    leftHeight -= pageHeight;
+                    position -= 841.89;
+                    if (leftHeight > 0) {
+                        PDF.addPage();
+                    }
+                }
+            }
+            PDF.save(name + ".pdf"); // 这里是导出的文件名
+        });
+    }
+
+    // 打印
+    function printdiv(printpage) {
+        var newstr = printpage.innerHTML;
+        var oldstr = document.body.innerHTML;
+        document.body.innerHTML = newstr;
+        window.print();
+        document.body.innerHTML = oldstr;
+        return false;
+    }
+    var bt = document.getElementById("bt");
+    var div_print = document.getElementById("PDF");
+    bt.onclick = function() {
+        printdiv(div_print);
+    }
+</script>
+
+</html>

@@ -31,41 +31,56 @@
       >
         <!-- 基本信息 -->
         <el-card class="box-card">
-          <div slot="header" ref="ref0">
+          <div slot="header">
             <span>基本信息</span>
           </div>
           <el-row>
-            <el-col :span="8">销售团队：{{ userDetails.business.team }}</el-col>
-            <el-col :span="8">大区经理：</el-col>
-            <el-col :span="8">团队经理：</el-col>
-            <el-col :span="8">区域：</el-col>
-            <el-col :span="8">门店：</el-col>
+            <el-col :span="8"
+              >销售团队：{{ firstDetails.business.team }}</el-col
+            >
+            <!-- <el-col :span="8">大区经理：</el-col> -->
+            <el-col :span="8"
+              >资金方：{{ firstDetails.startPage.fundSide }}</el-col
+            >
+            <el-col :span="8"
+              >区域：{{ firstDetails.startPage.businessPlace }}</el-col
+            >
+            <!-- <el-col :span="8">门店：</el-col> -->
             <el-col :span="8" style="color: #999"
-              >真实业务发生地：{{ userDetails.business.realAddress }}</el-col
+              >真实业务发生地：{{ firstDetails.startPage.realAddress }}</el-col
             >
           </el-row>
         </el-card>
         <!-- 订单信息 -->
         <el-card class="box-card">
-          <div slot="header" ref="ref1">
+          <div slot="header">
             <span>订单信息</span>
           </div>
           <el-row>
             <el-col :span="8"
               >车辆类型：
-              <span v-if="userDetails.business.carInformation == 0"
+              <span v-if="firstDetails.business.carInformation == 0"
                 >乘用车</span
               >
-              <span v-else-if="userDetails.business.carInformation == 1"
+              <span v-else-if="firstDetails.business.carInformation == 1"
                 >商用车</span
               >
             </el-col>
             <el-col :span="16"
               >业务类型：
-              <span v-if="userDetails.business.carType == 0">新车</span>
-              <span v-else-if="userDetails.business.carType == 1">二手车</span>
-              <span v-else-if="userDetails.business.carType == 2">新能源</span>
+              <span v-if="firstDetails.business.carType == 0">新车</span>
+              <span v-else-if="firstDetails.business.carType == 1">二手车</span>
+              <span v-else-if="firstDetails.business.carType == 2">新能源</span>
             </el-col>
+            <el-col :span="8"
+              >意向价格：{{ firstDetails.business.intentionPrice }}</el-col
+            >
+            <el-col :span="8"
+              >意向贷款金额：{{ firstDetails.business.loanMoney }}</el-col
+            >
+            <el-col :span="8"
+              >意向贷款期限：{{ firstDetails.business.repayPeriod }}</el-col
+            >
           </el-row>
         </el-card>
         <!-- 借款人信息 -->
@@ -549,7 +564,7 @@
           </el-row>
         </el-card>
         <!-- 图片信息 -->
-        <el-card class="box-card">
+        <!-- <el-card class="box-card">
           <div slot="header" ref="ref10">
             <span>图片信息</span>
           </div>
@@ -559,16 +574,16 @@
               左前45度
               <el-image
                 style="width: 100px; height: 100px"
-                :src="firstDetails[242]"
+                :src="firstDetails[283]"
                 :preview-src-list="srcList"
               >
               </el-image>
             </el-col>
             <el-col :span="6" class="img">
-              右前45度
+              右后45度
               <el-image
                 style="width: 100px; height: 100px"
-                :src="firstDetails[253]"
+                :src="firstDetails[290]"
                 :preview-src-list="srcList"
               >
               </el-image>
@@ -577,7 +592,7 @@
               里程表
               <el-image
                 style="width: 100px; height: 100px"
-                :src="firstDetails[244]"
+                :src="firstDetails[285]"
                 :preview-src-list="srcList"
               >
               </el-image>
@@ -586,7 +601,7 @@
               发动机舱左侧
               <el-image
                 style="width: 100px; height: 100px"
-                :src="firstDetails[246]"
+                :src="firstDetails[433]"
                 :preview-src-list="srcList"
               >
               </el-image>
@@ -595,7 +610,7 @@
               发动机舱右侧
               <el-image
                 style="width: 100px; height: 100px"
-                :src="firstDetails[245]"
+                :src="firstDetails[432]"
                 :preview-src-list="srcList"
               >
               </el-image>
@@ -604,7 +619,7 @@
               车辆铭牌
               <el-image
                 style="width: 100px; height: 100px"
-                :src="firstDetails[247]"
+                :src="firstDetails[286]"
                 :preview-src-list="srcList"
               >
               </el-image>
@@ -613,16 +628,7 @@
               VIN码
               <el-image
                 style="width: 100px; height: 100px"
-                :src="firstDetails[248]"
-                :preview-src-list="srcList"
-              >
-              </el-image>
-            </el-col>
-            <el-col :span="6" class="img">
-              左后车门螺丝
-              <el-image
-                style="width: 100px; height: 100px"
-                :src="firstDetails[257]"
+                :src="firstDetails[287]"
                 :preview-src-list="srcList"
               >
               </el-image>
@@ -631,7 +637,7 @@
               前排座椅
               <el-image
                 style="width: 100px; height: 100px"
-                :src="firstDetails[243]"
+                :src="firstDetails[284]"
                 :preview-src-list="srcList"
               >
               </el-image>
@@ -640,25 +646,7 @@
               后排座椅
               <el-image
                 style="width: 100px; height: 100px"
-                :src="firstDetails[251]"
-                :preview-src-list="srcList"
-              >
-              </el-image>
-            </el-col>
-            <el-col :span="6" class="img">
-              左后流水槽
-              <el-image
-                style="width: 100px; height: 100px"
-                :src="firstDetails[255]"
-                :preview-src-list="srcList"
-              >
-              </el-image>
-            </el-col>
-            <el-col :span="6" class="img">
-              右后流水槽
-              <el-image
-                style="width: 100px; height: 100px"
-                :src="firstDetails[254]"
+                :src="firstDetails[288]"
                 :preview-src-list="srcList"
               >
               </el-image>
@@ -667,25 +655,16 @@
               备胎槽全景
               <el-image
                 style="width: 100px; height: 100px"
-                :src="firstDetails[256]"
+                :src="firstDetails[434]"
                 :preview-src-list="srcList"
               >
               </el-image>
             </el-col>
             <el-col :span="6" class="img">
-              右后车门螺丝
+              后备箱开启
               <el-image
                 style="width: 100px; height: 100px"
-                :src="firstDetails[250]"
-                :preview-src-list="srcList"
-              >
-              </el-image>
-            </el-col>
-            <el-col :span="6" class="img">
-              后备箱底部
-              <el-image
-                style="width: 100px; height: 100px"
-                :src="firstDetails[279]"
+                :src="firstDetails[435]"
                 :preview-src-list="srcList"
               >
               </el-image>
@@ -694,7 +673,7 @@
               中控台
               <el-image
                 style="width: 100px; height: 100px"
-                :src="firstDetails[252]"
+                :src="firstDetails[289]"
                 :preview-src-list="srcList"
               >
               </el-image>
@@ -706,7 +685,7 @@
               机动车登记证1-2
               <el-image
                 style="width: 100px; height: 100px"
-                :src="firstDetails[240]"
+                :src="firstDetails[282]"
                 :preview-src-list="srcList"
               >
               </el-image>
@@ -867,7 +846,7 @@
               </el-image>
             </el-col>
           </el-row>
-        </el-card>
+        </el-card> -->
       </el-tab-pane>
       <el-tab-pane label="征信结果" name="second">
         <h4>申请人</h4>
@@ -947,14 +926,13 @@
         </el-tabs>
       </el-tab-pane>
       <el-tab-pane label="精真估" name="fourth">
-        <!-- <el-button
+        <el-button
           type="primary"
           round
           style="margin: 20px 10px"
-          @click="findJZG"
+          @click="getJZGData"
           >点击查询精真估</el-button
-        > -->
-        <p>{{ JZGRes }}</p>
+        >
       </el-tab-pane>
       <el-tab-pane label="意见" name="fifth">
         <h5 style="font-size: 14px; margin: 10px 0">初审意见</h5>
@@ -1061,25 +1039,19 @@ export default {
       firstDetails: {
         applicant: {},
         borrower: {},
+        business: {},
         peopleGuarantee: {},
         companyGuarantee: {},
         debtService: {},
         basics: {},
         carLoan: {},
         contacts: {},
+        startPage: {},
       }, // 终审详情
-      // 用户详情
-      userDetails: {
-        business: {}, // 基本信息
-        borrower: {}, // 借款人
-        relation: {}, // 关联人
-        guarantee: {}, // 担保人
-      },
       borrowerSrcList: [], // 借款人查看大图数组
       relationSrcList: [], // 关联人查看大图数组
       guaranteeSrcList: [], // 担保人查看大图数组
       srcList: [], // 图片数组
-      JZGRes: '', // 精真估返回结果
       JZGData: '', // 精真估数据
     }
   },
@@ -1102,7 +1074,13 @@ export default {
     $route(to, from) {
       //监听路由是否变化
       if (to.path == '/process/firstTrialDetails') {
-        this.getFinalData()
+        this.JZGData = ''
+        this.watchNum = 0
+        this.activeName = 'first'
+        this.activeName1 = 'first'
+        this.textarea = ''
+        this.approvalType = ''
+        this.getFirstData()
       }
     },
   },
@@ -1274,14 +1252,6 @@ export default {
       try {
         const { data } = await getFirstHandle(this.$route.query.transactionCode)
         this.firstTextarea = data.advise
-      } catch (error) {}
-    },
-    // 查询精真估
-    async findJZG() {
-      try {
-        const data = await findJingZhenGu(this.$route.query.transactionCode)
-        this.JZGRes = JSON.parse(data.msg).Msg
-        this.getJZGData()
       } catch (error) {}
     },
     // 查询精真估结果

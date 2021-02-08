@@ -376,9 +376,7 @@
           </el-upload>
         </el-col>
         <el-col :span="24" style="margin-bottom: 20px">
-          <span style="font-size: 14px"
-            >营业执照+法人+开户许可证（如有）：</span
-          >
+          <span style="font-size: 14px">营业执照+身份证（如有）：</span>
           <el-upload
             ref="license"
             :limit="9"
@@ -462,7 +460,7 @@ export default {
         // 设置上传的请求头部
         headers: { Authorization: 'Bearer ' + getToken() },
         // 上传的地址
-        url: 'http://192.168.31.82:8080/system/test/ceshi2',
+        url: 'http://114.215.186.186:8080/system/test/ceshi2',
         // 上传的文件列表
         storeList: [], // 门店
         stallList: [], // 车位

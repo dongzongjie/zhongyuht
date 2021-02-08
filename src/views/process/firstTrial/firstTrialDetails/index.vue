@@ -21,7 +21,7 @@
       <button @click="goAssignBlock('ref7', 50)">车辆信息</button>
       <button @click="goAssignBlock('ref8', 50)">贷款信息</button>
       <button @click="goAssignBlock('ref9', 50)">紧急联系人</button>
-      <button @click="goAssignBlock('ref10', 50)">图片信息</button>
+      <!-- <button @click="goAssignBlock('ref10', 50)">图片信息</button> -->
     </div>
     <el-tabs v-model="activeName" tab-position="left">
       <el-tab-pane
@@ -31,41 +31,56 @@
       >
         <!-- 基本信息 -->
         <el-card class="box-card">
-          <div slot="header" ref="ref0">
+          <div slot="header">
             <span>基本信息</span>
           </div>
           <el-row>
-            <el-col :span="8">销售团队：{{ userDetails.business.team }}</el-col>
-            <el-col :span="8">大区经理：</el-col>
-            <el-col :span="8">团队经理：</el-col>
-            <el-col :span="8">区域：</el-col>
-            <el-col :span="8">门店：</el-col>
+            <el-col :span="8"
+              >销售团队：{{ firstDetails.business.team }}</el-col
+            >
+            <!-- <el-col :span="8">大区经理：</el-col> -->
+            <el-col :span="8"
+              >资金方：{{ firstDetails.startPage.fundSide }}</el-col
+            >
+            <el-col :span="8"
+              >区域：{{ firstDetails.startPage.businessPlace }}</el-col
+            >
+            <!-- <el-col :span="8">门店：</el-col> -->
             <el-col :span="8" style="color: #999"
-              >真实业务发生地：{{ userDetails.business.realAddress }}</el-col
+              >真实业务发生地：{{ firstDetails.startPage.realAddress }}</el-col
             >
           </el-row>
         </el-card>
         <!-- 订单信息 -->
         <el-card class="box-card">
-          <div slot="header" ref="ref1">
+          <div slot="header">
             <span>订单信息</span>
           </div>
           <el-row>
             <el-col :span="8"
               >车辆类型：
-              <span v-if="userDetails.business.carInformation == 0"
+              <span v-if="firstDetails.business.carInformation == 0"
                 >乘用车</span
               >
-              <span v-else-if="userDetails.business.carInformation == 1"
+              <span v-else-if="firstDetails.business.carInformation == 1"
                 >商用车</span
               >
             </el-col>
             <el-col :span="16"
               >业务类型：
-              <span v-if="userDetails.business.carType == 0">新车</span>
-              <span v-else-if="userDetails.business.carType == 1">二手车</span>
-              <span v-else-if="userDetails.business.carType == 2">新能源</span>
+              <span v-if="firstDetails.business.carType == 0">新车</span>
+              <span v-else-if="firstDetails.business.carType == 1">二手车</span>
+              <span v-else-if="firstDetails.business.carType == 2">新能源</span>
             </el-col>
+            <el-col :span="8"
+              >意向价格：{{ firstDetails.business.intentionPrice }}</el-col
+            >
+            <el-col :span="8"
+              >意向贷款金额：{{ firstDetails.business.loanMoney }}</el-col
+            >
+            <el-col :span="8"
+              >意向贷款期限：{{ firstDetails.business.repayPeriod }}</el-col
+            >
           </el-row>
         </el-card>
         <!-- 借款人信息 -->
@@ -114,7 +129,7 @@
               >工作地址：{{ firstDetails.applicant.workAddress }}</el-col
             >
             <el-col :span="8"
-              >公司电话：{{ firstDetails.applicant.unitPhone }}</el-col
+              >单位电话：{{ firstDetails.applicant.unitPhone }}</el-col
             >
             <el-col :span="8"
               >工作单位性质：{{ firstDetails.applicant.unitNature }}</el-col
@@ -125,13 +140,16 @@
             >
             <!-- <el-col :span="8">现单位工作年限：{{firstDetails.applicant.householdNature}}</el-col> -->
             <el-col :span="8"
-              >职位：{{ firstDetails.applicant.position }}</el-col
+              >职务：{{ firstDetails.applicant.position }}</el-col
             >
             <el-col :span="8"
               >户口性质：{{ firstDetails.applicant.householdNature }}</el-col
             >
             <el-col :span="8"
-              >现居住地址：{{ firstDetails.applicant.liveAddress }}</el-col
+              >现居住地址：{{ firstDetails.applicant.liveProvince
+              }}{{ firstDetails.applicant.liveCity
+              }}{{ firstDetails.applicant.liveArea
+              }}{{ firstDetails.applicant.liveAddress }}</el-col
             >
             <el-col :span="8"
               >现居住时间/年：{{ firstDetails.applicant.liveTime }}</el-col
@@ -143,7 +161,7 @@
               >税后月收入：{{ firstDetails.applicant.monthlyIncome }}</el-col
             >
             <el-col :span="8"
-              >学历：{{ firstDetails.applicant.education }}</el-col
+              >受教育程度：{{ firstDetails.applicant.education }}</el-col
             >
             <el-col :span="8"
               >婚姻状况：{{ firstDetails.applicant.marriage }}</el-col
@@ -161,6 +179,8 @@
             <el-col :span="24"
               >驾照类型：{{ firstDetails.applicant.licenseType }}</el-col
             >
+            <el-col :span="24">邮政编码：</el-col>
+            <el-col :span="24">家庭人数：</el-col>
             <el-col :span="8" class="img">
               身份证正面
               <el-image
@@ -437,10 +457,10 @@
               >经销商门店：{{ firstDetails.basics.dealerStores }}</el-col
             >
             <el-col :span="8"
-              >车牌类型：<span v-if="firstDetails.basics.plateType === 0"
-                >公牌</span
+              >公牌信息：<span v-if="firstDetails.basics.plateType === 0"
+                >一般公牌</span
               ><span v-if="firstDetails.basics.plateType === 1"
-                >私牌</span
+                >非公牌</span
               ></el-col
             >
             <el-col :span="8"
@@ -549,7 +569,7 @@
           </el-row>
         </el-card>
         <!-- 图片信息 -->
-        <el-card class="box-card">
+        <!-- <el-card class="box-card">
           <div slot="header" ref="ref10">
             <span>图片信息</span>
           </div>
@@ -559,16 +579,16 @@
               左前45度
               <el-image
                 style="width: 100px; height: 100px"
-                :src="firstDetails[242]"
+                :src="firstDetails[283]"
                 :preview-src-list="srcList"
               >
               </el-image>
             </el-col>
             <el-col :span="6" class="img">
-              右前45度
+              右后45度
               <el-image
                 style="width: 100px; height: 100px"
-                :src="firstDetails[253]"
+                :src="firstDetails[290]"
                 :preview-src-list="srcList"
               >
               </el-image>
@@ -577,7 +597,7 @@
               里程表
               <el-image
                 style="width: 100px; height: 100px"
-                :src="firstDetails[244]"
+                :src="firstDetails[285]"
                 :preview-src-list="srcList"
               >
               </el-image>
@@ -586,7 +606,7 @@
               发动机舱左侧
               <el-image
                 style="width: 100px; height: 100px"
-                :src="firstDetails[246]"
+                :src="firstDetails[433]"
                 :preview-src-list="srcList"
               >
               </el-image>
@@ -595,7 +615,7 @@
               发动机舱右侧
               <el-image
                 style="width: 100px; height: 100px"
-                :src="firstDetails[245]"
+                :src="firstDetails[432]"
                 :preview-src-list="srcList"
               >
               </el-image>
@@ -604,7 +624,7 @@
               车辆铭牌
               <el-image
                 style="width: 100px; height: 100px"
-                :src="firstDetails[247]"
+                :src="firstDetails[286]"
                 :preview-src-list="srcList"
               >
               </el-image>
@@ -613,16 +633,7 @@
               VIN码
               <el-image
                 style="width: 100px; height: 100px"
-                :src="firstDetails[248]"
-                :preview-src-list="srcList"
-              >
-              </el-image>
-            </el-col>
-            <el-col :span="6" class="img">
-              左后车门螺丝
-              <el-image
-                style="width: 100px; height: 100px"
-                :src="firstDetails[257]"
+                :src="firstDetails[287]"
                 :preview-src-list="srcList"
               >
               </el-image>
@@ -631,7 +642,7 @@
               前排座椅
               <el-image
                 style="width: 100px; height: 100px"
-                :src="firstDetails[243]"
+                :src="firstDetails[284]"
                 :preview-src-list="srcList"
               >
               </el-image>
@@ -640,25 +651,7 @@
               后排座椅
               <el-image
                 style="width: 100px; height: 100px"
-                :src="firstDetails[251]"
-                :preview-src-list="srcList"
-              >
-              </el-image>
-            </el-col>
-            <el-col :span="6" class="img">
-              左后流水槽
-              <el-image
-                style="width: 100px; height: 100px"
-                :src="firstDetails[255]"
-                :preview-src-list="srcList"
-              >
-              </el-image>
-            </el-col>
-            <el-col :span="6" class="img">
-              右后流水槽
-              <el-image
-                style="width: 100px; height: 100px"
-                :src="firstDetails[254]"
+                :src="firstDetails[288]"
                 :preview-src-list="srcList"
               >
               </el-image>
@@ -667,25 +660,16 @@
               备胎槽全景
               <el-image
                 style="width: 100px; height: 100px"
-                :src="firstDetails[256]"
+                :src="firstDetails[434]"
                 :preview-src-list="srcList"
               >
               </el-image>
             </el-col>
             <el-col :span="6" class="img">
-              右后车门螺丝
+              后备箱开启
               <el-image
                 style="width: 100px; height: 100px"
-                :src="firstDetails[250]"
-                :preview-src-list="srcList"
-              >
-              </el-image>
-            </el-col>
-            <el-col :span="6" class="img">
-              后备箱底部
-              <el-image
-                style="width: 100px; height: 100px"
-                :src="firstDetails[279]"
+                :src="firstDetails[435]"
                 :preview-src-list="srcList"
               >
               </el-image>
@@ -694,7 +678,7 @@
               中控台
               <el-image
                 style="width: 100px; height: 100px"
-                :src="firstDetails[252]"
+                :src="firstDetails[289]"
                 :preview-src-list="srcList"
               >
               </el-image>
@@ -706,7 +690,7 @@
               机动车登记证1-2
               <el-image
                 style="width: 100px; height: 100px"
-                :src="firstDetails[240]"
+                :src="firstDetails[282]"
                 :preview-src-list="srcList"
               >
               </el-image>
@@ -731,14 +715,6 @@
                 :preview-src-list="srcList"
               >
               </el-image>
-              <el-button
-                type="primary"
-                round
-                size="mini"
-                style="width: 100px"
-                @click="dialogVisible = true"
-                >查看文件</el-button
-              >
             </el-col>
             <el-col :span="6" class="img">
               房产
@@ -867,7 +843,7 @@
               </el-image>
             </el-col>
           </el-row>
-        </el-card>
+        </el-card> -->
       </el-tab-pane>
       <el-tab-pane label="征信结果" name="second">
         <h4>申请人</h4>
@@ -946,21 +922,39 @@
         </el-tabs>
       </el-tab-pane>
       <el-tab-pane label="精真估" name="fourth">
-        <el-button
-          type="primary"
-          round
-          style="margin: 20px 10px 5px"
-          @click="findJZG"
-          >点击查询精真估</el-button
-        >
-        <el-button
-          type="primary"
-          round
-          style="margin: 20px 10px 5px"
-          v-if="JZGData"
-          >点击下载PDF</el-button
-        >
-        <p style="font-size: 14px">{{ JZGRes }}</p>
+        <el-form :model="form" :rules="rules" ref="form" label-width="150px">
+          <el-row>
+            <el-col :span="6">
+              <el-form-item label="车辆所在省市" prop="city">
+                <el-cascader :props="props" v-model="form.city"></el-cascader>
+              </el-form-item>
+            </el-col>
+            <el-col :span="6">
+              <el-form-item label="下单人姓名" prop="name">
+                <el-input v-model="form.name"></el-input>
+              </el-form-item>
+            </el-col>
+            <el-col :span="6">
+              <el-form-item label="下单人电话" prop="phone">
+                <el-input v-model="form.phone"></el-input>
+              </el-form-item>
+            </el-col>
+            <el-button
+              type="primary"
+              round
+              style="margin: 5px 10px 0 50px"
+              @click="findJZG"
+              >点击查询精真估</el-button
+            >
+            <el-button
+              type="primary"
+              round
+              style="margin: 5px 10px 0 50px"
+              @click="getJZGData"
+              >查看精真估详情</el-button
+            >
+          </el-row>
+        </el-form>
         <iframe
           width="100%"
           height="100%"
@@ -968,128 +962,6 @@
           :src="JZGData.AssessmentReportH5"
           id="JZGIframe"
         />
-        <!-- <div id="JZGPDF">
-          <div class="header">
-            <div class="left">
-              <img src="../../../../assets/image/JZGlogo.png" alt="" />
-              <img src="../../../../assets/image/twocar.png" alt="" />
-            </div>
-            <div class="right">
-              <img src="../../../../assets/image/yclogo.jpg" alt="" />
-              <img src="../../../../assets/image/kbb.jpg" alt="" />
-              <img src="../../../../assets/image/xh.jpg" alt="" />
-            </div>
-          </div>
-          <div class="banner">
-            <h2>精真估车辆鉴定书</h2>
-            <table class="table1">
-              <tr>
-                <td class="tdleft">品牌车型：</td>
-                <td>本田 歌诗图 2014款 2.4L 自动 豪华版</td>
-              </tr>
-              <tr>
-                <td class="tdleft">VIN码：</td>
-                <td>LHGTF3858E8005703</td>
-              </tr>
-              <tr>
-                <td class="tdleft">服务方案：</td>
-                <td>线上鉴定估值</td>
-              </tr>
-              <tr>
-                <td class="tdleft">鉴定结果：</td>
-                <td style="position: relative; width: 500px">
-                  <table class="table2">
-                    <tr>
-                      <td>外观:</td>
-                      <td>少量明显损伤</td>
-                    </tr>
-                    <tr>
-                      <td>漆面:</td>
-                      <td>部分喷漆修复痕迹</td>
-                    </tr>
-                    <tr>
-                      <td>内饰:</td>
-                      <td>少量脏污、磨损，少量破损</td>
-                    </tr>
-                    <tr>
-                      <td>车架:</td>
-                      <td>无拆卸、更换修复痕迹</td>
-                    </tr>
-                    <tr>
-                      <td>火烧检查:</td>
-                      <td>未见火烧迹象</td>
-                    </tr>
-                    <tr>
-                      <td>泡水检查:</td>
-                      <td>未见泡水迹象</td>
-                    </tr>
-                    <tr>
-                      <td>仪表盘:</td>
-                      <td>正常</td>
-                    </tr>
-                    <tr>
-                      <td>其他说明:</td>
-                      <td>市场保有量较高，市场认可度较高，市场保值率较高</td>
-                    </tr>
-                  </table>
-                </td>
-              </tr>
-            </table>
-            <el-row
-              style="padding-left: 40px; margin-top: 180px; font-size: 12px"
-            >
-              <el-col :span="4">评估师：邓纲</el-col>
-              <el-col :span="5">复核评估师： 张岩</el-col>
-              <el-col :span="6">鉴定日期：2021-01-04</el-col>
-              <el-col :span="24"
-                >评估价格：<span
-                  style="font-size: 26px; color: rgb(245, 130, 106)"
-                  >12.7万</span
-                ></el-col
-              >
-            </el-row>
-            <div class="box">
-              <el-row style="font-size: 12px">
-                <el-col :span="4">品牌型号：</el-col>
-                <el-col :span="20">歌诗图牌HG7240EBA4</el-col>
-                <el-col :span="4">品牌车型：</el-col>
-                <el-col :span="20">本田 歌诗图 2014款 2.4L 自动 豪华版</el-col>
-                <el-col :span="4">发动机号：</el-col>
-                <el-col :span="8">2005824</el-col>
-                <el-col :span="4">车牌号：</el-col>
-                <el-col :span="8">豫VDM116</el-col>
-                <el-col :span="4">燃料：</el-col>
-                <el-col :span="8">汽油</el-col>
-                <el-col :span="4">注册地：</el-col>
-                <el-col :span="8">河南郑州</el-col>
-                <el-col :span="4">车辆类型：</el-col>
-                <el-col :span="8">掀背车</el-col>
-                <el-col :span="4">厂商指导价：</el-col>
-                <el-col :span="8">25.98万元</el-col>
-                <el-col :span="4">变速器：</el-col>
-                <el-col :span="8">自动</el-col>
-                <el-col :span="4">排量：</el-col>
-                <el-col :span="8">2.4L</el-col>
-                <el-col :span="4">额定载客：</el-col>
-                <el-col :span="8">5人</el-col>
-                <el-col :span="4">表显里程：</el-col>
-                <el-col :span="8">54365公里</el-col>
-                <el-col :span="4">使用性质：</el-col>
-                <el-col :span="8">非营运</el-col>
-                <el-col :span="4">出厂日期：</el-col>
-                <el-col :span="8">2014年04月23日</el-col>
-                <el-col :span="4">车身颜色：</el-col>
-                <el-col :span="8">黑色</el-col>
-                <el-col :span="4">登记日期：</el-col>
-                <el-col :span="8">2014年05月27日</el-col>
-                <el-col :span="4">过户次数：</el-col>
-                <el-col :span="8">1</el-col>
-              </el-row>
-            </div>
-            <h4>附加说明</h4>
-            <div class="title"></div>
-          </div>
-        </div> -->
       </el-tab-pane>
       <el-tab-pane label="意见" name="fifth">
         <el-input
@@ -1106,14 +978,18 @@
           disabled
           >已通过</el-button
         >
-        <el-button
-          v-else-if="approvalType === 2"
-          type="warning"
-          round
-          style="margin: 20px 10px"
-          disabled
-          >已退回</el-button
-        >
+        <div v-else-if="approvalType === 2">
+          <el-button type="warning" round style="margin: 20px 10px" disabled
+            >已退回</el-button
+          >
+          <el-button
+            type="primary"
+            round
+            style="margin: 20px 10px"
+            @click="againHandle"
+            >重新审批</el-button
+          >
+        </div>
         <el-button
           v-else-if="approvalType === 3"
           type="danger"
@@ -1147,9 +1023,6 @@
         </div>
       </el-tab-pane>
     </el-tabs>
-    <el-dialog :visible.sync="dialogVisible" width="50%">
-      <pdf ref="pdf" v-for="i in numPages" :key="i" :src="url" :page="i"></pdf>
-    </el-dialog>
   </div>
 </template>
 
@@ -1163,6 +1036,8 @@ import {
   findJingZhenGu,
   getJingZhenGuData,
   getFirstHandle,
+  getOrder,
+  firstAgainHandle,
 } from '@/api/process/firstTrial'
 import { getSelectState, findDetailsCredit } from '@/api/process/business'
 
@@ -1182,15 +1057,15 @@ export default {
       credit: '', // 征信结果
       detailsCredit: '', // 详版征信
       dialogVisible: false, // 弹框
-      url:
-        'http://192.168.31.82/dev-api/profile/2020/12/18/4944fa69-82f2-4eae-b1b8-b25be2303827.pdf',
       numPages: null, // pdf 总页数
       activeName: 'first', // Tabs
       activeName1: 'first', // Tabs1
       textarea: '', // 初审意见
       approvalType: null, // 初审结果
+      approvalId: null, // 审批id
       firstDetails: {
         applicant: {},
+        business: {},
         borrower: {},
         peopleGuarantee: {},
         companyGuarantee: {},
@@ -1198,17 +1073,49 @@ export default {
         basics: {},
         carLoan: {},
         contacts: {},
+        startPage: {},
       }, // 初审详情
-      // 用户详情
-      userDetails: {
-        business: {}, // 基本信息
-        borrower: {}, // 借款人
-        relation: {}, // 关联人
-        guarantee: {}, // 担保人
-      },
       srcList: [], // 图片数组
-      JZGRes: '', // 精真估返回结果
       JZGData: '', // 精真估数据
+      props: {
+        lazy: true,
+        lazyLoad(node, resolve) {
+          setTimeout(() => {
+            if (node.level == 0) {
+              getOrder().then((response) => {
+                const cities = response.data.map((value, i) => ({
+                  value: value.value,
+                  label: value.label,
+                  leaf: node.level >= 1,
+                }))
+                resolve(cities)
+              })
+            }
+            if (node.level == 1) {
+              getOrder({ pid: node.value }).then((response) => {
+                const cities = response.data.map((value, i) => ({
+                  value: value.value,
+                  label: value.label,
+                  leaf: node.level >= 1,
+                }))
+                resolve(cities)
+              })
+            }
+          }, 100)
+        },
+      },
+      form: {},
+      rules: {
+        name: [
+          { required: true, message: '请输入下单人姓名', trigger: 'blur' },
+        ],
+        phone: [
+          { required: true, message: '请输入下单人电话', trigger: 'blur' },
+        ],
+        city: [
+          { required: true, message: '请选择车辆所在省市', trigger: 'change' },
+        ],
+      },
     }
   },
   computed: {},
@@ -1230,8 +1137,11 @@ export default {
     $route(to, from) {
       //监听路由是否变化
       if (to.path == '/process/firstTrialDetails') {
-        this.JZGRes = ''
         this.JZGData = ''
+        this.form = {}
+        this.watchNum = 0
+        this.activeName = 'first'
+        this.activeName1 = 'first'
         this.getFirstData()
       }
     },
@@ -1315,23 +1225,25 @@ export default {
       window.requestAnimationFrame(step)
     },
     // pdf文件
-    getNumPages() {
-      let loadingTask = pdf.createLoadingTask(this.url)
-      loadingTask.promise
-        .then((pdf) => {
-          this.numPages = pdf.numPages
-        })
-        .catch((err) => {
-          console.error('pdf 加载失败', err)
-        })
-    },
+    // getNumPages() {
+    //   let loadingTask = pdf.createLoadingTask(this.url)
+    //   loadingTask.promise
+    //     .then((pdf) => {
+    //       this.numPages = pdf.numPages
+    //     })
+    //     .catch((err) => {
+    //       console.error('pdf 加载失败', err)
+    //     })
+    // },
     // 获取百融token
     async getBaiRongToken() {
       try {
         const data = await getByToken()
         this.baiRongToken = data.msg
         this.watchNum++
-      } catch (error) {}
+      } catch (error) {
+        console.log(error)
+      }
     },
     // 获取百融详细信息
     async getBaiRongMelting() {
@@ -1340,7 +1252,9 @@ export default {
         this.baiRongMeltingData = JSON.parse(data.data)
         this.baiRongMeltingMsg = JSON.parse(data.msg)
         this.watchNum++
-      } catch (error) {}
+      } catch (error) {
+        console.log(error)
+      }
     },
     // 获取征信结果
     async findSelectState() {
@@ -1402,26 +1316,53 @@ export default {
     async findFirstHandle() {
       try {
         const { data } = await getFirstHandle(this.$route.query.transactionCode)
+        console.log(data)
+        this.textarea = null
+        this.approvalType = null
+        this.approvalId = null
         this.textarea = data.advise
         this.approvalType = data.approvalType
+        this.approvalId = data.id
+      } catch (error) {}
+    },
+    // 重新审批
+    async againHandle() {
+      try {
+        await firstAgainHandle(this.approvalId)
+        this.findFirstHandle()
       } catch (error) {}
     },
     // 查询精真估
-    async findJZG() {
-      try {
-        const data = await findJingZhenGu(this.$route.query.transactionCode)
-        this.JZGRes = JSON.parse(data.msg).Msg
-        // if (JSON.parse(data.msg).Status === 100) {
-        this.getJZGData()
-        // }
-      } catch (error) {}
+    findJZG() {
+      this.$refs['form'].validate((valid) => {
+        if (valid) {
+          findJingZhenGu({
+            transactionCode: this.$route.query.transactionCode,
+            provinceId: this.form.city[0],
+            cityId: this.form.city[1],
+            orderName: this.form.name,
+            orderPhone: this.form.phone,
+          })
+            .then((response) => {
+              console.log(response)
+              if (response.msg === '100') {
+                this.msgSuccess('操作成功，请稍后再查看详情')
+              } else {
+                this.msgError(response.data)
+              }
+            })
+            .catch((error) => {})
+        } else {
+          return false
+        }
+      })
     },
     // 查询精真估结果
     async getJZGData() {
       try {
         const { data } = await getJingZhenGuData(
           this.$route.query.transactionCode
-        ) // this.$route.query.transactionCode
+        )
         console.log(JSON.parse(data))
         this.JZGData = JSON.parse(data)
       } catch (error) {
@@ -1433,7 +1374,7 @@ export default {
     this.getFirstData()
   },
   mounted() {
-    this.getNumPages()
+    // this.getNumPages()
     /**
      * iframe-高自适应显示
      */
@@ -1502,85 +1443,4 @@ export default {
 /deep/.el-image-viewer__prev {
   display: none;
 }
-// #JZGPDF {
-//   float: right;
-//   width: 795px;
-//   background-color: #ccc;
-//   margin: -50px 300px 0 0;
-//   padding: 60px 40px 0 60px;
-//   .header {
-//     overflow: hidden;
-//     margin-bottom: 25px;
-//     .left {
-//       float: left;
-//     }
-//     .right {
-//       float: right;
-//     }
-//     img {
-//       vertical-align: middle;
-//     }
-//   }
-//   .banner {
-//     height: 1000px;
-//     padding: 35px;
-//     background-color: rgb(255, 238, 208);
-//     h2 {
-//       position: relative;
-//       text-align: center;
-//       font-size: 28px;
-//       color: rgb(160, 126, 29);
-//       margin: 0;
-//     }
-//     h2:after {
-//       content: 'NO. JZG0011609745505921';
-//       position: absolute;
-//       right: 0;
-//       bottom: 0;
-//       font-size: 12px;
-//     }
-//     .table1 {
-//       margin-left: 40px;
-//       td {
-//         font-size: 14px;
-//         margin-right: 10px;
-//       }
-//       .tdleft {
-//         width: 80px;
-//         height: 25px;
-//         line-height: 25px;
-//         text-align: center;
-//         color: #fff;
-//         background-color: rgb(192, 163, 112);
-//       }
-//     }
-//     .table2 {
-//       position: absolute;
-//       top: 0;
-//       left: 0;
-//       td {
-//         width: 500px;
-//         line-height: 20px;
-//         font-size: 14px;
-//         font-weight: 700;
-//       }
-//       td:first-child {
-//         width: 110px;
-//       }
-//     }
-//     .box {
-//       margin: 15px 30px;
-//       border: 2px solid rgb(192, 163, 112);
-//       padding: 15px 0;
-//       .el-col-4 {
-//         color: rgb(105, 82, 40);
-//       }
-//     }
-//     h4 {
-//       font-size: 12px;
-//       text-align: center;
-//       color: rgb(125, 125, 125);
-//     }
-//   }
-// }
 </style>

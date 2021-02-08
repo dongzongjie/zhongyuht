@@ -27,13 +27,13 @@
       </el-row>
       <el-row style="padding: 0 20px">
         <el-col :span="12">联系电话：</el-col>
-        <el-col :span="12">紧急联系人姓名：</el-col>
+        <el-col :span="12">紧急联系人1姓名：</el-col>
         <el-col :span="12">家庭住址：</el-col>
-        <el-col :span="12">紧急联系人电话：</el-col>
+        <el-col :span="12">紧急联系人1电话：</el-col>
         <el-col :span="12">单位名称：</el-col>
-        <el-col :span="12">担保人姓名：</el-col>
+        <el-col :span="12">紧急联系人2姓名：</el-col>
         <el-col :span="12">单位地址：</el-col>
-        <el-col :span="12">担保人电话：</el-col>
+        <el-col :span="12">紧急联系人2电话：</el-col>
         <el-col :span="12">单位电话：</el-col>
       </el-row>
     </el-card>
@@ -92,11 +92,6 @@
           精真估估价
           <el-input v-model="form.businessType" suffix-icon="el-icon-zyrz-yuan">
           </el-input>
-        </el-col>
-        <el-col :span="8" style="line-height: 36px">
-          是否加装GPS
-          <el-select v-model="form.businessType" placeholder="请选择">
-          </el-select>
         </el-col>
         <el-col :span="8" style="line-height: 36px">
           车架号
@@ -297,6 +292,8 @@
 </template>
 
 <script>
+import { findOverdueData } from '@/api/overdue/information'
+
 export default {
   name: 'InformationDetails',
   components: {},
@@ -319,6 +316,17 @@ export default {
           done()
         })
         .catch(() => {})
+    },
+    // 获取信息
+    async getOverdueData() {
+      try {
+        const { data } = await findOverdueData(
+          this.$route.query.transactionCode
+        )
+        console.log(data)
+      } catch (error) {
+        console.log(error)
+      }
     },
   },
   created() {},

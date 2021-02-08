@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .docpe {
+            width: 794px;
+            background-color: #fff;
+            padding: 60px 60px 220px;
+            box-sizing: border-box;
+        }
+        
+        button {
+            position: fixed;
+            top: 100px;
+            left: 0;
+        }
+        
+        #bt {
+            position: fixed;
+            top: 150px;
+            left: 0;
+        }
+    </style>
+    <script src="https://cdn.bootcss.com/html2canvas/0.5.0-beta4/html2canvas.js"></script>
+    <script src="https://cdn.bootcss.com/jspdf/1.3.4/jspdf.debug.js"></script>
+</head>
+
+<body>
+    <button onclick="printOut('车辆交接确认书')">点击下载合同</button>
+    <button id="bt">点击打印</button>
+    <div class="docpe" id="PDF">
+        <p style="font-size:24pt; line-height:115%; margin:0pt 0pt 9pt; orphans:0; text-align:center; widows:0"><span style="font-family:黑体; font-size:24pt; font-weight:bold">车辆交接确认书</span></p>
+        <p style="line-height:20.4pt; margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:21pt; widows:0"><span style="font-family:宋体; font-size:10pt">鉴于本人（即</span><span style="font-family:宋体; font-size:10pt">借款</span><span style="font-family:宋体; font-size:10pt">人）与服务人</span><span style="font-family:宋体; font-size:10pt">中豫融资租赁</span><span style="font-family:宋体; font-size:10pt">有限公司签订了《</span>
+            <span style="font-family:宋体; font-size:10pt">购车融资</span><span style="font-family:宋体; font-size:10pt">服务合同》及与借款相关协议（部分合同信息如下表）及其他相关协议。因此该笔借款本人已指示资金出借方及服务人直接支付于指定收款人账户。资金出借方或服务人向指定收款人账户支付借款即视为已向本人支付借款。现本人确认，借款金额已按本人指示支付于指定收款人账户，既本人确认已收到《</span>
+            <span style="font-family:宋体; font-size:10pt; font-weight:bold">咨询服务管理协议</span>
+            <span style="font-family:宋体; font-size:10pt">》及与借款相关协议项下的全部借款，且本人已取得并受领下表中所述的车辆。</span>
+        </p>
+        <p style="line-height:20.4pt; margin:0pt 0pt 15pt; orphans:0; text-align:justify; text-indent:21pt; widows:0"><span style="font-family:宋体; font-size:10pt; font-weight:bold">本人无条件同意并授权服务人在本人构成违约的情况下，可以自行按《</span><span style="font-family:宋体; font-size:10pt; font-weight:bold">咨询服务管理协议</span><span style="font-family:宋体; font-size:10pt; font-weight:bold">》的约定收回本人的车辆并为偿还借款的目的而出售车辆。在服务人收车或出卖车辆的情况下，本人无条件授权登记所有人可以向服务人出具授权文件。</span></p>
+        <p style="font-size:14pt; line-height:115%; margin:0pt 0pt 7pt; orphans:0; text-align:center; widows:0"><span style="font-family:宋体; font-size:14pt">车辆交接信息</span></p>
+        <table cellspacing="0" cellpadding="0" style="border-collapse:collapse; margin-left:0pt; width:100%">
+            <tr style="height:25.45pt">
+                <td style="background-color:#ffffff; border-left-color:#000000; border-left-style:solid; border-left-width:0.75pt; border-top-color:#000000; border-top-style:solid; border-top-width:0.75pt; padding-left:0.12pt; padding-right:0.5pt; vertical-align:bottom; width:88.5pt">
+                    <p style="font-size:11pt; line-height:150%; margin:0pt 0pt 10pt; orphans:0; text-align:justify; widows:0"><span style="font-family:宋体; font-size:11pt">借</span><span style="font-family:宋体; font-size:10.5pt">款人姓名</span></p>
+                </td>
+                <td colspan="2" style="background-color:#ffffff; border-left-color:#000000; border-left-style:solid; border-left-width:0.75pt; border-right-color:#000000; border-right-style:solid; border-right-width:0.75pt; border-top-color:#000000; border-top-style:solid; border-top-width:0.75pt; padding-left:0.12pt; padding-right:0.12pt; vertical-align:top; width:402.75pt">
+                    <p style="font-size:12pt; line-height:115%; margin:0pt 0pt 10pt; orphans:0; text-align:justify; widows:0"><span style="font-family:黑体; font-size:12pt">[&lt;贷款人姓名&gt;]</span></p>
+                </td>
+            </tr>
+            <tr style="height:18.2pt">
+                <td style="background-color:#ffffff; border-left-color:#000000; border-left-style:solid; border-left-width:0.75pt; border-top-color:#000000; border-top-style:solid; border-top-width:0.75pt; padding-left:0.12pt; padding-right:0.5pt; vertical-align:top; width:88.5pt">
+                    <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; widows:0"><span style="font-family:宋体; font-size:11pt">借款人身份证号</span></p>
+                </td>
+                <td colspan="2" style="background-color:#ffffff; border-left-color:#000000; border-left-style:solid; border-left-width:0.75pt; border-right-color:#000000; border-right-style:solid; border-right-width:0.75pt; border-top-color:#000000; border-top-style:solid; border-top-width:0.75pt; padding-left:0.12pt; padding-right:0.12pt; vertical-align:top; width:402.75pt">
+                    <p style="font-size:11pt; line-height:150%; margin:0pt 0pt 10pt; orphans:0; text-align:justify; widows:0"><span style="font-family:黑体; font-size:11pt">[&lt;贷款人身份证号&gt;]</span>
+                        <a name="贷款人身份证号"></a>
+                    </p>
+                </td>
+            </tr>
+            <tr style="height:19.1pt">
+                <td style="background-color:#ffffff; border-left-color:#000000; border-left-style:solid; border-left-width:0.75pt; border-top-color:#000000; border-top-style:solid; border-top-width:0.75pt; padding-left:0.12pt; padding-right:0.5pt; vertical-align:bottom; width:88.5pt">
+                    <p style="font-size:11pt; line-height:150%; margin:0pt 0pt 10pt; orphans:0; text-align:justify; widows:0"><span style="font-family:宋体; font-size:11pt">车辆品牌及型号</span></p>
+                </td>
+                <td style="background-color:#ffffff; border-left-color:#000000; border-left-style:solid; border-left-width:0.75pt; border-top-color:#000000; border-top-style:solid; border-top-width:0.75pt; padding-left:0.12pt; padding-right:0.5pt; vertical-align:bottom; width:181.05pt">
+                    <p style="font-size:11pt; line-height:150%; margin:0pt 0pt 10pt; orphans:0; text-align:justify; widows:0"><span style="font-family:黑体; font-size:11pt">[&lt;车辆品牌&gt;][&lt;车辆款式&gt;]</span></p>
+                </td>
+                <td style="background-color:#ffffff; border-left-color:#000000; border-left-style:solid; border-left-width:0.75pt; border-right-color:#000000; border-right-style:solid; border-right-width:0.75pt; border-top-color:#000000; border-top-style:solid; border-top-width:0.75pt; padding-left:0.12pt; padding-right:0.12pt; vertical-align:bottom; width:220.7pt">
+                    <p style="font-size:12pt; line-height:150%; margin:0pt 0pt 10pt; orphans:0; text-align:justify; widows:0"><span style="font-family:黑体; font-size:12pt">车辆颜色</span><span style="font-family:黑体; font-size:12pt">:[&lt;车辆颜色&gt;]</span>
+                        <a name="车辆颜色"></a>
+                    </p>
+                </td>
+            </tr>
+            <tr style="height:20.65pt">
+                <td style="background-color:#ffffff; border-left-color:#000000; border-left-style:solid; border-left-width:0.75pt; border-top-color:#000000; border-top-style:solid; border-top-width:0.75pt; padding-left:0.12pt; padding-right:0.5pt; vertical-align:top; width:88.5pt">
+                    <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; widows:0"><span style="font-family:宋体; font-size:11pt">车架号</span></p>
+                </td>
+                <td colspan="2" style="background-color:#ffffff; border-left-color:#000000; border-left-style:solid; border-left-width:0.75pt; border-right-color:#000000; border-right-style:solid; border-right-width:0.75pt; border-top-color:#000000; border-top-style:solid; border-top-width:0.75pt; padding-left:0.12pt; padding-right:0.12pt; vertical-align:top; width:402.75pt">
+                    <p style="font-size:11pt; line-height:115%; margin:0pt 0pt 10pt; orphans:0; text-align:justify; widows:0"><span style="font-family:黑体; font-size:11pt">[&lt;车辆识别代号&gt;]</span>
+                        <a name="车辆识别代号"></a>
+                    </p>
+                </td>
+            </tr>
+            <tr style="height:83.3pt">
+                <td colspan="3" style="background-color:#ffffff; border-left-color:#000000; border-left-style:solid; border-left-width:0.75pt; border-right-color:#000000; border-right-style:solid; border-right-width:0.75pt; border-top-color:#000000; border-top-style:solid; border-top-width:0.75pt; padding-left:0.12pt; padding-right:0.12pt; vertical-align:middle; width:492.25pt">
+                    <p style="margin:0pt 0pt 3pt; orphans:0; text-align:justify; widows:0"><span style="font-family:宋体; font-size:11pt; font-weight:bold">车辆交接地点及方式：</span></p>
+                    <p style="margin:0pt 0pt 3pt; orphans:0; text-align:justify; widows:0"><span style="font-family:宋体; font-size:11pt; font-weight:bold">1、</span><span style="font-family:宋体; font-size:11pt; font-weight:bold">口</span><span style="font-family:宋体; font-size:11pt; font-weight:bold">（请在口后面</span><span style="font-family:宋体; font-size:11pt; font-weight:bold">"</span>
+                        <span style="font-family:Arial; font-size:11pt; font-weight:bold">√</span><span style="font-family:宋体; font-size:11pt; font-weight:bold">”）</span><span style="font-family:宋体; font-size:11pt; font-weight:bold">门店自提：【</span>
+                        <span style="width:156.71pt; text-indent:0pt; display:inline-block; -aw-tabstop-align:left; -aw-tabstop-pos:449.75pt"></span>
+                        <span style="font-family:宋体; font-size:11pt; font-weight:bold">】</span>
+                    </p>
+                    <p style="margin:0pt 0pt 3pt; orphans:0; text-align:justify; widows:0"><span style="font-family:宋体; font-size:11pt; font-weight:bold">2、口（请在口后面</span><span style="font-family:宋体; font-size:11pt; font-weight:bold">“</span><span style="font-family:Arial; font-size:11pt; font-weight:bold">√</span>
+                        <span style="font-family:宋体; font-size:11pt; font-weight:bold">”）</span><span style="font-family:宋体; font-size:11pt; font-weight:bold">指定地点：【</span><span style="width:151.96pt; text-indent:0pt; display:inline-block; -aw-tabstop-align:left; -aw-tabstop-pos:450.5pt"></span>
+                        <span style="font-family:宋体; font-size:11pt; font-weight:bold">】</span>
+                    </p>
+                </td>
+            </tr>
+            <tr style="height:19.45pt">
+                <td colspan="3" style="background-color:#ffffff; border-left-color:#000000; border-left-style:solid; border-left-width:0.75pt; border-right-color:#000000; border-right-style:solid; border-right-width:0.75pt; border-top-color:#000000; border-top-style:solid; border-top-width:0.75pt; padding-left:0.12pt; padding-right:0.12pt; vertical-align:top; width:492.25pt">
+                    <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; widows:0"><span style="font-family:宋体; font-size:11pt">标的车辆交付时间：</span><span style="width:65.65pt; text-indent:0pt; display:inline-block; -aw-tabstop-align:left; -aw-tabstop-pos:164.65pt"></span><span style="font-family:宋体; font-size:11pt">年</span>
+                        <span style="width:55.45pt; text-indent:0pt; display:inline-block; -aw-tabstop-align:left; -aw-tabstop-pos:231.1pt"></span><span style="font-family:宋体; font-size:11pt">月</span><span style="width:63.9pt; text-indent:0pt; display:inline-block; -aw-tabstop-align:left; -aw-tabstop-pos:306pt"></span>
+                        <span style="font-family:宋体; font-size:11pt">日</span>
+                    </p>
+                </td>
+            </tr>
+            <tr style="height:147.35pt">
+                <td colspan="2" style="background-color:#ffffff; border-bottom-color:#000000; border-bottom-style:solid; border-bottom-width:0.75pt; border-left-color:#000000; border-left-style:solid; border-left-width:0.75pt; border-top-color:#000000; border-top-style:solid; border-top-width:0.75pt; padding-left:0.12pt; padding-right:0.5pt; vertical-align:top; width:270.55pt">
+                    <p style="margin:0pt 0pt 50pt; orphans:0; text-align:justify; widows:0"><span style="font-family:宋体; font-size:11pt">经销商（车辆出卖人）（盖章）：</span></p>
+                    <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; widows:0"><span style="font-family:宋体; font-size:11pt">&#xa0;</span></p>
+                    <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; widows:0"><span style="font-family:宋体; font-size:11pt">联系电话：</span><span style="font-family:宋体; font-size:11pt">[&lt;收款人电话&gt;]</span>
+                        <a name="收款人电话"></a>
+                    </p>
+                </td>
+                <td style="background-color:#ffffff; border-bottom-color:#000000; border-bottom-style:solid; border-bottom-width:0.75pt; border-left-color:#000000; border-left-style:solid; border-left-width:0.75pt; border-right-color:#000000; border-right-style:solid; border-right-width:0.75pt; border-top-color:#000000; border-top-style:solid; border-top-width:0.75pt; padding-left:0.12pt; padding-right:0.12pt; vertical-align:top; width:220.7pt">
+                    <p style="margin:0pt 0pt 50pt; orphans:0; text-align:justify; widows:0"><span style="font-family:宋体; font-size:11pt">借款人（购车人）（签字）：</span></p>
+                    <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; widows:0"><span style="font-family:宋体; font-size:11pt">&#xa0;</span></p>
+                    <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; widows:0"><span style="font-family:宋体; font-size:11pt">联系电话：</span><span style="font-family:宋体; font-size:11pt">[&lt;贷款人电话&gt;]</span>
+                        <a name="贷款人电话"></a>
+                    </p>
+                </td>
+            </tr>
+            <tr style="height:0pt">
+                <td style="width:89.5pt; border:none"></td>
+                <td style="width:182.05pt; border:none"></td>
+                <td style="width:221.7pt; border:none"></td>
+            </tr>
+        </table>
+        <p style="font-size:10.5pt; line-height:115%; margin:0pt 0pt 10pt; orphans:0; text-align:justify; widows:0"><span style="font-family:Calibri; font-size:10.5pt">&#xa0;</span></p>
+    </div>
+</body>
+
+<script>
+    // 接收VUE数据
+    window.addEventListener("message", function(event) {
+        console.log(event);
+        // let sname = document.querySelector('#sname')
+        // sname.innerHTML = event.data.name
+        // if (event.data.isDownload) return printOut('车辆交接确认书')
+    })
+
+    // PDF
+    function printOut(name) {
+        let shareContent = document.querySelector('#PDF'), //需要截图的包裹的（原生的）DOM 对象
+            width = shareContent.clientWidth, //获取dom 宽度
+            height = shareContent.clientHeight, //获取dom 高度
+            canvas = document.createElement("canvas"), //创建一个canvas节点
+            scale = 2; //定义任意放大倍数 支持小数
+        canvas.width = width * scale; //定义canvas 宽度 * 缩放
+        canvas.height = height * scale; //定义canvas高度 *缩放
+        canvas.style.width = shareContent.clientWidth * scale + "px";
+        canvas.style.height = shareContent.clientHeight * scale + "px";
+        canvas.getContext("2d").scale(scale, scale); //获取context,设置scale
+        let opts = {
+            scale: scale, // 添加的scale 参数
+            canvas: canvas, //自定义 canvas
+            logging: false, //日志开关，便于查看html2canvas的内部执行流程
+            width: width, //dom 原始宽度
+            height: height,
+            useCORS: true, // 【重要】开启跨域配置
+        };
+
+        html2canvas(shareContent, opts).then(() => {
+            var contentWidth = canvas.width;
+            var contentHeight = canvas.height;
+            //一页pdf显示html页面生成的canvas高度;
+            var pageHeight = (contentWidth / 592.28) * 841.89;
+            //未生成pdf的html页面高度
+            var leftHeight = contentHeight;
+            //页面偏移
+            var position = 0;
+            //a4纸的尺寸[595.28,841.89]，html页面生成的canvas在pdf中图片的宽高
+            var imgWidth = 595.28;
+            var imgHeight = (592.28 / contentWidth) * contentHeight;
+            var pageData = canvas.toDataURL("image/jpeg", 1.0);
+            var PDF = new jsPDF("", "pt", "a4");
+            if (leftHeight < pageHeight) {
+                PDF.addImage(pageData, "JPEG", 0, 0, imgWidth, imgHeight);
+            } else {
+                while (leftHeight > 0) {
+                    PDF.addImage(pageData, "JPEG", 0, position, imgWidth, imgHeight);
+                    leftHeight -= pageHeight;
+                    position -= 841.89;
+                    if (leftHeight > 0) {
+                        PDF.addPage();
+                    }
+                }
+            }
+            PDF.save(name + ".pdf"); // 这里是导出的文件名
+        });
+    }
+
+    // 打印
+    function printdiv(printpage) {
+        var newstr = printpage.innerHTML;
+        var oldstr = document.body.innerHTML;
+        document.body.innerHTML = newstr;
+        window.print();
+        document.body.innerHTML = oldstr;
+        return false;
+    }
+    var bt = document.getElementById("bt");
+    var div_print = document.getElementById("PDF");
+    bt.onclick = function() {
+        printdiv(div_print);
+    }
+</script>
+
+</html>

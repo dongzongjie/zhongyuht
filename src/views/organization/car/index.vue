@@ -282,11 +282,19 @@ export default {
   created() {
     this.getList()
   },
+  watch: {
+    $route(to, from) {
+      //监听路由是否变化
+      if (to.path == '/organization/car') {
+        this.getList()
+      }
+    },
+  },
   methods: {
     /** 查询车商信息列表 */
     getList() {
       this.loading = true
-      listCar(this.queryParams).then((response) => {
+      listCar(this.queryParams, this.$route.query.id).then((response) => {
         this.carList = response.rows
         this.total = response.total
         this.loading = false
@@ -375,6 +383,7 @@ export default {
               }
             })
           } else {
+            this.form.pid = this.$route.query.id
             addCar(this.form).then((response) => {
               if (response.code === 200) {
                 this.msgSuccess('新增成功')

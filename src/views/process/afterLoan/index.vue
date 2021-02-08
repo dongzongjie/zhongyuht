@@ -74,6 +74,12 @@
     </el-row>
     <!-- 表格 -->
     <el-table v-loading="loading" :data="afterLoanList">
+      <el-table-column
+        label="订单创建时间"
+        align="center"
+        prop="createTime"
+        sortable
+      />
       <el-table-column label="订单编号" align="center" prop="transactionCode" />
       <el-table-column label="客户名称" align="center" prop="userName" />
       <el-table-column label="销售团队" align="center" prop="team" />
@@ -101,7 +107,6 @@
           <span v-else>未审核</span>
         </template>
       </el-table-column>
-      <el-table-column label="审批留言" align="center" prop="opinion" />
       <el-table-column label="历史审批意见" align="center">
         <template slot-scope="scope">
           <el-button
@@ -119,7 +124,28 @@
         class-name="small-padding fixed-width"
       >
         <template slot-scope="scope">
-          <div v-if="!scope.row.userId">
+          <span
+            v-if="
+              !(
+                scope.row.zhengshu &&
+                scope.row.baoxian &&
+                scope.row.qita &&
+                scope.row.lvben &&
+                scope.row.tiche
+              )
+            "
+            >待APP端上传数据</span
+          >
+          <div
+            v-if="
+              !scope.row.userId &&
+              scope.row.zhengshu &&
+              scope.row.baoxian &&
+              scope.row.qita &&
+              scope.row.lvben &&
+              scope.row.tiche
+            "
+          >
             <el-button size="mini" type="text" @click="handle(scope.row)"
               >立即处理</el-button
             >
@@ -172,14 +198,6 @@
 
 <script>
 import { checkRole } from '@/utils/permission'
-import {
-  getBusiness,
-  delBusiness,
-  addBusiness,
-  updateBusiness,
-  exportBusiness,
-  deleteOperator,
-} from '@/api/process/business'
 import {
   getAfterLoanList,
   afterLoanHandlePeople,

@@ -1,9 +1,9 @@
 import request from '@/utils/request'
 
 // 查询车商信息列表
-export function listCar(query) {
+export function listCar(query, id) {
     return request({
-        url: '/system/car/list',
+        url: '/system/car/list?pid=' + id,
         method: 'get',
         params: query
     })

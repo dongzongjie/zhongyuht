@@ -130,14 +130,6 @@
 
 <script>
 import { checkRole } from '@/utils/permission'
-import {
-  getBusiness,
-  delBusiness,
-  addBusiness,
-  updateBusiness,
-  exportBusiness,
-  deleteOperator,
-} from '@/api/process/business'
 import { getReportBankList, handleReport } from '@/api/process/reportBank'
 
 export default {
@@ -237,7 +229,7 @@ export default {
           },
         })
       } catch (error) {
-        this.getList()
+        this.getList(this.getList())
       }
     },
     // 解锁

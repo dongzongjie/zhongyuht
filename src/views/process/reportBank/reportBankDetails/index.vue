@@ -413,7 +413,7 @@
                   <el-input
                     maxlength="11"
                     show-word-limit
-                    v-model="cardForm.reltmobll"
+                    v-model="cardForm.reltmobl1"
                   >
                   </el-input>
                 </el-form-item>
@@ -435,7 +435,7 @@
                   <el-input
                     maxlength="12"
                     show-word-limit
-                    v-model="cardForm.reltphone1"
+                    v-model="cardForm.relaphone1"
                     style="width: 67%; z-index: 999; float: right"
                   >
                   </el-input>
@@ -579,7 +579,7 @@
                 ref="upload1"
                 class="upload-demo"
                 drag
-                action="http://192.168.31.82:8080/system/cailiao/ceshi2"
+                action="http://114.215.186.186:8080/system/cailiao/ceshi2"
                 multiple
                 show-file-list
                 :limit="20"
@@ -603,7 +603,7 @@
                 ref="upload2"
                 class="upload-demo"
                 drag
-                action="http://192.168.31.82:8080/system/cailiao/ceshi2"
+                action="http://114.215.186.186:8080/system/cailiao/ceshi2"
                 multiple
                 show-file-list
                 :limit="20"
@@ -627,7 +627,7 @@
                 ref="upload3"
                 class="upload-demo"
                 drag
-                action="http://192.168.31.82:8080/system/cailiao/ceshi2"
+                action="http://114.215.186.186:8080/system/cailiao/ceshi2"
                 multiple
                 show-file-list
                 :limit="100"
@@ -651,7 +651,7 @@
                 ref="upload4"
                 class="upload-demo"
                 drag
-                action="http://192.168.31.82:8080/system/cailiao/ceshi2"
+                action="http://114.215.186.186:8080/system/cailiao/ceshi2"
                 multiple
                 show-file-list
                 :limit="100"
@@ -677,7 +677,7 @@
                 ref="upload5"
                 class="upload-demo"
                 drag
-                action="http://192.168.31.82:8080/system/cailiao/ceshi2"
+                action="http://114.215.186.186:8080/system/cailiao/ceshi2"
                 multiple
                 show-file-list
                 :limit="20"
@@ -701,7 +701,7 @@
                 ref="upload6"
                 class="upload-demo"
                 drag
-                action="http://192.168.31.82:8080/system/cailiao/ceshi2"
+                action="http://114.215.186.186:8080/system/cailiao/ceshi2"
                 multiple
                 show-file-list
                 :limit="1"
@@ -725,7 +725,7 @@
                 ref="upload7"
                 class="upload-demo"
                 drag
-                action="http://192.168.31.82:8080/system/cailiao/ceshi2"
+                action="http://114.215.186.186:8080/system/cailiao/ceshi2"
                 multiple
                 show-file-list
                 :limit="10"
@@ -749,7 +749,7 @@
                 ref="upload8"
                 class="upload-demo"
                 drag
-                action="http://192.168.31.82:8080/system/cailiao/ceshi2"
+                action="http://114.215.186.186:8080/system/cailiao/ceshi2"
                 multiple
                 show-file-list
                 :limit="20"
@@ -775,7 +775,7 @@
                 ref="upload9"
                 class="upload-demo"
                 drag
-                action="http://192.168.31.82:8080/system/cailiao/ceshi2"
+                action="http://114.215.186.186:8080/system/cailiao/ceshi2"
                 multiple
                 show-file-list
                 :limit="20"
@@ -799,7 +799,7 @@
                 ref="upload10"
                 class="upload-demo"
                 drag
-                action="http://192.168.31.82:8080/system/cailiao/ceshi2"
+                action="http://114.215.186.186:8080/system/cailiao/ceshi2"
                 multiple
                 show-file-list
                 :limit="20"
@@ -823,7 +823,7 @@
                 ref="upload11"
                 class="upload-demo"
                 drag
-                action="http://192.168.31.82:8080/system/cailiao/ceshi2"
+                action="http://114.215.186.186:8080/system/cailiao/ceshi2"
                 multiple
                 show-file-list
                 :limit="5"
@@ -847,7 +847,7 @@
                 ref="upload12"
                 class="upload-demo"
                 drag
-                action="http://192.168.31.82:8080/system/cailiao/ceshi2"
+                action="http://114.215.186.186:8080/system/cailiao/ceshi2"
                 multiple
                 show-file-list
                 :limit="20"
@@ -873,7 +873,7 @@
                 ref="upload13"
                 class="upload-demo"
                 drag
-                action="http://192.168.31.82:8080/system/cailiao/ceshi2"
+                action="http://114.215.186.186:8080/system/cailiao/ceshi2"
                 multiple
                 show-file-list
                 :limit="50"
@@ -897,7 +897,7 @@
                 ref="upload14"
                 class="upload-demo"
                 drag
-                action="http://192.168.31.82:8080/system/cailiao/ceshi2"
+                action="http://114.215.186.186:8080/system/cailiao/ceshi2"
                 multiple
                 show-file-list
                 :limit="20"
@@ -921,7 +921,7 @@
                 ref="upload15"
                 class="upload-demo"
                 drag
-                action="http://192.168.31.82:8080/system/cailiao/ceshi2"
+                action="http://114.215.186.186:8080/system/cailiao/ceshi2"
                 multiple
                 show-file-list
                 :limit="20"
@@ -945,7 +945,7 @@
                 ref="upload16"
                 class="upload-demo"
                 drag
-                action="http://192.168.31.82:8080/system/cailiao/ceshi2"
+                action="http://114.215.186.186:8080/system/cailiao/ceshi2"
                 multiple
                 show-file-list
                 :limit="20"
@@ -971,7 +971,7 @@
                 ref="upload17"
                 class="upload-demo"
                 drag
-                action="http://192.168.31.82:8080/system/cailiao/ceshi2"
+                action="http://114.215.186.186:8080/system/cailiao/ceshi2"
                 multiple
                 show-file-list
                 :limit="20"
@@ -995,7 +995,7 @@
                 ref="upload18"
                 class="upload-demo"
                 drag
-                action="http://192.168.31.82:8080/system/cailiao/ceshi2"
+                action="http://114.215.186.186:8080/system/cailiao/ceshi2"
                 multiple
                 show-file-list
                 :limit="20"
@@ -1019,7 +1019,7 @@
                 ref="upload19"
                 class="upload-demo"
                 drag
-                action="http://192.168.31.82:8080/system/cailiao/ceshi2"
+                action="http://114.215.186.186:8080/system/cailiao/ceshi2"
                 multiple
                 show-file-list
                 :limit="1"
@@ -1043,7 +1043,7 @@
                 ref="upload20"
                 class="upload-demo"
                 drag
-                action="http://192.168.31.82:8080/system/cailiao/ceshi2"
+                action="http://114.215.186.186:8080/system/cailiao/ceshi2"
                 multiple
                 show-file-list
                 :limit="20"
@@ -1069,7 +1069,7 @@
                 ref="upload21"
                 class="upload-demo"
                 drag
-                action="http://192.168.31.82:8080/system/cailiao/ceshi2"
+                action="http://114.215.186.186:8080/system/cailiao/ceshi2"
                 multiple
                 show-file-list
                 :limit="20"
@@ -1093,7 +1093,7 @@
                 ref="upload22"
                 class="upload-demo"
                 drag
-                action="http://192.168.31.82:8080/system/cailiao/ceshi2"
+                action="http://114.215.186.186:8080/system/cailiao/ceshi2"
                 multiple
                 show-file-list
                 :limit="20"
@@ -1117,7 +1117,7 @@
                 ref="upload23"
                 class="upload-demo"
                 drag
-                action="http://192.168.31.82:8080/system/cailiao/ceshi2"
+                action="http://114.215.186.186:8080/system/cailiao/ceshi2"
                 multiple
                 show-file-list
                 :limit="20"
@@ -1141,7 +1141,7 @@
                 ref="upload24"
                 class="upload-demo"
                 drag
-                action="http://192.168.31.82:8080/system/cailiao/ceshi2"
+                action="http://114.215.186.186:8080/system/cailiao/ceshi2"
                 multiple
                 show-file-list
                 :limit="20"
@@ -1167,7 +1167,7 @@
                 ref="upload25"
                 class="upload-demo"
                 drag
-                action="http://192.168.31.82:8080/system/cailiao/ceshi2"
+                action="http://114.215.186.186:8080/system/cailiao/ceshi2"
                 multiple
                 show-file-list
                 :limit="20"
@@ -1191,7 +1191,7 @@
                 ref="upload26"
                 class="upload-demo"
                 drag
-                action="http://192.168.31.82:8080/system/cailiao/ceshi2"
+                action="http://114.215.186.186:8080/system/cailiao/ceshi2"
                 multiple
                 show-file-list
                 :limit="20"
@@ -1215,7 +1215,7 @@
                 ref="upload27"
                 class="upload-demo"
                 drag
-                action="http://192.168.31.82:8080/system/cailiao/ceshi2"
+                action="http://114.215.186.186:8080/system/cailiao/ceshi2"
                 multiple
                 show-file-list
                 :limit="100"
@@ -1239,7 +1239,7 @@
                 ref="upload28"
                 class="upload-demo"
                 drag
-                action="http://192.168.31.82:8080/system/cailiao/ceshi2"
+                action="http://114.215.186.186:8080/system/cailiao/ceshi2"
                 multiple
                 show-file-list
                 :limit="20"
@@ -1271,7 +1271,7 @@
                 ref="upload29"
                 class="upload-demo"
                 drag
-                action="http://192.168.31.82:8080/system/cailiao/ceshi2"
+                action="http://114.215.186.186:8080/system/cailiao/ceshi2"
                 multiple
                 show-file-list
                 :limit="20"
@@ -1642,10 +1642,7 @@
               </el-col>
               <el-col :span="12">
                 <el-form-item label="融资担保机构编号">
-                  <el-input
-                    v-model="loanForm.req.payMentInfo.recommendAgencyCode"
-                  >
-                  </el-input>
+                  <el-input> </el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="12">
@@ -1662,6 +1659,125 @@
                     v-model="loanForm.req.payMentInfo.insuranceAgencyCode"
                   >
                   </el-input>
+                </el-form-item>
+              </el-col>
+            </el-row>
+            <el-row v-if="ishzdw">
+              <el-col :span="12">
+                <el-form-item label="合作单位名称1" prop="cocomId1">
+                  <el-select v-model="loanForm.cocomId1" placeholder="请选择">
+                    <el-option
+                      label="中豫融资租赁有限公司"
+                      :value="1"
+                    ></el-option>
+                  </el-select>
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="合作单位编号1">
+                  <el-input
+                    v-model="loanForm.req.payMentInfo.cocomNos[0].cocomId"
+                    disabled
+                  >
+                  </el-input>
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="合作单位收款金额1">
+                  <el-input
+                    v-model="
+                      loanForm.req.payMentInfo.cocomNos[0].cocomReceiveAmt
+                    "
+                    suffix-icon="el-icon-zyrz-yuan"
+                  >
+                  </el-input>
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item
+                  label="单位收款金额1标志"
+                  prop="req.payMentInfo.cocomNos[0].cocomReceiveType"
+                >
+                  <el-select
+                    v-model="
+                      loanForm.req.payMentInfo.cocomNos[0].cocomReceiveType
+                    "
+                    placeholder="请选择"
+                  >
+                    <el-option label="贷款金额" :value="1"></el-option>
+                    <el-option label="附加费" :value="2"></el-option>
+                  </el-select>
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="是否贴息1">
+                  <el-select
+                    v-model="
+                      loanForm.req.payMentInfo.cocomNos[0].cocomInterestFlag
+                    "
+                    placeholder="请选择"
+                  >
+                    <el-option label="是" :value="1"></el-option>
+                    <el-option label="否" :value="2"></el-option>
+                  </el-select>
+                </el-form-item>
+              </el-col>
+            </el-row>
+            <el-row v-if="ishzdw">
+              <el-col :span="12">
+                <el-form-item label="合作单位名称2">
+                  <el-select v-model="loanForm.cocomId2" placeholder="请选择">
+                    <el-option
+                      label="中豫融资租赁有限公司"
+                      :value="1"
+                    ></el-option>
+                  </el-select>
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="合作单位编号2">
+                  <el-input
+                    v-model="loanForm.req.payMentInfo.cocomNos[1].cocomId"
+                    disabled
+                  >
+                  </el-input>
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="合作单位收款金额2">
+                  <el-input
+                    v-model="
+                      loanForm.req.payMentInfo.cocomNos[1].cocomReceiveAmt
+                    "
+                    suffix-icon="el-icon-zyrz-yuan"
+                  >
+                  </el-input>
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="单位收款金额2标志">
+                  <el-select
+                    v-model="
+                      loanForm.req.payMentInfo.cocomNos[1].cocomReceiveType
+                    "
+                    placeholder="请选择"
+                  >
+                    <el-option label="贷款金额" :value="1"></el-option>
+                    <el-option label="附加费" :value="2"></el-option>
+                  </el-select>
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="是否贴息2">
+                  <el-select
+                    v-model="
+                      loanForm.req.payMentInfo.cocomNos[1].cocomInterestFlag
+                    "
+                    placeholder="请选择"
+                  >
+                    <el-option label="是" :value="1"></el-option>
+                    <el-option label="否" :value="2"></el-option>
+                  </el-select>
                 </el-form-item>
               </el-col>
             </el-row>
@@ -1874,7 +1990,22 @@ export default {
           stageInfo: {},
           guaranteeInfo: {},
           financeChargeCardInfo: {},
-          payMentInfo: {},
+          payMentInfo: {
+            cocomNos: [
+              {
+                cocomId: '',
+                cocomReceiveAmt: '',
+                cocomReceiveType: '',
+                cocomInterestFlag: '',
+              },
+              {
+                cocomId: '',
+                cocomReceiveAmt: '',
+                cocomReceiveType: '',
+                cocomInterestFlag: '',
+              },
+            ],
+          },
           JKRCL: {},
         },
       }, // 贷款信息表单
@@ -2209,6 +2340,16 @@ export default {
         'req.payMentInfo.payeeType': [
           { required: true, message: '请选择收款对象类型', trigger: 'change' },
         ],
+        cocomId1: [
+          { required: true, message: '请选择合作单位名称1', trigger: 'change' },
+        ],
+        'req.payMentInfo.cocomNos[0].cocomReceiveType': [
+          {
+            required: true,
+            message: '请选择单位收款金额1标志',
+            trigger: 'change',
+          },
+        ],
         'req.guaranteeInfo.mortname': [
           { required: true, message: '请输入抵押品名称', trigger: 'blur' },
         ],
@@ -2332,7 +2473,7 @@ export default {
         reltship1: [
           { required: true, message: '请选择与您的关系', trigger: 'change' },
         ],
-        reltmobll: [
+        reltmobl1: [
           { required: true, message: '请输入联系人1手机', trigger: 'blur' },
           { min: 11, message: '请输入正确的手机格式', trigger: 'blur' },
         ],
@@ -2343,7 +2484,7 @@ export default {
             trigger: 'blur',
           },
         ],
-        reltphone1: [
+        relaphone1: [
           { required: true, message: '请输入联系人1固定电话', trigger: 'blur' },
         ],
         drawmode: [
@@ -2354,6 +2495,7 @@ export default {
         ],
       },
       isCardSubmit: null, // 开卡信息是否提交
+      ishzdw: false, // 选择合作单位
     }
   },
   computed: {},
@@ -2373,8 +2515,47 @@ export default {
     $route(to, from) {
       //监听路由是否变化
       if (to.path == '/process/reportBankDetails') {
-        // this.getBeforLoanData()
+        this.getReportBankData()
+        this.ishzdw = false
       }
+    },
+    'loanForm.req.payMentInfo.payeeType': {
+      handler(newName, oldName) {
+        if (newName === 2) {
+          this.loanForm.req.payMentInfo.cocomNos = [
+            {
+              cocomId: '',
+              cocomReceiveAmt: '',
+              cocomReceiveType: '',
+              cocomInterestFlag: '',
+            },
+            {
+              cocomId: '',
+              cocomReceiveAmt: '',
+              cocomReceiveType: '',
+              cocomInterestFlag: '',
+            },
+          ]
+          this.ishzdw = true
+        }
+      },
+      immediate: true,
+    },
+    'loanForm.cocomId1': {
+      handler(newName, oldName) {
+        if (newName === 1) {
+          this.loanForm.req.payMentInfo.cocomNos[0].cocomId = 'zyhzjg01'
+        }
+      },
+      immediate: true,
+    },
+    'loanForm.cocomId2': {
+      handler(newName, oldName) {
+        if (newName === 1) {
+          this.loanForm.req.payMentInfo.cocomNos[1].cocomId = 'zyhzjg01'
+        }
+      },
+      immediate: true,
     },
   },
   methods: {
@@ -2395,6 +2576,12 @@ export default {
         this.dataMsg = data.msg
         this.loanForm.req.payMentInfo.cooperateAgencyCode = 'zyhzjg01'
         this.loanForm.req.payMentInfo.recommendAgencyCode = '46009102'
+        this.loanForm.mortTypeData = []
+        this.loanForm.mortTypeData.push(
+          this.loanForm.req.guaranteeInfo.mortltype,
+          this.loanForm.req.guaranteeInfo.mortmtype,
+          this.loanForm.req.guaranteeInfo.mortstype
+        )
       } catch (error) {
         console.log(error)
       }
@@ -2409,6 +2596,11 @@ export default {
             cancelButtonText: '取消',
             type: 'warning',
           })
+            .then(() => {
+              delete this.loanForm.cocomId1
+              delete this.loanForm.cocomId2
+              delete this.loanForm.mortTypeData
+            })
             .then(() => {
               return loanSubmit(this.loanForm)
             })
@@ -2438,6 +2630,7 @@ export default {
             })
             .then(() => {
               this.msgSuccess('提交成功')
+              this.getReportBankData()
             })
             .catch(function () {})
         } else {

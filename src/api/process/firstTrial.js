@@ -68,11 +68,20 @@ export function getFirstHandle(transactionCode) {
     })
 }
 
-// 查询精真估
-export function findJingZhenGu(transactionCode) {
+// 初审重新审批
+export function firstAgainHandle(data) {
     return request({
-        url: '/system/jzg/addOrder/ceshi?transactionCode=' + transactionCode,
-        method: 'get',
+        url: '/stage/delete/allow/opinion?id=' + data,
+        method: 'post',
+    })
+}
+
+// 查询精真估
+export function findJingZhenGu(data) {
+    return request({
+        url: '/system/jzg/addOrder/ceshi',
+        method: 'post',
+        data
     })
 }
 
@@ -89,5 +98,14 @@ export function getHistoryOpinion(transactionCode) {
     return request({
         url: '/system/opinion/advise?transactionCode=' + transactionCode,
         method: 'get',
+    })
+}
+
+// 获取省市
+export function getOrder(params) {
+    return request({
+        url: '/system/jzg/addOrder/get',
+        method: 'get',
+        params
     })
 }

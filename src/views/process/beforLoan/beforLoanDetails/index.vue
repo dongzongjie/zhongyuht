@@ -2,6 +2,18 @@
   <div class="app-container" style="font-size: 14px; padding: 20px">
     <el-card>
       <div slot="header">
+        <span>车商信息</span>
+      </div>
+      <el-row>
+        <el-col :span="8">市场：{{ Account.bazaar }}</el-col>
+        <el-col :span="8">车商名（门店）：{{ Account.carname }}</el-col>
+        <el-col :span="8">审批类型：{{ Account.shenpitype }}</el-col>
+        <el-col :span="8">产品类型：{{ Account.chanpintype }}</el-col>
+        <el-col :span="8">贷款产品：{{ Account.daikuanchanpin }}</el-col>
+      </el-row>
+    </el-card>
+    <el-card>
+      <div slot="header">
         <span>车商收款账户设置</span>
       </div>
       <el-row>
@@ -113,28 +125,55 @@
       </el-row>
       <el-row>
         <el-col :span="8" class="img">
-          GPS编号
+          身份证正面+VIN码
           <el-image
             style="width: 100px; height: 100px"
-            :src="GPSdata.yxbh || GPSdata.wxbh"
+            :src="GPSdata.zmvin"
             :preview-src-list="srcList"
           >
           </el-image>
         </el-col>
         <el-col :span="8" class="img">
-          安装远景
+          身份证正面+VIN码
           <el-image
             style="width: 100px; height: 100px"
-            :src="GPSdata.yxyj || GPSdata.wxyj"
+            :src="GPSdata.fmvin"
             :preview-src-list="srcList"
           >
           </el-image>
         </el-col>
         <el-col :span="8" class="img">
-          安装近景
+          车辆名牌+GPS编号
           <el-image
             style="width: 100px; height: 100px"
-            :src="GPSdata.yxjj || GPSdata.wxjj"
+            :src="GPSdata.clmp"
+            :preview-src-list="srcList"
+          >
+          </el-image>
+        </el-col>
+        <el-col :span="8" class="img">
+          近景安装照
+          <el-image
+            style="width: 100px; height: 100px"
+            :src="GPSdata.jjazz"
+            :preview-src-list="srcList"
+          >
+          </el-image>
+        </el-col>
+        <el-col :span="8" class="img">
+          远景安装照
+          <el-image
+            style="width: 100px; height: 100px"
+            :src="GPSdata.yjazz"
+            :preview-src-list="srcList"
+          >
+          </el-image>
+        </el-col>
+        <el-col :span="8" class="img">
+          细节安装照
+          <el-image
+            style="width: 100px; height: 100px"
+            :src="GPSdata.xjazz"
             :preview-src-list="srcList"
           >
           </el-image>

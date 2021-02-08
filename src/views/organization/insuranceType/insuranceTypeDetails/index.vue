@@ -497,7 +497,7 @@ export default {
         // 设置上传的请求头部
         // headers: { Authorization: 'Bearer ' + getToken() },
         // 上传的地址
-        url: 'http://192.168.31.82:8080/system/insuranceType/ceshi2',
+        url: 'http://114.215.186.186:8080/system/insuranceType/ceshi2',
         // 上传的文件列表
         uploadList: [], // 门店
         // 门店

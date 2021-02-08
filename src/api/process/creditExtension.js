@@ -41,3 +41,11 @@ export function getCreditHandle(transactionCode) {
         method: 'get',
     })
 }
+
+// 授信操作重新处理
+export function creditAgainHandle(id) {
+    return request({
+        url: '/stage/delete/grant/opinion?id=' + id,
+        method: 'post',
+    })
+}

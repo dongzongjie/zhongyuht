@@ -6,6 +6,13 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "2549539",
+      "name": "期",
+      "font_class": "qi",
+      "unicode": "e605",
+      "unicode_decimal": 58885
+    },
+    {
       "icon_id": "3281234",
       "name": "万",
       "font_class": "wan",

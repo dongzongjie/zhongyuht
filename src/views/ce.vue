@@ -56,15 +56,6 @@
     <button @click="ceshi1">获取百融token</button>
     <button @click="ceshi2">点击下载pdf</button>
     <button @click="ceshi3">测试3</button>
-    <iframe
-      ref="iframe"
-      width="50%"
-      height="100%"
-      frameborder="0"
-      src="./contract/csht.html"
-      id="bdIframe"
-      style="margin-left: 425px"
-    />
   </div>
 </template>
 
@@ -216,17 +207,13 @@ export default {
       // window.open(
       //   'http://192.168.31.86:8080/profile/2021/01/15/985a7660-0af1-4aac-801f-1bbd9bf90f66.docx'
       // )
-      this.iframeWin.postMessage({
-        name: '董宗杰',
-      })
     },
   },
   mounted() {
     this.getNumPages()
-    this.iframeWin = this.$refs.iframe.contentWindow
-    const oIframe = document.getElementById('bdIframe')
-    const deviceHeight = document.querySelector('body').clientHeight
-    oIframe.style.height = Number(deviceHeight) - 170 + 'px' //数字是页面布局高度差
+    // const oIframe = document.getElementById('bdIframe')
+    // const deviceHeight = document.querySelector('body').clientHeight
+    // oIframe.style.height = Number(deviceHeight) - 170 + 'px' //数字是页面布局高度差
   },
   created() {},
 }

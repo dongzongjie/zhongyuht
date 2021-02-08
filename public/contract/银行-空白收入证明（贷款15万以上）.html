@@ -7,14 +7,12 @@
     <title></title>
     <style>
         body {
-            /* background-color: #ccc; */
             margin: 0;
             padding: 0;
         }
         
         .docpe {
             width: 794px;
-            /* margin: 0 auto; */
             background-color: #fff;
             padding: 60px 107px 220px;
             box-sizing: border-box;
@@ -30,7 +28,6 @@
             position: fixed;
             top: 150px;
             left: 0;
-            /* border: 1px solid #000; */
         }
     </style>
     <script src="https://cdn.bootcss.com/html2canvas/0.5.0-beta4/html2canvas.js"></script>
@@ -38,8 +35,7 @@
 </head>
 
 <body>
-    <button onclick="printOut('测试')">点击下载合同</button>
-    <!-- <input name="print" type="button" id="bt" value="点击打印" /> -->
+    <button onclick="printOut('收入证明(15万以上)')">点击下载合同</button>
     <button id="bt">点击打印</button>
     <div class="docpe" id="PDF">
         <p style="margin:0pt; orphans:0; text-align:center; widows:0"><span style="font-family:宋体; font-size:22pt; font-weight:bold">收入证明</span></p>
@@ -48,8 +44,7 @@
             <span style="font-family:宋体; font-size:15pt">支行：</span>
         </p>
         <p style="margin:0pt; orphans:0; text-align:justify; widows:0"><span style="font-family:Calibri; font-size:15pt">&#xa0;</span></p>
-        <p style="margin:0pt; orphans:0; text-align:justify; widows:0; line-height: 40px;"><span style="font-family:宋体; font-size:15pt">  </span><span style="font-family:宋体; font-size:14pt; text-decoration:underline;" id="sname">  </span><span style="font-family:宋体; font-size:14pt; text-decoration:underline;" id="sname">  </span>
-            <span style="font-family:宋体; font-size:15pt; text-decoration:none">（身份证号码</span>
+        <p style="margin:0pt; orphans:0; text-align:justify; widows:0; line-height: 40px;"><span style="font-family:宋体; font-size:15pt">  </span><span style="font-family:宋体; font-size:15pt; text-decoration:underline">        </span><span style="font-family:宋体; font-size:15pt; text-decoration:underline"> </span><span style="font-family:宋体; font-size:15pt; text-decoration:none">（身份证号码</span>
             <span style="font-family:宋体; font-size:15pt; text-decoration:underline">：          </span><span style="font-family:宋体; font-size:15pt; text-decoration:none">）</span><span style="font-family:宋体; font-size:15pt">系我单位正式职工，在我单位连续工作</span>
             <span style="font-family:宋体; font-size:15pt; text-decoration:underline">   </span>
             <span style="font-family:宋体; font-size:15pt">（年</span><span style="font-family:Calibri; font-size:15pt">/</span><span style="font-family:宋体; font-size:15pt">月）以上，现职务为</span><span style="font-family:宋体; font-size:15pt; text-decoration:underline">    </span>
@@ -80,15 +75,15 @@
 </body>
 
 <script>
-    // import html2canvas from 'html2canvas'
-    // import JsPDF from 'jspdf'
-
+    // 接收VUE数据
     window.addEventListener("message", function(event) {
         console.log(event);
-        let sname = document.querySelector('#sname')
-        sname.innerHTML = event.data.name
+        // let sname = document.querySelector('#sname')
+        // sname.innerHTML = event.data.name
+        // if (event.data.isDownload) return printOut('银行-空白收入证明（贷款15万以上）')
     })
 
+    // PDF
     function printOut(name) {
         let shareContent = document.querySelector('#PDF'), //需要截图的包裹的（原生的）DOM 对象
             width = shareContent.clientWidth, //获取dom 宽度
@@ -139,18 +134,18 @@
         });
     }
 
+    // 打印
     function printdiv(printpage) {
         var newstr = printpage.innerHTML;
         var oldstr = document.body.innerHTML;
         document.body.innerHTML = newstr;
         window.print();
         document.body.innerHTML = oldstr;
-        return false;　　　　
-    }　　　　
+        return false;
+    }
     var bt = document.getElementById("bt");
     var div_print = document.getElementById("PDF");
-    bt.onclick = function() {　
-        // console.log(document.body.innerHTML);　　
+    bt.onclick = function() {
         printdiv(div_print);
     }
 </script>

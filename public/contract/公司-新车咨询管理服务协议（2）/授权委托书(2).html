@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .docpe {
+            width: 794px;
+            background-color: #fff;
+            padding: 60px 60px 420px;
+            box-sizing: border-box;
+        }
+        
+        button {
+            position: fixed;
+            top: 100px;
+            left: 0;
+        }
+        
+        #bt {
+            position: fixed;
+            top: 150px;
+            left: 0;
+        }
+    </style>
+    <script src="https://cdn.bootcss.com/html2canvas/0.5.0-beta4/html2canvas.js"></script>
+    <script src="https://cdn.bootcss.com/jspdf/1.3.4/jspdf.debug.js"></script>
+</head>
+
+<body>
+    <button onclick="printOut('授 权 委 托 书')">点击下载合同</button>
+    <button id="bt">点击打印</button>
+    <div class="docpe" id="PDF">
+        <p style="font-size:10pt; line-height:115%; margin:0pt 0pt 10pt; orphans:0; text-align:justify; widows:0"><span style="font-family:宋体; font-size:10pt">&#xa0;</span></p>
+        <p style="font-size:16pt; line-height:115%; margin:9.7pt 0pt 10pt 10pt; orphans:0; text-align:center; widows:0"><span style="font-family:宋体; font-size:16pt">授 权 委 托 书</span></p>
+        <p style="font-size:23.5pt; line-height:115%; margin:0pt 0pt 10pt 5.3pt; orphans:0; text-align:justify; widows:0"><span style="font-family:宋体; font-size:23.5pt">&#xa0;</span></p>
+        <p style="font-size:12pt; line-height:180%; margin:3.15pt 46.6pt 10pt 5.3pt; orphans:0; text-align:justify; text-indent:42pt; widows:0"><span style="font-family:宋体; font-size:12pt">本人</span><span style="font-family:宋体; font-size:12pt; text-decoration:underline">[&lt;贷款人姓名&gt;]</span><span style="font-family:宋体; font-size:12pt">(身份证号为</span><span style="font-family:宋体; font-size:12pt; text-decoration:underline">[&lt;贷款人身份证号&gt;]</span>
+            <span style="font-family:宋体; font-size:12pt"> )委托</span><span style="font-family:宋体; font-size:12pt; text-decoration:underline">中豫融资租赁</span><span style="font-family:宋体; font-size:12pt; text-decoration:underline">有限公司</span><span style="font-family:宋体; font-size:12pt; text-decoration:underline"> </span>
+            <span style="font-family:宋体; font-size:12pt">向</span><span style="font-family:宋体; font-size:12pt; text-decoration:underline">中国工商银行股份有限公司</span><span style="font-family:宋体; font-size:12pt; text-decoration:underline">郑州</span><span style="font-family:宋体; font-size:12pt; text-decoration:underline">花园路</span>
+            <span style="font-family:宋体; font-size:12pt; text-decoration:underline">支行</span><span style="font-family:宋体; font-size:12pt">申请贷款。现授权 </span><span style="font-family:宋体; font-size:12pt; text-decoration:underline">中豫融资租赁</span><span style="font-family:宋体; font-size:12pt; text-decoration:underline">有限公司</span>
+            <span style="font-family:宋体; font-size:12pt">将银行贷款金额</span>
+            <a name="银行贷款金额大写"></a><span style="font-family:宋体; font-size:12pt">小写</span><span style="font-family:宋体; font-size:12pt">：</span><span style="font-family:微软雅黑; font-size:12pt">￥</span>
+            <a name="银行贷款金额"></a><span style="font-family:宋体; font-size:12pt; text-decoration:underline">[&lt;车辆尾款&gt;]</span><span style="font-family:宋体; font-size:12pt">元)汇入</span><span style="font-family:宋体; font-size:12pt; text-decoration:underline">[&lt;贷款人姓名&gt;]</span>
+            <span style="font-family:宋体; font-size:12pt"> 以下指定账户:</span>
+        </p>
+        <p style="font-size:12pt; line-height:150%; margin:10.65pt 228.85pt 10pt 32.4pt; orphans:0; text-align:justify; text-indent:21pt; widows:0"><span style="font-family:宋体; font-size:12pt">户名：</span><span style="font-family:宋体; font-size:12pt">[&lt;收款人姓名&gt;]</span>
+            <a name="收款人姓名"></a>
+        </p>
+        <p style="font-size:12pt; line-height:150%; margin:10.65pt 228.85pt 10pt 32.4pt; orphans:0; text-align:justify; text-indent:21pt; widows:0"><span style="font-family:宋体; font-size:12pt">卡号：</span><span style="font-family:宋体; font-size:12pt">[&lt;收款账号&gt;]</span></p>
+        <p style="font-size:12pt; line-height:150%; margin:0.05pt 0pt 10pt 32.4pt; orphans:0; text-align:justify; text-indent:10.5pt; widows:0">
+            <a name="收款账号"></a><span style="font-family:宋体; font-size:12pt">开户行： </span><span style="font-family:宋体; font-size:12pt">[&lt;收款开户行&gt;]</span></p>
+        <p style="font-size:10.5pt; line-height:115%; margin:0.4pt 0pt 10pt 5.3pt; orphans:0; text-align:justify; widows:0">
+            <a name="收款开户行"></a><span style="font-family:宋体; font-size:10.5pt">&#xa0;</span></p>
+        <p style="font-size:12pt; line-height:115%; margin:0pt 0pt 10pt 32.4pt; orphans:0; text-align:justify; text-indent:10.5pt; widows:0"><span style="font-family:宋体; font-size:12pt">由此产生的一切有关事宜和法律后果，由 </span><span style="font-family:宋体; font-size:12pt; text-decoration:underline">[&lt;贷款人姓名&gt;]</span>
+            <a name="贷款人姓名"></a><span style="font-family:宋体; font-size:12pt">自行承担。</span></p>
+        <p style="font-size:13pt; line-height:115%; margin:0pt 0pt 10pt 5.3pt; orphans:0; text-align:justify; widows:0"><span style="font-family:宋体; font-size:13pt">&#xa0;</span></p>
+        <p style="font-size:17.5pt; line-height:115%; margin:0.55pt 0pt 10pt 5.3pt; orphans:0; text-align:justify; widows:0"><span style="font-family:宋体; font-size:17.5pt">&#xa0;</span></p>
+        <p style="font-size:17.5pt; line-height:115%; margin:0.55pt 0pt 10pt 5.3pt; orphans:0; text-align:justify; widows:0"><span style="font-family:宋体; font-size:17.5pt">&#xa0;</span></p>
+        <p style="font-size:12pt; line-height:115%; margin:0pt 0pt 10pt 32.4pt; orphans:0; text-align:justify; text-indent:220.5pt; widows:0"><span style="font-family:宋体; font-size:12pt">授权人:</span></p>
+        <p style="font-size:8pt; line-height:115%; margin:0.45pt 0pt 10pt 5.3pt; orphans:0; text-align:justify; widows:0"><span style="font-family:宋体; font-size:8pt">&#xa0;</span></p>
+        <p style="font-size:12pt; line-height:115%; margin:3.2pt 0pt 10pt 314.1pt; orphans:0; text-align:justify; widows:0"><span style="font-family:宋体; font-size:12pt">[&lt;签约日期&gt;]</span></p>
+        <p style="font-size:10.5pt; line-height:115%; margin:0pt 0pt 10pt; orphans:0; text-align:justify; widows:0"><span style="font-family:Calibri; font-size:10.5pt">&#xa0;</span></p>
+    </div>
+</body>
+
+<script>
+    // 接收VUE数据
+    window.addEventListener("message", function(event) {
+        console.log(event);
+        // let sname = document.querySelector('#sname')
+        // sname.innerHTML = event.data.name
+        // if (event.data.isDownload) return printOut('授权委托书(2)')
+    })
+
+    // PDF
+    function printOut(name) {
+        let shareContent = document.querySelector('#PDF'), //需要截图的包裹的（原生的）DOM 对象
+            width = shareContent.clientWidth, //获取dom 宽度
+            height = shareContent.clientHeight, //获取dom 高度
+            canvas = document.createElement("canvas"), //创建一个canvas节点
+            scale = 2; //定义任意放大倍数 支持小数
+        canvas.width = width * scale; //定义canvas 宽度 * 缩放
+        canvas.height = height * scale; //定义canvas高度 *缩放
+        canvas.style.width = shareContent.clientWidth * scale + "px";
+        canvas.style.height = shareContent.clientHeight * scale + "px";
+        canvas.getContext("2d").scale(scale, scale); //获取context,设置scale
+        let opts = {
+            scale: scale, // 添加的scale 参数
+            canvas: canvas, //自定义 canvas
+            logging: false, //日志开关，便于查看html2canvas的内部执行流程
+            width: width, //dom 原始宽度
+            height: height,
+            useCORS: true, // 【重要】开启跨域配置
+        };
+
+        html2canvas(shareContent, opts).then(() => {
+            var contentWidth = canvas.width;
+            var contentHeight = canvas.height;
+            //一页pdf显示html页面生成的canvas高度;
+            var pageHeight = (contentWidth / 592.28) * 841.89;
+            //未生成pdf的html页面高度
+            var leftHeight = contentHeight;
+            //页面偏移
+            var position = 0;
+            //a4纸的尺寸[595.28,841.89]，html页面生成的canvas在pdf中图片的宽高
+            var imgWidth = 595.28;
+            var imgHeight = (592.28 / contentWidth) * contentHeight;
+            var pageData = canvas.toDataURL("image/jpeg", 1.0);
+            var PDF = new jsPDF("", "pt", "a4");
+            if (leftHeight < pageHeight) {
+                PDF.addImage(pageData, "JPEG", 0, 0, imgWidth, imgHeight);
+            } else {
+                while (leftHeight > 0) {
+                    PDF.addImage(pageData, "JPEG", 0, position, imgWidth, imgHeight);
+                    leftHeight -= pageHeight;
+                    position -= 841.89;
+                    if (leftHeight > 0) {
+                        PDF.addPage();
+                    }
+                }
+            }
+            PDF.save(name + ".pdf"); // 这里是导出的文件名
+        });
+    }
+
+    // 打印
+    function printdiv(printpage) {
+        var newstr = printpage.innerHTML;
+        var oldstr = document.body.innerHTML;
+        document.body.innerHTML = newstr;
+        window.print();
+        document.body.innerHTML = oldstr;
+        return false;
+    }
+    var bt = document.getElementById("bt");
+    var div_print = document.getElementById("PDF");
+    bt.onclick = function() {
+        printdiv(div_print);
+    }
+</script>
+
+</html>

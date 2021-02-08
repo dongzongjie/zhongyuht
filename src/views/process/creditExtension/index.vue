@@ -74,6 +74,12 @@
     </el-row>
     <!-- 表格 -->
     <el-table v-loading="loading" :data="businessList">
+      <el-table-column
+        label="订单创建时间"
+        align="center"
+        prop="createTime"
+        sortable
+      />
       <el-table-column label="订单编号" align="center" prop="transactionCode" />
       <el-table-column label="客户名称" align="center" prop="name" />
       <el-table-column label="销售团队" align="center" prop="team" />
@@ -118,7 +124,16 @@
         class-name="small-padding fixed-width"
       >
         <template slot-scope="scope">
-          <div v-if="!scope.row.grantId">
+          <span v-if="!(scope.row.grantImage && scope.row.grantInstalments)"
+            >待APP端上传数据</span
+          >
+          <div
+            v-if="
+              !scope.row.grantId &&
+              scope.row.grantImage &&
+              scope.row.grantInstalments
+            "
+          >
             <el-button size="mini" type="text" @click="handle(scope.row)"
               >立即处理</el-button
             >
@@ -171,14 +186,6 @@
 
 <script>
 import { checkRole } from '@/utils/permission'
-import {
-  getBusiness,
-  delBusiness,
-  addBusiness,
-  updateBusiness,
-  exportBusiness,
-  deleteOperator,
-} from '@/api/process/business'
 import {
   getCreditExtensionList,
   creditExtensionHandle,
@@ -296,7 +303,9 @@ export default {
             userId: item.userId,
           },
         })
-      } catch (error) {}
+      } catch (error) {
+        this.getList()
+      }
     },
     // 解锁
     async unlock(item) {

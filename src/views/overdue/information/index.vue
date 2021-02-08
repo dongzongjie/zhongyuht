@@ -5,7 +5,7 @@
       ref="queryForm"
       :inline="true"
       v-show="showSearch"
-      label-width="68px"
+      label-width="80px"
     >
       <el-form-item label="姓名" prop="userName">
         <el-input
@@ -111,37 +111,8 @@
           type="primary"
           icon="el-icon-plus"
           size="mini"
-          @click="handleAdd"
+          @click="open = true"
           >新增</el-button
-        >
-      </el-col>
-      <el-col :span="1.5">
-        <el-button
-          type="success"
-          icon="el-icon-edit"
-          size="mini"
-          :disabled="single"
-          @click="handleUpdate"
-          >修改</el-button
-        >
-      </el-col>
-      <el-col :span="1.5">
-        <el-button
-          type="danger"
-          icon="el-icon-delete"
-          size="mini"
-          :disabled="multiple"
-          @click="handleDelete"
-          >删除</el-button
-        >
-      </el-col>
-      <el-col :span="1.5">
-        <el-button
-          type="warning"
-          icon="el-icon-download"
-          size="mini"
-          @click="handleExport"
-          >导出</el-button
         >
       </el-col>
       <right-toolbar
@@ -155,8 +126,8 @@
       :data="overdueList"
       @selection-change="handleSelectionChange"
     >
-      <el-table-column type="selection" width="55" align="center" />
-      <el-table-column label="录入时间" align="center" />
+      <!-- <el-table-column type="selection" width="55" align="center" /> -->
+      <el-table-column label="录入时间" align="center" prop="createTime" />
       <el-table-column label="姓名" align="center" prop="userName" />
       <el-table-column label="身份证号" align="center" prop="identityCard" />
       <el-table-column label="经办银行" align="center" />
@@ -210,59 +181,120 @@
     />
 
     <!-- 添加或修改overdue对话框 -->
-    <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
-      <el-form ref="form" :model="form" :rules="rules" label-width="80px">
-        <el-form-item label="姓名" prop="userName">
-          <el-input v-model="form.userName" placeholder="请输入姓名" />
-        </el-form-item>
-        <el-form-item label="身份证号" prop="identityCard">
-          <el-input v-model="form.identityCard" placeholder="请输入身份证号" />
-        </el-form-item>
-        <el-form-item label="分期期数" prop="installmentPeriod">
-          <el-input
-            v-model="form.installmentPeriod"
-            placeholder="请输入分期期数"
-          />
-        </el-form-item>
-        <el-form-item label="分期金额" prop="instalmentAmount">
-          <el-input
-            v-model="form.instalmentAmount"
-            placeholder="请输入分期金额"
-          />
-        </el-form-item>
-        <el-form-item label="月还款额" prop="monthlyPayment">
-          <el-input
-            v-model="form.monthlyPayment"
-            placeholder="请输入月还款额"
-          />
-        </el-form-item>
-        <el-form-item label="还款日期" prop="repaymentDate">
-          <el-date-picker
-            clearable
-            size="small"
-            style="width: 200px"
-            v-model="form.repaymentDate"
-            type="date"
-            value-format="yyyy-MM-dd"
-            placeholder="选择还款日期"
-          >
-          </el-date-picker>
-        </el-form-item>
-        <el-form-item label="应还期数" prop="shouldApplicable">
-          <el-input
-            v-model="form.shouldApplicable"
-            placeholder="请输入应还期数"
-          />
-        </el-form-item>
-        <el-form-item label="处理状态" prop="state">
-          <el-input v-model="form.state" placeholder="请输入处理状态" />
-        </el-form-item>
-        <el-form-item label="处理人员" prop="processingStaff">
-          <el-input
-            v-model="form.processingStaff"
-            placeholder="请输入处理人员"
-          />
-        </el-form-item>
+    <el-dialog
+      title="新建逾期信息"
+      :visible.sync="open"
+      width="80%"
+      append-to-body
+    >
+      <el-form ref="form" :model="form" :rules="rules" label-width="150px">
+        <el-row>
+          <el-col :span="8">
+            <el-form-item label="订单编号" prop="transactionCode">
+              <el-input
+                v-model="form.transactionCode"
+                placeholder="请输入订单编号"
+              />
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row>
+          <el-col :span="8">
+            <el-form-item label="借款人姓名" prop="borrower">
+              <el-input
+                v-model="form.borrower"
+                placeholder="请输入借款人姓名"
+              />
+            </el-form-item>
+          </el-col>
+          <el-col :span="8">
+            <el-form-item label="身份证号" prop="idCard">
+              <el-input v-model="form.idCard" placeholder="请输入身份证号" />
+            </el-form-item>
+          </el-col>
+          <el-col :span="8">
+            <el-form-item label="银行卡号" prop="bankCard">
+              <el-input v-model="form.bankCard" placeholder="请输入银行卡号" />
+            </el-form-item>
+          </el-col>
+          <el-col :span="8">
+            <el-form-item label="应还期数" prop="shouldStages">
+              <el-input
+                v-model="form.shouldStages"
+                placeholder="请输入应还期数"
+              />
+            </el-form-item>
+          </el-col>
+          <el-col :span="8">
+            <el-form-item label="逾期还款日期" prop="repaymentDate">
+              <el-date-picker
+                clearable
+                size="small"
+                style="width: 200px"
+                v-model="form.repaymentDate"
+                type="date"
+                value-format="yyyy-MM-dd"
+                placeholder="选择还款日期"
+              >
+              </el-date-picker>
+            </el-form-item>
+          </el-col>
+          <el-col :span="8">
+            <el-form-item label="分期期数" prop="byStages">
+              <el-input v-model="form.byStages" placeholder="请输入分期期数" />
+            </el-form-item>
+          </el-col>
+          <el-col :span="8">
+            <el-form-item label="车辆贷款金额" prop="loanAmount">
+              <el-input
+                v-model="form.loanAmount"
+                placeholder="请输入车辆贷款金额"
+              />
+            </el-form-item>
+          </el-col>
+          <el-col :span="8">
+            <el-form-item label="月还款金额" prop="repaymentAmount">
+              <el-input
+                v-model="form.repaymentAmount"
+                placeholder="请输入月还款金额"
+              />
+            </el-form-item>
+          </el-col>
+          <el-col :span="8">
+            <el-form-item label="滞纳金" prop="lateFee">
+              <el-input v-model="form.lateFee" placeholder="请输入滞纳金" />
+            </el-form-item>
+          </el-col>
+          <el-col :span="8">
+            <el-form-item label="当前逾期金额" prop="overdueAmount">
+              <el-input
+                v-model="form.overdueAmount"
+                placeholder="请输入当前逾期金额"
+              />
+            </el-form-item>
+          </el-col>
+          <el-col :span="8">
+            <el-form-item label="累计违约次数" prop="cumulative">
+              <el-input
+                v-model="form.cumulative"
+                placeholder="请输入累计违约次数"
+              />
+            </el-form-item>
+          </el-col>
+          <el-col :span="8">
+            <el-form-item label="附加费" prop="surcharge">
+              <el-input v-model="form.surcharge" placeholder="请输入附加费" />
+            </el-form-item>
+          </el-col>
+          <el-col :span="8">
+            <el-form-item label="连续违约次数" prop="continuity">
+              <el-input
+                v-model="form.continuity"
+                placeholder="请输入连续违约次数"
+              />
+            </el-form-item>
+          </el-col>
+        </el-row>
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button type="primary" @click="submitForm">确 定</el-button>
@@ -273,14 +305,7 @@
 </template>
 
 <script>
-import {
-  listOverdue,
-  getOverdue,
-  delOverdue,
-  addOverdue,
-  updateOverdue,
-  exportOverdue,
-} from '@/api/overdue/information'
+import { listOverdue, addOverdueData } from '@/api/overdue/information'
 
 export default {
   name: 'Information',
@@ -321,7 +346,33 @@ export default {
       // 表单参数
       form: {},
       // 表单校验
-      rules: {},
+      rules: {
+        transactionCode: [
+          { required: true, message: '请输入订单编号', trigger: 'blur' },
+        ],
+        borrower: [
+          { required: true, message: '请输入借款人姓名', trigger: 'blur' },
+        ],
+        idCard: [
+          { required: true, message: '请输入身份证号', trigger: 'blur' },
+        ],
+        bankCard: [
+          { required: true, message: '请输入银行卡号', trigger: 'blur' },
+        ],
+        shouldStages: [
+          { required: true, message: '请输入应还期数', trigger: 'blur' },
+        ],
+        repaymentAmount: [
+          { required: true, message: '请输入月还款金额', trigger: 'blur' },
+        ],
+        lateFee: [{ required: true, message: '请输入滞纳金', trigger: 'blur' }],
+        overdueAmount: [
+          { required: true, message: '请输入当前逾期金额', trigger: 'blur' },
+        ],
+        surcharge: [
+          { required: true, message: '请输入附加费', trigger: 'blur' },
+        ],
+      },
     }
   },
   created() {
@@ -378,78 +429,25 @@ export default {
       this.single = selection.length !== 1
       this.multiple = !selection.length
     },
-    /** 新增按钮操作 */
-    handleAdd() {
-      this.reset()
-      this.open = true
-      this.title = '添加overdue'
-    },
-    /** 修改按钮操作 */
-    handleUpdate(row) {
-      this.reset()
-      const id = row.id || this.ids
-      getOverdue(id).then((response) => {
-        this.form = response.data
-        this.open = true
-        this.title = '修改overdue'
-      })
-    },
     /** 提交按钮 */
     submitForm() {
       this.$refs['form'].validate((valid) => {
         if (valid) {
-          if (this.form.id != null) {
-            updateOverdue(this.form).then((response) => {
-              if (response.code === 200) {
-                this.msgSuccess('修改成功')
-                this.open = false
-                this.getList()
-              }
+          this.$confirm('确认添加', '警告', {
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+            type: 'warning',
+          })
+            .then(function () {
+              return addOverdueData(this.form)
             })
-          } else {
-            addOverdue(this.form).then((response) => {
-              if (response.code === 200) {
-                this.msgSuccess('新增成功')
-                this.open = false
-                this.getList()
-              }
+            .then(() => {
+              this.getList()
+              this.msgSuccess('添加成功')
             })
-          }
+            .catch(function () {})
         }
       })
-    },
-    /** 删除按钮操作 */
-    handleDelete(row) {
-      const ids = row.id || this.ids
-      this.$confirm('是否确认删除overdue编号为"' + ids + '"的数据项?', '警告', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'warning',
-      })
-        .then(function () {
-          return delOverdue(ids)
-        })
-        .then(() => {
-          this.getList()
-          this.msgSuccess('删除成功')
-        })
-        .catch(function () {})
-    },
-    /** 导出按钮操作 */
-    handleExport() {
-      const queryParams = this.queryParams
-      this.$confirm('是否确认导出所有overdue数据项?', '警告', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'warning',
-      })
-        .then(function () {
-          return exportOverdue(queryParams)
-        })
-        .then((response) => {
-          this.download(response.msg)
-        })
-        .catch(function () {})
     },
     // 详情按钮
     handle(item) {
@@ -457,10 +455,18 @@ export default {
         path: '/overdue/informationDetails',
         name: 'InformationDetails',
         query: {
-          id: item.id,
+          transactionCode: item.transactionCode,
         },
       })
     },
   },
 }
 </script>
+
+<style lang="scss" scoped>
+.el-form-item {
+  /deep/.el-input__inner {
+    width: 250px;
+  }
+}
+</style>

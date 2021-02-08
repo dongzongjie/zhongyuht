@@ -77,6 +77,12 @@
     </el-row>
     <!-- 表格 -->
     <el-table v-loading="loading" :data="firstTrialList">
+      <el-table-column
+        label="订单创建时间"
+        align="center"
+        prop="createTime"
+        sortable
+      />
       <el-table-column label="订单编号" align="center" prop="transactionCode" />
       <el-table-column label="客户名称" align="center" prop="name" />
       <el-table-column label="销售团队" align="center" prop="team" />
@@ -122,7 +128,36 @@
         class-name="small-padding fixed-width"
       >
         <template slot-scope="scope">
-          <div v-if="!scope.row.allowId">
+          <span
+            v-if="
+              !(
+                scope.row.applicant &&
+                scope.row.basics &&
+                scope.row.contacts &&
+                scope.row.carLoan &&
+                scope.row.photoCar &&
+                scope.row.photoCredit &&
+                scope.row.photoHouse &&
+                (scope.row.companyGuarantee || scope.row.peopleGuarantee)
+              )
+            "
+            >待APP端上传数据</span
+          >
+          <!-- scope.row.photoLender && -->
+          <div
+            v-if="
+              !scope.row.allowId &&
+              scope.row.applicant &&
+              scope.row.basics &&
+              scope.row.contacts &&
+              scope.row.carLoan &&
+              scope.row.photoCar &&
+              scope.row.photoCredit &&
+              scope.row.photoHouse &&
+              (scope.row.companyGuarantee || scope.row.peopleGuarantee)
+            "
+          >
+            <!-- scope.row.photoLender && -->
             <el-button size="mini" type="text" @click="handle(scope.row)"
               >立即处理</el-button
             >
@@ -175,14 +210,6 @@
 
 <script>
 import {
-  getBusiness,
-  delBusiness,
-  addBusiness,
-  updateBusiness,
-  exportBusiness,
-} from '@/api/process/business'
-import {
-  addFalseOperator,
   getFirstTrialList,
   firstTrialHandle,
   getHistoryOpinion,
@@ -323,7 +350,7 @@ export default {
           },
         })
       } catch (error) {
-        this.getList()
+        this.getList(this.getList())
       }
     },
     // 解锁
