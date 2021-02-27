@@ -128,7 +128,6 @@
 <script>
     // 接收VUE数据
     window.addEventListener("message", function(event) {
-        console.log(event);
         let dkrname = document.querySelector('.dkrname')
         let dkridCard = document.querySelector('.dkridCard')
         let clwk = document.querySelector('.clwk')
@@ -137,10 +136,10 @@
         let skkhh = document.querySelector('.skkhh')
         dkrname.innerHTML = event.data.jiekuanren.userName
         dkridCard.innerHTML = event.data.jiekuanren.idCard
-            // clwk.innerHTML = event.data.jiekuanren.
-            // skrname.innerHTML = event.data.jiekuanren.
-            // skzh.innerHTML = event.data.jiekuanren.
-            // skkhh.innerHTML = event.data.jiekuanren.
+        clwk.innerHTML = event.data.chedai.loanAmount
+        skrname.innerHTML = '      '
+        skzh.innerHTML = '            '
+        skkhh.innerHTML = '            '
         if (event.data.isDownload) return printOut('分期购车垫款委托书')
     })
 

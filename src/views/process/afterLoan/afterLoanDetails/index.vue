@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
     <!-- 注册信息栏 -->
-    <el-card style="margin-bottom: 10px">
+    <!-- <el-card style="margin-bottom: 10px">
       <div slot="header">
         <span>注册信息栏</span>
       </div>
@@ -25,9 +25,9 @@
           </el-image>
         </el-col>
       </el-row>
-    </el-card>
+    </el-card> -->
     <!-- 行驶证 -->
-    <el-card style="margin-bottom: 10px">
+    <!-- <el-card style="margin-bottom: 10px">
       <div slot="header">
         <span>行驶证</span>
       </div>
@@ -51,7 +51,7 @@
           </el-image>
         </el-col>
       </el-row>
-    </el-card>
+    </el-card> -->
     <!-- 登记栏 -->
     <el-card style="margin-bottom: 10px">
       <div slot="header">
@@ -59,51 +59,51 @@
       </div>
       <el-row>
         <el-col :span="4" class="img">
-          登记栏1
+          登记证信息栏1-2
           <el-image
             style="width: 100px; height: 100px"
-            :src="afterData['登记栏第1页']"
-            :preview-src-list="afterData.zhengshu"
+            :src="afterData.dj12"
+            :preview-src-list="srcList"
           >
           </el-image>
         </el-col>
         <el-col :span="4" class="img">
-          登记栏2
+          登记证信息栏3-4
           <el-image
             style="width: 100px; height: 100px"
-            :src="afterData['登记栏第2页']"
-            :preview-src-list="afterData.zhengshu"
+            :src="afterData.dj34"
+            :preview-src-list="srcList"
           >
           </el-image>
         </el-col>
         <el-col :span="4" class="img">
-          登记栏3
+          登记证信息栏5-6
           <el-image
             style="width: 100px; height: 100px"
-            :src="afterData['登记栏第3页']"
-            :preview-src-list="afterData.zhengshu"
+            :src="afterData.dj56"
+            :preview-src-list="srcList"
           >
           </el-image>
         </el-col>
         <el-col :span="4" class="img">
-          登记栏4
+          登记证信息栏7-8
           <el-image
             style="width: 100px; height: 100px"
-            :src="afterData['登记栏第4页']"
-            :preview-src-list="afterData.zhengshu"
+            :src="afterData.dj78"
+            :preview-src-list="srcList"
           >
           </el-image>
         </el-col>
         <el-col :span="4" class="img">
-          登记栏5
+          登记证信息栏9-10
           <el-image
             style="width: 100px; height: 100px"
-            :src="afterData['登记栏第5页']"
-            :preview-src-list="afterData.zhengshu"
+            :src="afterData.dj910"
+            :preview-src-list="srcList"
           >
           </el-image>
         </el-col>
-        <el-col :span="4" class="img">
+        <!-- <el-col :span="4" class="img">
           登记栏6
           <el-image
             style="width: 100px; height: 100px"
@@ -111,7 +111,7 @@
             :preview-src-list="afterData.zhengshu"
           >
           </el-image>
-        </el-col>
+        </el-col> -->
       </el-row>
     </el-card>
     <!-- 保险信息 -->
@@ -121,36 +121,36 @@
       </div>
       <el-row>
         <el-col :span="4" class="img">
-          交强险
+          新保险单
           <el-image
             style="width: 100px; height: 100px"
-            :src="afterData['交强险']"
-            :preview-src-list="afterData.baoxian"
+            :src="afterData.xbd"
+            :preview-src-list="srcList"
           >
           </el-image>
         </el-col>
         <el-col :span="4" class="img">
-          商业险
+          原保险单
           <el-image
             style="width: 100px; height: 100px"
-            :src="afterData['商业险']"
-            :preview-src-list="afterData.baoxian"
+            :src="afterData.ybd"
+            :preview-src-list="srcList"
           >
           </el-image>
         </el-col>
         <el-col :span="4" class="img">
-          补充
+          特别约定
           <el-image
             style="width: 100px; height: 100px"
-            src=""
-            :preview-src-list="afterData.baoxian"
+            :src="afterData.tbyd"
+            :preview-src-list="srcList"
           >
           </el-image>
         </el-col>
       </el-row>
     </el-card>
     <!-- 其他资料 -->
-    <el-card style="margin-bottom: 10px">
+    <!-- <el-card style="margin-bottom: 10px">
       <div slot="header">
         <span>其他资料</span>
       </div>
@@ -228,9 +228,9 @@
           </el-image>
         </el-col>
       </el-row>
-    </el-card>
+    </el-card> -->
     <!-- 提车补照 -->
-    <el-card style="margin-bottom: 10px">
+    <!-- <el-card style="margin-bottom: 10px">
       <div slot="header">
         <span>提车补照</span>
       </div>
@@ -263,9 +263,9 @@
           </el-image>
         </el-col>
       </el-row>
-    </el-card>
+    </el-card> -->
     <!-- 绿本邮寄 -->
-    <el-card style="margin-bottom: 10px">
+    <!-- <el-card style="margin-bottom: 10px">
       <div slot="header">
         <span>绿本邮寄</span>
       </div>
@@ -315,7 +315,7 @@
         :src="pdfUrl"
         :page="i"
       ></pdf>
-    </el-dialog>
+    </el-dialog> -->
     <!-- 意见 -->
     <el-card>
       <div slot="header">
@@ -369,6 +369,7 @@ export default {
       textarea: '',
       approvalType: '',
       afterData: { shenpi: {}, lvben: {} },
+      srcList: [],
     }
   },
   computed: {},
@@ -386,8 +387,11 @@ export default {
       try {
         const { data } = await getAfterLoanDetails(this.$route.query.id)
         this.afterData = data
-        this.afterData.tiche.push(data.lvben.fujian)
+        // this.afterData.tiche.push(data.lvben.fujian)
         this.textarea = data.shenpi.opinion
+        data.forEach((item) => {
+          this.srcList.push(item)
+        })
         console.log(data)
       } catch (error) {
         console.log(error)

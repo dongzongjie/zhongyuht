@@ -63,13 +63,13 @@
     <!-- 我的客户 -->
     <el-row :gutter="10" class="mb8">
       <el-col :span="1.5">
-        <el-button
+        <!-- <el-button
           type="primary"
           icon="el-icon-user-solid"
           size="mini"
           @click="myCustomer"
           >我的客户</el-button
-        >
+        > -->
       </el-col>
     </el-row>
     <!-- 表格 -->
@@ -124,41 +124,23 @@
         class-name="small-padding fixed-width"
       >
         <template slot-scope="scope">
-          <span
-            v-if="
-              !(
-                scope.row.zhengshu &&
-                scope.row.baoxian &&
-                scope.row.qita &&
-                scope.row.lvben &&
-                scope.row.tiche
-              )
-            "
-            >待APP端上传数据</span
-          >
-          <div
-            v-if="
-              !scope.row.userId &&
-              scope.row.zhengshu &&
-              scope.row.baoxian &&
-              scope.row.qita &&
-              scope.row.lvben &&
-              scope.row.tiche
-            "
-          >
-            <el-button size="mini" type="text" @click="handle(scope.row)"
-              >立即处理</el-button
-            >
+          <span v-if="!scope.row.tijiao">待APP端上传数据</span>
+          <div v-if="scope.row.tijiao">
+            <div v-if="!scope.row.userId">
+              <el-button size="mini" type="text" @click="handle(scope.row)"
+                >立即处理</el-button
+              >
+            </div>
+            <div v-else-if="scope.row.userId == $store.state.user.userId">
+              <el-button size="mini" type="text" @click="handle(scope.row)"
+                >立即处理</el-button
+              >
+              <el-button size="mini" type="text" @click="unlock(scope.row.id)"
+                >解锁</el-button
+              >
+            </div>
+            <div v-else></div>
           </div>
-          <div v-else-if="scope.row.userId == $store.state.user.userId">
-            <el-button size="mini" type="text" @click="handle(scope.row)"
-              >立即处理</el-button
-            >
-            <el-button size="mini" type="text" @click="unlock(scope.row.id)"
-              >解锁</el-button
-            >
-          </div>
-          <div v-else></div>
         </template>
       </el-table-column>
     </el-table>

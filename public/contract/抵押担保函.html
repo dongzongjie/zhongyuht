@@ -73,8 +73,11 @@
         <br>
         <p>中豫融资租赁有限公司：</p>
         <br>
-        <p style="text-indent: 2em;">以下借款人向我司购车，经由我司向贵司推荐后，由贵司为其提供购车垫款服务且已经通过贵司审批。按照流程，贵司应当在借款人车辆抵押至中国工商银行股份有限公司郑州花园路支行名下后，发起放款。</p>
-        <p style="text-indent: 2em;">现为拓展贵我双方的合作规模并提高合作效率，我司特申请在抵押完成前放款。我司保证在购车人所购车辆按本协议完成抵押前，我司不得向借款人交付车辆，否则，我司将对该等借款人所负之债务承担即时的连带清偿责任，清偿范围包括但不限于中国工商银行信用卡汽车专项分期付款及信用卡汽车附加费专项分期付款/抵押合同、咨询管理服务协议合同项下的本金及利息、逾期利息、罚息、复 利、违约金、损害赔偿金、贵司实现在中国工商银行信用卡汽车专项分期付款及信用卡汽车附加费专项分期付款/抵押合同、咨询管理服务协议合同下的债权和抵押权时所发生的费用（包括律师费用、差旅费用、诉讼费用及其他费用）以及其他应付款项。</p>
+        <p style="text-indent: 2em;">
+            以下借款人向我司购车，经由我司向贵司推荐后，由贵司为其提供购车垫款服务且已经通过贵司审批。按照流程，贵司应当在借款人车辆抵押至中国工商银行股份有限公司郑州花园路支行名下后，发起放款。</p>
+        <p style="text-indent: 2em;">
+            现为拓展贵我双方的合作规模并提高合作效率，我司特申请在抵押完成前放款。我司保证在购车人所购车辆按本协议完成抵押前，我司不得向借款人交付车辆，否则，我司将对该等借款人所负之债务承担即时的连带清偿责任，清偿范围包括但不限于中国工商银行信用卡汽车专项分期付款及信用卡汽车附加费专项分期付款/抵押合同、咨询管理服务协议合同项下的本金及利息、逾期利息、罚息、复 利、违约金、损害赔偿金、贵司实现在中国工商银行信用卡汽车专项分期付款及信用卡汽车附加费专项分期付款/抵押合同、咨询管理服务协议合同下的债权和抵押权时所发生的费用（包括律师费用、差旅费用、诉讼费用及其他费用）以及其他应付款项。
+        </p>
         <p style="text-indent: 2em;">同时，我司承诺，因我司暂押车辆导致的消费纠纷，与贵司无关，产生的任何责任亦由我司承担，造成贵司损失的我司应当予以赔偿。</p>
         <br>
         <p style="text-indent: 1em;">申请放款的购车人名单：</p>
@@ -88,9 +91,9 @@
             </thead>
             <tbody>
                 <tr>
-                    <td><span style="color: red;">{{贷款人姓名}}</span></td>
-                    <td><span style="color: red;">{{贷款人身份证号}}</span></td>
-                    <td><span style="color: red;">{{车辆尾款}}</span></td>
+                    <td class="dkrname"><span style="color: red;">{{贷款人姓名}}</span></td>
+                    <td class="dkridCard"><span style="color: red;">{{贷款人身份证号}}</span></td>
+                    <td class="dkje"><span style="color: red;">{{车辆尾款}}</span></td>
                 </tr>
                 <tr>
                     <td>&nbsp;</td>
@@ -106,10 +109,13 @@
 <script>
     // 接收VUE数据
     window.addEventListener("message", function(event) {
-        console.log(event);
-        // let sname = document.querySelector('#sname')
-        // sname.innerHTML = event.data.name
-        // if (event.data.isDownload) return printOut('抵押担保函')
+        let dkrname = document.querySelector('.dkrname')
+        let dkridCard = document.querySelector('.dkridCard')
+        let dkje = document.querySelector('.dkje')
+        dkrname.innerHTML = event.data.jiekuanren.userName
+        dkridCard.innerHTML = event.data.jiekuanren.idCard
+        dkje.innerHTML = event.data.chedai.loanAmount
+        if (event.data.isDownload) return printOut('抵押担保函')
     })
 
     // PDF

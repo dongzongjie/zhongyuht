@@ -63,13 +63,13 @@
     <!-- 我的客户 -->
     <el-row :gutter="10" class="mb8">
       <el-col :span="1.5">
-        <el-button
+        <!-- <el-button
           type="primary"
           icon="el-icon-user-solid"
           size="mini"
           @click="myCustomer"
           >我的客户</el-button
-        >
+        > -->
       </el-col>
     </el-row>
     <!-- 表格 -->

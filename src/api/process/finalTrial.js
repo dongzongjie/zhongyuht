@@ -33,3 +33,12 @@ export function getFinalTrialHandle(transactionCode) {
         method: 'get',
     })
 }
+
+// 添加补充信息
+export function addSupplement(data) {
+    return request({
+        url: '/stage/add/supplement',
+        method: 'post',
+        data
+    })
+}

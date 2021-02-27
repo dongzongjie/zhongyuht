@@ -54,9 +54,12 @@
         <p style="line-height:26pt; margin:0pt; orphans:0; text-align:justify; text-indent:21pt; widows:0"><span style="font-family:仿宋_GB2312; font-size:14pt">本</span><span style="font-family:仿宋_GB2312; font-size:14pt">人（本公司）</span><span style="font-family:仿宋_GB2312; font-size:14pt">在本承诺书项下的责任属于债务加入而非保证担保。</span></p>
         <p style="line-height:26pt; margin:0pt; orphans:0; text-align:justify; text-indent:21pt; widows:0"><span style="font-family:仿宋_GB2312; font-size:14pt">特此承诺。</span></p>
         <p style="line-height:26pt; margin:0pt; orphans:0; text-align:justify; widows:0"><span style="font-family:仿宋_GB2312; font-size:14pt">&#xa0;</span></p>
-        <p style="line-height:26pt; margin:0pt 28pt 0pt 0pt; orphans:0; text-align:justify; text-indent:157.5pt; widows:0"><span style="font-family:仿宋_GB2312; font-size:14pt">共同偿债人（签章）：</span></p>
-        <p style="line-height:26pt; margin:0pt 28pt 0pt 0pt; orphans:0; text-align:justify; text-indent:157.5pt; widows:0"><span style="font-family:仿宋_GB2312; font-size:14pt">身份证号：</span></p>
-        <p style="line-height:26pt; margin:0pt; orphans:0; text-align:right; widows:0"><span style="font-family:仿宋_GB2312; font-size:14pt">年</span><span style="font-family:仿宋_GB2312; font-size:14pt">     </span><span style="font-family:仿宋_GB2312; font-size:14pt">月</span><span style="font-family:仿宋_GB2312; font-size:14pt">     </span>
+        <p style="line-height:26pt; margin:0pt 28pt 0pt 0pt; orphans:0; text-align:justify; text-indent:157.5pt; widows:0">
+            <span style="font-family:仿宋_GB2312; font-size:14pt">共同偿债人（签章）：</span></p>
+        <p style="line-height:26pt; margin:0pt 28pt 0pt 0pt; orphans:0; text-align:justify; text-indent:157.5pt; widows:0">
+            <span style="font-family:仿宋_GB2312; font-size:14pt">身份证号：</span></p>
+        <p style="line-height:26pt; margin:0pt; orphans:0; text-align:right; widows:0"><span style="font-family:仿宋_GB2312; font-size:14pt">年</span><span style="font-family:仿宋_GB2312; font-size:14pt">    
+      </span><span style="font-family:仿宋_GB2312; font-size:14pt">月</span><span style="font-family:仿宋_GB2312; font-size:14pt">     </span>
             <span style="font-family:仿宋_GB2312; font-size:14pt">日</span>
         </p>
         <p style="line-height:26pt; margin:0pt; orphans:0; text-align:justify; widows:0"><span style="font-family:仿宋_GB2312; font-size:14pt">&#xa0;</span></p>
@@ -68,10 +71,10 @@
 <script>
     // 接收VUE数据
     window.addEventListener("message", function(event) {
-        console.log(event);
+        // console.log(event);
         // let sname = document.querySelector('#sname')
         // sname.innerHTML = event.data.name
-        // if (event.data.isDownload) return printOut('银行-共同偿债人承诺书(共借签')
+        if (event.data.isDownload) return printOut('银行-共同偿债人承诺书(共借签')
     })
 
     // PDF

@@ -181,12 +181,7 @@
     />
 
     <!-- 添加或修改overdue对话框 -->
-    <el-dialog
-      title="新建逾期信息"
-      :visible.sync="open"
-      width="80%"
-      append-to-body
-    >
+    <el-dialog title="新建逾期信息" :visible.sync="open" width="80%">
       <el-form ref="form" :model="form" :rules="rules" label-width="150px">
         <el-row>
           <el-col :span="8">
@@ -197,8 +192,13 @@
               />
             </el-form-item>
           </el-col>
+          <el-col :span="8" v-if="!isNextStep"
+            ><el-button type="primary" round size="mini" @click="nextStep"
+              >下一步</el-button
+            ></el-col
+          >
         </el-row>
-        <el-row>
+        <el-row v-if="isNextStep">
           <el-col :span="8">
             <el-form-item label="借款人姓名" prop="borrower">
               <el-input
@@ -212,11 +212,26 @@
               <el-input v-model="form.idCard" placeholder="请输入身份证号" />
             </el-form-item>
           </el-col>
+          <!-- <el-col :span="8">
+            <el-form-item label="经办行" prop="bankCard">
+              <el-input v-model="form.bankCard" placeholder="请输入经办行" />
+            </el-form-item>
+          </el-col> -->
           <el-col :span="8">
             <el-form-item label="银行卡号" prop="bankCard">
               <el-input v-model="form.bankCard" placeholder="请输入银行卡号" />
             </el-form-item>
           </el-col>
+          <!-- <el-col :span="8">
+            <el-form-item label="利率换挡" prop="bankCard">
+              <el-input v-model="form.bankCard" placeholder="请输入利率换挡" />
+            </el-form-item>
+          </el-col>
+          <el-col :span="8">
+            <el-form-item label="续保押金" prop="bankCard">
+              <el-input v-model="form.bankCard" placeholder="请输入续保押金" />
+            </el-form-item>
+          </el-col> -->
           <el-col :span="8">
             <el-form-item label="应还期数" prop="shouldStages">
               <el-input
@@ -373,6 +388,7 @@ export default {
           { required: true, message: '请输入附加费', trigger: 'blur' },
         ],
       },
+      isNextStep: false,
     }
   },
   created() {
@@ -395,23 +411,9 @@ export default {
     },
     // 表单重置
     reset() {
-      this.form = {
-        id: null,
-        userName: null,
-        identityCard: null,
-        installmentPeriod: null,
-        instalmentAmount: null,
-        monthlyPayment: null,
-        repaymentDate: null,
-        shouldApplicable: null,
-        state: null,
-        processingStaff: null,
-        createBy: null,
-        createTime: null,
-        updateBy: null,
-        updateTime: null,
-      }
+      this.form = {}
       this.resetForm('form')
+      this.isNextStep = false
     },
     /** 搜索按钮操作 */
     handleQuery() {
@@ -428,6 +430,14 @@ export default {
       this.ids = selection.map((item) => item.id)
       this.single = selection.length !== 1
       this.multiple = !selection.length
+    },
+    // 下一步
+    nextStep() {
+      this.$refs['form'].validate((valid) => {
+        if (valid) {
+          this.isNextStep = true
+        }
+      })
     },
     /** 提交按钮 */
     submitForm() {

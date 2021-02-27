@@ -49,9 +49,9 @@
         </p>
         <p style="font-size:14pt; line-height:115%; margin:0pt 0pt 10pt 11.95pt; orphans:0; text-indent:31.5pt; widows:0">
             <span style="font-family:黑体; font-size:14pt">本人</span>
-            <span style="font-family:黑体; font-size:14pt; text-decoration:underline">[&lt;贷款人姓名&gt;]</span>
+            <span style="font-family:黑体; font-size:14pt; text-decoration:underline" class="dkrname">[&lt;贷款人姓名&gt;]</span>
             <span style="font-family:黑体; font-size:14pt">（身份证号:</span>
-            <span style="font-family:黑体; font-size:14pt; text-decoration:underline">[&lt;贷款人身份证号&gt;]</span>
+            <span style="font-family:黑体; font-size:14pt; text-decoration:underline" class="dkridCard">[&lt;贷款人身份证号&gt;]</span>
             <span style="font-family:黑体; font-size:14pt">）通过</span>
             <span style="font-family:黑体; font-size:14pt; text-decoration:underline">中豫融资租赁有限公司</span>
             <span style="font-family:黑体; font-size:14pt">向</span>
@@ -61,7 +61,7 @@
             <span style="font-family:黑体; font-size:14pt; font-weight:bold; text-decoration:underline">支</span>
             <span style="font-family:黑体; font-size:14pt; text-decoration:underline">行</span>
             <span style="font-family:黑体; font-size:14pt">申请汽车分期付款总金额人民币</span>
-            <span style="font-family:黑体; font-size:14pt; text-decoration:underline">[&lt;贷款金额&gt;]</span>
+            <span style="font-family:黑体; font-size:14pt; text-decoration:underline" class="dkje">[&lt;贷款金额&gt;]</span>
             <span style="font-family:黑体; font-size:14pt; text-decoration:none">元，与</span>
             <span style="font-family:黑体; font-size:14pt; text-decoration:underline">中豫融资租赁有限公司</span>
             <span style="font-family:黑体; font-size:14pt">签订了</span>
@@ -77,9 +77,9 @@
             <span style="font-family:黑体; font-size:14pt">，本人同意并特别授权</span>
             <span style="font-family:黑体; font-size:14pt; text-decoration:underline">中豫融资租赁有限公司</span>
             <span style="font-family:黑体; font-size:14pt">将本人的车架号:</span>
-            <span style="font-family:黑体; font-size:14pt; text-decoration:underline">[&lt;车辆识别代号&gt;]</span>
+            <span style="font-family:黑体; font-size:14pt; text-decoration:underline" class="clsbdh">[&lt;车辆识别代号&gt;]</span>
             <span style="font-family:黑体; font-size:14pt; text-decoration:none">，发动机号：</span>
-            <span style="font-family:黑体; font-size:14pt; text-decoration:underline">[&lt;发动机号&gt;]</span>
+            <span style="font-family:黑体; font-size:14pt; text-decoration:underline" class="fdjh">[&lt;发动机号&gt;]</span>
             <span style="font-family:黑体; font-size:14pt">的车辆直接收回进行处置并办理相应的过户手续，处置方式包括但不限</span>
             <span style="font-family:黑体; font-size:14pt">于</span>
             <span style="font-family:黑体; font-size:14pt">直接变卖、拍卖等，所发生的</span>
@@ -120,7 +120,7 @@
             <span style="font-family:黑体; font-size:14pt">授权人:</span>
         </p>
         <p style="font-size:14pt; line-height:115%; margin:0pt 0pt 10pt; orphans:0; text-indent:220.5pt; widows:0">
-            <span style="font-family:黑体; font-size:14pt">[&lt;签约日期&gt;]</span>
+            <span style="font-family:黑体; font-size:14pt" class="qyrq">[&lt;签约日期&gt;]</span>
         </p>
         </p>
 
@@ -130,10 +130,19 @@
 <script>
     // 接收VUE数据
     window.addEventListener("message", function(event) {
-        console.log(event);
-        // let sname = document.querySelector('#sname')
-        // sname.innerHTML = event.data.name
-        // if (event.data.isDownload) return printOut('授权委托书')
+        let dkrname = document.querySelector('.dkrname')
+        let dkridCard = document.querySelector('.dkridCard')
+        let dkje = document.querySelector('.dkje')
+        let qyrq = document.querySelector('.qyrq')
+        let clsbdh = document.querySelector('.clsbdh')
+        let fdjh = document.querySelector('.fdjh')
+        dkrname.innerHTML = event.data.jiekuanren.userName
+        dkridCard.innerHTML = event.data.jiekuanren.idCard
+        dkje.innerHTML = event.data.chedai.loanAmount
+        qyrq.innerHTML = ''
+        clsbdh.innerHTML = '      '
+        fdjh.innerHTML = event.data.chedai.engineCode
+        if (event.data.isDownload) return printOut('授权委托书')
     })
 
     // PDF

@@ -41,7 +41,7 @@
         </el-row>
       </el-form>
     </el-card>
-    <el-card>
+    <el-card style="margin-top: 10px">
       <div slot="header">
         <span>登记证材料</span>
       </div>

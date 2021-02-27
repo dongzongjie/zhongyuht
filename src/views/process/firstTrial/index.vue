@@ -66,13 +66,13 @@
         @queryTable="getList"
       ></right-toolbar>
       <el-col :span="1.5">
-        <el-button
+        <!-- <el-button
           type="primary"
           icon="el-icon-user-solid"
           size="mini"
           @click="myCustomer"
           >我的客户</el-button
-        >
+        > -->
       </el-col>
     </el-row>
     <!-- 表格 -->
@@ -128,49 +128,23 @@
         class-name="small-padding fixed-width"
       >
         <template slot-scope="scope">
-          <span
-            v-if="
-              !(
-                scope.row.applicant &&
-                scope.row.basics &&
-                scope.row.contacts &&
-                scope.row.carLoan &&
-                scope.row.photoCar &&
-                scope.row.photoCredit &&
-                scope.row.photoHouse &&
-                (scope.row.companyGuarantee || scope.row.peopleGuarantee)
-              )
-            "
-            >待APP端上传数据</span
-          >
-          <!-- scope.row.photoLender && -->
-          <div
-            v-if="
-              !scope.row.allowId &&
-              scope.row.applicant &&
-              scope.row.basics &&
-              scope.row.contacts &&
-              scope.row.carLoan &&
-              scope.row.photoCar &&
-              scope.row.photoCredit &&
-              scope.row.photoHouse &&
-              (scope.row.companyGuarantee || scope.row.peopleGuarantee)
-            "
-          >
-            <!-- scope.row.photoLender && -->
-            <el-button size="mini" type="text" @click="handle(scope.row)"
-              >立即处理</el-button
-            >
+          <span v-if="!scope.row.submitState">待APP端上传数据</span>
+          <div v-if="scope.row.submitState">
+            <div v-if="!scope.row.allowId">
+              <el-button size="mini" type="text" @click="handle(scope.row)"
+                >立即处理</el-button
+              >
+            </div>
+            <div v-else-if="scope.row.allowId == $store.state.user.userId">
+              <el-button size="mini" type="text" @click="handle(scope.row)"
+                >立即处理</el-button
+              >
+              <el-button size="mini" type="text" @click="unlock(scope.row)"
+                >解锁</el-button
+              >
+            </div>
+            <div v-else></div>
           </div>
-          <div v-else-if="scope.row.allowId == $store.state.user.userId">
-            <el-button size="mini" type="text" @click="handle(scope.row)"
-              >立即处理</el-button
-            >
-            <el-button size="mini" type="text" @click="unlock(scope.row)"
-              >解锁</el-button
-            >
-          </div>
-          <div v-else></div>
         </template>
       </el-table-column>
     </el-table>

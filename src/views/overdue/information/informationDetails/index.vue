@@ -26,15 +26,23 @@
         </h4>
       </el-row>
       <el-row style="padding: 0 20px">
-        <el-col :span="12">联系电话：</el-col>
-        <el-col :span="12">紧急联系人1姓名：</el-col>
-        <el-col :span="12">家庭住址：</el-col>
-        <el-col :span="12">紧急联系人1电话：</el-col>
-        <el-col :span="12">单位名称：</el-col>
-        <el-col :span="12">紧急联系人2姓名：</el-col>
-        <el-col :span="12">单位地址：</el-col>
-        <el-col :span="12">紧急联系人2电话：</el-col>
-        <el-col :span="12">单位电话：</el-col>
+        <el-col :span="12">联系电话：{{ informationData.phoneNumber }}</el-col>
+        <el-col :span="12"
+          >紧急联系人1姓名：{{ informationData.nameOne }}</el-col
+        >
+        <el-col :span="12">家庭住址：{{ informationData.liveAddress }}</el-col>
+        <el-col :span="12"
+          >紧急联系人1电话：{{ informationData.phoneOne }}</el-col
+        >
+        <el-col :span="12">单位名称：{{ informationData.unitName }}</el-col>
+        <el-col :span="12"
+          >紧急联系人2姓名：{{ informationData.nameTwo }}</el-col
+        >
+        <el-col :span="12">单位地址：{{ informationData.workAddress }}</el-col>
+        <el-col :span="12"
+          >紧急联系人2电话：{{ informationData.phoneTwo }}</el-col
+        >
+        <el-col :span="12">单位电话：{{ informationData.unitPhone }}</el-col>
       </el-row>
     </el-card>
     <!-- 贷款信息 -->
@@ -44,13 +52,19 @@
       </div>
       <el-row>
         <el-col :span="8">经办行：</el-col>
-        <el-col :span="8">银行卡号：</el-col>
-        <el-col :span="8">实际销售价(元)：</el-col>
-        <el-col :span="8">车辆贷款金额(元)：</el-col>
+        <el-col :span="8">银行卡号：{{ informationData.bankCard }}</el-col>
+        <el-col :span="8"
+          >实际销售价(元)：{{ informationData.actualPrice }}</el-col
+        >
+        <el-col :span="8"
+          >车辆贷款金额(元)：{{ informationData.loanAmount }}</el-col
+        >
         <el-col :span="8">利率换档：</el-col>
-        <el-col :span="8">月还款金额：(元)</el-col>
+        <el-col :span="8"
+          >月还款金额(元)：{{ informationData.repaymentAmount }}</el-col
+        >
         <el-col :span="8">还款期限(月)：</el-col>
-        <el-col :span="8">附加费用(元)：</el-col>
+        <el-col :span="8">附加费用(元)：{{ informationData.surcharge }}</el-col>
         <el-col :span="8">续保押金(元)：</el-col>
       </el-row>
     </el-card>
@@ -60,12 +74,20 @@
         <span>逾期信息</span>
       </div>
       <el-row>
-        <el-col :span="8">逾期还款日期：</el-col>
-        <el-col :span="8">滞纳金(元)：</el-col>
-        <el-col :span="8">当前逾期金额：(元)</el-col>
-        <el-col :span="8">当前连续违约次数：(次)</el-col>
-        <el-col :span="8">累计违约次数：(次)</el-col>
-        <el-col :span="8">应还期数</el-col>
+        <el-col :span="8"
+          >逾期还款日期：{{ informationData.repaymentDate }}</el-col
+        >
+        <el-col :span="8">滞纳金(元)：{{ informationData.lateFee }}</el-col>
+        <el-col :span="8"
+          >当前逾期金额：{{ informationData.overdueAmount }}(元)</el-col
+        >
+        <el-col :span="8"
+          >当前连续违约次数：{{ informationData.continuity }}(次)</el-col
+        >
+        <el-col :span="8"
+          >累计违约次数：{{ informationData.cumulative }}(次)</el-col
+        >
+        <el-col :span="8">应还期数：{{ informationData.shouldStages }}</el-col>
       </el-row>
     </el-card>
     <!-- 车辆信息 -->
@@ -76,34 +98,42 @@
       <el-row>
         <el-col :span="8" style="line-height: 36px">
           车辆型号
-          <el-select v-model="form.businessType" placeholder="请选择">
-          </el-select>
+          <el-input v-model="informationData.carSeries"> </el-input>
         </el-col>
         <el-col :span="8" style="line-height: 36px">
           车辆价格
-          <el-input v-model="form.businessType" suffix-icon="el-icon-zyrz-yuan">
+          <el-input
+            v-model="informationData.actualPrice"
+            suffix-icon="el-icon-zyrz-yuan"
+          >
           </el-input>
         </el-col>
         <el-col :span="8" style="line-height: 36px">
           车辆类型
-          <el-input v-model="form.businessType"> </el-input>
+          <el-input v-model="informationData.carType"> </el-input>
         </el-col>
         <el-col :span="8" style="line-height: 36px">
           精真估估价
-          <el-input v-model="form.businessType" suffix-icon="el-icon-zyrz-yuan">
+          <el-input
+            v-model="informationData.ManufacturerPrice"
+            suffix-icon="el-icon-zyrz-yuan"
+          >
           </el-input>
         </el-col>
         <el-col :span="8" style="line-height: 36px">
           车架号
-          <el-input v-model="form.businessType"> </el-input>
+          <el-input v-model="informationData.vinCode"> </el-input>
         </el-col>
         <el-col :span="8" style="line-height: 36px">
           发动机号
-          <el-input v-model="form.businessType"> </el-input>
+          <el-input v-model="informationData.engineCode"> </el-input>
         </el-col>
         <el-col :span="8" style="line-height: 36px">
-          意向价格
-          <el-input v-model="form.businessType" suffix-icon="el-icon-zyrz-yuan">
+          贷款金额
+          <el-input
+            v-model="informationData.loanAmount"
+            suffix-icon="el-icon-zyrz-yuan"
+          >
           </el-input>
         </el-col>
       </el-row>
@@ -178,7 +208,7 @@
       </el-timeline>
     </el-card>
     <!-- 备注 -->
-    <el-card>
+    <!-- <el-card>
       <div slot="header">
         <span>备注</span>
       </div>
@@ -191,7 +221,7 @@
           </el-select>
         </el-col>
       </el-row>
-    </el-card>
+    </el-card> -->
     <el-card>
       <div style="overflow: hidden">
         <el-button
@@ -305,6 +335,7 @@ export default {
       tableData: [],
       subjoin: [],
       dialogVisible: false,
+      informationData: {},
     }
   },
   computed: {},
@@ -324,6 +355,7 @@ export default {
           this.$route.query.transactionCode
         )
         console.log(data)
+        this.informationData = data
       } catch (error) {
         console.log(error)
       }

@@ -77,11 +77,11 @@
             <tr>
                 <th rowspan="3">申请人基本信息</th>
                 <th>姓名</th>
-                <th colspan="2"><span style="color: red;">{{贷款人姓名}}</span></th>
+                <th colspan="2" class="dkrname"><span style="color: red;">{{贷款人姓名}}</span></th>
                 <th>证件号码</th>
-                <th colspan="2"><span style="color: red;">{{贷款人身份证号}}</span></th>
+                <th colspan="2" class="dkridCard"><span style="color: red;">{{贷款人身份证号}}</span></th>
                 <th>联系电话</th>
-                <th colspan="2"><span style="color: red;">{{贷款人电话}}</span></th>
+                <th colspan="2" class="dkrphone"><span style="color: red;">{{贷款人电话}}</span></th>
             </tr>
             <!-- 第二行 -->
             <tr>
@@ -95,22 +95,22 @@
             <!-- 第三行 -->
             <tr>
                 <td colspan="2">家庭住址</td>
-                <td colspan="6"><span style="color: red;">{{贷款人户籍地址}}</span></td>
+                <td colspan="6" class="dkraddress"><span style="color: red;">{{贷款人户籍地址}}</span></td>
             </tr>
             <!-- 第四行 -->
             <tr>
                 <td rowspan="3">购买车辆情况</td>
                 <td colspan="2">汽车品牌</td>
-                <td colspan="2"><span style="color: red;">{{车辆品牌}}</span></td>
+                <td colspan="2" class="clpp"><span style="color: red;">{{车辆品牌}}</span></td>
                 <td>汽车型号</td>
                 <td width="10%"></td>
                 <td>车架号</td>
-                <td><span style="color: red;">{{车辆识别代号}}</span></td>
+                <td class="clsbdh"><span style="color: red;">{{车辆识别代号}}</span></td>
             </tr>
             <!-- 第五行 -->
             <tr>
                 <td>成交价</td>
-                <td><span style="color: red;">{{车辆价格}}</span></td>
+                <td class="cljg"><span style="color: red;">{{车辆价格}}</span></td>
                 <td>保单车价</td>
                 <td></td>
                 <td>保单第一受益人</td>
@@ -119,7 +119,7 @@
             <!-- 第六行 -->
             <tr>
                 <td>首付款比例 %</td>
-                <td><span style="color: red;">{{首付比例}}</span></td>
+                <td class="sfbl"><span style="color: red;">{{首付比例}}</span></td>
                 <td>附加费分期本金/车辆价格比例</td>
                 <td></td>
                 <td>上牌地(具体到市)</td>
@@ -131,29 +131,32 @@
             <tr>
                 <td rowspan="2">申请分期事项</td>
                 <td>首付款金额</td>
-                <td colspan="2"><span style="color: red;">{{首付款}}</span></td>
+                <td colspan="2" class="sfk"><span style="color: red;">{{首付款}}</span></td>
                 <td>分期期限</td>
-                <td colspan="2"><span style="color: red;">{{贷款期限}}</span></td>
+                <td colspan="2" class="dkqx"><span style="color: red;">{{贷款期限}}</span></td>
                 <td>分期手续费率 %</td>
                 <td>8.5</td>
             </tr>
             <!-- 第八行 -->
             <tr>
                 <td>购车分期本金</td>
-                <td colspan="2"><span style="color: red;">{{车辆尾款}}</span></td>
+                <td colspan="2" class="clwk"><span style="color: red;">{{车辆尾款}}</span></td>
                 <td>附加费分期本金</td>
-                <td colspan="2"><span style="color: red;">{{咨询服务管理费}}</span></td>
+                <td colspan="2" class="zxfwglf"><span style="color: red;">{{咨询服务管理费}}</span></td>
                 <td>分期本金合计</td>
-                <td><span style="color: red;">{{贷款金额}}</span></td>
+                <td class="dkje"><span style="color: red;">{{贷款金额}}</span></td>
             </tr>
             <!-- 第九行 -->
             <tr>
                 <td>申请人资信状况</td>
                 <td colspan="8" style="text-align: left;">
-                    <div>征信CIIS等级：<input type="checkbox" name="" id="">正常 <input type="checkbox" name="" id=""><input type="text"></div>
+                    <div>征信CIIS等级：<input type="checkbox" name="" id="">正常 <input type="checkbox" name="" id=""><input type="text">
+                    </div>
                     <div>风险筛查结论：<input type="checkbox" name="" id="">未匹配到参数 <input type="checkbox" name="" id=""><input type="text"></div>
-                    <div>准入决策结果：<input type="checkbox" name="" id="">通过<input type="checkbox" name="" id=""><input type="text"></div>
-                    <div>授信决策结果：<input type="checkbox" name="" id="">通过<input type="checkbox" name="" id=""><input type="text"></div>
+                    <div>准入决策结果：<input type="checkbox" name="" id="">通过<input type="checkbox" name="" id=""><input type="text">
+                    </div>
+                    <div>授信决策结果：<input type="checkbox" name="" id="">通过<input type="checkbox" name="" id=""><input type="text">
+                    </div>
                     <div>其他说明：</div>
                 </td>
             </tr>
@@ -202,10 +205,33 @@
 <script>
     // 接收VUE数据
     window.addEventListener("message", function(event) {
-        console.log(event);
-        // let sname = document.querySelector('#sname')
-        // sname.innerHTML = event.data.name
-        // if (event.data.isDownload) return printOut('银行-调查报告（内勤填写）')
+        let dkrname = document.querySelector('.dkrname')
+        let dkridCard = document.querySelector('.dkridCard')
+        let dkrphone = document.querySelector('.dkrphone')
+        let dkraddress = document.querySelector('.dkraddress')
+        let clpp = document.querySelector('.clpp')
+        let clsbdh = document.querySelector('.clsbdh')
+        let cljg = document.querySelector('.cljg')
+        let sfbl = document.querySelector('.sfbl')
+        let sfk = document.querySelector('.sfk')
+        let dkqx = document.querySelector('.dkqx')
+        let clwk = document.querySelector('.clwk')
+        let zxfwglf = document.querySelector('.zxfwglf')
+        let dkje = document.querySelector('.dkje')
+        dkrname.innerHTML = event.data.jiekuanren.userName
+        dkridCard.innerHTML = event.data.jiekuanren.idCard
+        dkrphone.innerHTML = event.data.jiekuanren.phoneNumber
+        dkraddress.innerHTML = event.data.jiekuanren.familyAddress
+        clpp.innerHTML = event.data.chedai.brank
+        clsbdh.innerHTML = ''
+        cljg.innerHTML = event.data.chedai.actualPrice
+        sfbl.innerHTML = ''
+        sfk.innerHTML = event.data.chedai.actualPrice - event.data.chedai.loanAmount
+        dkqx.innerHTML = event.data.chedai.repaymentTerm
+        clwk.innerHTML = event.data.chedai.loanAmount
+        zxfwglf.innerHTML = ''
+        dkje.innerHTML = event.data.chedai.loanAmount
+        if (event.data.isDownload) return printOut('银行-调查报告（内勤填写）')
     })
 
     // PDF

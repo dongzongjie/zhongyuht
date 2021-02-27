@@ -60,15 +60,20 @@
             <tr style="height:121.75pt">
                 <td style="border-bottom-color:#000000; border-bottom-style:solid; border-bottom-width:1.5pt; border-left-color:#000000; border-left-style:solid; border-left-width:1.5pt; border-right-color:#000000; border-right-style:solid; border-right-width:1.5pt; border-top-color:#000000; border-top-style:solid; border-top-width:1.5pt; padding-left:4.65pt; padding-right:4.65pt; vertical-align:middle; width:403.95pt">
                     <p style="font-size:12pt; line-height:150%; margin:3.85pt 0pt 10pt; orphans:0; text-align:auto; widows:0">
-                        <span style="font-family:宋体; font-size:12pt; font-weight:normal; vertical-align:baseline">兹收到</span><span style="font-family:宋体; font-size:12pt; font-weight:normal; text-decoration:underline; vertical-align:baseline"> 
+                        <span style="font-family:宋体; font-size:12pt; font-weight:normal; vertical-align:baseline">兹收到</span><span style="font-family:宋体; font-size:12pt; font-weight:normal; text-decoration:underline; vertical-align:baseline" class="dkrname"> 
               [&lt;贷款人姓名&gt;]</span>
                         <p style="font-size:12pt; line-height:150%; margin:3.85pt 0pt 10pt; orphans:0; text-align:justify; widows:0">
                             <span style="font-family:宋体; font-size:12pt; font-weight:normal; text-decoration:none; vertical-align:baseline">交 
-                来</span><span style="font-family:宋体; font-size:12pt; font-weight:normal; text-decoration:underline; vertical-align:baseline">
-                [&lt;车辆品牌&gt;] [&lt;车辆款式&gt;]   首付款     </span>
+                来</span><span style="font-family:宋体; font-size:12pt; font-weight:normal; text-decoration:underline; vertical-align:baseline" class="clpp">[&lt;车辆品牌&gt;]</span>
+                            <span style="font-family:宋体; font-size:12pt; font-weight:normal; text-decoration:underline; vertical-align:baseline" class="clks">[&lt;车辆款式&gt;]</span>
+                            <span style="font-family:宋体; font-size:12pt; font-weight:normal; text-decoration:underline; vertical-align:baseline"> 首付款
+              </span>
                             <p style="font-size:12pt; line-height:150%; margin:3.85pt 0pt 10pt; orphans:0; text-align:justify; widows:0">
                                 <span style="font-family:宋体; font-size:12pt; font-weight:normal; text-decoration:none; vertical-align:baseline">人民币</span><span style="font-family:宋体; font-size:12pt; font-weight:normal; text-decoration:underline; vertical-align:baseline">（</span>
-                                <span style="font-family:Arial; font-size:12pt; font-weight:normal; text-decoration:underline; vertical-align:baseline">¥</span><span style="font-family:宋体; font-size:12pt; font-weight:normal; text-decoration:underline; vertical-align:baseline">）：[&lt;首付款&gt;]    </span>
+                                <span style="font-family:Arial; font-size:12pt; font-weight:normal; text-decoration:underline; vertical-align:baseline">¥
+                  ）：</span>
+                                <span style="font-family:宋体; font-size:12pt; font-weight:normal; text-decoration:underline; vertical-align:baseline" class="sfk">[&lt;首付款&gt;]</span>
+                                <span style="font-family:宋体; font-size:12pt; font-weight:normal; text-decoration:underline; vertical-align:baseline">    </span>
                 </td>
             </tr>
         </table>
@@ -81,10 +86,15 @@
 <script>
     // 接收VUE数据
     window.addEventListener("message", function(event) {
-        console.log(event);
-        // let sname = document.querySelector('#sname')
-        // sname.innerHTML = event.data.name
-        // if (event.data.isDownload) return printOut('收款收据')
+        let dkrname = document.querySelector('.dkrname')
+        let clpp = document.querySelector('.clpp')
+        let clks = document.querySelector('.clks')
+        let sfk = document.querySelector('.sfk')
+        dkrname.innerHTML = event.data.jiekuanren.userName
+        clpp.innerHTML = event.data.chedai.brand
+        clks.innerHTML = event.data.chedai.style
+        sfk.innerHTML = event.data.chedai.actualPrice - event.data.chedai.loanAmount
+        if (event.data.isDownload) return printOut('收款收据')
     })
 
     // PDF

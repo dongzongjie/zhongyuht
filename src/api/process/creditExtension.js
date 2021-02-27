@@ -18,9 +18,9 @@ export function creditExtensionHandle(data) {
 }
 
 // 获取授信详情
-export function creditExtensionDetails(transactionCode) {
+export function creditExtensionDetails(transactionCode, userId) {
     return request({
-        url: '/stage/grant/basic?transactionCode=' + transactionCode,
+        url: '/stage/grant/basic?transactionCode=' + transactionCode + '&userId=' + userId,
         method: 'get',
     })
 }

@@ -1,25 +1,30 @@
 <template>
   <div class="app-container">
-    <el-form ref="form" :model="form" label-width="100px">
-      <el-form-item label="版本号：">
-        <el-input v-model="form.num"></el-input>
+    <el-form ref="form" :model="form" :rules="rules" label-width="100px">
+      <el-form-item label="版本号：" prop="code">
+        <el-input v-model="form.code" placeholder="请输入整数"></el-input>
       </el-form-item>
-      <el-form-item label="版本名：">
+      <el-form-item label="版本名：" prop="name">
         <el-input v-model="form.name"></el-input>
       </el-form-item>
-      <el-form-item label="更新内容：">
+      <el-form-item label="更新内容：" prop="content">
         <el-input type="textarea" v-model="form.content"></el-input>
       </el-form-item>
       <el-upload
         class="upload-demo"
         ref="upload"
         drag
-        action="http://"
-        multiple
+        accept=".apk"
+        action="http://114.215.186.186:8080/system/test/zhengshi"
+        :on-success="handleSuccess"
+        :on-error="handleError"
         :auto-upload="false"
+        :data="form"
       >
         <i class="el-icon-upload"></i>
-        <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
+        <div class="el-upload__text">
+          只能上传.apk文件，将文件拖到此处，或<em>点击上传</em>
+        </div>
       </el-upload>
       <el-button style="margin-top: 20px" type="primary" @click="onSubmit"
         >上传</el-button
@@ -35,13 +40,30 @@ export default {
   data() {
     return {
       form: {},
+      rules: {
+        code: [{ required: true, message: '请输入版本号', trigger: 'blur' }],
+        name: [{ required: true, message: '请输入版本名', trigger: 'blur' }],
+        content: [
+          { required: true, message: '请输入更新内容', trigger: 'blur' },
+        ],
+      },
     }
   },
   computed: {},
   watch: {},
   methods: {
     onSubmit() {
-      console.log(this.form)
+      this.$refs['form'].validate((valid) => {
+        if (valid) {
+          this.$refs.upload.submit()
+        }
+      })
+    },
+    handleSuccess(response, file, fileList) {
+      this.msgSuccess(response.msg)
+    },
+    handleError(err, file, fileList) {
+      this.msgError(err.msg)
     },
   },
   created() {},

@@ -63,13 +63,13 @@
     <!-- 我的客户 -->
     <el-row :gutter="10" class="mb8">
       <el-col :span="1.5">
-        <el-button
+        <!-- <el-button
           type="primary"
           icon="el-icon-user-solid"
           size="mini"
           @click="myCustomer"
           >我的客户</el-button
-        >
+        > -->
       </el-col>
     </el-row>
     <!-- 表格 -->
@@ -124,49 +124,23 @@
         class-name="small-padding fixed-width"
       >
         <template slot-scope="scope">
-          <span
-            v-if="
-              !(
-                scope.row.applicant &&
-                scope.row.basics &&
-                scope.row.contacts &&
-                scope.row.carLoan &&
-                scope.row.photoCar &&
-                scope.row.photoCredit &&
-                scope.row.photoHouse &&
-                (scope.row.companyGuarantee || scope.row.peopleGuarantee)
-              )
-            "
-            >待APP端上传数据</span
-          >
-          <!-- scope.row.photoLender && -->
-          <div
-            v-if="
-              !scope.row.repeatId &&
-              scope.row.applicant &&
-              scope.row.basics &&
-              scope.row.contacts &&
-              scope.row.carLoan &&
-              scope.row.photoCar &&
-              scope.row.photoCredit &&
-              scope.row.photoHouse &&
-              (scope.row.companyGuarantee || scope.row.peopleGuarantee)
-            "
-          >
-            <!-- scope.row.photoLender && -->
-            <el-button size="mini" type="text" @click="handle(scope.row)"
-              >立即处理</el-button
-            >
+          <span v-if="!scope.row.submitState">待APP端上传数据</span>
+          <div v-if="scope.row.submitState">
+            <div v-if="!scope.row.repeatId">
+              <el-button size="mini" type="text" @click="handle(scope.row)"
+                >立即处理</el-button
+              >
+            </div>
+            <div v-else-if="scope.row.repeatId == $store.state.user.userId">
+              <el-button size="mini" type="text" @click="handle(scope.row)"
+                >立即处理</el-button
+              >
+              <el-button size="mini" type="text" @click="unlock(scope.row)"
+                >解锁</el-button
+              >
+            </div>
+            <div v-else></div>
           </div>
-          <div v-else-if="scope.row.repeatId == $store.state.user.userId">
-            <el-button size="mini" type="text" @click="handle(scope.row)"
-              >立即处理</el-button
-            >
-            <el-button size="mini" type="text" @click="unlock(scope.row)"
-              >解锁</el-button
-            >
-          </div>
-          <div v-else></div>
         </template>
       </el-table-column>
     </el-table>
@@ -206,11 +180,8 @@
 
 <script>
 import { checkRole } from '@/utils/permission'
-import {
-  getFinalTrialList,
-  finalTrialHandle,
-  getHistoryOpinion,
-} from '@/api/process/finalTrial'
+import { getFinalTrialList, finalTrialHandle } from '@/api/process/finalTrial'
+import { getHistoryOpinion } from '@/api/process/firstTrial'
 
 export default {
   name: 'FinalTrial',

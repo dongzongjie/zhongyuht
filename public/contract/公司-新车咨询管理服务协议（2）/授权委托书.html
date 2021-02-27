@@ -49,9 +49,9 @@
         </p>
         <p style="font-size:14pt; line-height:115%; margin:0pt 0pt 10pt 11.95pt; orphans:0; text-indent:31.5pt; widows:0">
             <span style="font-family:宋体; font-size:14pt">本人</span>
-            <span style="font-family:宋体; font-size:14pt; text-decoration:underline">[&lt;贷款人姓名&gt;]</span>
+            <span style="font-family:宋体; font-size:14pt; text-decoration:underline" class="dkrname">[&lt;贷款人姓名&gt;]</span>
             <span style="font-family:宋体; font-size:14pt">（身份证号:</span>
-            <span style="font-family:宋体; font-size:14pt; text-decoration:underline">[&lt;贷款人身份证号&gt;]</span>
+            <span style="font-family:宋体; font-size:14pt; text-decoration:underline" class="dkridCard">[&lt;贷款人身份证号&gt;]</span>
             <span style="font-family:宋体; font-size:14pt">）通过</span>
             <span style="font-family:宋体; font-size:14pt; text-decoration:underline">中豫融资租赁有限公司</span>
             <span style="font-family:宋体; font-size:14pt">向</span>
@@ -62,7 +62,7 @@
             <span style="font-family:宋体; font-size:14pt">申请汽车分期</span>
             <span style="font-family:宋体; font-size:14pt">付</span>
             <span style="font-family:宋体; font-size:14pt">款人民币</span>
-            <span style="font-family:宋体; font-size:14pt; text-decoration:underline">[&lt;贷款金额&gt;]</span>
+            <span style="font-family:宋体; font-size:14pt; text-decoration:underline" class="dkje">[&lt;贷款金额&gt;]</span>
             <span style="font-family:宋体; font-size:14pt; text-decoration:none">元，与</span>
             <span style="font-family:宋体; font-size:14pt; text-decoration:underline">中豫融资租赁有限公司</span>
             <span style="font-family:宋体; font-size:14pt">签订了</span>
@@ -140,10 +140,13 @@
 <script>
     // 接收VUE数据
     window.addEventListener("message", function(event) {
-        console.log(event);
-        // let sname = document.querySelector('#sname')
-        // sname.innerHTML = event.data.name
-        // if (event.data.isDownload) return printOut('授权委托书')
+        let dkrname = document.querySelector('.dkrname')
+        let dkridCard = document.querySelector('.dkridCard')
+        let dkje = document.querySelector('.dkje')
+        dkrname.innerHTML = event.data.jiekuanren.userName
+        dkridCard.innerHTML = event.data.jiekuanren.idCard
+        dkje.innerHTML = event.data.chedai.loanAmount
+        if (event.data.isDownload) return printOut('授权委托书')
     })
 
     // PDF

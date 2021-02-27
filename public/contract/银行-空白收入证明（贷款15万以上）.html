@@ -53,9 +53,11 @@
             <span style="font-family:宋体; font-size:15pt">元。</span>
         </p>
         <p style="margin:0pt; orphans:0; text-align:justify; widows:0"><span style="font-family:Calibri; font-size:15pt">&#xa0;</span></p>
-        <p style="margin:0pt; orphans:0; text-align:justify; widows:0"><span style="font-family:宋体; font-size:15pt">      该同志工作及经济收入真实、稳定。</span></p>
+        <p style="margin:0pt; orphans:0; text-align:justify; widows:0"><span style="font-family:宋体; font-size:15pt">     
+        该同志工作及经济收入真实、稳定。</span></p>
         <p style="margin:0pt; orphans:0; text-align:justify; widows:0"><span style="font-family:Calibri; font-size:15pt">&#xa0;</span></p>
-        <p style="margin:0pt; orphans:0; text-align:justify; widows:0"><span style="font-family:宋体; font-size:15pt">      特此证明。</span></p>
+        <p style="margin:0pt; orphans:0; text-align:justify; widows:0"><span style="font-family:宋体; font-size:15pt">     
+        特此证明。</span></p>
         <p style="margin:0pt; orphans:0; text-align:justify; widows:0"><span style="font-family:Calibri; font-size:15pt">&#xa0;</span></p>
         <p style="margin:0pt; orphans:0; text-align:justify; widows:0"><span style="font-family:Calibri; font-size:15pt">&#xa0;</span></p>
         <p style="margin:0pt; orphans:0; text-align:justify; widows:0"><span style="font-family:Calibri; font-size:15pt">&#xa0;</span></p>
@@ -77,10 +79,10 @@
 <script>
     // 接收VUE数据
     window.addEventListener("message", function(event) {
-        console.log(event);
+        // console.log(event);
         // let sname = document.querySelector('#sname')
         // sname.innerHTML = event.data.name
-        // if (event.data.isDownload) return printOut('银行-空白收入证明（贷款15万以上）')
+        if (event.data.isDownload) return printOut('银行-空白收入证明（贷款15万以上）')
     })
 
     // PDF

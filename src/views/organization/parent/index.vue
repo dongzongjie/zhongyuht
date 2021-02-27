@@ -46,7 +46,7 @@
           icon="el-icon-plus"
           size="mini"
           @click="handleAdd"
-          v-hasPermi="['system:parent:add']"
+          v-hasPermi="['organization:parent:add']"
           >新增</el-button
         >
       </el-col>
@@ -57,7 +57,7 @@
           size="mini"
           :disabled="single"
           @click="handleUpdate"
-          v-hasPermi="['system:parent:edit']"
+          v-hasPermi="['organization:parent:edit']"
           >修改</el-button
         >
       </el-col>
@@ -68,7 +68,7 @@
           size="mini"
           :disabled="multiple"
           @click="handleDelete"
-          v-hasPermi="['system:parent:remove']"
+          v-hasPermi="['organization:parent:remove']"
           >删除</el-button
         >
       </el-col>
@@ -78,7 +78,7 @@
           icon="el-icon-download"
           size="mini"
           @click="handleExport"
-          v-hasPermi="['system:parent:export']"
+          v-hasPermi="['organization:parent:export']"
           >导出</el-button
         >
       </el-col>
