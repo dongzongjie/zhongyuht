@@ -3,19 +3,19 @@
     <div class="btn-box box1">
       <button @click="goAssignBlock('iframe1', 100)">分期购车垫款委托书</button>
       <button @click="goAssignBlock('iframe2', 100)">咨询服务管理协议</button>
-      <button @click="goAssignBlock('iframe3', 100)">
+      <!-- <button @click="goAssignBlock('iframe3', 100)">
         授 权 处 置 车 辆 承 诺 函
       </button>
       <button @click="goAssignBlock('iframe4', 100)">
         授 权 扣 留 车 辆 承 诺 函
-      </button>
+      </button> -->
       <button @click="goAssignBlock('iframe5', 100)">授权委托书</button>
-      <button @click="goAssignBlock('iframe6', 100)">授权委托书(2)</button>
-      <button @click="goAssignBlock('iframe7', 100)">申 请 书</button>
+      <!-- <button @click="goAssignBlock('iframe6', 100)">授权委托书(2)</button> -->
+      <!-- <button @click="goAssignBlock('iframe7', 100)">申 请 书</button> -->
       <button @click="goAssignBlock('iframe8', 100)">费用确认函</button>
-      <button @click="goAssignBlock('iframe9', 100)">还款信息确认函</button>
+      <!-- <button @click="goAssignBlock('iframe9', 100)">还款信息确认函</button> -->
     </div>
-    <div class="btn-box box2">
+    <!-- <div class="btn-box box2">
       <button @click="goAssignBlock('iframe10', 100)">
         分期购车垫款委托书
       </button>
@@ -55,7 +55,7 @@
         银行-购车分期付款代理协议
       </button>
       <button @click="goAssignBlock('iframe28', 100)">零售合作协议</button>
-    </div>
+    </div> -->
     <el-button type="primary" round class="assignment" @click="getContractDate"
       >自动填写有问题请点击这里</el-button
     >
@@ -80,7 +80,7 @@
       src="./contract/公司-新车咨询管理服务协议（2）/咨询服务管理协议.html"
       style="margin-left: 20%"
     />
-    <h4>授 权 处 置 车 辆 承 诺 函</h4>
+    <!-- <h4>授 权 处 置 车 辆 承 诺 函</h4>
     <iframe
       ref="iframe3"
       width="50%"
@@ -97,7 +97,7 @@
       frameborder="0"
       src="./contract/公司-新车咨询管理服务协议（2）/授 权 扣 留 车 辆 承 诺 函.html"
       style="margin-left: 20%"
-    />
+    /> -->
     <h4>授权委托书</h4>
     <iframe
       ref="iframe5"
@@ -107,7 +107,7 @@
       src="./contract/公司-新车咨询管理服务协议（2）/授权委托书.html"
       style="margin-left: 20%"
     />
-    <h4>授权委托书(2)</h4>
+    <!-- <h4>授权委托书(2)</h4>
     <iframe
       ref="iframe6"
       width="50%"
@@ -124,7 +124,7 @@
       frameborder="0"
       src="./contract/公司-新车咨询管理服务协议（2）/申 请 书.html"
       style="margin-left: 20%"
-    />
+    /> -->
     <h4>费用确认函</h4>
     <iframe
       ref="iframe8"
@@ -134,7 +134,7 @@
       src="./contract/公司-新车咨询管理服务协议（2）/费用确认函.html"
       style="margin-left: 20%"
     />
-    <h4>还款信息确认函</h4>
+    <!-- <h4>还款信息确认函</h4>
     <iframe
       ref="iframe9"
       width="50%"
@@ -313,7 +313,7 @@
       frameborder="0"
       src="./contract/零售合作协议.html"
       style="margin-left: 20%"
-    />
+    /> -->
   </div>
 </template>
 
@@ -394,32 +394,32 @@ export default {
     assignment() {
       this.iframeWin1.postMessage(this.transferData)
       this.iframeWin2.postMessage(this.transferData)
-      this.iframeWin3.postMessage(this.transferData)
-      this.iframeWin4.postMessage(this.transferData)
+      // this.iframeWin3.postMessage(this.transferData)
+      // this.iframeWin4.postMessage(this.transferData)
       this.iframeWin5.postMessage(this.transferData)
-      this.iframeWin6.postMessage(this.transferData)
-      this.iframeWin7.postMessage(this.transferData)
+      // this.iframeWin6.postMessage(this.transferData)
+      // this.iframeWin7.postMessage(this.transferData)
       this.iframeWin8.postMessage(this.transferData)
-      this.iframeWin9.postMessage(this.transferData)
-      this.iframeWin10.postMessage(this.transferData)
-      this.iframeWin11.postMessage(this.transferData)
-      this.iframeWin12.postMessage(this.transferData)
-      this.iframeWin13.postMessage(this.transferData)
-      this.iframeWin14.postMessage(this.transferData)
-      this.iframeWin15.postMessage(this.transferData)
-      this.iframeWin16.postMessage(this.transferData)
-      this.iframeWin17.postMessage(this.transferData)
-      this.iframeWin18.postMessage(this.transferData)
-      this.iframeWin19.postMessage(this.transferData)
-      this.iframeWin20.postMessage(this.transferData)
-      this.iframeWin21.postMessage(this.transferData)
-      this.iframeWin22.postMessage(this.transferData)
-      this.iframeWin23.postMessage(this.transferData)
-      this.iframeWin24.postMessage(this.transferData)
-      this.iframeWin25.postMessage(this.transferData)
-      this.iframeWin26.postMessage(this.transferData)
-      this.iframeWin27.postMessage(this.transferData)
-      this.iframeWin28.postMessage(this.transferData)
+      // this.iframeWin9.postMessage(this.transferData)
+      // this.iframeWin10.postMessage(this.transferData)
+      // this.iframeWin11.postMessage(this.transferData)
+      // this.iframeWin12.postMessage(this.transferData)
+      // this.iframeWin13.postMessage(this.transferData)
+      // this.iframeWin14.postMessage(this.transferData)
+      // this.iframeWin15.postMessage(this.transferData)
+      // this.iframeWin16.postMessage(this.transferData)
+      // this.iframeWin17.postMessage(this.transferData)
+      // this.iframeWin18.postMessage(this.transferData)
+      // this.iframeWin19.postMessage(this.transferData)
+      // this.iframeWin20.postMessage(this.transferData)
+      // this.iframeWin21.postMessage(this.transferData)
+      // this.iframeWin22.postMessage(this.transferData)
+      // this.iframeWin23.postMessage(this.transferData)
+      // this.iframeWin24.postMessage(this.transferData)
+      // this.iframeWin25.postMessage(this.transferData)
+      // this.iframeWin26.postMessage(this.transferData)
+      // this.iframeWin27.postMessage(this.transferData)
+      // this.iframeWin28.postMessage(this.transferData)
     },
     // 下载
     downloadClick() {
@@ -443,32 +443,32 @@ export default {
   mounted() {
     this.iframeWin1 = this.$refs.iframe1.contentWindow
     this.iframeWin2 = this.$refs.iframe2.contentWindow
-    this.iframeWin3 = this.$refs.iframe3.contentWindow
-    this.iframeWin4 = this.$refs.iframe4.contentWindow
+    // this.iframeWin3 = this.$refs.iframe3.contentWindow
+    // this.iframeWin4 = this.$refs.iframe4.contentWindow
     this.iframeWin5 = this.$refs.iframe5.contentWindow
-    this.iframeWin6 = this.$refs.iframe6.contentWindow
-    this.iframeWin7 = this.$refs.iframe7.contentWindow
+    // this.iframeWin6 = this.$refs.iframe6.contentWindow
+    // this.iframeWin7 = this.$refs.iframe7.contentWindow
     this.iframeWin8 = this.$refs.iframe8.contentWindow
-    this.iframeWin9 = this.$refs.iframe9.contentWindow
-    this.iframeWin10 = this.$refs.iframe10.contentWindow
-    this.iframeWin11 = this.$refs.iframe11.contentWindow
-    this.iframeWin12 = this.$refs.iframe12.contentWindow
-    this.iframeWin13 = this.$refs.iframe13.contentWindow
-    this.iframeWin14 = this.$refs.iframe14.contentWindow
-    this.iframeWin15 = this.$refs.iframe15.contentWindow
-    this.iframeWin16 = this.$refs.iframe16.contentWindow
-    this.iframeWin17 = this.$refs.iframe17.contentWindow
-    this.iframeWin18 = this.$refs.iframe18.contentWindow
-    this.iframeWin19 = this.$refs.iframe19.contentWindow
-    this.iframeWin20 = this.$refs.iframe20.contentWindow
-    this.iframeWin21 = this.$refs.iframe21.contentWindow
-    this.iframeWin22 = this.$refs.iframe22.contentWindow
-    this.iframeWin23 = this.$refs.iframe23.contentWindow
-    this.iframeWin24 = this.$refs.iframe24.contentWindow
-    this.iframeWin25 = this.$refs.iframe25.contentWindow
-    this.iframeWin26 = this.$refs.iframe26.contentWindow
-    this.iframeWin27 = this.$refs.iframe27.contentWindow
-    this.iframeWin28 = this.$refs.iframe28.contentWindow
+    // this.iframeWin9 = this.$refs.iframe9.contentWindow
+    // this.iframeWin10 = this.$refs.iframe10.contentWindow
+    // this.iframeWin11 = this.$refs.iframe11.contentWindow
+    // this.iframeWin12 = this.$refs.iframe12.contentWindow
+    // this.iframeWin13 = this.$refs.iframe13.contentWindow
+    // this.iframeWin14 = this.$refs.iframe14.contentWindow
+    // this.iframeWin15 = this.$refs.iframe15.contentWindow
+    // this.iframeWin16 = this.$refs.iframe16.contentWindow
+    // this.iframeWin17 = this.$refs.iframe17.contentWindow
+    // this.iframeWin18 = this.$refs.iframe18.contentWindow
+    // this.iframeWin19 = this.$refs.iframe19.contentWindow
+    // this.iframeWin20 = this.$refs.iframe20.contentWindow
+    // this.iframeWin21 = this.$refs.iframe21.contentWindow
+    // this.iframeWin22 = this.$refs.iframe22.contentWindow
+    // this.iframeWin23 = this.$refs.iframe23.contentWindow
+    // this.iframeWin24 = this.$refs.iframe24.contentWindow
+    // this.iframeWin25 = this.$refs.iframe25.contentWindow
+    // this.iframeWin26 = this.$refs.iframe26.contentWindow
+    // this.iframeWin27 = this.$refs.iframe27.contentWindow
+    // this.iframeWin28 = this.$refs.iframe28.contentWindow
   },
   created() {
     this.getContractDate()

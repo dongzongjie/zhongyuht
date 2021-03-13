@@ -1,741 +1,573 @@
 ﻿<html>
 
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta http-equiv="Content-Style-Type" content="text/css" />
-  <meta name="generator" content="Aspose.Words for .NET 15.1.0.0" />
-  <title></title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-    }
-
-    .docpe {
-      width: 795px;
-      background-color: #fff;
-      padding: 60px 37px 220px;
-      box-sizing: border-box;
-    }
-
-    button {
-      position: fixed;
-      top: 100px;
-      left: 0;
-    }
-
-    #bt {
-      position: fixed;
-      top: 150px;
-      left: 0;
-    }
-
-  </style>
-  <script src="https://cdn.bootcss.com/html2canvas/0.5.0-beta4/html2canvas.js"></script>
-  <script src="https://cdn.bootcss.com/jspdf/1.3.4/jspdf.debug.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="generator" content="Aspose.Words for .NET 15.1.0.0" />
+    <title></title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .docpe {
+            width: 795px;
+            background-color: #fff;
+            padding: 60px 37px 220px;
+            box-sizing: border-box;
+        }
+        
+        button {
+            position: fixed;
+            top: 100px;
+            left: 0;
+        }
+        
+        #bt {
+            position: fixed;
+            top: 150px;
+            left: 0;
+        }
+        
+        input {
+            border: 0;
+            border-bottom: 1px solid #000;
+            font-size: 18px;
+            font-family: 宋体;
+            font-weight: bold
+        }
+    </style>
+    <script src="https://cdn.bootcss.com/html2canvas/0.5.0-beta4/html2canvas.js"></script>
+    <script src="https://cdn.bootcss.com/jspdf/1.3.4/jspdf.debug.js"></script>
 </head>
 
 <body>
-  <button onclick="printOut('咨询服务管理协议')">点击下载合同</button>
-  <button id="bt">点击打印</button>
-  <div class="docpe" id="PDF">
-    <p style="font-size:16pt; line-height:115%; margin:0pt 0pt 10pt; text-align:center"><span
-        style="font-family:宋体; font-size:16pt">咨询服务管理协议</span></p>
-    <p style="font-size:12pt; line-height:150%; margin:0pt 0pt 10pt; orphans:0; text-indent:273pt; widows:0"><span
-        style="font-family:宋体; font-size:12pt">&#xa0;</span></p>
-    <p style="font-size:10.5pt; line-height:150%; margin:0pt 0pt 10pt; orphans:0; text-align:justify; widows:0"><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">甲方</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">（</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">服务人）</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">:</span>
-      <span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline">
-        中豫融资租赁有限公司</span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">     客服热线：</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline">4000-382-975</span></p>
-    <p style="font-size:10.5pt; line-height:150%; margin:0pt 0pt 10pt; orphans:0; text-align:justify; widows:0"><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">乙方</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">（</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">贷款购车人）</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">:</span>
-      <span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline"
-        class="dkrname">[&lt;贷款人姓名&gt;]</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:none"> </span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">身份证号:</span>
-      <span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline"
-        class="dkridCard">[&lt;贷款人身份证号&gt;]</span>
-      <span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:none"> </span>
-    </p>
-    <p style="font-size:10.5pt; line-height:150%; margin:0pt 0pt 10pt; orphans:0; text-align:justify; widows:0"><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:none">联系电话：</span>
-      <a name="借款人手机号"></a><span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline"
-        class="dkrphone">[&lt;贷款人电话&gt;]</span>
-      <a name="贷款人电话"></a><span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline">
+    <button onclick="printOut('咨询服务管理协议')">点击下载合同</button>
+    <!-- <button id="bt">点击打印</button> -->
+    <div class="docpe" id="PDF">
+        <p style="font-size:16pt; line-height:115%; margin:0pt 0pt 10pt; text-align:center"><span style="font-family:宋体; font-size:16pt">咨询服务管理协议</span></p>
+        <p style="font-size:12pt; line-height:150%; margin:0pt 0pt 10pt; orphans:0; text-indent:273pt; widows:0"><span style="font-family:宋体; font-size:12pt">&#xa0;</span></p>
+        <p style="font-size:10.5pt; line-height:150%; margin:0pt 0pt 10pt; orphans:0; text-align:justify; widows:0"><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">甲方</span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">（</span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">服务人）</span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">:</span>
+            <span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline">
+        中豫融资租赁有限公司</span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">     客服热线：</span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline">4000-382-975</span></p>
+        <p style="font-size:10.5pt; line-height:150%; margin:0pt 0pt 10pt; orphans:0; text-align:justify; widows:0"><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">乙方</span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">（</span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">贷款购车人）</span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">:</span>
+            <!-- <span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline" class="dkrname">[&lt;贷款人姓名&gt;]</span> -->
+            <input type="text" class="dkrname" style="width: 100px;" value="[&lt;贷款人姓名&gt;]">
+            <span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:none"> </span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">身份证号:</span>
+            <!-- <span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline" class="dkridCard">[&lt;贷款人身份证号&gt;]</span> -->
+            <input type="text" class="dkridCard" value="[&lt;贷款人身份证号&gt;]">
+            <span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:none"> </span>
+        </p>
+        <p style="font-size:10.5pt; line-height:150%; margin:0pt 0pt 10pt; orphans:0; text-align:justify; widows:0"><span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:none">联系电话：</span>
+            <a name="借款人手机号"></a>
+            <!-- <span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline" class="dkrphone">[&lt;贷款人电话&gt;]</span> -->
+            <input type="text" class="dkrphone" style="width: 130px;" value="[&lt;贷款人电话&gt;]">
+            <a name="贷款人电话"></a><span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline">
       </span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:none"> 微信号：</span>
-      <span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline">       </span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:none">电子邮件：</span>
-      <span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline">               </span>
-    </p>
-    <p style="font-size:10.5pt; line-height:150%; margin:0pt 0pt 10pt; orphans:0; text-align:justify; widows:0"><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:none">送达地址： </span>
-      <a name="户籍地址"></a><span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline"
-        class="dkraddress">[&lt;贷款人户籍地址&gt;]</span>
-      <a name="贷款人户籍地址"></a><span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline">
-      </span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline"> </span></p>
-    <p
-      style="font-size:10.5pt; line-height:150%; margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:0.85pt; widows:0">
-      <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">共同还款人</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">：</span>
-      <a name="共同还款人"></a><span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline"
-        class="gthkrname">[&lt;共同还款人姓名&gt;]</span>
-      <a name="共同还款人姓名"></a><span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline">
-      </span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:none"> </span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">身份证号:</span>
-      <span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline"
-        class="gthkridCard">[&lt;共同还款人身份证号&gt;]</span>
-      <a name="共同还款人身份证号"></a><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline"> </span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:none"> </span></p>
-    <p style="font-size:10.5pt; line-height:150%; margin:0pt 0pt 10pt; orphans:0; text-align:justify; widows:0"><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:none">联系电话：</span>
-      <a name="借款人手机号"></a><span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline"
-        class="gthkrphone">[&lt;共同还款人电话&gt;]</span>
-      <a name="贷款人电话"></a><span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline">
+            <span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline">       </span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:none">电子邮件：</span>
+            <span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline">               </span>
+        </p>
+        <p style="font-size:10.5pt; line-height:150%; margin:0pt 0pt 10pt; orphans:0; text-align:justify; widows:0"><span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:none">送达地址： </span>
+            <a name="户籍地址"></a>
+            <!-- <span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline" class="dkraddress">[&lt;贷款人户籍地址&gt;]</span> -->
+            <input type="text" class="dkraddress" style="width: 500px;" value="[&lt;贷款人户籍地址&gt;]">
+            <a name="贷款人户籍地址"></a><span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline">
+      </span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline"></span></p>
+        <p style="font-size:10.5pt; line-height:150%; margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:0.85pt; widows:0">
+            <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">共同还款人</span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">：</span>
+            <a name="共同还款人"></a>
+            <!-- <span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline"  class="gthkrname">[&lt;共同还款人姓名&gt;]</span> -->
+            <input type="text" class="gthkrname" style="width: 100px;" value="[&lt;共同还款人姓名&gt;]">
+            <a name="共同还款人姓名"></a><span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline">
+      </span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:none"> </span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">身份证号:</span>
+            <!-- <span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline"   class="gthkridCard">[&lt;共同还款人身份证号&gt;]</span> -->
+            <input type="text" class="gthkridCard" value="[&lt;共同还款人身份证号&gt;]">
+            <a name="共同还款人身份证号"></a><span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline"> </span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:none"> </span></p>
+        <p style="font-size:10.5pt; line-height:150%; margin:0pt 0pt 10pt; orphans:0; text-align:justify; widows:0"><span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:none">联系电话：</span>
+            <a name="借款人手机号"></a>
+            <!-- <span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline"  class="gthkrphone">[&lt;共同还款人电话&gt;]</span> -->
+            <input type="text" class="gthkrphone" style="width: 130px;" value="[&lt;共同还款人电话&gt;]">
+            <a name="贷款人电话"></a><span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline">
       </span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:none"> 微信号：</span>
-      <span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline">       </span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:none">电子邮件：</span>
-      <span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline">               </span>
-    </p>
-    <p
-      style="font-size:10.5pt; line-height:150%; margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:0.85pt; widows:0">
-      <span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:none">送达地址：</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline" class="gthkraddress">
-        [&lt;共同还款人户籍地址&gt;]</span>
-      <a name="共同还款人户籍地址"></a><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline"> </span></p>
-    <p style="font-size:10.5pt; line-height:150%; margin:0pt 0pt 10pt; orphans:0; text-align:justify; widows:0"><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">保证人</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">：</span>
-      <a name="保证人1"></a><span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline"
-        class="bzrname">[&lt;保证人姓名&gt;]</span>
-      <a name="保证人姓名"></a><span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline">
-      </span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:none"> </span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">身份证号:</span>
-      <span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline"
-        class="bzridCard">[&lt;保证人身份证号&gt;]</span>
-      <a name="保证人身份证号"></a><span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:none">
+            <span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline">       </span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:none">电子邮件：</span>
+            <span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline">               </span>
+        </p>
+        <p style="font-size:10.5pt; line-height:150%; margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:0.85pt; widows:0">
+            <span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:none">送达地址：</span>
+            <!-- <span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline" class="gthkraddress"> [&lt;共同还款人户籍地址&gt;]</span> -->
+            <input type="text" class="gthkraddress" style="width: 500px;" value="[&lt;共同还款人户籍地址&gt;]">
+            <a name="共同还款人户籍地址"></a><span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline"></span></p>
+        <p style="font-size:10.5pt; line-height:150%; margin:0pt 0pt 10pt; orphans:0; text-align:justify; widows:0"><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">保证人</span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">：</span>
+            <a name="保证人1"></a>
+            <!-- <span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline" class="bzrname">[&lt;保证人姓名&gt;]</span> -->
+            <input type="text" class="bzrname" style="width: 100px;" value="[&lt;保证人姓名&gt;]">
+            <a name="保证人姓名"></a><span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline">
+      </span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:none"> </span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">身份证号:</span>
+            <!-- <span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline"  class="bzridCard">[&lt;保证人身份证号&gt;]</span> -->
+            <input type="text" class="bzridCard" value="[&lt;保证人身份证号&gt;]">
+            <a name="保证人身份证号"></a><span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:none">
       </span></p>
-    <p style="font-size:10.5pt; line-height:150%; margin:0pt 0pt 10pt; orphans:0; text-align:justify; widows:0"><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:none">联系电话：</span>
-      <a name="借款人手机号"></a><span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline"
-        class="bzrphone">[&lt;保证人电话&gt;]</span>
-      <a name="贷款人电话"></a><span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline">
+        <p style="font-size:10.5pt; line-height:150%; margin:0pt 0pt 10pt; orphans:0; text-align:justify; widows:0"><span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:none">联系电话：</span>
+            <a name="借款人手机号"></a>
+            <!-- <span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline"  class="bzrphone">[&lt;保证人电话&gt;]</span> -->
+            <input type="text" class="bzrphone" style="width: 130px;" value="[&lt;保证人电话&gt;]">
+            <a name="贷款人电话"></a><span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline">
       </span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:none"> 微信号：</span>
-      <span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline">       </span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:none">电子邮件：</span>
-      <span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline">               </span>
-    </p>
-    <p style="font-size:10.5pt; line-height:150%; margin:0pt 0pt 10pt; orphans:0; text-align:justify; widows:0"><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:none">送达地址：</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline"> </span>
-      <a name="保证人1地址"></a>
-      <a name="保证人1户籍地址"></a><span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline"
-        class="bzraddress">[&lt;保证人户籍地址&gt;]</span>
-      <a name="保证人户籍地址"></a><span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline">
-      </span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline"> </span></p>
-    <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; widows:0"><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">&#xa0;</span></p>
-    <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:42pt; widows:0"><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:normal">鉴于:</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:normal">乙方拟向</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline">中国工商银行股份有限公司</span>
-      <span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline">郑州</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline">花园路</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline">支行</span>
-      <span style="font-family:宋体; font-size:10.5pt; font-weight:normal; text-decoration:none">（简称：资金方）</span>
-      <span
-        style="font-family:宋体; font-size:10.5pt; font-weight:normal">申请贷款购车，并提供该贷款车辆作为抵押担保；为获得贷款，乙方委托甲方为其向</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline">中国工商银行股份有限公司</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline">郑州</span>
-      <span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline">花园路</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline">支行</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:normal">申请贷款并提供全程咨询管理服务、</span>
-      <span style="font-family:宋体; font-size:10.5pt; font-weight:normal">贷款管理及还款保证</span>
-      <span style="font-family:宋体; font-size:10.5pt; font-weight:normal">。</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:normal">依据《中华人民共和国合同法》及相关法律规定，甲乙双方就甲方为乙方提供汽车消费贷款咨询</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:normal">、</span>
-      <span style="font-family:宋体; font-size:10.5pt; font-weight:normal">管理</span>
-      <span style="font-family:宋体; font-size:10.5pt; font-weight:normal">、</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:normal">保证等</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:normal">服务</span>
-      <span style="font-family:宋体; font-size:10.5pt; font-weight:normal">等</span>
-      <span style="font-family:宋体; font-size:10.5pt; font-weight:normal">事宜进行平等协商，并达成如下协议：</span>
-    </p>
-    <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; widows:0"><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">第</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">一</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">条:车辆型号及购车付款方式</span></p>
-    <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:21pt; widows:0"><span
-        style="font-family:黑体; font-size:10.5pt">1、</span><span
-        style="font-family:黑体; font-size:10.5pt">车辆名称(车型):</span><span
-        style="font-family:黑体; font-size:10.5pt; text-decoration:underline" class="clpp"> [&lt;车辆品牌&gt;] </span>
-      <a name="车辆型号"></a><span style="font-family:黑体; font-size:10.5pt; text-decoration:underline"
-        class="clks">[&lt;车辆款式&gt;]
+            <span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline">       </span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:none">电子邮件：</span>
+            <span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline">               </span>
+        </p>
+        <p style="font-size:10.5pt; line-height:150%; margin:0pt 0pt 10pt; orphans:0; text-align:justify; widows:0"><span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:none">送达地址：</span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline"></span>
+            <a name="保证人1地址"></a>
+            <a name="保证人1户籍地址"></a>
+            <!-- <span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline"  class="bzraddress">[&lt;保证人户籍地址&gt;]</span> -->
+            <input type="text" class="bzraddress" style="width: 500px;" value="[&lt;保证人户籍地址&gt;]">
+            <a name="保证人户籍地址"></a><span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline">
+      </span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline"></span></p>
+        <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; widows:0"><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">&#xa0;</span></p>
+        <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:42pt; widows:0"><span style="font-family:宋体; font-size:10.5pt; font-weight:normal">鉴于:</span><span style="font-family:宋体; font-size:10.5pt; font-weight:normal">乙方拟向</span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline">中国工商银行股份有限公司</span>
+            <span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline">郑州</span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline">花园路</span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline">支行</span>
+            <span style="font-family:宋体; font-size:10.5pt; font-weight:normal; text-decoration:none">（简称：资金方）</span>
+            <span style="font-family:宋体; font-size:10.5pt; font-weight:normal">申请贷款购车，并提供该贷款车辆作为抵押担保；为获得贷款，乙方委托甲方为其向</span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline">中国工商银行股份有限公司</span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline">郑州</span>
+            <span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline">花园路</span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline">支行</span><span style="font-family:宋体; font-size:10.5pt; font-weight:normal">申请贷款并提供全程咨询管理服务、</span>
+            <span style="font-family:宋体; font-size:10.5pt; font-weight:normal">贷款管理及还款保证</span>
+            <span style="font-family:宋体; font-size:10.5pt; font-weight:normal">。</span><span style="font-family:宋体; font-size:10.5pt; font-weight:normal">依据《中华人民共和国合同法》及相关法律规定，甲乙双方就甲方为乙方提供汽车消费贷款咨询</span><span style="font-family:宋体; font-size:10.5pt; font-weight:normal">、</span>
+            <span style="font-family:宋体; font-size:10.5pt; font-weight:normal">管理</span>
+            <span style="font-family:宋体; font-size:10.5pt; font-weight:normal">、</span><span style="font-family:宋体; font-size:10.5pt; font-weight:normal">保证等</span><span style="font-family:宋体; font-size:10.5pt; font-weight:normal">服务</span>
+            <span style="font-family:宋体; font-size:10.5pt; font-weight:normal">等</span>
+            <span style="font-family:宋体; font-size:10.5pt; font-weight:normal">事宜进行平等协商，并达成如下协议：</span>
+        </p>
+        <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; widows:0"><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">第</span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">一</span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">条:车辆型号及购车付款方式</span></p>
+        <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:21pt; widows:0"><span style="font-family:黑体; font-size:10.5pt">1、</span><span style="font-family:黑体; font-size:10.5pt">车辆名称(车型):</span>
+            <!-- <span style="font-family:黑体; font-size:10.5pt; text-decoration:underline" class="clpp"> [&lt;车辆品牌&gt;] </span> -->
+            <input type="text" class="clpp" style="width: 100px;" value="[&lt;车辆品牌&gt;]">
+            <a name="车辆型号"></a>
+            <!-- <span style="font-family:黑体; font-size:10.5pt; text-decoration:underline" class="clks">[&lt;车辆款式&gt;] -->
+            <input type="text" class="clks" style="width: 400px;" value="[&lt;车辆款式&gt;]">
+            </span>
+            <a name="车辆类型"></a><span style="font-family:黑体; font-size:10.5pt; text-decoration:underline"> </span><span style="font-family:黑体; font-size:10.5pt; text-decoration:none">；车架号:</span>
+            <!-- <span style="font-family:黑体; font-size:10.5pt; text-decoration:underline">              </span> -->
+            <input type="text" style="width: 190px;" class="cjh" value="">
+            <span style="font-family:黑体; font-size:10.5pt; text-decoration:none">;</span><span style="font-family:黑体; font-size:10.5pt">发动机号:</span>
+            <!-- <span style="font-family:黑体; font-size:10.5pt; text-decoration:underline">             </span> -->
+            <input type="text" style="width: 90px;" class="fdjh" value="">
+            <span style="font-family:黑体; font-size:10.5pt; text-decoration:none">。</span></p>
+        <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:21pt; widows:0"><span style="font-family:黑体; font-size:10.5pt">2、</span><span style="font-family:黑体; font-size:10.5pt">分期方式:车价(人民币):</span><span style="font-family:黑体; font-size:10.5pt">
       </span>
-      <a name="车辆类型"></a><span style="font-family:黑体; font-size:10.5pt; text-decoration:underline"> </span><span
-        style="font-family:黑体; font-size:10.5pt; text-decoration:none">；车架号:</span><span
-        style="font-family:黑体; font-size:10.5pt; text-decoration:underline">              </span>
-      <span style="font-family:黑体; font-size:10.5pt; text-decoration:none">;</span><span
-        style="font-family:黑体; font-size:10.5pt">发动机号:</span><span
-        style="font-family:黑体; font-size:10.5pt; text-decoration:underline">             </span><span
-        style="font-family:黑体; font-size:10.5pt; text-decoration:none">。</span></p>
-    <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:21pt; widows:0"><span
-        style="font-family:黑体; font-size:10.5pt">2、</span><span
-        style="font-family:黑体; font-size:10.5pt">分期方式:车价(人民币):</span><span style="font-family:黑体; font-size:10.5pt">
-      </span><span style="font-family:黑体; font-size:10.5pt; text-decoration:underline"
-        class="cljg">[&lt;车辆价格&gt;]</span>
-      <a name="车辆价格"></a><span style="font-family:黑体; font-size:10.5pt">元</span><span
-        style="font-family:黑体; font-size:10.5pt">，</span><span
-        style="font-family:黑体; font-size:10.5pt">车辆首付款</span><span
-        style="font-family:黑体; font-size:10.5pt; text-decoration:underline" class="sfk"> [&lt;首付款&gt;]</span>
-      <a name="首付款"></a><span style="font-family:黑体; font-size:10.5pt; text-decoration:underline"> </span><span
-        style="font-family:黑体; font-size:10.5pt">元</span><span style="font-family:黑体; font-size:10.5pt">，</span><span
-        style="font-family:黑体; font-size:10.5pt">首付比例</span>
-      <span style="font-family:黑体; font-size:10.5pt; text-decoration:underline" class="sfbl">[&lt;首付比例&gt;]</span>
-      <a name="首付比例"></a><span style="font-family:黑体; font-size:10.5pt">%; </span><span
-        style="font-family:黑体; font-size:10.5pt">车辆尾款</span><span
-        style="font-family:黑体; font-size:10.5pt; text-decoration:underline" class="clwk">[&lt;车辆尾款&gt;]</span>
-      <a name="车辆尾款"></a><span style="font-family:黑体; font-size:10.5pt; text-decoration:underline">元。</span><span
-        style="font-family:黑体; font-size:10.5pt">分期贷款总金额:</span><span
-        style="font-family:黑体; font-size:10.5pt; text-decoration:underline" class="dkje"> [&lt;贷款金额&gt;] </span>
-      <span style="font-family:黑体; font-size:10.5pt">元;贷款期限:</span><span
-        style="font-family:黑体; font-size:10.5pt; text-decoration:underline"> </span>
-      <a name="还款期限"></a><span style="font-family:黑体; font-size:10.5pt; text-decoration:underline"
-        class="dkqx">[&lt;贷款期限&gt;]
-      </span><span style="font-family:黑体; font-size:10.5pt">月</span><span
-        style="font-family:黑体; font-size:10.5pt">。(相关金额具体以乙方与银行签订的借款分期贷款合同为准)</span></p>
-    <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:21pt; widows:0"><span
-        style="font-family:宋体; font-size:10.5pt">3</span><span
-        style="font-family:宋体; font-size:10.5pt">、乙方向甲方指定的银行申请汽车分期贷款用以支付约定的购车款，该款项乙方不得挪作它用。</span></p>
-    <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:21pt; widows:0"><span
-        style="font-family:宋体; font-size:10.5pt">4</span><span
-        style="font-family:宋体; font-size:10.5pt">、乙方同意贷款银行直接将按揭分期款转入甲方或甲方指定帐户作为购车款或由甲方转交给</span><span
-        style="font-family:宋体; font-size:10.5pt">乙方指定的第三方</span><span
-        style="font-family:宋体; font-size:10.5pt">作为购车车款等。</span></p>
-    <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:21pt; widows:0"><span
-        style="font-family:宋体; font-size:10.5pt">5、</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">本合同签字后，即视为乙方认可购买的车辆状况，因车辆本身质量等引起的任何纠纷与甲方及银行分期贷款均无</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">涉</span>
-      <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">，乙方不得以此为由拖延或逾期还款。</span>
-    </p>
-    <p style="font-size:12pt; line-height:115%; margin:0pt 0pt 10pt; text-align:justify"><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">第</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">二</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">条:</span>
-      <span style="font-family:宋体; font-size:12pt; font-weight:bold">提供的服务及操作模式</span>
-    </p>
-    <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:21pt; widows:0"><span
-        style="font-family:宋体; font-size:10.5pt">一、本协议项下，乙方委托甲方提供服务的内容包括： </span></p>
-    <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:21pt; widows:0"><span
-        style="font-family:宋体; font-size:10.5pt">1、甲方指派工作人员为乙方介绍汽车销售相关的咨询、代办等相关产品。</span></p>
-    <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:21pt; widows:0"><span
-        style="font-family:宋体; font-size:10.5pt">2、协助乙方收集办理汽车消费贷款所需的资料，联系银行办理贷款，并接受乙方的咨询。 </span></p>
-    <p
-      style="margin:0pt 0pt 10pt 21pt; orphans:0; padding-left:10.8pt; text-align:justify; text-indent:-10.8pt; widows:0">
-      <span style="font-family:宋体; font-size:10.5pt">3、乙方委托甲方管理其还款事宜。如甲方受让乙方贷款所涉债权及担保物权，乙方不以任何理由对该受让债权及担保物权的行为进行抗辩。
+            <!-- <span style="font-family:黑体; font-size:10.5pt; text-decoration:underline"  class="cljg">[&lt;车辆价格&gt;]</span> -->
+            <input type="text" class="cljg" style="width: 80px;" value="[&lt;车辆价格&gt;]">
+            <a name="车辆价格"></a><span style="font-family:黑体; font-size:10.5pt">元</span><span style="font-family:黑体; font-size:10.5pt">，</span><span style="font-family:黑体; font-size:10.5pt">车辆首付款</span>
+            <!-- <span style="font-family:黑体; font-size:10.5pt; text-decoration:underline" class="sfk"> [&lt;首付款&gt;]</span> -->
+            <input type="text" class="sfk" style="width: 80px;" value="[&lt;首付款&gt;]">
+            <a name="首付款"></a><span style="font-family:黑体; font-size:10.5pt; text-decoration:underline"> </span><span style="font-family:黑体; font-size:10.5pt">元</span><span style="font-family:黑体; font-size:10.5pt">，</span><span style="font-family:黑体; font-size:10.5pt">首付比例</span>
+            <!-- <span style="font-family:黑体; font-size:10.5pt; text-decoration:underline" class="sfbl">[&lt;首付比例&gt;]</span> -->
+            <input type="text" class="sfbl" style="width: 50px;" value="[&lt;首付比例&gt;]">
+            <a name="首付比例"></a><span style="font-family:黑体; font-size:10.5pt">%; </span><span style="font-family:黑体; font-size:10.5pt">车辆尾款</span>
+            <!-- <span style="font-family:黑体; font-size:10.5pt; text-decoration:underline" class="clwk">[&lt;车辆尾款&gt;]</span> -->
+            <input type="text" class="clwk" style="width: 80px;" value="[&lt;车辆尾款&gt;]">
+            <a name="车辆尾款"></a><span style="font-family:黑体; font-size:10.5pt;">元。</span><span style="font-family:黑体; font-size:10.5pt">分期贷款总金额:</span>
+            <!-- <span style="font-family:黑体; font-size:10.5pt; text-decoration:underline" class="dkje"> [&lt;贷款金额&gt;] </span> -->
+            <input type="text" class="dkzje" style="width: 80px;" value="[&lt;贷款金额&gt;]">
+            <span style="font-family:黑体; font-size:10.5pt">元;贷款期限:</span><span style="font-family:黑体; font-size:10.5pt; text-decoration:underline"></span>
+            <a name="还款期限"></a>
+            <!-- <span style="font-family:黑体; font-size:10.5pt; text-decoration:underline" class="dkqx">[&lt;贷款期限&gt;] -->
+            <input type="text" class="dkqx" style="width: 50px;" value="[&lt;贷款期限&gt;]">
+            </span><span style="font-family:黑体; font-size:10.5pt">月</span><span style="font-family:黑体; font-size:10.5pt">。(相关金额具体以乙方与银行签订的借款分期贷款合同为准)</span></p>
+        <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:21pt; widows:0"><span style="font-family:宋体; font-size:10.5pt">3</span><span style="font-family:宋体; font-size:10.5pt">、乙方向甲方指定的银行申请汽车分期贷款用以支付约定的购车款，该款项乙方不得挪作它用。</span></p>
+        <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:21pt; widows:0"><span style="font-family:宋体; font-size:10.5pt">4</span><span style="font-family:宋体; font-size:10.5pt">、乙方同意贷款银行直接将按揭分期款转入甲方或甲方指定帐户作为购车款或由甲方转交给</span><span style="font-family:宋体; font-size:10.5pt">乙方指定的第三方</span><span style="font-family:宋体; font-size:10.5pt">作为购车车款等。</span></p>
+        <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:21pt; widows:0"><span style="font-family:宋体; font-size:10.5pt">5、</span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">本合同签字后，即视为乙方认可购买的车辆状况，因车辆本身质量等引起的任何纠纷与甲方及银行分期贷款均无</span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">涉</span>
+            <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">，乙方不得以此为由拖延或逾期还款。</span>
+        </p>
+        <p style="font-size:12pt; line-height:115%; margin:0pt 0pt 10pt; text-align:justify"><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">第</span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">二</span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">条:</span>
+            <span style="font-family:宋体; font-size:12pt; font-weight:bold">提供的服务及操作模式</span>
+        </p>
+        <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:21pt; widows:0"><span style="font-family:宋体; font-size:10.5pt">一、本协议项下，乙方委托甲方提供服务的内容包括： </span></p>
+        <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:21pt; widows:0"><span style="font-family:宋体; font-size:10.5pt">1、甲方指派工作人员为乙方介绍汽车销售相关的咨询、代办等相关产品。</span></p>
+        <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:21pt; widows:0"><span style="font-family:宋体; font-size:10.5pt">2、协助乙方收集办理汽车消费贷款所需的资料，联系银行办理贷款，并接受乙方的咨询。 </span></p>
+        <p style="margin:0pt 0pt 10pt 21pt; orphans:0; padding-left:10.8pt; text-align:justify; text-indent:-10.8pt; widows:0">
+            <span style="font-family:宋体; font-size:10.5pt">3、乙方委托甲方管理其还款事宜。如甲方受让乙方贷款所涉债权及担保物权，乙方不以任何理由对该受让债权及担保物权的行为进行抗辩。
       </span></p>
-    <p
-      style="margin:0pt 0pt 10pt 21pt; orphans:0; padding-left:10.8pt; text-align:justify; text-indent:-10.8pt; widows:0">
-      <span style="font-family:宋体; font-size:10.5pt">4、提供还款保证。</span></p>
-    <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:21pt; widows:0"><span
-        style="font-family:宋体; font-size:10.5pt">5、协助乙方结清借款后办理车辆解押。</span></p>
-    <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; widows:0"><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">第三条:按揭车辆的注册登记和抵押登记</span></p>
-    <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:21pt; widows:0"><span
-        style="font-family:宋体; font-size:10.5pt">1、车辆注册登记及抵押的时间:</span></p>
-    <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:21pt; widows:0"><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">乙方将所购车辆以乙方或乙方指定的单位的名义注册登记牌证，乙方应在本合同签订之日起(或自提车之日起)
-      </span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">5</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">天内，进口车则在1</span>
-      <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">0</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">天内完成车辆的注册登记上牌。抵押登记手续需在车辆注册登记上牌后5天内完成。</span></p>
+        <p style="margin:0pt 0pt 10pt 21pt; orphans:0; padding-left:10.8pt; text-align:justify; text-indent:-10.8pt; widows:0">
+            <span style="font-family:宋体; font-size:10.5pt">4、提供还款保证。</span></p>
+        <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:21pt; widows:0"><span style="font-family:宋体; font-size:10.5pt">5、协助乙方结清借款后办理车辆解押。</span></p>
+        <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; widows:0"><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">第三条:按揭车辆的注册登记和抵押登记</span></p>
+        <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:21pt; widows:0"><span style="font-family:宋体; font-size:10.5pt">1、车辆注册登记及抵押的时间:</span></p>
+        <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:21pt; widows:0"><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">乙方将所购车辆以乙方或乙方指定的单位的名义注册登记牌证，乙方应在本合同签订之日起(或自提车之日起)
+      </span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">5</span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">天内，进口车则在1</span>
+            <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">0</span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">天内完成车辆的注册登记上牌。抵押登记手续需在车辆注册登记上牌后5天内完成。</span></p>
 
-    <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:21pt; widows:0"><span
-        style="font-family:宋体; font-size:10.5pt">2、车辆注册登记的办理:</span></p>
-    <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:21pt; widows:0"><span
-        style="font-family:宋体; font-size:10.5pt">乙方提车后应两日内将所购车辆发票、合格证(进口车为货物进口证明、进口机动车辆随车检验单)的原件等注册上牌所需材料交给甲方。乙方应该在约定的时间内办理车辆的注册登记上牌手续。</span>
-    </p>
-    <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:21pt; widows:0"><span
-        style="font-family:宋体; font-size:10.5pt">3、抵押登记的办理:</span></p>
-    <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:21pt; widows:0"><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">由乙方在车辆注册登记上牌后2天内将机动车登记证和发票原件、行驶证复印件、身份证原件等提供给甲方办理抵押登记，抵押完成后，上述资料甲方交给贷款银行管理。</span>
-    </p>
-    <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:21pt; widows:0"><span
-        style="font-family:宋体; font-size:10.5pt">4、车辆的抵押权人为贷款银行或甲方。乙方在合同期内未经抵押权人和甲方同意不得擅自改变抵押车辆的所有权。</span></p>
-    <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; widows:0"><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">第四条:</span><span
-        style="font-family:宋体; font-size:10.5pt">本协议项下，甲方应当安排工作人员为乙方提供本协议第</span><span
-        style="font-family:宋体; font-size:10.5pt">二</span>
-      <span style="font-family:宋体; font-size:10.5pt">条所述事项，协助乙方向 </span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline">中国工商银行股份有限公司</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline">郑州</span>
-      <span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline">花园路</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline">支行</span><span
-        style="font-family:宋体; font-size:10.5pt">申请汽车消费贷款。</span></p>
-    <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; widows:0"><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">第五条：</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:normal">本协议项下，甲方为乙方提供本协议第</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:normal">二</span>
-      <span style="font-family:宋体; font-size:10.5pt; font-weight:normal">条所述服务收取咨询</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:normal">管理</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:normal">服务费人民币</span>
-      <a name="服务费总金额大写"></a><span style="font-family:宋体; font-size:10.5pt; font-weight:normal">（</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:normal">大写）</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline"
-        class="zxfwglfdx">[&lt;咨询服务管理费大写&gt;]</span>
-      <a name="咨询服务管理费大写"></a><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:none">元整</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">（ ¥</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline"> </span>
-      <a name="服务费总金额"></a><span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline"
-        class="zxfwglf">[&lt;咨询服务管理费&gt;]</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline"> </span>
-      <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">元）。</span>
-    </p>
-    <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:21pt; widows:0"><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">上述咨询</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">管理</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">服务费按以下</span>
-      <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">第</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline"> </span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline">2</span>
-      <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">种方式</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">支付：</span></p>
-    <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:21pt; widows:0"><span
-        style="font-family:宋体; font-size:10.5pt">1、</span><span style="font-family:宋体; font-size:10.5pt">分</span><span
-        style="font-family:宋体; font-size:10.5pt; text-decoration:underline">/</span><span
-        style="font-family:宋体; font-size:10.5pt">期支付。乙方每月</span>
-      <span style="font-family:宋体; font-size:10.5pt; text-decoration:underline"> </span><span
-        style="font-family:宋体; font-size:10.5pt; text-decoration:underline">  /</span><span
-        style="font-family:宋体; font-size:10.5pt; text-decoration:underline"> </span>
-      <span style="font-family:宋体; font-size:10.5pt">日向甲方支付人民币</span>
-      <span style="font-family:宋体; font-size:10.5pt; text-decoration:underline"> </span>
-      <a name="每月还款总额大写"></a>
-      <a name="每期服务费金额大写"></a><span style="font-family:宋体; font-size:10.5pt; text-decoration:underline">/</span><span
-        style="font-family:宋体; font-size:10.5pt">（ ¥</span><span
-        style="font-family:宋体; font-size:10.5pt; text-decoration:underline"> </span>
-      <a name="每期服务费金额"></a><span style="font-family:宋体; font-size:10.5pt; text-decoration:underline">/</span><span
-        style="font-family:宋体; font-size:10.5pt; text-decoration:underline"> </span><span
-        style="font-family:宋体; font-size:10.5pt">元），直至结清之日止。</span></p>
-    <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:21pt; widows:0"><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">2、</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">合同签订之日</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">起</span>
-      <span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline"> 5 </span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:none">日</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">内</span>
-      <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">乙方</span>
-      <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">一</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">次性向甲方付清</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">，</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">或</span>
-      <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">由银行在乙方开立的车贷卡中以透支形式扣收并直接支付给甲方或甲方</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">指</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">定账户。</span></p>
-    <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; widows:0"><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">第六条：</span><span
-        style="font-family:宋体; font-size:10.5pt">乙方已完全理解和认可本协议所载全部内容，知晓所交付款项的用途，并承诺之后不以费用缴纳不清、融资失败、提前还款等原因要求乙方返还上述费用。</span>
-    </p>
-    <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; widows:0"><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">第</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">七</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">条:车辆的保险及事故处理</span></p>
-    <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:21pt; widows:0"><span
-        style="font-family:宋体; font-size:10.5pt">1、合同期内，乙方同意投保由甲方选择的保险公司，按车辆价款的总额向甲方指定的保险公司投保，保险第一受益人设定为贷款银行或甲方，具体保险项目及保险金额应符合贷款银行规定(或详见贷款第一年车险保单)。乙方须在上一年度保险到期前通知甲方办理续保手续并向保险公司交纳保险费用。乙方不得擅自退保或减少投保项目额度。</span>
-    </p>
-    <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:21pt; widows:0"><span
-        style="font-family:宋体; font-size:10.5pt">2、
+        <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:21pt; widows:0"><span style="font-family:宋体; font-size:10.5pt">2、车辆注册登记的办理:</span></p>
+        <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:21pt; widows:0"><span style="font-family:宋体; font-size:10.5pt">乙方提车后应两日内将所购车辆发票、合格证(进口车为货物进口证明、进口机动车辆随车检验单)的原件等注册上牌所需材料交给甲方。乙方应该在约定的时间内办理车辆的注册登记上牌手续。</span>
+        </p>
+        <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:21pt; widows:0"><span style="font-family:宋体; font-size:10.5pt">3、抵押登记的办理:</span></p>
+        <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:21pt; widows:0"><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">由乙方在车辆注册登记上牌后2天内将机动车登记证和发票原件、行驶证复印件、身份证原件等提供给甲方办理抵押登记，抵押完成后，上述资料甲方交给贷款银行管理。</span>
+        </p>
+        <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:21pt; widows:0"><span style="font-family:宋体; font-size:10.5pt">4、车辆的抵押权人为贷款银行或甲方。乙方在合同期内未经抵押权人和甲方同意不得擅自改变抵押车辆的所有权。</span></p>
+        <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; widows:0"><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">第四条:</span><span style="font-family:宋体; font-size:10.5pt">本协议项下，甲方应当安排工作人员为乙方提供本协议第</span><span style="font-family:宋体; font-size:10.5pt">二</span>
+            <span style="font-family:宋体; font-size:10.5pt">条所述事项，协助乙方向 </span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline">中国工商银行股份有限公司</span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline">郑州</span>
+            <span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline">花园路</span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline">支行</span><span style="font-family:宋体; font-size:10.5pt">申请汽车消费贷款。</span></p>
+        <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; widows:0"><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">第五条：</span><span style="font-family:宋体; font-size:10.5pt; font-weight:normal">本协议项下，甲方为乙方提供本协议第</span><span style="font-family:宋体; font-size:10.5pt; font-weight:normal">二</span>
+            <span style="font-family:宋体; font-size:10.5pt; font-weight:normal">条所述服务收取咨询</span><span style="font-family:宋体; font-size:10.5pt; font-weight:normal">管理</span><span style="font-family:宋体; font-size:10.5pt; font-weight:normal">服务费人民币</span>
+            <a name="服务费总金额大写"></a><span style="font-family:宋体; font-size:10.5pt; font-weight:normal">（</span><span style="font-family:宋体; font-size:10.5pt; font-weight:normal">大写）</span>
+            <!-- <span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline" class="zxfwglfdx">[&lt;咨询服务管理费大写&gt;]</span> -->
+            <input type="text" class="zxfwglfdx" style="width: 300px;" value="[&lt;咨询服务管理费大写&gt;]">
+            <a name="咨询服务管理费大写"></a><span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:none">元整</span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">（ ¥</span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline"></span>
+            <a name="服务费总金额"></a>
+            <!-- <span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline" class="zxfwglf">[&lt;咨询服务管理费&gt;]</span> -->
+            <input type="text" class="zxfwglf" style="width: 80px;" value="[&lt;咨询服务管理费&gt;]">
+            <span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline"> </span>
+            <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">元）。</span>
+        </p>
+        <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:21pt; widows:0"><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">上述咨询</span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">管理</span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">服务费按以下</span>
+            <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">第</span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline"> </span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline">2</span>
+            <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">种方式</span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">支付：</span></p>
+        <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:21pt; widows:0"><span style="font-family:宋体; font-size:10.5pt">1、</span><span style="font-family:宋体; font-size:10.5pt">分</span><span style="font-family:宋体; font-size:10.5pt; text-decoration:underline">/</span><span style="font-family:宋体; font-size:10.5pt">期支付。乙方每月</span>
+            <span style="font-family:宋体; font-size:10.5pt; text-decoration:underline"> </span><span style="font-family:宋体; font-size:10.5pt; text-decoration:underline">  /</span><span style="font-family:宋体; font-size:10.5pt; text-decoration:underline"> </span>
+            <span style="font-family:宋体; font-size:10.5pt">日向甲方支付人民币</span>
+            <span style="font-family:宋体; font-size:10.5pt; text-decoration:underline"> </span>
+            <a name="每月还款总额大写"></a>
+            <a name="每期服务费金额大写"></a><span style="font-family:宋体; font-size:10.5pt; text-decoration:underline">/</span><span style="font-family:宋体; font-size:10.5pt">（ ¥</span><span style="font-family:宋体; font-size:10.5pt; text-decoration:underline"> </span>
+            <a name="每期服务费金额"></a><span style="font-family:宋体; font-size:10.5pt; text-decoration:underline">/</span><span style="font-family:宋体; font-size:10.5pt; text-decoration:underline"> </span><span style="font-family:宋体; font-size:10.5pt">元），直至结清之日止。</span></p>
+        <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:21pt; widows:0"><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">2、</span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">合同签订之日</span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">起</span>
+            <span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline"> 5 </span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:none">日</span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">内</span>
+            <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">乙方</span>
+            <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">一</span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">次性向甲方付清</span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">，</span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">或</span>
+            <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">由银行在乙方开立的车贷卡中以透支形式扣收并直接支付给甲方或甲方</span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">指</span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">定账户。</span></p>
+        <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; widows:0"><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">第六条：</span><span style="font-family:宋体; font-size:10.5pt">乙方已完全理解和认可本协议所载全部内容，知晓所交付款项的用途，并承诺之后不以费用缴纳不清、融资失败、提前还款等原因要求乙方返还上述费用。</span>
+        </p>
+        <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; widows:0"><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">第</span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">七</span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">条:车辆的保险及事故处理</span></p>
+        <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:21pt; widows:0"><span style="font-family:宋体; font-size:10.5pt">1、合同期内，乙方同意投保由甲方选择的保险公司，按车辆价款的总额向甲方指定的保险公司投保，保险第一受益人设定为贷款银行或甲方，具体保险项目及保险金额应符合贷款银行规定(或详见贷款第一年车险保单)。乙方须在上一年度保险到期前通知甲方办理续保手续并向保险公司交纳保险费用。乙方不得擅自退保或减少投保项目额度。</span>
+        </p>
+        <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:21pt; widows:0"><span style="font-family:宋体; font-size:10.5pt">2、
         合同期内，发生保险责任事故，乙方应按保险有关规定立即向保险公司报案，并同时通知甲方，并向甲方提拱出险原因报告及有关资料，会同甲方向保险公司办理索赔事宜。如单次或累计保险赔付金额超过贷款金额的50%，乙方须配合甲方提前结清全部分期贷款。</span>
-    </p>
-    <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:21pt; widows:0"><span
-        style="font-family:宋体; font-size:10.5pt">3、乙方应按本合同约定及时通过甲方续保并支付保险费。乙方未按约定按时支付保险费或未及时通知甲方续保的，由此引起脱保、保险公司拒赔等责任由乙方自行承担。</span>
-    </p>
-    <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:21pt; widows:0"><span
-        style="font-family:宋体; font-size:10.5pt">4、保险公司因甲方车辆批量续保业务给予甲方费用优惠</span><span
-        style="font-family:宋体; font-size:10.5pt">、</span><span
-        style="font-family:宋体; font-size:10.5pt">折扣或返利等的，则完全由甲方享有。</span></p>
-    <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; widows:0"><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">第</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">八</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">条:违约</span>
-      <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">责任</span>
-    </p>
-    <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:21pt; widows:0"><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">1、</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:normal">如乙方未依约履行银行分期贷款合同项下还款义务，</span>
-      <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">每月</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">未</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">按时足额偿还分期贷款。</span>
-      <span
-        style="font-family:宋体; font-size:10.5pt; font-weight:normal">导致甲方承担还款保证被银行追责，乙方需以甲方垫付代偿金额为基数，从代偿之日起至实际履行完毕之日止，按同期全国银行间同业拆借中心公布的贷款市场报价利率的四倍为标准，向甲方支付垫款利息或以甲方代偿总金额的25%的标准向甲方支付违约金（利息和违约金二者以较高者为准）。此外</span><span
-        style="font-family:宋体; font-size:12pt; font-weight:normal; letter-spacing:0.65pt">，</span>
-      <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">当乙方连续/累计</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline"> 2 </span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">期出现逾期还款的情况</span>
-      <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">，</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:normal">未到期款项视为清偿期限届满，甲方即可要求乙方提前结清全部分期贷款本息和向甲方支付剩余未付的全部咨询管理服务费</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">，</span>
-      <span style="font-family:宋体; font-size:10.5pt; font-weight:normal">甲方收到乙方的未还的银行贷款本息后，由甲方转付贷款银行。</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">同时乙方也无条件同意提前结清该笔分期贷款全部本息并承担违约责任。若乙方车</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">贷</span>
-      <span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">还款逾期或有违反本合同及银行分期贷款合同约定条款时，甲方不需乙方同意即可自行予以代偿垫付银行分期款项，乙方应在甲方代偿垫付后二日内向甲方偿还垫付款</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">，甲方为实现债权而支出的上门催收差旅费、诉讼费、仲裁费用、律师费、保全费、保全担保费、诉讼差旅费、鉴定费、评估费、拍卖公告费、执行费</span>
-      <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">、</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">其他合理支出等其他费用由乙方承担</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">。</span>
-      <span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">若因乙方未及时交付分期贷款等造成的损失及法律责任由乙方自行承担，因此给甲方造成的损失均由乙方负责赔偿。</span>
-    </p>
-    <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:21pt; widows:0"><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">    2</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">、乙方若不按本合同约定的时间办理好机动车登记上牌手续、抵押手续的，或不按合同约定将办理好的机动车登记证书等交由甲方送</span>
-      <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">贷</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">款银行保管等。甲方有权解除合同并依法留置该贷款车辆，不予退还相关费用及风险押金，乙方无条件同意提前结清全部分期贷款，由此引起的一切责任、损失由乙方承担。</span><br /><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:normal">        3</span>
-      <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">、乙方必须按相关合同约定的还款</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">期</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">限履行还款义务，未经甲方书面同意，不得提前结清。无论任何原因，乙方提前结清贷款的，需按分期贷款总金额的5%向甲方支付提前结清费用，并无条件同意甲方不予退还风险押金。</span>
-    </p>
+        </p>
+        <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:21pt; widows:0"><span style="font-family:宋体; font-size:10.5pt">3、乙方应按本合同约定及时通过甲方续保并支付保险费。乙方未按约定按时支付保险费或未及时通知甲方续保的，由此引起脱保、保险公司拒赔等责任由乙方自行承担。</span>
+        </p>
+        <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:21pt; widows:0"><span style="font-family:宋体; font-size:10.5pt">4、保险公司因甲方车辆批量续保业务给予甲方费用优惠</span><span style="font-family:宋体; font-size:10.5pt">、</span><span style="font-family:宋体; font-size:10.5pt">折扣或返利等的，则完全由甲方享有。</span></p>
+        <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; widows:0"><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">第</span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">八</span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">条:违约</span>
+            <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">责任</span>
+        </p>
+        <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:21pt; widows:0"><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">1、</span><span style="font-family:宋体; font-size:10.5pt; font-weight:normal">如乙方未依约履行银行分期贷款合同项下还款义务，</span>
+            <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">每月</span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">未</span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">按时足额偿还分期贷款。</span>
+            <span style="font-family:宋体; font-size:10.5pt; font-weight:normal">导致甲方承担还款保证被银行追责，乙方需以甲方垫付代偿金额为基数，从代偿之日起至实际履行完毕之日止，按同期全国银行间同业拆借中心公布的贷款市场报价利率的四倍为标准，向甲方支付垫款利息或以甲方代偿总金额的25%的标准向甲方支付违约金（利息和违约金二者以较高者为准）。此外</span><span style="font-family:宋体; font-size:12pt; font-weight:normal; letter-spacing:0.65pt">，</span>
+            <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">当乙方连续/累计</span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline"> 2 </span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">期出现逾期还款的情况</span>
+            <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">，</span><span style="font-family:宋体; font-size:10.5pt; font-weight:normal">未到期款项视为清偿期限届满，甲方即可要求乙方提前结清全部分期贷款本息和向甲方支付剩余未付的全部咨询管理服务费</span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">，</span>
+            <span style="font-family:宋体; font-size:10.5pt; font-weight:normal">甲方收到乙方的未还的银行贷款本息后，由甲方转付贷款银行。</span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">同时乙方也无条件同意提前结清该笔分期贷款全部本息并承担违约责任。若乙方车</span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">贷</span>
+            <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">还款逾期或有违反本合同及银行分期贷款合同约定条款时，甲方不需乙方同意即可自行予以代偿垫付银行分期款项，乙方应在甲方代偿垫付后二日内向甲方偿还垫付款</span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">，甲方为实现债权而支出的上门催收差旅费、诉讼费、仲裁费用、律师费、保全费、保全担保费、诉讼差旅费、鉴定费、评估费、拍卖公告费、执行费</span>
+            <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">、</span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">其他合理支出等其他费用由乙方承担</span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">。</span>
+            <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">若因乙方未及时交付分期贷款等造成的损失及法律责任由乙方自行承担，因此给甲方造成的损失均由乙方负责赔偿。</span>
+        </p>
+        <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:21pt; widows:0"><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">    2</span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">、乙方若不按本合同约定的时间办理好机动车登记上牌手续、抵押手续的，或不按合同约定将办理好的机动车登记证书等交由甲方送</span>
+            <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">贷</span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">款银行保管等。甲方有权解除合同并依法留置该贷款车辆，不予退还相关费用及风险押金，乙方无条件同意提前结清全部分期贷款，由此引起的一切责任、损失由乙方承担。</span><br /><span style="font-family:宋体; font-size:10.5pt; font-weight:normal">        3</span>
+            <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">、乙方必须按相关合同约定的还款</span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">期</span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">限履行还款义务，未经甲方书面同意，不得提前结清。无论任何原因，乙方提前结清贷款的，需按分期贷款总金额的5%向甲方支付提前结清费用，并无条件同意甲方不予退还风险押金。</span>
+        </p>
 
-    <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:42pt; widows:0"><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">4、</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">若乙方申请提前结清所有借款</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">,</span>
-      <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">咨询</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">管理</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">服务费亦需提前一次性付清，并需向甲方缴纳一定的违约金，按以下方式缴纳：借款期限一年以内结清的，按借款总额的3%
-        收取违约金；借款期限两年以内结清的，按借款总额的2 % 收取违约金；借款期限叁年以内结清的，按借款总额的1.5 % 收取违约金。</span><br /><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:normal">   </span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">    </span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">5、乙方出现本合同或与银行签订的分期贷款合同中任何一种情形的违约行为，甲方即可要求乙方提前结清全部分期贷款本息，同时乙方也无条件同意提前结清该笔分期贷款全部本息并承担违约责任。</span>
-      <span style="font-family:宋体; font-size:10.5pt; font-weight:bold"> </span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">同时甲方无需告知乙方即可采取任何认为适当的合法方式追索或避免损失，包括诉讼或直接依法留置相关贷款车辆以抵偿相应债务等。乙方无条件的允许甲方将贷款车辆作留置保管处理，甲方</span>
-      <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">留</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">置相关车辆过程中，乙方同意无条件全力配合甲方工作，不得阻挠，同时乙方即无条件</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">将</span>
-      <span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">贷款车辆的使用权转让给甲方，车辆交由甲方处置.甲方有权委托第三方实施上述工作。甲方因此产生的所有费用(包括但不限于甲方垫付的分期贷款本息、罚息、复利、违约金、律师费、诉讼费、差旅费、人力费、拖车服务费、</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">留</span>
-      <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">置车辆保管产生的其它费用等)</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold"> </span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">皆由乙方承担。乙方还应向甲方支付按分期贷款未还款金额10%计算的违约金。</span></p>
-    <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; widows:0"><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">第九条法律文书送达地址确认</span></p>
-    <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:21pt; widows:0"><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">乙方、共同还款人、保证人、知悉并同意：</span></p>
-    <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:21pt; widows:0"><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">9.1以本人在咨询管理服务协议记载的地址作为本合同项下争议所涉法律文书的送达地址；同意司法机关或仲裁机构可使用本人在签署页记载的手机号码、电子邮件、微信号等电子联系方式，对各项法律文书进行电子送达。上述法律文书包括但不限于相关信函、传票、开庭通知书、判决书、裁定书、调解书</span>
-      <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">、仲裁书、评估报告、</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">限期履行通知书等。</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">任何文件自上述相关机构寄出五日后，无论是否签收或退</span>
-      <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">回</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">，均视为送达。如送达地址有变更的，必须书面通知甲方。</span></p>
-    <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:21pt; widows:0"><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">9.2同意司法机关或仲裁机构可采取以上一种或多种送达方式向本人送达法律文书，司法机关或仲裁机构采取多种方式向本人送达法律文书的，送达时间以上述送达方式中最先送达的为准。</span>
-    </p>
-    <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:21pt; widows:0"><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">9.3上述送达约定适用于诉讼、仲裁以及其他司法程序的各个阶段，包括但不限于一审、二审、再审、执行以及督促程序。</span>
-    </p>
-    <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:21pt; widows:0"><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">9.4本人确保本合同记载的地址、手机号码、电子邮件、微信号等各项信息的真实有效性；相关信息如有变更，本人应及时书面通知甲方，否则按原信息进行的送达（含电子送达）仍然有效，本人应自行承担由此产生的法律后果。</span><br /><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">第</span>
-      <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">十</span>
-      <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">条</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">:争议解决</span><br /><span
-        style="font-family:宋体; font-size:10.5pt">    </span>
-      <span style="font-family:宋体; font-size:10.5pt">有关本合同的一切争议，包括因甲方承担</span><span
-        style="font-family:宋体; font-size:10.5pt">还款</span><span
-        style="font-family:宋体; font-size:10.5pt">保证担保责任后向乙方追偿，及乙方拖欠甲方相关费用引起的纠纷等，签约各方应遵照国家有关法律、法规协商解决</span>
-      <span style="font-family:宋体; font-size:10.5pt">；</span><span
-        style="font-family:宋体; font-size:10.5pt">协商不成，双方一致同意</span><span
-        style="font-family:宋体; font-size:10.5pt">按下列第</span>
-      <span style="font-family:宋体; font-size:12pt; letter-spacing:0.1pt; text-decoration:underline">    </span><span
-        style="font-family:宋体; font-size:10.5pt">种方式解决：</span></p>
-    <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:21pt; widows:0"><span
-        style="font-family:Calibri; font-size:12pt; letter-spacing:0.1pt">1</span><span
-        style="font-family:宋体; font-size:12pt; letter-spacing:0.1pt">、向甲方所在地人民法院提起诉讼。</span></p>
-    <p style="font-size:12pt; line-height:150%; margin:0pt 0pt 10pt; orphans:0; text-indent:21pt; widows:0"><span
-        style="font-family:Calibri; font-size:12pt; letter-spacing:0.1pt">2</span><span
-        style="font-family:宋体; font-size:12pt; letter-spacing:0.1pt">、向合同签订地人民法院提起诉讼（合同签订地：</span>
-      <span style="font-family:宋体; font-size:12pt; letter-spacing:0.1pt; text-decoration:underline">        </span><span
-        style="font-family:宋体; font-size:12pt; letter-spacing:0.1pt; text-decoration:none">）。</span></p>
-    <p style="font-size:12pt; line-height:150%; margin:0pt 0pt 10pt; orphans:0; text-indent:21pt; widows:0"><span
-        style="font-family:Calibri; font-size:12pt; letter-spacing:0.1pt">3</span><span
-        style="font-family:宋体; font-size:12pt; letter-spacing:0.1pt">、</span>
-      <span style="font-family:宋体; font-size:12pt; letter-spacing:0.1pt">提交</span><span
-        style="font-family:宋体; font-size:12pt; letter-spacing:0.1pt; text-decoration:underline">        </span>
-      <span style="font-family:宋体; font-size:12pt; letter-spacing:0.1pt">仲裁委员会在</span><span
-        style="font-family:宋体; font-size:12pt; letter-spacing:0.1pt; text-decoration:underline">        </span>
-      <span style="font-family:宋体; font-size:12pt; letter-spacing:0.1pt">进行仲裁</span><span
-        style="font-family:宋体; font-size:12pt; letter-spacing:0.1pt">。</span></p>
-    <p style="font-size:12pt; line-height:150%; margin:0pt 0pt 10pt; orphans:0; text-indent:21pt; widows:0"><span
-        style="font-family:Calibri; font-size:12pt; letter-spacing:0.1pt">4</span><span
-        style="font-family:宋体; font-size:12pt; letter-spacing:0.1pt">、其他：</span>
-      <span
-        style="font-family:宋体; font-size:12pt; letter-spacing:0.1pt; text-decoration:underline">                       </span><span
-        style="font-family:宋体; font-size:12pt; letter-spacing:0.1pt; text-decoration:none">。</span></p>
-    <p
-      style="font-size:10.5pt; line-height:115%; margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:21pt; widows:0">
-      <br /><span style="font-family:宋体; font-size:10.5pt; font-weight:normal">         </span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">第</span>
-      <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">十</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">条:担保及共同偿债责任期限及信息授权条款</span></p>
-    <p
-      style="font-size:10.5pt; line-height:115%; margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:21pt; widows:0">
-      <br /><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">    </span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:normal">1、本合同的期限为从本合同签定之日起至乙方还清银行分期贷款本息及甲方所有代偿垫付款日止。</span><br /><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:normal">    </span>
-      <span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">2、乙方及共同还款人不可撤销地授权并同意甲方及甲方转授权的人员，在无需乙方及共同还款人单独出具其它任何形式授权书的情况下，可以自行收集、调取、查阅、办理乙方及共同还款人人行个人征信情况、个人身份验证、违法犯罪情况、银行账户、通讯信息、网贷、职业查询、失信情况、查询手机定位信息等甲方认为需要的一切公开或非公开的信息。但上述信息仅限于甲方使用，甲方不得对获得的信息予以非法买卖。</span>
-    </p>
-    <p
-      style="font-size:10.5pt; line-height:115%; margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:21pt; widows:0">
-      <br /><span style="font-family:宋体; font-size:10.5pt; font-weight:normal">             </span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">    </span>
-      <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">第</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">十一</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">条:保证担保条款</span></p>
-    <p
-      style="font-size:10.5pt; line-height:115%; margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:21pt; widows:0">
-      <br /><span style="font-family:宋体; font-size:10.5pt">    </span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">1、保证人对乙方在本合同项下应承担的责任、义务均已明确知晓并了解，并自愿为乙方就本合同项下的全部债务提供连带保证担保。</span><br /><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">    </span>
-      <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">2</span>
-      <span style="font-family:宋体; font-size:10.5pt; font-weight:bold"> </span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">保证责任范围为本合同项下的包括但不限于甲方垫付的分期贷款本息、罚息、复利、垫付款、违约金、律师费、诉讼费、差旅费、人力费、拖车服务费、留置车辆保管产生的其它费用等。</span><br />
-      <span style="font-family:宋体; font-size:10.5pt">    </span>
-    </p>
+        <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:42pt; widows:0"><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">4、</span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">若乙方申请提前结清所有借款</span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">,</span>
+            <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">咨询</span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">管理</span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">服务费亦需提前一次性付清，并需向甲方缴纳一定的违约金，按以下方式缴纳：借款期限一年以内结清的，按借款总额的3%
+        收取违约金；借款期限两年以内结清的，按借款总额的2 % 收取违约金；借款期限叁年以内结清的，按借款总额的1.5 % 收取违约金。</span><br /><span style="font-family:宋体; font-size:10.5pt; font-weight:normal">   </span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">    </span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">5、乙方出现本合同或与银行签订的分期贷款合同中任何一种情形的违约行为，甲方即可要求乙方提前结清全部分期贷款本息，同时乙方也无条件同意提前结清该笔分期贷款全部本息并承担违约责任。</span>
+            <span style="font-family:宋体; font-size:10.5pt; font-weight:bold"> </span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">同时甲方无需告知乙方即可采取任何认为适当的合法方式追索或避免损失，包括诉讼或直接依法留置相关贷款车辆以抵偿相应债务等。乙方无条件的允许甲方将贷款车辆作留置保管处理，甲方</span>
+            <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">留</span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">置相关车辆过程中，乙方同意无条件全力配合甲方工作，不得阻挠，同时乙方即无条件</span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">将</span>
+            <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">贷款车辆的使用权转让给甲方，车辆交由甲方处置.甲方有权委托第三方实施上述工作。甲方因此产生的所有费用(包括但不限于甲方垫付的分期贷款本息、罚息、复利、违约金、律师费、诉讼费、差旅费、人力费、拖车服务费、</span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">留</span>
+            <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">置车辆保管产生的其它费用等)</span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold"> </span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">皆由乙方承担。乙方还应向甲方支付按分期贷款未还款金额10%计算的违约金。</span></p>
+        <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; widows:0"><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">第九条法律文书送达地址确认</span></p>
+        <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:21pt; widows:0"><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">乙方、共同还款人、保证人、知悉并同意：</span></p>
+        <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:21pt; widows:0"><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">9.1以本人在咨询管理服务协议记载的地址作为本合同项下争议所涉法律文书的送达地址；同意司法机关或仲裁机构可使用本人在签署页记载的手机号码、电子邮件、微信号等电子联系方式，对各项法律文书进行电子送达。上述法律文书包括但不限于相关信函、传票、开庭通知书、判决书、裁定书、调解书</span>
+            <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">、仲裁书、评估报告、</span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">限期履行通知书等。</span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">任何文件自上述相关机构寄出五日后，无论是否签收或退</span>
+            <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">回</span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">，均视为送达。如送达地址有变更的，必须书面通知甲方。</span></p>
+        <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:21pt; widows:0"><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">9.2同意司法机关或仲裁机构可采取以上一种或多种送达方式向本人送达法律文书，司法机关或仲裁机构采取多种方式向本人送达法律文书的，送达时间以上述送达方式中最先送达的为准。</span>
+        </p>
+        <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:21pt; widows:0"><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">9.3上述送达约定适用于诉讼、仲裁以及其他司法程序的各个阶段，包括但不限于一审、二审、再审、执行以及督促程序。</span>
+        </p>
+        <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:21pt; widows:0"><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">9.4本人确保本合同记载的地址、手机号码、电子邮件、微信号等各项信息的真实有效性；相关信息如有变更，本人应及时书面通知甲方，否则按原信息进行的送达（含电子送达）仍然有效，本人应自行承担由此产生的法律后果。</span><br /><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">第</span>
+            <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">十</span>
+            <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">条</span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">:争议解决</span><br /><span style="font-family:宋体; font-size:10.5pt">    </span>
+            <span style="font-family:宋体; font-size:10.5pt">有关本合同的一切争议，包括因甲方承担</span><span style="font-family:宋体; font-size:10.5pt">还款</span><span style="font-family:宋体; font-size:10.5pt">保证担保责任后向乙方追偿，及乙方拖欠甲方相关费用引起的纠纷等，签约各方应遵照国家有关法律、法规协商解决</span>
+            <span style="font-family:宋体; font-size:10.5pt">；</span><span style="font-family:宋体; font-size:10.5pt">协商不成，双方一致同意</span><span style="font-family:宋体; font-size:10.5pt">按下列第</span>
+            <!-- <span style="font-family:宋体; font-size:12pt; letter-spacing:0.1pt; text-decoration:underline">    </span> -->
+            <input type="text" style="width: 40px;" value="">
+            <span style="font-family:宋体; font-size:10.5pt">种方式解决：</span></p>
+        <p style="margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:21pt; widows:0"><span style="font-family:Calibri; font-size:12pt; letter-spacing:0.1pt">1</span><span style="font-family:宋体; font-size:12pt; letter-spacing:0.1pt">、向甲方所在地人民法院提起诉讼。</span></p>
+        <p style="font-size:12pt; line-height:150%; margin:0pt 0pt 10pt; orphans:0; text-indent:21pt; widows:0"><span style="font-family:Calibri; font-size:12pt; letter-spacing:0.1pt">2</span><span style="font-family:宋体; font-size:12pt; letter-spacing:0.1pt">、向合同签订地人民法院提起诉讼（合同签订地：</span>
+            <!-- <span style="font-family:宋体; font-size:12pt; letter-spacing:0.1pt; text-decoration:underline">        </span> -->
+            <input type="text" style="width: 200px;" value="">
+            <span style="font-family:宋体; font-size:12pt; letter-spacing:0.1pt; text-decoration:none">）。</span></p>
+        <p style="font-size:12pt; line-height:150%; margin:0pt 0pt 10pt; orphans:0; text-indent:21pt; widows:0"><span style="font-family:Calibri; font-size:12pt; letter-spacing:0.1pt">3</span><span style="font-family:宋体; font-size:12pt; letter-spacing:0.1pt">、</span>
+            <span style="font-family:宋体; font-size:12pt; letter-spacing:0.1pt">提交</span>
+            <!-- <span style="font-family:宋体; font-size:12pt; letter-spacing:0.1pt; text-decoration:underline">        </span> -->
+            <input type="text" style="width: 200px;" value="">
+            <span style="font-family:宋体; font-size:12pt; letter-spacing:0.1pt">仲裁委员会在</span>
+            <!-- <span style="font-family:宋体; font-size:12pt; letter-spacing:0.1pt; text-decoration:underline">        </span> -->
+            <input type="text" style="width: 200px;" value="">
+            <span style="font-family:宋体; font-size:12pt; letter-spacing:0.1pt">进行仲裁</span><span style="font-family:宋体; font-size:12pt; letter-spacing:0.1pt">。</span></p>
+        <p style="font-size:12pt; line-height:150%; margin:0pt 0pt 10pt; orphans:0; text-indent:21pt; widows:0"><span style="font-family:Calibri; font-size:12pt; letter-spacing:0.1pt">4</span><span style="font-family:宋体; font-size:12pt; letter-spacing:0.1pt">、其他：</span>
+            <!-- <span style="font-family:宋体; font-size:12pt; letter-spacing:0.1pt; text-decoration:underline">                       </span> -->
+            <input type="text" style="width: 500px;" value="">
+            <span style="font-family:宋体; font-size:12pt; letter-spacing:0.1pt; text-decoration:none">。</span></p>
+        <p style="font-size:10.5pt; line-height:115%; margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:21pt; widows:0">
+            <br /><span style="font-family:宋体; font-size:10.5pt; font-weight:normal">         </span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">第</span>
+            <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">十</span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">条:担保及共同偿债责任期限及信息授权条款</span></p>
+        <p style="font-size:10.5pt; line-height:115%; margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:21pt; widows:0">
+            <br /><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">    </span><span style="font-family:宋体; font-size:10.5pt; font-weight:normal">1、本合同的期限为从本合同签定之日起至乙方还清银行分期贷款本息及甲方所有代偿垫付款日止。</span><br /><span style="font-family:宋体; font-size:10.5pt; font-weight:normal">    </span>
+            <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">2、乙方及共同还款人不可撤销地授权并同意甲方及甲方转授权的人员，在无需乙方及共同还款人单独出具其它任何形式授权书的情况下，可以自行收集、调取、查阅、办理乙方及共同还款人人行个人征信情况、个人身份验证、违法犯罪情况、银行账户、通讯信息、网贷、职业查询、失信情况、查询手机定位信息等甲方认为需要的一切公开或非公开的信息。但上述信息仅限于甲方使用，甲方不得对获得的信息予以非法买卖。</span>
+        </p>
+        <p style="font-size:10.5pt; line-height:115%; margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:21pt; widows:0">
+            <br /><span style="font-family:宋体; font-size:10.5pt; font-weight:normal">             </span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">    </span>
+            <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">第</span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">十一</span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">条:保证担保条款</span></p>
+        <p style="font-size:10.5pt; line-height:115%; margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:21pt; widows:0">
+            <br /><span style="font-family:宋体; font-size:10.5pt">    </span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">1、保证人对乙方在本合同项下应承担的责任、义务均已明确知晓并了解，并自愿为乙方就本合同项下的全部债务提供连带保证担保。</span><br /><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">    </span>
+            <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">2</span>
+            <span style="font-family:宋体; font-size:10.5pt; font-weight:bold"> </span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">保证责任范围为本合同项下的包括但不限于甲方垫付的分期贷款本息、罚息、复利、垫付款、违约金、律师费、诉讼费、差旅费、人力费、拖车服务费、留置车辆保管产生的其它费用等。</span><br />
+            <span style="font-family:宋体; font-size:10.5pt">    </span>
+        </p>
 
-    <p
-      style="font-size:10.5pt; line-height:115%; margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:21pt; widows:0">
-      <br /><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">3、保证担保期限为主合同期限，若主债权为提前清偿或分笔清偿的，则保证担保期间为自甲方最后一笔债务向银行清偿之日起三年。</span><br /><span
-        style="font-family:宋体; font-size:10.5pt">    </span>
-      <span
-        style="font-family:宋体; font-size:10.5pt">4、无论乙方对本合同项下的债务是否有其他担保(包括但不限于保证、抵押、质押、保函的担保形式)，不论上述其他担保何时成立、是否有效、是否为乙方自己所提供、甲方是否向其他</span>
-      <span style="font-family:宋体; font-size:10.5pt">保证</span><span
-        style="font-family:宋体; font-size:10.5pt">人提出权利主张，也不论是否有第三方同意承担本合同项下的全部或部分债务，保证人在本合同项下的保证责任均不因此减免</span>
-      <span style="font-family:宋体; font-size:10.5pt">，</span><span
-        style="font-family:宋体; font-size:10.5pt">甲方均可直接要求保证人依照本合同约定在其保证范围内承担连带保证担保责任，保证人不提出任何异议。</span><br /><span
-        style="font-family:宋体; font-size:10.5pt">    5、</span><span
-        style="font-family:宋体; font-size:10.5pt">如有多个保证人为主合同项下债务提供保证的，上述保证人共同对主合同项下债务承担连带共同保证责任。</span><br /><span
-        style="font-family:宋体; font-size:10.5pt">                 </span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">  </span>
-      <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">第</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">十二</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">条:其它</span><br />
-      <span style="font-family:宋体; font-size:10.5pt">    </span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">1、乙方必须保证提供材料的真实性、合法性。借款人、</span>
-      <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">共同还款人、</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">配偶及</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">保证</span>
-      <span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">人必须本人亲笔签字。如因乙方提供虚假材料、伪造签名等，造成的一切后果由乙方承担。乙方同意甲方无需告知乙方，即可视情自行在贷款车辆安装车辆定位追踪等装置。</span><br />
-      <span style="font-family:宋体; font-size:10.5pt">    </span><span
-        style="font-family:宋体; font-size:10.5pt">2、分期贷款相关合同签订后，乙方在银行车辆分期贷款发放前委托甲方垫款提车的，由甲方依据乙方出具的(按揭分期购车垫款委托书》或按本合同约定先行垫付车辆分期贷款，银行分期贷款直接支付给甲方以偿还甲方垫付款。在甲方未收到银行发放的分期贷款前，该车实际产权属于甲方所有，所垫付的分期贷款金额视为乙方向甲方的借款。垫付期最长不超过10日。无论任何原因，银行不能发放分期贷款或超过垫付期限仍</span>
-      <span style="font-family:宋体; font-size:10.5pt">未</span><span
-        style="font-family:宋体; font-size:10.5pt">发放分期贷款的，乙方应无条件向甲方返还垫付款，同时乙方自甲方垫款之日起按垫款总额向甲方支付年化24%的利息直至清偿完毕。否则甲方有权解除本协议，按乙方合同违约处理，并不予退还风险押金(单月月供)，由此造成的一切损失由乙方承担。</span><br />
-      <span style="font-family:宋体; font-size:10.5pt">    </span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">3、乙方如将所购车辆转让、变卖、赠与、出租、重复抵(质)押或用以清偿其他债务及乙方本人被依法追究刑事责任的。甲方有权直接依法留置乙方该车辆，用以抵偿乙方相关债务。</span><br /><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">    </span>
-      <span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">4、共同还款人已知晓本合同全部内容并同意对本合同项下乙方应承担的全部责任承担共同还款责任。</span><br /><span
-        style="font-family:宋体; font-size:10.5pt">    </span>
-      <span
-        style="font-family:宋体; font-size:10.5pt">5、签约双方同意乙方与银行签订的分期借款合同与本合同具有同等法律效力，乙方违反与银行的分期借款合同任意条款亦构成对本合同的违约，均可按本合同违约条款处理。</span><br /><span
-        style="font-family:宋体; font-size:10.5pt">   </span><span style="font-family:宋体; font-size:10.5pt"> </span>
-      <span style="font-family:宋体; font-size:10.5pt">6</span><span
-        style="font-family:宋体; font-size:10.5pt">、本合同的内容为商业秘密，任何一方均不得向无关方披露，否则按合同违约处理。</span>
-      <span style="font-family:宋体; font-size:10.5pt">      </span>
-    </p>
-    <p
-      style="font-size:10.5pt; line-height:115%; margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:21pt; widows:0">
-      <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">7</span>
-      <span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">、本合同所有条款之内容，签约方已逐条仔细研读，并得到明确解释，对重点部分特别是黑体部分本人得到充分提示并同意认可。签约各方对本合同条款含义认识均</span>
-      <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">一</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">致</span>
-      <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">。</span>
-    </p>
-    <p
-      style="font-size:10.5pt; line-height:115%; margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:21pt; widows:0">
-      <span style="font-family:宋体; font-size:10.5pt">8</span><span
-        style="font-family:宋体; font-size:10.5pt">、本合同一式两份，甲方乙方各执一份，经甲、乙双方签字或盖章后生效。</span><br /><span
-        style="font-family:宋体; font-size:10.5pt">&#xa0;</span></p>
-    <p
-      style="font-size:10.5pt; line-height:115%; margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:21pt; widows:0">
-      <span style="font-family:宋体; font-size:10.5pt">&#xa0;</span></p>
-    <p
-      style="font-size:10.5pt; line-height:115%; margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:21pt; widows:0">
-      <span style="font-family:宋体; font-size:10.5pt">&#xa0;</span></p>
-    <p
-      style="font-size:10.5pt; line-height:115%; margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:31.5pt; widows:0">
-      <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">甲方(公章):</span>
-      <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">               </span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold"> </span>
-      <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">保证人</span><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">(签名)</span>
-      <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">：</span><br /><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">&#xa0;</span></p>
-    <p style="font-size:10.5pt; line-height:115%; margin:0pt 0pt 10pt; orphans:0; text-align:justify; widows:0"><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">&#xa0;</span></p>
-    <p style="font-size:10.5pt; line-height:115%; margin:0pt 0pt 10pt; orphans:0; text-align:justify; widows:0"><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">&#xa0;</span></p>
-    <p style="font-size:10.5pt; line-height:115%; margin:0pt 0pt 10pt; orphans:0; text-align:justify; widows:0"><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">&#xa0;</span></p>
-    <p
-      style="font-size:10.5pt; line-height:115%; margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:31.5pt; widows:0">
-      <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">乙方(签名):</span>
-      <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">               </span>
-      <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">共同还款人(签名):</span>
-    </p>
-    <p style="font-size:10.5pt; line-height:115%; margin:0pt 0pt 10pt; orphans:0; text-align:justify; widows:0"><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">&#xa0;</span></p>
-    <p
-      style="font-size:10.5pt; line-height:115%; margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:231pt; widows:0">
-      <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">&#xa0;</span></p>
-    <p style="font-size:10.5pt; line-height:115%; margin:0pt 0pt 10pt; orphans:0; text-align:justify; widows:0"><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">        </span><br /><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">&#xa0;</span></p>
-    <p style="font-size:10.5pt; line-height:115%; margin:0pt 0pt 10pt; orphans:0; text-align:justify; widows:0"><span
-        style="font-family:宋体; font-size:10.5pt; font-weight:bold">&#xa0;</span></p>
-    <p
-      style="font-size:10.5pt; line-height:115%; margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:210pt; widows:0">
-      <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">签约时间:</span>
-      <span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline"
-        class="qyrq">[&lt;签约日期&gt;]</span>
-      <a name="签约日期"></a>
-    </p>
-  </div>
+        <p style="font-size:10.5pt; line-height:115%; margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:21pt; widows:0">
+            <br /><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">3、保证担保期限为主合同期限，若主债权为提前清偿或分笔清偿的，则保证担保期间为自甲方最后一笔债务向银行清偿之日起三年。</span><br /><span style="font-family:宋体; font-size:10.5pt">    </span>
+            <span style="font-family:宋体; font-size:10.5pt">4、无论乙方对本合同项下的债务是否有其他担保(包括但不限于保证、抵押、质押、保函的担保形式)，不论上述其他担保何时成立、是否有效、是否为乙方自己所提供、甲方是否向其他</span>
+            <span style="font-family:宋体; font-size:10.5pt">保证</span><span style="font-family:宋体; font-size:10.5pt">人提出权利主张，也不论是否有第三方同意承担本合同项下的全部或部分债务，保证人在本合同项下的保证责任均不因此减免</span>
+            <span style="font-family:宋体; font-size:10.5pt">，</span><span style="font-family:宋体; font-size:10.5pt">甲方均可直接要求保证人依照本合同约定在其保证范围内承担连带保证担保责任，保证人不提出任何异议。</span><br /><span style="font-family:宋体; font-size:10.5pt">    5、</span><span style="font-family:宋体; font-size:10.5pt">如有多个保证人为主合同项下债务提供保证的，上述保证人共同对主合同项下债务承担连带共同保证责任。</span><br
+            /><span style="font-family:宋体; font-size:10.5pt">                 </span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">  </span>
+            <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">第</span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">十二</span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">条:其它</span><br />
+            <span style="font-family:宋体; font-size:10.5pt">    </span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">1、乙方必须保证提供材料的真实性、合法性。借款人、</span>
+            <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">共同还款人、</span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">配偶及</span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">保证</span>
+            <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">人必须本人亲笔签字。如因乙方提供虚假材料、伪造签名等，造成的一切后果由乙方承担。乙方同意甲方无需告知乙方，即可视情自行在贷款车辆安装车辆定位追踪等装置。</span><br />
+            <span style="font-family:宋体; font-size:10.5pt">    </span><span style="font-family:宋体; font-size:10.5pt">2、分期贷款相关合同签订后，乙方在银行车辆分期贷款发放前委托甲方垫款提车的，由甲方依据乙方出具的(按揭分期购车垫款委托书》或按本合同约定先行垫付车辆分期贷款，银行分期贷款直接支付给甲方以偿还甲方垫付款。在甲方未收到银行发放的分期贷款前，该车实际产权属于甲方所有，所垫付的分期贷款金额视为乙方向甲方的借款。垫付期最长不超过10日。无论任何原因，银行不能发放分期贷款或超过垫付期限仍</span>
+            <span style="font-family:宋体; font-size:10.5pt">未</span><span style="font-family:宋体; font-size:10.5pt">发放分期贷款的，乙方应无条件向甲方返还垫付款，同时乙方自甲方垫款之日起按垫款总额向甲方支付年化24%的利息直至清偿完毕。否则甲方有权解除本协议，按乙方合同违约处理，并不予退还风险押金(单月月供)，由此造成的一切损失由乙方承担。</span><br />
+            <span style="font-family:宋体; font-size:10.5pt">    </span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">3、乙方如将所购车辆转让、变卖、赠与、出租、重复抵(质)押或用以清偿其他债务及乙方本人被依法追究刑事责任的。甲方有权直接依法留置乙方该车辆，用以抵偿乙方相关债务。</span><br /><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">    </span>
+            <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">4、共同还款人已知晓本合同全部内容并同意对本合同项下乙方应承担的全部责任承担共同还款责任。</span><br /><span style="font-family:宋体; font-size:10.5pt">    </span>
+            <span style="font-family:宋体; font-size:10.5pt">5、签约双方同意乙方与银行签订的分期借款合同与本合同具有同等法律效力，乙方违反与银行的分期借款合同任意条款亦构成对本合同的违约，均可按本合同违约条款处理。</span><br /><span style="font-family:宋体; font-size:10.5pt">   </span><span style="font-family:宋体; font-size:10.5pt"> </span>
+            <span style="font-family:宋体; font-size:10.5pt">6</span><span style="font-family:宋体; font-size:10.5pt">、本合同的内容为商业秘密，任何一方均不得向无关方披露，否则按合同违约处理。</span>
+            <span style="font-family:宋体; font-size:10.5pt">      </span>
+        </p>
+        <p style="font-size:10.5pt; line-height:115%; margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:21pt; widows:0">
+            <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">7</span>
+            <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">、本合同所有条款之内容，签约方已逐条仔细研读，并得到明确解释，对重点部分特别是黑体部分本人得到充分提示并同意认可。签约各方对本合同条款含义认识均</span>
+            <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">一</span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">致</span>
+            <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">。</span>
+        </p>
+        <p style="font-size:10.5pt; line-height:115%; margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:21pt; widows:0">
+            <span style="font-family:宋体; font-size:10.5pt">8</span><span style="font-family:宋体; font-size:10.5pt">、本合同一式两份，甲方乙方各执一份，经甲、乙双方签字或盖章后生效。</span><br /><span style="font-family:宋体; font-size:10.5pt">&#xa0;</span></p>
+        <p style="font-size:10.5pt; line-height:115%; margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:21pt; widows:0">
+            <span style="font-family:宋体; font-size:10.5pt">&#xa0;</span></p>
+        <p style="font-size:10.5pt; line-height:115%; margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:21pt; widows:0">
+            <span style="font-family:宋体; font-size:10.5pt">&#xa0;</span></p>
+        <p style="font-size:10.5pt; line-height:115%; margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:31.5pt; widows:0">
+            <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">甲方(公章):</span>
+            <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">               </span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold"> </span>
+            <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">保证人</span><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">(签名)</span>
+            <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">：</span><br /><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">&#xa0;</span></p>
+        <p style="font-size:10.5pt; line-height:115%; margin:0pt 0pt 10pt; orphans:0; text-align:justify; widows:0"><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">&#xa0;</span></p>
+        <p style="font-size:10.5pt; line-height:115%; margin:0pt 0pt 10pt; orphans:0; text-align:justify; widows:0"><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">&#xa0;</span></p>
+        <p style="font-size:10.5pt; line-height:115%; margin:0pt 0pt 10pt; orphans:0; text-align:justify; widows:0"><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">&#xa0;</span></p>
+        <p style="font-size:10.5pt; line-height:115%; margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:31.5pt; widows:0">
+            <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">乙方(签名):</span>
+            <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">               </span>
+            <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">共同还款人(签名):</span>
+        </p>
+        <p style="font-size:10.5pt; line-height:115%; margin:0pt 0pt 10pt; orphans:0; text-align:justify; widows:0"><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">&#xa0;</span></p>
+        <p style="font-size:10.5pt; line-height:115%; margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:231pt; widows:0">
+            <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">&#xa0;</span></p>
+        <p style="font-size:10.5pt; line-height:115%; margin:0pt 0pt 10pt; orphans:0; text-align:justify; widows:0"><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">        </span><br /><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">&#xa0;</span></p>
+        <p style="font-size:10.5pt; line-height:115%; margin:0pt 0pt 10pt; orphans:0; text-align:justify; widows:0"><span style="font-family:宋体; font-size:10.5pt; font-weight:bold">&#xa0;</span></p>
+        <p style="font-size:10.5pt; line-height:115%; margin:0pt 0pt 10pt; orphans:0; text-align:justify; text-indent:210pt; widows:0">
+            <span style="font-family:宋体; font-size:10.5pt; font-weight:bold">签约时间:</span>
+            <!-- <span style="font-family:宋体; font-size:10.5pt; font-weight:bold; text-decoration:underline" class="qyrq">[&lt;签约日期&gt;]</span> -->
+            <input type="text" class="qyrq" style="width: 200px;border: 0;" value="[&lt;签约日期&gt;]">
+            <a name="签约日期"></a>
+        </p>
+    </div>
 </body>
 
 <script>
-  // 接收VUE数据
-  window.addEventListener("message", function (event) {
-    let dkrname = document.querySelector('.dkrname')
-    let dkridCard = document.querySelector('.dkridCard')
-    let dkrphone = document.querySelector('.dkrphone')
-    let dkraddress = document.querySelector('.dkraddress')
-    let gthkrname = document.querySelector('.gthkrname')
-    let gthkridCard = document.querySelector('.gthkridCard')
-    let gthkrphone = document.querySelector('.gthkrphone')
-    let gthkraddress = document.querySelector('.gthkraddress')
-    let bzrname = document.querySelector('.bzrname')
-    let bzridCard = document.querySelector('.bzridCard')
-    let bzrphone = document.querySelector('.bzrphone')
-    let bzraddress = document.querySelector('.bzraddress')
-    let clpp = document.querySelector('.clpp')
-    let clks = document.querySelector('.clks')
-    let cljg = document.querySelector('.cljg')
-    let sfk = document.querySelector('.sfk')
-    let sfbl = document.querySelector('.sfbl')
-    let clwk = document.querySelector('.clwk')
-    let dkje = document.querySelector('.dkje')
-    let dkqx = document.querySelector('.dkqx')
-    let zxfwglfdx = document.querySelector('.zxfwglfdx')
-    let zxfwglf = document.querySelector('.zxfwglf')
-    let qyrq = document.querySelector('.qyrq')
-    dkrname.innerHTML = event.data.jiekuanren.userName
-    dkridCard.innerHTML = event.data.jiekuanren.idCard
-    dkrphone.innerHTML = event.data.jiekuanren.phoneNumber
-    dkraddress.innerHTML = event.data.jiekuanren.familyAddress
-    gthkrname.innerHTML = event.data.gongchangren.debtName
-    gthkridCard.innerHTML = event.data.gongchangren.idCard
-    gthkrphone.innerHTML = event.data.gongchangren.phoneNumber
-    gthkraddress.innerHTML = event.data.gongchangren.nowPlace
-    bzrname.innerHTML = event.data.danbaoren.userName
-    bzridCard.innerHTML = event.data.danbaoren.idCard
-    bzrphone.innerHTML = event.data.danbaoren.phoneNumber
-    bzraddress.innerHTML = event.data.danbaoren.familyAddress
-    clpp.innerHTML = event.data.chedai.brand
-    clks.innerHTML = event.data.chedai.style
-    cljg.innerHTML = event.data.chedai.actualPrice
-    sfk.innerHTML = event.data.chedai.actualPrice - event.data.chedai.loanAmount
-    sfbl.innerHTML = '   '
-    clwk.innerHTML = event.data.chedai.loanAmount
-    dkje.innerHTML = event.data.chedai.loanAmount
-    dkqx.innerHTML = event.data.chedai.repaymentTerm
-    zxfwglfdx.innerHTML = '            '
-    zxfwglf.innerHTML = '      '
-    qyrq.innerHTML = ''
-    if (event.data.isDownload) return printOut('咨询服务管理协议')
-  })
-
-  // PDF
-  function printOut(name) {
-    let shareContent = document.querySelector('#PDF'), //需要截图的包裹的（原生的）DOM 对象
-      width = shareContent.clientWidth, //获取dom 宽度
-      height = shareContent.clientHeight, //获取dom 高度
-      canvas = document.createElement("canvas"), //创建一个canvas节点
-      scale = 2; //定义任意放大倍数 支持小数
-    canvas.width = width * scale; //定义canvas 宽度 * 缩放
-    canvas.height = height * scale; //定义canvas高度 *缩放
-    canvas.style.width = shareContent.clientWidth * scale + "px";
-    canvas.style.height = shareContent.clientHeight * scale + "px";
-    canvas.getContext("2d").scale(scale, scale); //获取context,设置scale
-    let opts = {
-      scale: scale, // 添加的scale 参数
-      canvas: canvas, //自定义 canvas
-      logging: false, //日志开关，便于查看html2canvas的内部执行流程
-      width: width, //dom 原始宽度
-      height: height,
-      useCORS: true, // 【重要】开启跨域配置
-    };
-
-    html2canvas(shareContent, opts).then(() => {
-      var contentWidth = canvas.width;
-      var contentHeight = canvas.height;
-      //一页pdf显示html页面生成的canvas高度;
-      var pageHeight = (contentWidth / 592.28) * 841.89;
-      //未生成pdf的html页面高度
-      var leftHeight = contentHeight;
-      //页面偏移
-      var position = 0;
-      //a4纸的尺寸[595.28,841.89]，html页面生成的canvas在pdf中图片的宽高
-      var imgWidth = 595.28;
-      var imgHeight = (592.28 / contentWidth) * contentHeight;
-      var pageData = canvas.toDataURL("image/jpeg", 1.0);
-      var PDF = new jsPDF("", "pt", "a4");
-      if (leftHeight < pageHeight) {
-        PDF.addImage(pageData, "JPEG", 0, 0, imgWidth, imgHeight);
-      } else {
-        while (leftHeight > 0) {
-          PDF.addImage(pageData, "JPEG", 0, position, imgWidth, imgHeight);
-          leftHeight -= pageHeight;
-          position -= 841.89;
-          if (leftHeight > 0) {
-            PDF.addPage();
-          }
+    // 接收VUE数据
+    window.addEventListener("message", function(event) {
+        var date = new Date();
+        let dkrname = document.querySelector('.dkrname')
+        let dkridCard = document.querySelector('.dkridCard')
+        let dkrphone = document.querySelector('.dkrphone')
+        let dkraddress = document.querySelector('.dkraddress')
+        let gthkrname = document.querySelector('.gthkrname')
+        let gthkridCard = document.querySelector('.gthkridCard')
+        let gthkrphone = document.querySelector('.gthkrphone')
+        let gthkraddress = document.querySelector('.gthkraddress')
+        let bzrname = document.querySelector('.bzrname')
+        let bzridCard = document.querySelector('.bzridCard')
+        let bzrphone = document.querySelector('.bzrphone')
+        let bzraddress = document.querySelector('.bzraddress')
+        let clpp = document.querySelector('.clpp')
+        let clks = document.querySelector('.clks')
+        let cljg = document.querySelector('.cljg')
+        let sfk = document.querySelector('.sfk')
+        let sfbl = document.querySelector('.sfbl')
+        let clwk = document.querySelector('.clwk')
+        let dkzje = document.querySelector('.dkzje')
+        let dkqx = document.querySelector('.dkqx')
+        let zxfwglfdx = document.querySelector('.zxfwglfdx')
+        let zxfwglf = document.querySelector('.zxfwglf')
+        let qyrq = document.querySelector('.qyrq')
+        let cjh = document.querySelector('.cjh')
+        let fdjh = document.querySelector('.fdjh')
+        if (event.data.jiekuanren) {
+            dkrname.value = event.data.jiekuanren.userName
+            dkridCard.value = event.data.jiekuanren.idCard
+            dkrphone.value = event.data.jiekuanren.phoneNumber
+            dkraddress.value = event.data.jiekuanren.familyAddress
+        } else {
+            dkrname.value = ''
+            dkridCard.value = ''
+            dkrphone.value = ''
+            dkraddress.value = ''
         }
-      }
-      PDF.save(name + ".pdf"); // 这里是导出的文件名
-    });
-  }
+        if (event.data.gongchangren) {
+            gthkrname.value = event.data.gongchangren.debtName
+            gthkridCard.value = event.data.gongchangren.idCard
+            gthkrphone.value = event.data.gongchangren.phoneNumber
+            gthkraddress.value = event.data.gongchangren.nowPlace
+        } else {
+            gthkrname.value = ''
+            gthkridCard.value = ''
+            gthkrphone.value = ''
+            gthkraddress.value = ''
+        }
+        if (event.data.danbaoren) {
+            bzrname.value = event.data.danbaoren.userName
+            bzridCard.value = event.data.danbaoren.idCard
+            bzrphone.value = event.data.danbaoren.phoneNumber
+            bzraddress.value = event.data.danbaoren.familyAddress
+        } else {
+            bzrname.value = ''
+            bzridCard.value = ''
+            bzrphone.value = ''
+            bzraddress.value = ''
+        }
+        if (event.data.chedai) {
+            if (event.data.chedai.brand) {
+                clpp.value = event.data.chedai.brand
+            } else {
+                clpp.value = ''
+            }
+            if (event.data.chedai.style) {
+                clks.value = event.data.chedai.style
+            } else {
+                clks.value = ''
+            }
+            if (event.data.chedai.actualPrice) {
+                cljg.value = event.data.chedai.actualPrice
+            } else {
+                cljg.value = ''
+            }
+            if (event.data.chedai.actualPrice && event.data.chedai.loanAmount) {
+                sfk.value = event.data.chedai.actualPrice - event.data.chedai.loanAmount
+            } else {
+                sfk.value = ''
+            }
+            if (event.data.chedai.loanAmount) {
+                clwk.value = event.data.chedai.loanAmount
+            } else {
+                clwk.value = ''
+            }
+            if (event.data.chedai.loanAmount) {
+                clwk.value = event.data.chedai.loanAmount
+            } else {
+                clwk.value = ''
+            }
+            if (event.data.chedai.repaymentTerm) {
+                dkqx.value = event.data.chedai.repaymentTerm
+            } else {
+                dkqx.value = ''
+            }
+            if (event.data.chedai.vinCode) {
+                cjh.value = event.data.chedai.vinCode
+            } else {
+                cjh.value = ''
+            }
+            if (event.data.chedai.engineCode) {
+                fdjh.value = event.data.chedai.engineCode
+            } else {
+                fdjh.value = ''
+            }
+        } else {
+            clpp.value = ''
+            clks.value = ''
+            cljg.value = ''
+            sfk.value = ''
+            clwk.value = ''
+            dkqx.value = ''
+            cjh.value = ''
+            fdjh.value = ''
+        }
+        dkzje.value = ''
+        sfbl.value = ''
+        zxfwglfdx.value = ''
+        zxfwglf.value = ''
+        qyrq.value = date.getFullYear() + '年' + (date.getMonth() + 1) + '月' + date.getDate() + '日'
+        if (event.data.isDownload) return printOut('咨询服务管理协议')
+    })
 
-  // 打印
-  function printdiv(printpage) {
-    var newstr = printpage.innerHTML;
-    var oldstr = document.body.innerHTML;
-    document.body.innerHTML = newstr;
-    window.print();
-    document.body.innerHTML = oldstr;
-    return false;
-  }
-  var bt = document.getElementById("bt");
-  var div_print = document.getElementById("PDF");
-  bt.onclick = function () {
-    printdiv(div_print);
-  }
+    // PDF
+    function printOut(name) {
+        let shareContent = document.querySelector('#PDF'), //需要截图的包裹的（原生的）DOM 对象
+            width = shareContent.clientWidth, //获取dom 宽度
+            height = shareContent.clientHeight, //获取dom 高度
+            canvas = document.createElement("canvas"), //创建一个canvas节点
+            scale = 2; //定义任意放大倍数 支持小数
+        canvas.width = width * scale; //定义canvas 宽度 * 缩放
+        canvas.height = height * scale; //定义canvas高度 *缩放
+        canvas.style.width = shareContent.clientWidth * scale + "px";
+        canvas.style.height = shareContent.clientHeight * scale + "px";
+        canvas.getContext("2d").scale(scale, scale); //获取context,设置scale
+        let opts = {
+            scale: scale, // 添加的scale 参数
+            canvas: canvas, //自定义 canvas
+            logging: false, //日志开关，便于查看html2canvas的内部执行流程
+            width: width, //dom 原始宽度
+            height: height,
+            useCORS: true, // 【重要】开启跨域配置
+        };
 
+        html2canvas(shareContent, opts).then(() => {
+            var contentWidth = canvas.width;
+            var contentHeight = canvas.height;
+            //一页pdf显示html页面生成的canvas高度;
+            var pageHeight = (contentWidth / 592.28) * 841.89;
+            //未生成pdf的html页面高度
+            var leftHeight = contentHeight;
+            //页面偏移
+            var position = 0;
+            //a4纸的尺寸[595.28,841.89]，html页面生成的canvas在pdf中图片的宽高
+            var imgWidth = 595.28;
+            var imgHeight = (592.28 / contentWidth) * contentHeight;
+            var pageData = canvas.toDataURL("image/jpeg", 1.0);
+            var PDF = new jsPDF("", "pt", "a4");
+            if (leftHeight < pageHeight) {
+                PDF.addImage(pageData, "JPEG", 0, 0, imgWidth, imgHeight);
+            } else {
+                while (leftHeight > 0) {
+                    PDF.addImage(pageData, "JPEG", 0, position, imgWidth, imgHeight);
+                    leftHeight -= pageHeight;
+                    position -= 841.89;
+                    if (leftHeight > 0) {
+                        PDF.addPage();
+                    }
+                }
+            }
+            PDF.save(name + ".pdf"); // 这里是导出的文件名
+        });
+    }
+
+    // 打印
+    function printdiv(printpage) {
+        var newstr = printpage.innerHTML;
+        var oldstr = document.body.innerHTML;
+        document.body.innerHTML = newstr;
+        window.print();
+        document.body.innerHTML = oldstr;
+        return false;
+    }
+    // var bt = document.getElementById("bt");
+    // var div_print = document.getElementById("PDF");
+    // bt.onclick = function() {
+    //     printdiv(div_print);
+    // }
 </script>
 
 </html>

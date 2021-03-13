@@ -1,10 +1,11 @@
 import request from '@/utils/request'
 
 // 获取终审列表
-export function getFinalTrialList() {
+export function getFinalTrialList(params) {
     return request({
         url: '/stage/list',
         method: 'get',
+        params
     })
 }
 

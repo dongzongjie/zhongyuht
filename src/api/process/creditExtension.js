@@ -1,10 +1,11 @@
 import request from '@/utils/request'
 
 // 获取授信列表
-export function getCreditExtensionList() {
+export function getCreditExtensionList(params) {
     return request({
         url: '/stage/grant',
         method: 'get',
+        params
     })
 }
 
@@ -18,9 +19,9 @@ export function creditExtensionHandle(data) {
 }
 
 // 获取授信详情
-export function creditExtensionDetails(transactionCode, userId) {
+export function creditExtensionDetails(transactionCode) {
     return request({
-        url: '/stage/grant/basic?transactionCode=' + transactionCode + '&userId=' + userId,
+        url: '/stage/now/grant?transactionCode=' + transactionCode,
         method: 'get',
     })
 }

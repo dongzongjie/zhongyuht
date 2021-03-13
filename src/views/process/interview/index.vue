@@ -113,7 +113,7 @@
 
 <script>
 import { checkRole } from '@/utils/permission'
-import { listBusiness } from '@/api/process/business'
+import { listInterview } from '@/api/process/interview'
 
 export default {
   name: 'Contract',
@@ -160,7 +160,7 @@ export default {
   watch: {
     $route(to, from) {
       //监听路由是否变化
-      if (to.path == '/contract') {
+      if (to.path == '/process/interview') {
         this.getList()
       }
     },
@@ -170,7 +170,7 @@ export default {
     /** 查询秒批列表 */
     getList() {
       this.loading = true
-      listBusiness(this.queryParams).then((response) => {
+      listInterview(this.queryParams).then((response) => {
         this.businessList = response.rows
         this.total = response.total
         this.loading = false
@@ -196,8 +196,8 @@ export default {
     // 立即处理
     async handle(item) {
       this.$router.push({
-        path: '/contractDetails',
-        name: 'ContractDetails',
+        path: '/interviewDetails',
+        name: 'InterviewDetails',
         query: {
           transactionCode: item.transactionCode,
         },

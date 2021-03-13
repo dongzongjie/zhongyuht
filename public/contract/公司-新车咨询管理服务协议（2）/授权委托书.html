@@ -29,6 +29,14 @@
             top: 150px;
             left: 0;
         }
+        
+        input {
+            border: 0;
+            border-bottom: 1px solid #000;
+            font-size: 18px;
+            font-family: 宋体;
+            font-weight: bold
+        }
     </style>
     <script src="https://cdn.bootcss.com/html2canvas/0.5.0-beta4/html2canvas.js"></script>
     <script src="https://cdn.bootcss.com/jspdf/1.3.4/jspdf.debug.js"></script>
@@ -36,7 +44,7 @@
 
 <body>
     <button onclick="printOut('授权委托书')">点击下载合同</button>
-    <button id="bt">点击打印</button>
+    <!-- <button id="bt">点击打印</button> -->
     <div class="docpe" id="PDF">
         <p style="font-size:18pt; line-height:115%; margin:0pt 0pt 10pt; orphans:0; text-align:center; widows:0">
             <span style="font-family:宋体; font-size:18pt; font-weight:bold">授权委托书</span>
@@ -49,9 +57,11 @@
         </p>
         <p style="font-size:14pt; line-height:115%; margin:0pt 0pt 10pt 11.95pt; orphans:0; text-indent:31.5pt; widows:0">
             <span style="font-family:宋体; font-size:14pt">本人</span>
-            <span style="font-family:宋体; font-size:14pt; text-decoration:underline" class="dkrname">[&lt;贷款人姓名&gt;]</span>
+            <!-- <span style="font-family:宋体; font-size:14pt; text-decoration:underline" class="dkrname">[&lt;贷款人姓名&gt;]</span> -->
+            <input type="text" class="dkrname" style="width: 100px;" value="[&lt;贷款人姓名&gt;]">
             <span style="font-family:宋体; font-size:14pt">（身份证号:</span>
-            <span style="font-family:宋体; font-size:14pt; text-decoration:underline" class="dkridCard">[&lt;贷款人身份证号&gt;]</span>
+            <!-- <span style="font-family:宋体; font-size:14pt; text-decoration:underline" class="dkridCard">[&lt;贷款人身份证号&gt;]</span> -->
+            <input type="text" class="dkridCard" value="[&lt;贷款人身份证号&gt;]">
             <span style="font-family:宋体; font-size:14pt">）通过</span>
             <span style="font-family:宋体; font-size:14pt; text-decoration:underline">中豫融资租赁有限公司</span>
             <span style="font-family:宋体; font-size:14pt">向</span>
@@ -62,7 +72,8 @@
             <span style="font-family:宋体; font-size:14pt">申请汽车分期</span>
             <span style="font-family:宋体; font-size:14pt">付</span>
             <span style="font-family:宋体; font-size:14pt">款人民币</span>
-            <span style="font-family:宋体; font-size:14pt; text-decoration:underline" class="dkje">[&lt;贷款金额&gt;]</span>
+            <!-- <span style="font-family:宋体; font-size:14pt; text-decoration:underline" class="dkje">[&lt;贷款金额&gt;]</span> -->
+            <input type="text" class="dkje" style="width: 80px;" value="[&lt;贷款金额&gt;]">
             <span style="font-family:宋体; font-size:14pt; text-decoration:none">元，与</span>
             <span style="font-family:宋体; font-size:14pt; text-decoration:underline">中豫融资租赁有限公司</span>
             <span style="font-family:宋体; font-size:14pt">签订了</span>
@@ -76,15 +87,19 @@
             <span style="font-family:宋体; font-size:14pt">违</span>
             <span style="font-family:宋体; font-size:14pt">约</span>
             <span style="font-family:宋体; font-size:14pt">，本人同意并特别授权</span>
-            <span style="font-family:宋体; font-size:14pt; text-decoration:underline">       </span>
+            <!-- <span style="font-family:宋体; font-size:14pt; text-decoration:underline">       </span> -->
+            <input type="text" class="a" style="width: 110px;" value="">
             <span style="font-family:宋体; font-size:14pt">将本人的车牌号:</span>
-            <span style="font-family:宋体; font-size:14pt; text-decoration:underline">        </span>
+            <!-- <span style="font-family:宋体; font-size:14pt; text-decoration:underline">        </span> -->
+            <input type="text" class="b" style="width: 100px;" value="">
             <span style="font-family:宋体; font-size:14pt">车架号:</span>
             <span style="font-family:宋体; font-size:14pt; text-decoration:underline"></span>
-            <span style="font-family:宋体; font-size:14pt; text-decoration:underline">           </span>
+            <!-- <span style="font-family:宋体; font-size:14pt; text-decoration:underline">           </span> -->
+            <input type="text" class="c" style="width: 190px;" value="">
             <span style="font-family:宋体; font-size:14pt; text-decoration:underline"></span>
             <span style="font-family:宋体; font-size:14pt; text-decoration:none">，发动机号：</span>
-            <span style="font-family:宋体; font-size:14pt; text-decoration:underline">        </span>
+            <!-- <span style="font-family:宋体; font-size:14pt; text-decoration:underline">        </span> -->
+            <input type="text" class="d" style="width: 90px;" value="">
             <span style="font-family:宋体; font-size:14pt">的车辆直接收回进行处置并办理相应的过户手续，处置方式包括但不限</span>
             <span style="font-family:宋体; font-size:14pt">于</span>
             <span style="font-family:宋体; font-size:14pt">直接变卖、拍卖等，所发生的</span>
@@ -104,7 +119,8 @@
             <span style="font-family:宋体; font-size:14pt">费、违</span>
             <span style="font-family:宋体; font-size:14pt">约</span>
             <span style="font-family:宋体; font-size:14pt">金及</span>
-            <span style="font-family:宋体; font-size:14pt; text-decoration:underline">            </span>
+            <!-- <span style="font-family:宋体; font-size:14pt; text-decoration:underline">            </span> -->
+            <input type="text" class="e" style="width: 210px;" value="">
             <span style="font-family:宋体; font-size:14pt">为实现</span>
             <span style="font-family:宋体; font-size:14pt">债</span>
             <span style="font-family:宋体; font-size:14pt">权支出的所有费用等。</span>
@@ -128,10 +144,13 @@
             <span style="font-family:宋体; font-size:14pt">&#xa0;</span>
         </p>
         <p style="font-size:14pt; line-height:115%; margin:0pt 0pt 10pt 11.95pt; orphans:0; text-indent:210pt; widows:0">
+            <input type="text" class="nian" style="width: 60px;border:0;" value="">
             <span style="font-family:宋体; font-size:14pt">年</span>
-            <span style="font-family:宋体; font-size:14pt">  </span>
+            <!-- <span style="font-family:宋体; font-size:14pt">  </span> -->
+            <input type="text" class="yue" style="width: 30px;border:0;" value="">
             <span style="font-family:宋体; font-size:14pt">月</span>
-            <span style="font-family:宋体; font-size:14pt">  </span>
+            <!-- <span style="font-family:宋体; font-size:14pt">  </span> -->
+            <input type="text" class="ri" style="width: 30px;border:0;" value="">
             <span style="font-family:宋体; font-size:14pt">日</span>
         </p>
     </div>
@@ -140,12 +159,43 @@
 <script>
     // 接收VUE数据
     window.addEventListener("message", function(event) {
+        var date = new Date();
         let dkrname = document.querySelector('.dkrname')
         let dkridCard = document.querySelector('.dkridCard')
         let dkje = document.querySelector('.dkje')
-        dkrname.innerHTML = event.data.jiekuanren.userName
-        dkridCard.innerHTML = event.data.jiekuanren.idCard
-        dkje.innerHTML = event.data.chedai.loanAmount
+        let nian = document.querySelector('.nian')
+        let yue = document.querySelector('.yue')
+        let ri = document.querySelector('.ri')
+        let a = document.querySelector('.a')
+        let b = document.querySelector('.b')
+        let c = document.querySelector('.c')
+        let d = document.querySelector('.d')
+        let e = document.querySelector('.e')
+        if (event.data.jiekuanren) {
+            dkrname.value = event.data.jiekuanren.userName
+            dkridCard.value = event.data.jiekuanren.idCard
+        } else {
+            dkrname.value = ''
+            dkridCard.value = ''
+        }
+        if (event.data.chedai) {
+            if (event.data.chedai.loanAmount) {
+                dkje.value = event.data.chedai.loanAmount
+            } else {
+                dkje.value = ''
+            }
+            dkje.value = event.data.chedai.loanAmount
+        } else {
+            dkje.value = ''
+        }
+        nian.value = date.getFullYear()
+        yue.value = date.getMonth() + 1
+        ri.value = date.getDate()
+        a.value = ''
+        b.value = ''
+        c.value = ''
+        d.value = ''
+        e.value = ''
         if (event.data.isDownload) return printOut('授权委托书')
     })
 
@@ -209,11 +259,11 @@
         document.body.innerHTML = oldstr;
         return false;
     }
-    var bt = document.getElementById("bt");
-    var div_print = document.getElementById("PDF");
-    bt.onclick = function() {
-        printdiv(div_print);
-    }
+    // var bt = document.getElementById("bt");
+    // var div_print = document.getElementById("PDF");
+    // bt.onclick = function() {
+    //     printdiv(div_print);
+    // }
 </script>
 
 </html>

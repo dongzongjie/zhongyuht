@@ -459,22 +459,26 @@ export default {
     },
     // 点击按钮
     addCreidClick() {
-      this.$confirm('确认提交?提交之后无法修改', '警告', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'warning',
-      })
-        .then(
-          addDetailsCredit({
-            transactionCode: this.$route.query.transactionCode,
-            details: this.detailsCredit,
-          })
-        )
-        .then(() => {
-          this.msgSuccess('操作成功')
-          this.getDetailsCredit()
+      if (this.detailsCredit.trim()) {
+        this.$confirm('确认提交?提交之后无法修改', '警告', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning',
         })
-        .catch(function () {})
+          .then(() => {
+            return addDetailsCredit({
+              transactionCode: this.$route.query.transactionCode,
+              details: this.detailsCredit,
+            })
+          })
+          .then(() => {
+            this.msgSuccess('操作成功')
+            this.getDetailsCredit()
+          })
+          .catch(function () {})
+      } else {
+        this.msgError('请填写详版征信')
+      }
     },
     // 填写详版征信
     async addCreid() {

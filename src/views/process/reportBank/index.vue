@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
     <!-- 搜索框 -->
-    <el-form
+    <!-- <el-form
       :model="queryParams"
       ref="queryForm"
       :inline="true"
@@ -59,7 +59,7 @@
           >重置</el-button
         >
       </el-form-item>
-    </el-form>
+    </el-form> -->
     <!-- 我的客户 -->
     <el-row :gutter="10" class="mb8">
       <el-col :span="1.5">

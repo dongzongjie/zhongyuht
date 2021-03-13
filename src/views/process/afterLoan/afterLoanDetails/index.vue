@@ -58,48 +58,48 @@
         <span>登记栏</span>
       </div>
       <el-row>
-        <el-col :span="4" class="img">
+        <el-col :span="4" class="img" v-if="afterData.dj12">
           登记证信息栏1-2
           <el-image
             style="width: 100px; height: 100px"
             :src="afterData.dj12"
-            :preview-src-list="srcList"
+            :preview-src-list="srcList1"
           >
           </el-image>
         </el-col>
-        <el-col :span="4" class="img">
+        <el-col :span="4" class="img" v-if="afterData.dj34">
           登记证信息栏3-4
           <el-image
             style="width: 100px; height: 100px"
             :src="afterData.dj34"
-            :preview-src-list="srcList"
+            :preview-src-list="srcList1"
           >
           </el-image>
         </el-col>
-        <el-col :span="4" class="img">
+        <el-col :span="4" class="img" v-if="afterData.dj56">
           登记证信息栏5-6
           <el-image
             style="width: 100px; height: 100px"
             :src="afterData.dj56"
-            :preview-src-list="srcList"
+            :preview-src-list="srcList1"
           >
           </el-image>
         </el-col>
-        <el-col :span="4" class="img">
+        <el-col :span="4" class="img" v-if="afterData.dj78">
           登记证信息栏7-8
           <el-image
             style="width: 100px; height: 100px"
             :src="afterData.dj78"
-            :preview-src-list="srcList"
+            :preview-src-list="srcList1"
           >
           </el-image>
         </el-col>
-        <el-col :span="4" class="img">
+        <el-col :span="4" class="img" v-if="afterData.dj910">
           登记证信息栏9-10
           <el-image
             style="width: 100px; height: 100px"
             :src="afterData.dj910"
-            :preview-src-list="srcList"
+            :preview-src-list="srcList1"
           >
           </el-image>
         </el-col>
@@ -120,7 +120,7 @@
         <span>保险信息</span>
       </div>
       <el-row>
-        <el-col :span="4" class="img">
+        <el-col :span="4" class="img" v-if="afterData.xbd">
           新保险单
           <el-image
             style="width: 100px; height: 100px"
@@ -129,7 +129,7 @@
           >
           </el-image>
         </el-col>
-        <el-col :span="4" class="img">
+        <el-col :span="4" class="img" v-if="afterData.ybd">
           原保险单
           <el-image
             style="width: 100px; height: 100px"
@@ -138,7 +138,7 @@
           >
           </el-image>
         </el-col>
-        <el-col :span="4" class="img">
+        <el-col :span="4" class="img" v-if="afterData.tbyd">
           特别约定
           <el-image
             style="width: 100px; height: 100px"
@@ -388,10 +388,11 @@ export default {
         const { data } = await getAfterLoanDetails(this.$route.query.id)
         this.afterData = data
         // this.afterData.tiche.push(data.lvben.fujian)
-        this.textarea = data.shenpi.opinion
-        data.forEach((item) => {
-          this.srcList.push(item)
-        })
+        if (data.shenpi.opinion) {
+          this.textarea = data.shenpi.opinion
+        }
+        this.srcList = data.baoxian
+        this.srcList1 = data.zhengshu
         console.log(data)
       } catch (error) {
         console.log(error)

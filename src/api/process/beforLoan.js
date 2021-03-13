@@ -1,10 +1,11 @@
 import request from '@/utils/request'
 
 // 获取贷前列表
-export function getBeforLoanList() {
+export function getBeforLoanList(params) {
     return request({
         url: '/system/basics/lists',
         method: 'get',
+        params
     })
 }
 

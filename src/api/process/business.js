@@ -1,9 +1,27 @@
 import request from '@/utils/request'
 
-// 查询秒批列表
-export function listBusiness(query) {
+// 查询秒批未审批列表
+export function listBusinessUnreviewed(query) {
     return request({
         url: '/system/business/list',
+        method: 'get',
+        params: query
+    })
+}
+
+// 查询秒批已通过列表
+export function listBusinessPass(query) {
+    return request({
+        url: '/system/business/tongguolist',
+        method: 'get',
+        params: query
+    })
+}
+
+// 查询秒批未通过列表
+export function listBusinessNotPass(query) {
+    return request({
+        url: '/system/business/jujuelist',
         method: 'get',
         params: query
     })

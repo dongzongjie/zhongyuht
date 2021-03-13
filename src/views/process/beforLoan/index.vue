@@ -8,7 +8,7 @@
       v-show="showSearch"
       label-width="68px"
     >
-      <el-form-item label="销售团队" prop="team">
+      <!-- <el-form-item label="销售团队" prop="team">
         <el-input
           v-model="queryParams.team"
           placeholder="请输入销售团队"
@@ -37,10 +37,22 @@
           <el-option label="二手车" value="1" />
           <el-option label="新能源" value="2" />
         </el-select>
+      </el-form-item> -->
+      <el-form-item label="状态" prop="state">
+        <el-select
+          v-model="queryParams.state"
+          placeholder="请选择状态"
+          clearable
+          size="small"
+        >
+          <el-option label="已通过" value="1" />
+          <el-option label="已退回" value="2" />
+          <el-option label="已拒绝" value="3" />
+        </el-select>
       </el-form-item>
-      <el-form-item label="客户名称" prop="userId">
+      <el-form-item label="客户名称" prop="createTime">
         <el-input
-          v-model="queryParams.name"
+          v-model="queryParams.createTime"
           placeholder="请输入客户名称"
           clearable
           size="small"
@@ -160,24 +172,79 @@
     <el-dialog
       title="历史审批意见"
       :visible.sync="historyOpinionDialogVisible"
-      width="30%"
+      width="50%"
       center
     >
-      <div style="margin: 20px">
-        初审意见：{{ historyOpinionData.allowOpinion }}
-      </div>
-      <div style="margin: 20px">
-        复审意见：{{ historyOpinionData.repeatOpinion }}
-      </div>
-      <div style="margin: 20px">
-        授信意见：{{ historyOpinionData.grantOpinion }}
-      </div>
-      <div style="margin: 20px">
-        贷前意见：{{ historyOpinionData.daiqianOpinion }}
-      </div>
-      <div style="margin: 20px">
-        贷后意见：{{ historyOpinionData.daihouOpinion }}
-      </div>
+      <el-card
+        style="margin-bottom: 20px"
+        v-if="historyOpinionData.allowOpinion"
+      >
+        <div slot="header">
+          <span style="font-size: 16px; color: rgb(70, 166, 255)">初审</span>
+          <div style="float: right; margin: 0 20px">
+            审核人：{{ historyOpinionData.chushen }}
+          </div>
+        </div>
+        <div style="margin: 10px">
+          {{ historyOpinionData.allowOpinion }}
+        </div>
+      </el-card>
+      <el-card
+        style="margin-bottom: 20px"
+        v-if="historyOpinionData.repeatOpinion"
+      >
+        <div slot="header">
+          <span style="font-size: 16px; color: rgb(70, 166, 255)">终审</span>
+          <div style="float: right; margin: 0 20px">
+            审核人：{{ historyOpinionData.zhongshen }}
+          </div>
+        </div>
+        <div style="margin: 10px">
+          {{ historyOpinionData.repeatOpinion }}
+        </div>
+      </el-card>
+      <el-card
+        style="margin-bottom: 20px"
+        v-if="historyOpinionData.grantOpinion"
+      >
+        <div slot="header">
+          <span style="font-size: 16px; color: rgb(70, 166, 255)">授信</span>
+          <div style="float: right; margin: 0 20px">
+            审核人：{{ historyOpinionData.shouxin }}
+          </div>
+        </div>
+        <div style="margin: 10px">
+          {{ historyOpinionData.grantOpinion }}
+        </div>
+      </el-card>
+      <el-card
+        style="margin-bottom: 20px"
+        v-if="historyOpinionData.daiqianOpinion"
+      >
+        <div slot="header">
+          <span style="font-size: 16px; color: rgb(70, 166, 255)">贷前</span>
+          <div style="float: right; margin: 0 20px">
+            审核人：{{ historyOpinionData.daiqian }}
+          </div>
+        </div>
+        <div style="margin: 10px">
+          {{ historyOpinionData.daiqianOpinion }}
+        </div>
+      </el-card>
+      <el-card
+        style="margin-bottom: 20px"
+        v-if="historyOpinionData.daihouOpinion"
+      >
+        <div slot="header">
+          <span style="font-size: 16px; color: rgb(70, 166, 255)">贷后</span>
+          <div style="float: right; margin: 0 20px">
+            审核人：{{ historyOpinionData.daihou }}
+          </div>
+        </div>
+        <div style="margin: 10px">
+          {{ historyOpinionData.daihouOpinion }}
+        </div>
+      </el-card>
     </el-dialog>
   </div>
 </template>
@@ -219,7 +286,8 @@ export default {
         team: null,
         repayPeriod: null,
         carType: null,
-        name: null,
+        createTime: null,
+        state: null,
       },
       // 表单校验
       rules: {},
@@ -266,7 +334,8 @@ export default {
         team: null,
         repayPeriod: null,
         carType: null,
-        name: null,
+        createTime: null,
+        state: null,
       }
       this.handleQuery()
     },
@@ -277,8 +346,14 @@ export default {
         console.log(data)
         if (data) {
           this.historyOpinionData = data
+          if (data.allowOpinion) {
+            this.historyOpinionDialogVisible = true
+          } else {
+            this.msgSuccess('暂无审批意见！')
+          }
+        } else {
+          this.msgSuccess('暂无审批意见！')
         }
-        this.historyOpinionDialogVisible = true
       } catch (error) {
         console.log(error)
       }

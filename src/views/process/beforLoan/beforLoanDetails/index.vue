@@ -2,11 +2,27 @@
   <div class="app-container" style="font-size: 14px; padding: 20px">
     <el-card>
       <div slot="header">
+        <span>还款卡</span>
+      </div>
+      <el-row>
+        <el-col :span="8">银行卡号：{{ bank.cardNo }}</el-col>
+        <el-col :span="8" class="img">
+          <el-image
+            style="width: 100px; height: 100px"
+            :src="bank.pic"
+            :preview-src-list="srcList"
+          >
+          </el-image>
+        </el-col>
+      </el-row>
+    </el-card>
+    <el-card>
+      <div slot="header">
         <span>车商信息</span>
       </div>
       <el-row>
-        <el-col :span="8">市场：{{ Account.bazaar }}</el-col>
-        <el-col :span="8">门店：{{ Account.carname }}</el-col>
+        <el-col :span="8">市场：{{ bazaar }}</el-col>
+        <el-col :span="8">门店：{{ carname }}</el-col>
         <!-- <el-col :span="8">审批类型：{{ Account.shenpitype }}</el-col>
         <el-col :span="8">产品类型：{{ Account.chanpintype }}</el-col>
         <el-col :span="8">贷款产品：{{ Account.daikuanchanpin }}</el-col> -->
@@ -120,7 +136,7 @@
         </el-tab-pane>
       </el-tabs>
     </el-card>
-    <el-card>
+    <!-- <el-card>
       <div slot="header">
         <span>保险信息</span>
       </div>
@@ -130,23 +146,15 @@
         >
         <el-col :span="24">保险金额：{{ insuranceData.money }}</el-col>
       </el-row>
-    </el-card>
+    </el-card> -->
     <el-card>
       <div slot="header">
         <span>GPS</span>
       </div>
       <el-row>
-        <el-col :span="8"
-          >GPS安装选择：<span v-if="GPSdata.industryWired === '1'"
-            >(工商中元华兴有线)</span
-          ><span v-else-if="GPSdata.industryWireless === '1'"
-            >(工商中元华兴无线)</span
-          ><span v-else-if="GPSdata.zhengzhouWired === '1'"
-            >(郑州银行卫正元有线)</span
-          ><span v-else-if="GPSdata.zhengzhouWireless === '1'"
-            >(郑州银行卫正元无线)</span
-          ></el-col
-        >
+        <el-col :span="8">GPS厂商：卓硕</el-col>
+        <el-col :span="8">GPS类型：{{ GPSdata.linkman }}</el-col>
+        <el-col :span="8">GPS编号：{{ GPSdata.bianhao }}</el-col>
         <!-- <el-col :span="8">选择联系人/经销商：{{ GPSdata.linkman }}</el-col> -->
         <el-col :span="8">安装位置：{{ GPSdata.location }}</el-col>
         <el-col :span="8">安装地址：{{ GPSdata.address }}</el-col>
@@ -154,7 +162,7 @@
         <!-- <el-col :span="8">备注留言：{{ GPSdata.remark }}</el-col> -->
       </el-row>
       <el-row>
-        <el-col :span="8" class="img">
+        <!-- <el-col :span="8" class="img">
           身份证正面+VIN码
           <el-image
             style="width: 100px; height: 100px"
@@ -171,9 +179,9 @@
             :preview-src-list="srcList"
           >
           </el-image>
-        </el-col>
+        </el-col> -->
         <el-col :span="8" class="img">
-          车辆名牌+GPS编号
+          车辆铭牌+GPS编号
           <el-image
             style="width: 100px; height: 100px"
             :src="GPSdata.clmp"
@@ -182,24 +190,24 @@
           </el-image>
         </el-col>
         <el-col :span="8" class="img">
-          近景安装照
+          安装人员手持身份证与车合影
           <el-image
             style="width: 100px; height: 100px"
-            :src="GPSdata.jjazz"
+            :src="GPSdata.azryychy"
             :preview-src-list="srcList"
           >
           </el-image>
         </el-col>
         <el-col :span="8" class="img">
-          远景安装照
+          GPS安装位置
           <el-image
             style="width: 100px; height: 100px"
-            :src="GPSdata.yjazz"
+            :src="GPSdata.gpswz"
             :preview-src-list="srcList"
           >
           </el-image>
         </el-col>
-        <el-col :span="8" class="img">
+        <!-- <el-col :span="8" class="img">
           细节安装照
           <el-image
             style="width: 100px; height: 100px"
@@ -207,21 +215,21 @@
             :preview-src-list="srcList"
           >
           </el-image>
-        </el-col>
-        <el-col :span="8" class="img">
+        </el-col> -->
+        <!-- <el-col :span="8" class="img">
           安装人员与车合影
           <el-image
             style="width: 100px; height: 100px"
-            :src="GPSdata.xjazz"
+            :src="GPSdata.xsychy"
             :preview-src-list="srcList"
           >
           </el-image>
-        </el-col>
-        <el-col :span="8" class="img">
+        </el-col> -->
+        <el-col :span="8" class="img" v-if="GPSdata.supplyFile">
           补充资料
           <el-image
             style="width: 100px; height: 100px"
-            :src="GPSdata.xjazz"
+            :src="GPSdata.supplyFile"
             :preview-src-list="srcList"
           >
           </el-image>
@@ -395,6 +403,9 @@ export default {
       type: '', // 返点类型
       photo: {},
       photo2: {},
+      bazaar: '',
+      carname: '',
+      bank: {},
     }
   },
   computed: {},
@@ -422,6 +433,10 @@ export default {
         this.photo = data.photo
         this.photo2 = data.photo2
         this.type = data.type
+        this.bazaar = data.bazaar
+        this.carname = data.carname
+        this.bank = data.bank
+        this.srcList.push(data.bank.pic)
         data.pic.forEach((item) => {
           this.GPSdata[item.fileName] = item.filePath
           this.srcList.push(item.filePath)
@@ -468,7 +483,9 @@ export default {
         )
         if (data) {
           this.state = data.state
-          this.textarea = data.opinion
+          if (data.opinion) {
+            this.textarea = data.opinion
+          }
         }
       } catch (error) {}
     },

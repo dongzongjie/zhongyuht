@@ -82,6 +82,7 @@
 import { getCodeImg } from '@/api/login'
 import Cookies from 'js-cookie'
 import { encrypt, decrypt } from '@/utils/jsencrypt'
+import Push from 'push.js'
 
 export default {
   name: 'Login',
@@ -122,6 +123,7 @@ export default {
   created() {
     this.getCode()
     this.getCookie()
+    Push.Permission.request()
   },
   methods: {
     getCode() {
@@ -190,6 +192,9 @@ export default {
 }
 
 .login-form {
+  position: absolute;
+  top: 18%;
+  right: 18%;
   border-radius: 6px;
   background: #ffffff;
   width: 400px;

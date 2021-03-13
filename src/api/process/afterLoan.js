@@ -1,10 +1,11 @@
 import request from '@/utils/request'
 
 // 获取贷后列表
-export function getAfterLoanList() {
+export function getAfterLoanList(params) {
     return request({
         url: '/system/daihou/list',
         method: 'get',
+        params
     })
 }
 

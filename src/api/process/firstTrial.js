@@ -27,10 +27,11 @@ export function getByToken() {
 }
 
 // 获取百融详细信息
-export function getByMelting(transactionCode) {
+export function getByMelting(data) {
     return request({
-        url: '/system/test/getByMelting?id=' + transactionCode,
-        method: 'get',
+        url: '/system/test/getByMelting',
+        method: 'post',
+        data
     })
 }
 
@@ -107,5 +108,13 @@ export function getOrder(params) {
         url: '/system/jzg/addOrder/get',
         method: 'get',
         params
+    })
+}
+
+// 获取授信图片
+export function findPhoto(transactionCode, userId) {
+    return request({
+        url: '/examine/find/photo?transactionCode=' + transactionCode + '&userId=' + userId,
+        method: 'get',
     })
 }

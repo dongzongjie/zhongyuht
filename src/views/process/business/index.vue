@@ -8,7 +8,7 @@
       v-show="showSearch"
       label-width="68px"
     >
-      <el-form-item label="销售团队" prop="team">
+      <!-- <el-form-item label="销售团队" prop="team">
         <el-input
           v-model="queryParams.team"
           placeholder="请输入销售团队"
@@ -25,8 +25,20 @@
           size="small"
           @keyup.enter.native="handleQuery"
         />
+      </el-form-item> -->
+      <el-form-item label="状态" prop="updateBy">
+        <el-select
+          v-model="queryParams.updateBy"
+          placeholder="请选择状态"
+          clearable
+          size="small"
+        >
+          <el-option label="已处理" value="1" />
+          <el-option label="征信已拒绝" value="2" />
+          <el-option label="征信已通过" value="3" />
+        </el-select>
       </el-form-item>
-      <el-form-item label="业务品种" prop="carType">
+      <!-- <el-form-item label="业务品种" prop="carType">
         <el-select
           v-model="queryParams.carType"
           placeholder="请选择业务品种"
@@ -37,7 +49,7 @@
           <el-option label="二手车" value="1" />
           <el-option label="新能源" value="2" />
         </el-select>
-      </el-form-item>
+      </el-form-item> -->
       <el-form-item label="客户名称" prop="userId">
         <el-input
           v-model="queryParams.name"
@@ -137,13 +149,13 @@
 <script>
 import { checkRole } from '@/utils/permission'
 import {
-  listBusiness,
+  listBusinessUnreviewed,
   updateBusiness,
   deleteOperator,
 } from '@/api/process/business'
 
 export default {
-  name: 'Business',
+  name: 'Unreviewed',
   data() {
     return {
       // 遮罩层
@@ -172,6 +184,7 @@ export default {
         repayPeriod: null,
         carType: null,
         name: null,
+        updateBy: null,
       },
       // 表单校验
       rules: {},
@@ -187,7 +200,7 @@ export default {
   watch: {
     $route(to, from) {
       //监听路由是否变化
-      if (to.path == '/process/business') {
+      if (to.path == '/process/business/unreviewed') {
         this.getList()
       }
     },
@@ -197,7 +210,7 @@ export default {
     /** 查询秒批列表 */
     getList() {
       this.loading = true
-      listBusiness(this.queryParams).then((response) => {
+      listBusinessUnreviewed(this.queryParams).then((response) => {
         this.businessList = response.rows
         this.total = response.total
         this.loading = false
@@ -217,6 +230,7 @@ export default {
         repayPeriod: null,
         carType: null,
         name: null,
+        updateBy: null,
       }
       this.handleQuery()
     },
