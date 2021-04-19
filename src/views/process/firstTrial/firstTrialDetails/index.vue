@@ -42,12 +42,15 @@
       <button @click="goAssignBlock('ref13', 50)" v-if="firstDetails.visit[0]">
         家访照片
       </button>
-      <button @click="goAssignBlock('ref14', 50)" v-if="firstDetails.common">
+      <button
+        @click="goAssignBlock('ref14', 50)"
+        v-if="firstDetails.common.peopleShip"
+      >
         共同申请人
       </button>
       <button
         @click="goAssignBlock('ref15', 50)"
-        v-if="firstDetails.debtService"
+        v-if="firstDetails.debtService.peopleShip"
       >
         共同偿债人
       </button>
@@ -64,7 +67,7 @@
         公司担保
       </button>
     </div>
-    <el-tabs v-model="activeName" tab-position="left">
+    <el-tabs v-model="activeName" tab-position="left" :before-leave="tabsLeave">
       <el-tab-pane
         label="信息详情"
         name="first"
@@ -86,10 +89,19 @@
             <el-col :span="8"
               >区域：{{ firstDetails.startPage.businessPlace }}</el-col
             >
-            <!-- <el-col :span="8">门店：</el-col> -->
             <el-col :span="8" style="color: #999"
-              >真实业务发生地：{{ firstDetails.startPage.realAddress }}</el-col
+              >团队：{{ firstDetails.team }}</el-col
             >
+            <el-col :span="8" style="color: #999"
+              >客户经理：{{ firstDetails.jingliName }}</el-col
+            >
+            <el-col :span="8" style="color: #999"
+              >客户经理手机号：{{ firstDetails.jingliPhoneNo }}</el-col
+            >
+            <!-- <el-col :span="8">门店：</el-col> -->
+            <!-- <el-col :span="8" style="color: #999"
+              >真实业务发生地：{{ firstDetails.startPage.realAddress }}</el-col
+            > -->
           </el-row>
         </el-card>
         <!-- 订单信息 -->
@@ -162,109 +174,14 @@
               >家庭住址：{{ firstDetails.borrower.familyAddress }}</el-col
             >
             <el-col :span="8"
-              >签发机关：{{ firstDetails.borrower.issueAuthority }}</el-col
-            >
-            <el-col :span="8"
               >有效起始日：{{ firstDetails.borrower.startDate }}</el-col
             >
             <el-col :span="8"
               >有效截止日：{{ firstDetails.borrower.endDate }}</el-col
             >
             <el-col :span="8"
-              >何时进入现单位工作：{{ firstDetails.applicant.joindate }}</el-col
+              >签发机关：{{ firstDetails.borrower.issueAuthority }}</el-col
             >
-            <el-col :span="8"
-              >单位地址：{{ firstDetails.applicant.workAddress }}</el-col
-            >
-            <el-col :span="8"
-              >单位电话：{{ firstDetails.applicant.unitPhone }}</el-col
-            >
-            <el-col :span="8"
-              >单位性质：{{ firstDetails.applicant.unitNature }}</el-col
-            >
-            <!-- <el-col :span="8">工作单位规模：{{firstDetails.applicant.householdNature}}</el-col> -->
-            <el-col :span="8"
-              >单位名称：{{ firstDetails.applicant.unitName }}</el-col
-            >
-            <!-- <el-col :span="8">现单位工作年限：{{firstDetails.applicant.householdNature}}</el-col> -->
-            <el-col :span="8"
-              >职务：{{ firstDetails.applicant.position }}</el-col
-            >
-            <el-col :span="8"
-              >职业：
-              <span v-if="firstDetails.applicant.industry === '1'">公务员</span>
-              <span v-if="firstDetails.applicant.industry === '2'"
-                >事业单位员工</span
-              >
-              <span v-if="firstDetails.applicant.industry === '3'">职员</span>
-              <span v-if="firstDetails.applicant.industry === '4'">军人</span>
-              <span v-if="firstDetails.applicant.industry === '5'"
-                >自由职业者</span
-              >
-              <span v-if="firstDetails.applicant.industry === '6'">工人</span>
-              <span v-if="firstDetails.applicant.industry === '7'">农民</span>
-              <span v-if="firstDetails.applicant.industry === '10'"
-                >邮电通讯行业职员</span
-              >
-              <span v-if="firstDetails.applicant.industry === '11'"
-                >房地产行业职员</span
-              >
-              <span v-if="firstDetails.applicant.industry === '12'"
-                >交通运输行业职员</span
-              >
-              <span v-if="firstDetails.applicant.industry === '13'"
-                >法律/司法行业职员</span
-              >
-              <span v-if="firstDetails.applicant.industry === '14'"
-                >文化/娱乐/体育行业职员</span
-              >
-              <span v-if="firstDetails.applicant.industry === '15'"
-                >媒介/广告行业职员</span
-              >
-              <span v-if="firstDetails.applicant.industry === '16'"
-                >科研/教育行业职员</span
-              >
-              <span v-if="firstDetails.applicant.industry === '17'">学生</span>
-              <span v-if="firstDetails.applicant.industry === '18'"
-                >计算机/网络行业职员</span
-              >
-              <span v-if="firstDetails.applicant.industry === '19'"
-                >商业贸易行业职员</span
-              >
-              <span v-if="firstDetails.applicant.industry === '20'"
-                >银行/金融/证券/投资行业职员</span
-              >
-              <span v-if="firstDetails.applicant.industry === '21'"
-                >税务行业职员</span
-              >
-              <span v-if="firstDetails.applicant.industry === '22'"
-                >咨询行业职员</span
-              >
-              <span v-if="firstDetails.applicant.industry === '23'"
-                >社会服务行业职员</span
-              >
-              <span v-if="firstDetails.applicant.industry === '24'"
-                >旅游/饭店行业职员</span
-              >
-              <span v-if="firstDetails.applicant.industry === '25'"
-                >健康/医疗服务行业职员</span
-              >
-              <span v-if="firstDetails.applicant.industry === '26'"
-                >管理人员</span
-              >
-              <span v-if="firstDetails.applicant.industry === '27'"
-                >技术人员</span
-              >
-              <span v-if="firstDetails.applicant.industry === '28'"
-                >文体明星</span
-              >
-              <span v-if="firstDetails.applicant.industry === '29'"
-                >无职业</span
-              >
-              <span v-if="firstDetails.applicant.industry === '30'"
-                >私人业主</span
-              >
-            </el-col>
             <el-col :span="8"
               >户口性质：{{ firstDetails.applicant.householdNature }}</el-col
             >
@@ -281,7 +198,7 @@
               >住宅状况：{{ firstDetails.applicant.housePower }}</el-col
             >
             <el-col :span="8"
-              >税后月收入：{{ firstDetails.applicant.monthlyIncome }}</el-col
+              >家庭人数：{{ firstDetails.applicant.familiesNumber }}</el-col
             >
             <el-col :span="8"
               >受教育程度：{{ firstDetails.applicant.education }}</el-col
@@ -307,10 +224,130 @@
             <el-col :span="8"
               >驾照类型：{{ firstDetails.applicant.licenseType }}</el-col
             >
-            <!-- <el-col :span="8">邮政编码：</el-col> -->
-            <el-col :span="16"
-              >家庭人数：{{ firstDetails.applicant.familiesNumber }}</el-col
+            <el-col
+              :span="24"
+              style="font-size: 16px; margin: 10px 0 10px -20px"
+              >单位信息</el-col
             >
+            <el-col :span="8"
+              >单位名称：{{ firstDetails.applicant.unitName }}
+              <el-button
+                type="primary"
+                plain
+                size="mini"
+                @click="getCompanyClick(firstDetails.applicant.unitName)"
+                >单位信息</el-button
+              ></el-col
+            >
+            <el-col :span="8"
+              >单位地址：{{ firstDetails.applicant.workAddress }}</el-col
+            >
+            <el-col :span="8"
+              >单位电话：{{ firstDetails.applicant.unitPhone }}</el-col
+            >
+            <el-col :span="8"
+              >单位性质：{{ firstDetails.applicant.unitNature }}</el-col
+            >
+            <!-- <el-col :span="8">工作单位规模：{{firstDetails.applicant.householdNature}}</el-col> -->
+
+            <!-- <el-col :span="8">现单位工作年限：{{firstDetails.applicant.householdNature}}</el-col> -->
+            <el-col :span="8"
+              >职务：{{ firstDetails.applicant.position }}</el-col
+            >
+            <el-col :span="8"
+              >职业：
+              <span v-if="firstDetails.applicant.industry === '1'">公务员</span>
+              <span v-else-if="firstDetails.applicant.industry === '2'"
+                >事业单位员工</span
+              >
+              <span v-else-if="firstDetails.applicant.industry === '3'"
+                >职员</span
+              >
+              <span v-else-if="firstDetails.applicant.industry === '4'"
+                >军人</span
+              >
+              <span v-else-if="firstDetails.applicant.industry === '5'"
+                >自由职业者</span
+              >
+              <span v-else-if="firstDetails.applicant.industry === '6'"
+                >工人</span
+              >
+              <span v-else-if="firstDetails.applicant.industry === '7'"
+                >农民</span
+              >
+              <span v-else-if="firstDetails.applicant.industry === '10'"
+                >邮电通讯行业职员</span
+              >
+              <span v-else-if="firstDetails.applicant.industry === '11'"
+                >房地产行业职员</span
+              >
+              <span v-else-if="firstDetails.applicant.industry === '12'"
+                >交通运输行业职员</span
+              >
+              <span v-else-if="firstDetails.applicant.industry === '13'"
+                >法律/司法行业职员</span
+              >
+              <span v-else-if="firstDetails.applicant.industry === '14'"
+                >文化/娱乐/体育行业职员</span
+              >
+              <span v-else-if="firstDetails.applicant.industry === '15'"
+                >媒介/广告行业职员</span
+              >
+              <span v-else-if="firstDetails.applicant.industry === '16'"
+                >科研/教育行业职员</span
+              >
+              <span v-else-if="firstDetails.applicant.industry === '17'"
+                >学生</span
+              >
+              <span v-else-if="firstDetails.applicant.industry === '18'"
+                >计算机/网络行业职员</span
+              >
+              <span v-else-if="firstDetails.applicant.industry === '19'"
+                >商业贸易行业职员</span
+              >
+              <span v-else-if="firstDetails.applicant.industry === '20'"
+                >银行/金融/证券/投资行业职员</span
+              >
+              <span v-else-if="firstDetails.applicant.industry === '21'"
+                >税务行业职员</span
+              >
+              <span v-else-if="firstDetails.applicant.industry === '22'"
+                >咨询行业职员</span
+              >
+              <span v-else-if="firstDetails.applicant.industry === '23'"
+                >社会服务行业职员</span
+              >
+              <span v-else-if="firstDetails.applicant.industry === '24'"
+                >旅游/饭店行业职员</span
+              >
+              <span v-else-if="firstDetails.applicant.industry === '25'"
+                >健康/医疗服务行业职员</span
+              >
+              <span v-else-if="firstDetails.applicant.industry === '26'"
+                >管理人员</span
+              >
+              <span v-else-if="firstDetails.applicant.industry === '27'"
+                >技术人员</span
+              >
+              <span v-else-if="firstDetails.applicant.industry === '28'"
+                >文体明星</span
+              >
+              <span v-else-if="firstDetails.applicant.industry === '29'"
+                >无职业</span
+              >
+              <span v-else-if="firstDetails.applicant.industry === '30'"
+                >私人业主</span
+              >
+            </el-col>
+            <el-col :span="8"
+              >何时进入现单位工作：{{ firstDetails.applicant.joindate }}</el-col
+            >
+            <el-col :span="8"
+              >税后月收入：{{ firstDetails.applicant.monthlyIncome }}</el-col
+            >
+            <!-- <el-col :span="8">邮政编码：</el-col> -->
+          </el-row>
+          <el-row>
             <el-col :span="8" class="img">
               身份证正面
               <el-image
@@ -354,10 +391,16 @@
               >身份证号：{{ firstDetails.applicant.idNumber }}</el-col
             >
             <el-col :span="8"
-              >户籍地址：{{ firstDetails.applicant.permanentAddress }}</el-col
+              >手机号：{{ firstDetails.applicant.phoneNo }}</el-col
             >
             <el-col :span="8"
-              >手机号：{{ firstDetails.applicant.phoneNo }}</el-col
+              >户籍地址：{{ firstDetails.applicant.permanentAddress }}</el-col
+            >
+            <el-col :span="8" v-if="firstDetails.applicant.spouseAddress"
+              >现居住地址：{{ firstDetails.applicant.spouseProvince
+              }}{{ firstDetails.applicant.spouseCity
+              }}{{ firstDetails.applicant.spouseArea
+              }}{{ firstDetails.applicant.spouseAddress }}</el-col
             >
             <el-col :span="8"
               >是否共同申请人：<span v-if="firstDetails.applicant.sfgtsqr == 0"
@@ -367,33 +410,40 @@
               ></el-col
             >
             <el-col :span="8"
-              >单位名称：{{ firstDetails.applicant.spouseUnitName }}</el-col
+              >单位名称：{{ firstDetails.applicant.spouseUnitName }}
+              <el-button
+                type="primary"
+                plain
+                size="mini"
+                @click="getCompanyClick(firstDetails.applicant.spouseUnitName)"
+                >单位信息</el-button
+              ></el-col
             >
-            <el-col :span="8"
+            <el-col :span="8" v-if="firstDetails.applicant.spouseWorkPlace"
               >单位地址：{{ firstDetails.applicant.spouseWorkPlace }}</el-col
             >
-            <el-col :span="8"
+            <el-col :span="8" v-if="firstDetails.applicant.spouseWorkPhone"
               >单位电话：{{ firstDetails.applicant.spouseWorkPhone }}</el-col
             >
-            <el-col :span="8" v-if="firstDetails.applicant.spouseUnitNature"
+            <el-col
+              :span="8"
+              v-if="firstDetails.applicant.spouseUnitNature != '请选择'"
               >单位性质：{{ firstDetails.applicant.spouseUnitNature }}</el-col
             >
-            <el-col :span="8" v-if="firstDetails.applicant.spouseAddress"
-              >现居住地址：{{ firstDetails.applicant.spouseProvince
-              }}{{ firstDetails.applicant.spouseCity
-              }}{{ firstDetails.applicant.spouseArea
-              }}{{ firstDetails.applicant.spouseAddress }}</el-col
-            >
-            <el-col :span="8" v-if="firstDetails.applicant.spouseSourceIncome"
+            <el-col
+              :span="8"
+              v-if="firstDetails.applicant.spouseSourceIncome != '请选择'"
               >主要收入来源：{{
                 firstDetails.applicant.spouseSourceIncome
               }}</el-col
             >
-            <el-col :span="24"
+            <el-col :span="8"
               >税后月收入：{{
                 firstDetails.applicant.spouseMonthlyIncome
               }}</el-col
             >
+          </el-row>
+          <el-row>
             <el-col :span="8" class="img">
               身份证正面
               <el-image
@@ -734,6 +784,12 @@
             <el-col :span="8"
               >续保押金：{{ firstDetails.carLoan.deposit }}</el-col
             >
+            <el-col :span="8"
+              >抵押渠道：{{ firstDetails.carLoan.mortgageChannel }}</el-col
+            >
+            <el-col :span="8"
+              >抵押代办人：{{ firstDetails.carLoan.mortgagePeople }}</el-col
+            >
           </el-row>
         </el-card>
         <!-- 紧急联系人 -->
@@ -1029,7 +1085,7 @@
               登记证信息栏1-2
               <el-image
                 style="width: 100px; height: 100px"
-                :src="firstDetails['登记证信息栏1-2页']"
+                :src="firstDetails[282]"
                 :preview-src-list="srcList"
               >
               </el-image>
@@ -1038,7 +1094,7 @@
               登记证信息栏3-4
               <el-image
                 style="width: 100px; height: 100px"
-                :src="firstDetails['登记证信息栏3-4页']"
+                :src="firstDetails[241]"
                 :preview-src-list="srcList"
               >
               </el-image>
@@ -1126,7 +1182,7 @@
               :span="4"
               class="img"
               v-for="(item, index) in liushui"
-              :key="index"
+              :key="'ls-' + index"
             >
               <el-image
                 style="width: 100px; height: 100px"
@@ -1412,7 +1468,14 @@
               >手机号：{{ firstDetails.common.phoneNumber }}</el-col
             >
             <el-col :span="8"
-              >现工作单位名称：{{ firstDetails.common.nowWork }}</el-col
+              >现工作单位名称：{{ firstDetails.common.nowWork }}
+              <el-button
+                type="primary"
+                plain
+                size="mini"
+                @click="getCompanyClick(firstDetails.common.nowWork)"
+                >单位信息</el-button
+              ></el-col
             >
             <el-col :span="8"
               >工作单位地址：{{ firstDetails.common.workPlace }}</el-col
@@ -1426,6 +1489,8 @@
             <el-col :span="8"
               >婚姻状况：{{ firstDetails.common.marriage }}</el-col
             >
+          </el-row>
+          <el-row>
             <el-col :span="8" class="img">
               身份证正面
               <el-image
@@ -1478,6 +1543,8 @@
               >
               </el-image>
             </el-col>
+          </el-row>
+          <el-row>
             <el-col :span="8" class="img">
               身份证反面
               <el-image
@@ -1510,7 +1577,7 @@
               :span="4"
               class="img"
               v-for="(item, index) in sqrls"
-              :key="index"
+              :key="'ls-' + index"
             >
               <el-image
                 style="width: 100px; height: 100px"
@@ -1526,7 +1593,7 @@
               :span="4"
               class="img"
               v-for="(item, index) in sqrcar"
-              :key="index"
+              :key="'cl-' + index"
             >
               <el-image
                 style="width: 100px; height: 100px"
@@ -1542,7 +1609,7 @@
               :span="4"
               class="img"
               v-for="(item, index) in sqrother"
-              :key="index"
+              :key="'qt-' + index"
             >
               <el-image
                 style="width: 100px; height: 100px"
@@ -1638,7 +1705,14 @@
               >手机号：{{ firstDetails.debtService.phoneNumber }}</el-col
             >
             <el-col :span="8"
-              >现工作单位名称：{{ firstDetails.debtService.nowWork }}</el-col
+              >现工作单位名称：{{ firstDetails.debtService.nowWork }}
+              <el-button
+                type="primary"
+                plain
+                size="mini"
+                @click="getCompanyClick(firstDetails.debtService.nowWork)"
+                >单位信息</el-button
+              ></el-col
             >
             <el-col :span="8"
               >工作单位地址：{{ firstDetails.debtService.workPlace }}</el-col
@@ -1649,6 +1723,8 @@
             <el-col :span="16"
               >公司性质：{{ firstDetails.debtService.companyNature }}</el-col
             >
+          </el-row>
+          <el-row>
             <el-col :span="8" class="img">
               身份证正面
               <el-image
@@ -1824,9 +1900,16 @@
               >手机号：{{ firstDetails.peopleGuarantee[0].phoneNumber }}</el-col
             >
             <el-col :span="8"
-              >现工作单位名称：{{
-                firstDetails.peopleGuarantee[0].workUnit
-              }}</el-col
+              >现工作单位名称：{{ firstDetails.peopleGuarantee[0].workUnit }}
+              <el-button
+                type="primary"
+                plain
+                size="mini"
+                @click="
+                  getCompanyClick(firstDetails.peopleGuarantee[0].workUnit)
+                "
+                >单位信息</el-button
+              ></el-col
             >
             <el-col :span="8"
               >工作单位地址：{{
@@ -1836,6 +1919,8 @@
             <el-col :span="24"
               >工作电话：{{ firstDetails.peopleGuarantee[0].workPhone }}</el-col
             >
+          </el-row>
+          <el-row>
             <el-col :span="8" class="img">
               身份证正面
               <el-image
@@ -1877,7 +1962,7 @@
               :span="4"
               class="img"
               v-for="(item, index) in dbrls0"
-              :key="index"
+              :key="'dbrls0=' + index"
             >
               <el-image
                 style="width: 100px; height: 100px"
@@ -1893,7 +1978,7 @@
               :span="4"
               class="img"
               v-for="(item, index) in dbrcar0"
-              :key="index"
+              :key="'dbrcl0=' + index"
             >
               <el-image
                 style="width: 100px; height: 100px"
@@ -1909,7 +1994,7 @@
               :span="4"
               class="img"
               v-for="(item, index) in dbrother0"
-              :key="index"
+              :key="'dbrqt0=' + index"
             >
               <el-image
                 style="width: 100px; height: 100px"
@@ -2011,9 +2096,16 @@
               >手机号：{{ firstDetails.peopleGuarantee[1].phoneNumber }}</el-col
             >
             <el-col :span="8"
-              >现工作单位名称：{{
-                firstDetails.peopleGuarantee[1].workUnit
-              }}</el-col
+              >现工作单位名称：{{ firstDetails.peopleGuarantee[1].workUnit }}
+              <el-button
+                type="primary"
+                plain
+                size="mini"
+                @click="
+                  getCompanyClick(firstDetails.peopleGuarantee[1].workUnit)
+                "
+                >单位信息</el-button
+              ></el-col
             >
             <el-col :span="8"
               >工作单位地址：{{
@@ -2023,6 +2115,8 @@
             <el-col :span="24"
               >工作电话：{{ firstDetails.peopleGuarantee[1].workPhone }}</el-col
             >
+          </el-row>
+          <el-row>
             <el-col :span="8" class="img">
               身份证正面
               <el-image
@@ -2064,7 +2158,7 @@
               :span="4"
               class="img"
               v-for="(item, index) in dbrls1"
-              :key="index"
+              :key="'dbrls1=' + index"
             >
               <el-image
                 style="width: 100px; height: 100px"
@@ -2080,7 +2174,7 @@
               :span="4"
               class="img"
               v-for="(item, index) in dbrcar1"
-              :key="index"
+              :key="'dbrcl1=' + index"
             >
               <el-image
                 style="width: 100px; height: 100px"
@@ -2096,7 +2190,7 @@
               :span="4"
               class="img"
               v-for="(item, index) in dbrother1"
-              :key="index"
+              :key="'dbrqt1=' + index"
             >
               <el-image
                 style="width: 100px; height: 100px"
@@ -2175,7 +2269,16 @@
             <span>公司担保</span>
           </div>
           <el-row>
-            <el-col :span="8">公司注册名称：{{ item.companyName }}</el-col>
+            <el-col :span="8"
+              >公司注册名称：{{ item.companyName }}
+              <el-button
+                type="primary"
+                plain
+                size="mini"
+                @click="getCompanyClick(item.companyName)"
+                >单位信息</el-button
+              ></el-col
+            >
             <el-col :span="8">企业类型：{{ item.enterpriseType }}</el-col>
             <el-col :span="8">注册资金(万元)：{{ item.registerMoney }}</el-col>
             <el-col :span="8">成立日期：{{ item.establishTime }}</el-col>
@@ -2186,6 +2289,13 @@
             <el-col :span="8">法人身份证号：{{ item.corporateId }}</el-col>
             <el-col :span="8">法人手机号：{{ item.corporatePhone }}</el-col>
           </el-row>
+        </el-card>
+        <el-card>
+          <div slot="header">
+            <span style="color: red; font-size: 26px; float: left">*</span>
+            <span style="margin-left: 5px">备注</span>
+          </div>
+          {{ firstDetails.carLoan.beizhu }}
         </el-card>
       </el-tab-pane>
       <el-tab-pane label="征信结果" name="second">
@@ -2244,57 +2354,473 @@
         <h4>详版征信</h4>
         <p style="text-indent: 2em; font-size: 14px">{{ detailsCredit }}</p>
       </el-tab-pane>
-      <!-- <el-tab-pane label="数据辅正" name="third" style="height: 100%">
-        
-      </el-tab-pane> -->
+      <el-tab-pane label="数据辅正" name="third" style="padding: 20px">
+        <div class="thirdheader" v-if="fuzhengdata.creditScore">
+          FICO评分查询
+        </div>
+        <el-card style="font-size: 14px" v-if="fuzhengdata.creditScore">
+          <div slot="header">
+            <span
+              >查询时间：{{ fuzhengdata.creditScore[0].source.callTime }}</span
+            >
+          </div>
+          <div
+            style="
+              height: 38px;
+              padding: 0 20px;
+              line-height: 38px;
+              background-color: #fafbfd;
+              margin-bottom: 40px;
+            "
+          >
+            <span>查询条件</span>
+            <span style="float: right; margin-right: 20px"
+              >手机号：{{ fuzhengdata.creditScore[0].param.mobile }}</span
+            >
+            <span style="float: right; margin-right: 20px"
+              >身份证号：{{ fuzhengdata.creditScore[0].param.idCard }}</span
+            >
+          </div>
+          <div
+            style="
+              color: #7ed261;
+              background-color: #f2faef;
+              padding: 10px 20px;
+            "
+            v-if="fuzhengdata.creditScore[0].busiCode === '2515'"
+          >
+            {{ fuzhengdata.creditScore[0].busiMsg }}
+          </div>
+          <div
+            style="
+              color: rgb(234 27 9);
+              background-color: rgb(224 129 129);
+              padding: 10px 20px;
+            "
+            v-else
+          >
+            {{ fuzhengdata.creditScore[0].busiMsg }}
+          </div>
+          <div class="left">
+            <span>{{ fuzhengdata.creditScore[0].detail.score }}分</span
+            ><span style="font-size: 20px">FICO评分</span>
+          </div>
+          <div class="right">
+            <div>原因</div>
+            <ol>
+              <li
+                v-for="(item, index) in fuzhengdata.creditScore[0].detail
+                  .reason"
+                :key="'fico' + index"
+              >
+                {{ item }}
+              </li>
+            </ol>
+          </div>
+        </el-card>
+        <div class="thirdheader" v-if="fuzhengdata.personalCreditScore">
+          中诚信评分
+        </div>
+        <el-card style="font-size: 14px" v-if="fuzhengdata.personalCreditScore">
+          <div slot="header">
+            <span
+              >查询时间：{{
+                fuzhengdata.personalCreditScore[0].source.callTime
+              }}</span
+            >
+          </div>
+          <div
+            style="
+              height: 38px;
+              padding: 0 20px;
+              line-height: 38px;
+              background-color: #fafbfd;
+              margin-bottom: 40px;
+            "
+          >
+            <span>查询条件</span>
+            <span style="float: right; margin-right: 20px"
+              >手机号：{{
+                fuzhengdata.personalCreditScore[0].param.mobile
+              }}</span
+            >
+            <span style="float: right; margin-right: 20px"
+              >身份证号：{{
+                fuzhengdata.personalCreditScore[0].param.idCard
+              }}</span
+            >
+            <span style="float: right; margin-right: 20px"
+              >姓名：{{ fuzhengdata.personalCreditScore[0].param.name }}</span
+            >
+          </div>
+          <div
+            style="
+              color: #7ed261;
+              background-color: #f2faef;
+              padding: 10px 20px;
+            "
+            v-if="fuzhengdata.personalCreditScore[0].busiCode === '9025'"
+          >
+            {{ fuzhengdata.personalCreditScore[0].busiMsg }}
+          </div>
+          <div
+            style="
+              color: rgb(234 27 9);
+              background-color: rgb(224 129 129);
+              padding: 10px 20px;
+            "
+            v-else
+          >
+            {{ fuzhengdata.personalCreditScore[0].busiMsg }}
+          </div>
+          <div class="left">
+            <span>{{ fuzhengdata.personalCreditScore[0].detail.score }}分</span
+            ><span style="font-size: 20px">综合信用评分</span>
+          </div>
+          <div class="right">
+            <div>
+              {{ fuzhengdata.personalCreditScore[0].detail.suggestion }}
+            </div>
+            <ul>
+              <li>
+                评分分数段：{{
+                  fuzhengdata.personalCreditScore[0].detail.scoreRange
+                }}
+              </li>
+              <li>
+                身份属性评分：{{
+                  fuzhengdata.personalCreditScore[0].detail.identityScore
+                }}
+              </li>
+              <li>
+                信用记录评分：{{
+                  fuzhengdata.personalCreditScore[0].detail.creditScore
+                }}
+              </li>
+              <li>
+                社交影响评分：{{
+                  fuzhengdata.personalCreditScore[0].detail.socialScore
+                }}
+              </li>
+              <li>
+                履约能力评分：{{
+                  fuzhengdata.personalCreditScore[0].detail.performanceScore
+                }}
+              </li>
+              <li>
+                行为特质评分：{{
+                  fuzhengdata.personalCreditScore[0].detail.behaviorScore
+                }}
+              </li>
+            </ul>
+          </div>
+        </el-card>
+        <div class="thirdheader" v-if="fuzhengdata.queryMobileOnlineTime">
+          手机核查及状态时长
+        </div>
+        <el-card
+          style="font-size: 14px"
+          v-if="fuzhengdata.queryMobileOnlineTime"
+        >
+          <div slot="header">
+            <span
+              >查询时间：{{
+                fuzhengdata.queryMobileOnlineTime[0].source.callTime
+              }}</span
+            >
+          </div>
+          <div
+            style="
+              height: 38px;
+              padding: 0 20px;
+              line-height: 38px;
+              background-color: #fafbfd;
+              margin-bottom: 40px;
+            "
+          >
+            <span>查询条件</span>
+            <span style="float: right; margin-right: 20px"
+              >手机号：{{
+                fuzhengdata.queryMobileOnlineTime[0].param.mobile
+              }}</span
+            >
+            <span style="float: right; margin-right: 20px"
+              >身份证号：{{
+                fuzhengdata.queryMobileOnlineTime[0].param.idCard
+              }}</span
+            >
+            <span style="float: right; margin-right: 20px"
+              >姓名：{{ fuzhengdata.queryMobileOnlineTime[0].param.name }}</span
+            >
+          </div>
+          <div
+            style="
+              color: #7ed261;
+              background-color: #f2faef;
+              padding: 10px 20px;
+            "
+            v-if="
+              fuzhengdata.queryMobileOnlineTime[0].detail.checkJson.busiCode ===
+              '9066'
+            "
+          >
+            一致
+          </div>
+          <div
+            style="
+              color: rgb(234 27 9);
+              background-color: rgb(224 129 129);
+              padding: 10px 20px;
+            "
+            v-else
+          >
+            不一致
+          </div>
+          <el-row style="padding: 20px">
+            <el-col :span="8"
+              >手机号状态：
+              <span
+                v-if="
+                  fuzhengdata.queryMobileOnlineTime[0].detail.statusJson
+                    .PHONE_STATUS === 1
+                "
+                >正常在用</span
+              >
+              <span
+                v-else-if="
+                  fuzhengdata.queryMobileOnlineTime[0].detail.statusJson
+                    .PHONE_STATUS === 2
+                "
+                >停机</span
+              >
+              <span
+                v-else-if="
+                  fuzhengdata.queryMobileOnlineTime[0].detail.statusJson
+                    .PHONE_STATUS === 3
+                "
+                >未启用</span
+              >
+              <span
+                v-else-if="
+                  fuzhengdata.queryMobileOnlineTime[0].detail.statusJson
+                    .PHONE_STATUS === 4
+                "
+                >已销号</span
+              >
+              <span
+                v-else-if="
+                  fuzhengdata.queryMobileOnlineTime[0].detail.statusJson
+                    .PHONE_STATUS === 5
+                "
+                >其他</span
+              >
+              <span
+                v-else-if="
+                  fuzhengdata.queryMobileOnlineTime[0].detail.statusJson
+                    .PHONE_STATUS === 6
+                "
+                >预销号</span
+              >
+            </el-col>
+            <el-col :span="8">最近一次销号时间：</el-col>
+            <el-col :span="8">归属地：</el-col>
+            <el-col :span="8"
+              >在网时长：{{
+                fuzhengdata.queryMobileOnlineTime[0].detail.statusJson
+                  .TIME_LENGTH
+              }}</el-col
+            >
+            <el-col :span="8"
+              >运营商：
+              <span
+                v-if="
+                  fuzhengdata.queryMobileOnlineTime[0].detail.statusJson
+                    .OPERATOR === 1
+                "
+                >中国电信</span
+              >
+              <span
+                v-else-if="
+                  fuzhengdata.queryMobileOnlineTime[0].detail.statusJson
+                    .OPERATOR === 2
+                "
+                >中国移动</span
+              >
+              <span
+                v-else-if="
+                  fuzhengdata.queryMobileOnlineTime[0].detail.statusJson
+                    .OPERATOR === 3
+                "
+                >中国联通</span
+              >
+            </el-col>
+          </el-row>
+        </el-card>
+        <div class="thirdheader" v-if="fuzhengdata.realNameAuth">实名认证</div>
+        <el-card style="font-size: 14px" v-if="fuzhengdata.realNameAuth">
+          <div slot="header">
+            <span
+              >查询时间：{{ fuzhengdata.realNameAuth[0].source.callTime }}</span
+            >
+          </div>
+          <div
+            style="
+              height: 38px;
+              padding: 0 20px;
+              line-height: 38px;
+              background-color: #fafbfd;
+              margin-bottom: 40px;
+            "
+          >
+            <span>查询条件</span>
+            <span style="float: right; margin-right: 20px"
+              >身份证号：{{ fuzhengdata.realNameAuth[0].param.idCard }}</span
+            >
+            <span style="float: right; margin-right: 20px"
+              >姓名：{{ fuzhengdata.realNameAuth[0].param.name }}</span
+            >
+          </div>
+          <div
+            style="
+              color: #7ed261;
+              background-color: #f2faef;
+              padding: 10px 20px;
+            "
+            v-if="fuzhengdata.realNameAuth[0].busiCode === '2241'"
+          >
+            {{ fuzhengdata.realNameAuth[0].busiMsg }}
+          </div>
+          <div
+            style="
+              color: rgb(234 27 9);
+              background-color: rgb(224 129 129);
+              padding: 10px 20px;
+            "
+            v-else
+          >
+            {{ fuzhengdata.realNameAuth[0].busiMsg }}
+          </div>
+        </el-card>
+        <div class="thirdheader" v-if="fuzhengdata.cardCreditScore">
+          百融评分
+        </div>
+        <el-card style="font-size: 14px" v-if="fuzhengdata.cardCreditScore">
+          <div slot="header">
+            <span
+              >查询时间：{{
+                fuzhengdata.cardCreditScore[0].source.callTime
+              }}</span
+            >
+          </div>
+          <div
+            style="
+              height: 38px;
+              padding: 0 20px;
+              line-height: 38px;
+              background-color: #fafbfd;
+              margin-bottom: 40px;
+            "
+          >
+            <span>查询条件</span>
+            <span style="float: right; margin-right: 20px"
+              >手机号：{{ fuzhengdata.cardCreditScore[0].param.mobile }}</span
+            >
+            <span style="float: right; margin-right: 20px"
+              >身份证号：{{ fuzhengdata.cardCreditScore[0].param.idCard }}</span
+            >
+            <span style="float: right; margin-right: 20px"
+              >姓名：{{ fuzhengdata.cardCreditScore[0].param.name }}</span
+            >
+          </div>
+          <div
+            style="
+              color: #7ed261;
+              background-color: #f2faef;
+              padding: 10px 20px;
+            "
+            v-if="fuzhengdata.cardCreditScore[0].busiCode === '9055'"
+          >
+            {{ fuzhengdata.cardCreditScore[0].busiMsg }}
+          </div>
+          <div
+            style="
+              color: rgb(234 27 9);
+              background-color: rgb(224 129 129);
+              padding: 10px 20px;
+            "
+            v-else
+          >
+            {{ fuzhengdata.cardCreditScore[0].busiMsg }}
+          </div>
+          <div class="left">
+            <span>{{ fuzhengdata.cardCreditScore[0].detail.score }}分</span
+            ><span style="font-size: 20px">信用卡信用评分</span>
+          </div>
+        </el-card>
+      </el-tab-pane>
       <el-tab-pane label="精真估" name="fourth">
-        <el-form :model="form" :rules="rules" ref="form" label-width="150px">
+        <!-- <el-form :model="form" :rules="rules" ref="form" label-width="120px">
           <el-row>
-            <el-col :span="4">
+            <el-col :span="6">
               <el-form-item label="车辆所在省市" prop="city">
                 <el-cascader :props="props" v-model="form.city"></el-cascader>
               </el-form-item>
             </el-col>
-            <el-col :span="4">
+            <el-col :span="6">
               <el-form-item label="下单人姓名" prop="name">
                 <el-input v-model="form.name"></el-input>
               </el-form-item>
             </el-col>
-            <el-col :span="4">
+            <el-col :span="6">
               <el-form-item label="下单人电话" prop="phone">
                 <el-input v-model="form.phone"></el-input>
               </el-form-item>
-            </el-col>
-            <el-button
-              type="primary"
-              round
-              style="margin: 5px 10px 0 50px"
-              @click="findJZG"
-              >点击查询精真估</el-button
-            >
-            <el-button
-              type="primary"
-              round
-              style="margin: 5px 10px 0 50px"
-              @click="getJZGData"
-              >查看精真估详情</el-button
-            >
-          </el-row>
-        </el-form>
+            </el-col> -->
+        <el-button
+          v-if="!JZGData.AssessmentReportPDF"
+          type="primary"
+          round
+          style="margin: 5px 10px 0 50px"
+          @click="findJZG"
+          >点击查询精真估</el-button
+        >
+        <el-button
+          v-if="!JZGData.AssessmentReportPDF"
+          type="primary"
+          round
+          style="margin: 5px 10px 0 50px"
+          @click="getJZGData"
+          >查看精真估结果</el-button
+        >
+        <!-- </el-row>
+        </el-form> -->
         <iframe
+          v-if="JZGData.AssessmentReportPDF"
           width="100%"
-          height="100%"
+          height="800px"
           frameborder="0"
-          :src="JZGData.AssessmentReportH5"
+          :src="JZGData.AssessmentReportPDF"
           id="JZGIframe"
         />
       </el-tab-pane>
       <el-tab-pane label="意见" name="fifth">
+        <h5 style="font-size: 14px; margin: 10px 0" v-if="businessbeizhu">
+          银行岗内部意见
+        </h5>
+        <p style="font-size: 14px; text-indent: 2em" v-if="businessbeizhu">
+          {{ businessbeizhu }}
+        </p>
         <h5 style="font-size: 14px; margin: 10px 0" v-if="finalTextarea">
           终审意见
         </h5>
         <p style="font-size: 14px; text-indent: 2em" v-if="finalTextarea">
           {{ finalTextarea }}
+        </p>
+        <h5 style="font-size: 14px; margin: 10px 0" v-if="lastbeizhu">
+          终审内部意见
+        </h5>
+        <p style="font-size: 14px; text-indent: 2em" v-if="lastbeizhu">
+          {{ lastbeizhu }}
         </p>
         <el-input
           type="textarea"
@@ -2302,6 +2828,12 @@
           placeholder="请输入初审意见"
           v-model="textarea"
         />
+        <h5 style="font-size: 14px; margin: 10px 0" v-if="inputbeizhu">
+          内部意见
+        </h5>
+        <p style="font-size: 14px; text-indent: 2em" v-if="inputbeizhu">
+          {{ inputbeizhu }}
+        </p>
         <el-button
           v-if="approvalType === 1"
           type="primary"
@@ -2383,7 +2915,7 @@
       </el-tabs>
     </el-dialog>
     <el-dialog title="流水" :visible.sync="PDFdialogVisible" width="60%">
-      <div v-for="(item, index) in pdfList" :key="index">
+      <div v-for="(item, index) in pdfList" :key="'liushui-' + index">
         <el-button-group>
           <el-button
             type="primary"
@@ -2407,6 +2939,91 @@
         ></pdf>
       </div>
     </el-dialog>
+    <el-dialog
+      title="内部意见"
+      :visible.sync="dialogRemark"
+      width="30%"
+      :before-close="handleClose"
+    >
+      <el-input
+        type="textarea"
+        :rows="2"
+        placeholder="请输入内部意见"
+        v-model="beizhu"
+      >
+      </el-input>
+      <div v-if="approvalType2 == '1'">
+        <h5 style="font-size: 14px; margin: 10px 0">
+          是否需要补充信息(如需请勾选)
+        </h5>
+        <el-checkbox v-model="gongchangren">共同偿债人</el-checkbox>
+        <el-checkbox v-model="gtsqr">共同申请人</el-checkbox>
+        <el-checkbox v-model="danbaoren">担保人</el-checkbox>
+        <el-checkbox v-model="jiafang">家访照片</el-checkbox>
+        <el-checkbox v-model="fangchan99">房产</el-checkbox>
+        <el-checkbox v-model="liushui99">流水</el-checkbox>
+      </div>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="dialogRemark = false">取 消</el-button>
+        <el-button type="primary" @click="firstTrialHandle2">确 定</el-button>
+      </span>
+    </el-dialog>
+    <el-dialog
+      title="单位信息"
+      :visible.sync="dialogCompany"
+      width="70%"
+      center
+      style="padding: 20px 0"
+    >
+      <table border="1" cellspacing="0" style="margin: 0 auto 70px">
+        <tbody class="company">
+          <!-- 第1行 -->
+          <tr>
+            <td>统一社会信用代码</td>
+            <td>{{ companyData.creditCode }}</td>
+            <td>企业名称</td>
+            <td colspan="3">{{ companyData.name }}</td>
+          </tr>
+          <!-- 第2行 -->
+          <tr>
+            <td>法定代表人</td>
+            <td>{{ companyData.operName }}</td>
+            <td>企业状态</td>
+            <td>{{ companyData.status }}</td>
+            <td>成立日期</td>
+            <td>{{ companyData.startDate }}</td>
+          </tr>
+          <!-- 第3行 -->
+          <tr>
+            <td>注册资本</td>
+            <td>{{ companyData.registCapi }}</td>
+            <td>实缴资本</td>
+            <td>{{ companyData.recCap }}</td>
+            <td>组织机构代码</td>
+            <td>{{ companyData.orgNo }}</td>
+          </tr>
+          <!-- 第4行 -->
+          <tr>
+            <td>企业类型</td>
+            <td>{{ companyData.econKind }}</td>
+            <td>登记机关</td>
+            <td>{{ companyData.belongOrg }}</td>
+            <td>曾用名</td>
+            <td>{{ companyData.originalName }}</td>
+          </tr>
+          <!-- 第5行 -->
+          <tr>
+            <td>经营范围</td>
+            <td colspan="5">{{ companyData.scope }}</td>
+          </tr>
+          <!-- 第6行 -->
+          <tr>
+            <td>注册地址</td>
+            <td colspan="5">{{ companyData.address }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </el-dialog>
   </div>
 </template>
 
@@ -2423,9 +3040,15 @@ import {
   getOrder,
   firstAgainHandle,
   findPhoto,
+  getCompany,
 } from '@/api/process/firstTrial'
-import { getSelectState, findDetailsCredit } from '@/api/process/business'
-import { getFinalTrialHandle } from '@/api/process/finalTrial'
+import {
+  getSelectState,
+  findDetailsCredit,
+  findApprove,
+} from '@/api/process/business'
+import { getFinalTrialHandle, addSupplement } from '@/api/process/finalTrial'
+import axios from 'axios'
 
 export default {
   name: 'FirstTrialDetails',
@@ -2468,7 +3091,7 @@ export default {
         visit: [],
       }, // 初审详情
       srcList: [], // 图片数组
-      JZGData: '', // 精真估数据
+      JZGData: {}, // 精真估数据
       props: {
         lazy: true,
         lazyLoad(node, resolve) {
@@ -2550,6 +3173,70 @@ export default {
       czrother: [],
       dbrother0: [],
       dbrother1: [],
+      dialogRemark: false,
+      beizhu: '',
+      approvalType2: '',
+      lastbeizhu: '',
+      businessbeizhu: '',
+      inputbeizhu: '',
+      gongchangren: false,
+      gtsqr: false,
+      danbaoren: false,
+      jiafang: false,
+      fangchan99: false,
+      liushui99: false,
+      ischaxun: false,
+      fuzhengdata: {
+        cardCreditScore: [
+          {
+            source: {},
+            param: {},
+            detail: {},
+          },
+        ],
+        creditScore: [
+          {
+            source: {},
+            param: {},
+            detail: {
+              reason: [],
+            },
+          },
+        ],
+        mobileRealNameCheck: [
+          {
+            source: {},
+            param: {},
+            detail: {},
+          },
+        ],
+        personalCreditScore: [
+          {
+            source: {},
+            param: {},
+            detail: {},
+          },
+        ],
+        queryMobileOnlineTime: [
+          {
+            source: {},
+            param: {},
+            detail: {
+              checkJson: {},
+              statusJson: {},
+            },
+          },
+        ],
+        realNameAuth: [
+          {
+            source: {},
+            param: {},
+            detail: {},
+          },
+        ],
+      },
+      dialogCompany: false, // 企查查弹框
+      companyData: {}, // 企查查数据
     }
   },
   computed: {},
@@ -2571,12 +3258,13 @@ export default {
     $route(to, from) {
       //监听路由是否变化
       if (to.path == '/process/firstTrialDetails') {
-        this.JZGData = ''
+        this.JZGData = {}
         this.finalTextarea = ''
         this.form = {}
         this.watchNum = 0
         this.activeName = 'first'
         this.activeName1 = 'first'
+        this.ischaxun = false
         this.getFirstData()
       }
     },
@@ -2594,7 +3282,7 @@ export default {
             data[key] = {}
           }
         }
-        console.log(data)
+        // console.log(data)
         this.firstDetails = data
         this.srcList = data.pic
         this.getBaiRongToken()
@@ -2603,6 +3291,7 @@ export default {
         this.findFirstHandle()
         // this.getCreditExtensionData()
         this.findFinalHandle()
+        this.getApprove()
         this.srcList.push(
           data.borrower.obverseAddress,
           data.borrower.backAddress,
@@ -2702,8 +3391,11 @@ export default {
             this.dbrother1.push(item)
           }
         })
+        data.peopleGuarantee.forEach((item) => {
+          this.srcList.push(item.backAddress, item.cardAddress)
+        })
       } catch (error) {
-        console.log(error)
+        // console.log(error)
       }
     },
     // 页面滚动
@@ -2777,7 +3469,7 @@ export default {
         this.baiRongToken = data.msg
         this.watchNum++
       } catch (error) {
-        console.log(error)
+        // console.log(error)
       }
     },
     // 获取百融详细信息
@@ -2814,17 +3506,17 @@ export default {
         this.watchNum++
         this.dialogVisible = true
       } catch (error) {
-        console.log(error)
+        // console.log(error)
       }
     },
     // 获取征信结果
     async findSelectState() {
       try {
         const { data } = await getSelectState(this.$route.query.transactionCode)
-        console.log(data)
+        // console.log(data)
         this.credit = data
       } catch (error) {
-        console.log(error)
+        // console.log(error)
       }
     },
     // 获取详版征信
@@ -2843,46 +3535,83 @@ export default {
         //   this.isDisabled = false
         // }
       } catch (error) {
-        console.log(error)
+        // console.log(error)
       }
     },
     // 初审处理
-    async firstTrialHandle(approvalType) {
+    firstTrialHandle(approvalType) {
       if (this.textarea.trim()) {
-        const that = this
-        this.$confirm('确认操作?', '警告', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          type: 'warning',
-        })
-          .then(() => {
-            return firstHandle({
-              advise: that.textarea,
-              approvalType,
-              transactionCode: that.$route.query.transactionCode,
-              userId: Number(that.$route.query.userId),
-            })
-          })
-          .then(() => {
-            this.msgSuccess('操作成功')
-            this.findFirstHandle()
-          })
-          .catch(function () {})
+        this.approvalType2 = approvalType
+        this.dialogRemark = true
       } else {
         this.msgError('请输入意见')
       }
+    },
+    // 初审处理
+    async firstTrialHandle2() {
+      const that = this
+      this.$confirm('确认操作?', '警告', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning',
+      })
+        .then(() => {
+          return firstHandle({
+            advise: that.textarea,
+            approvalType: that.approvalType2,
+            transactionCode: that.$route.query.transactionCode,
+            userId: Number(that.$route.query.userId),
+            beizhu: that.beizhu,
+          })
+        })
+        .then(() => {
+          if (
+            this.gongchangren ||
+            this.gtsqr ||
+            this.danbaoren ||
+            this.jiafang ||
+            this.fangchan99 ||
+            this.liushui99
+          ) {
+            that.addSupplementData()
+          }
+        })
+        .then(() => {
+          this.dialogRemark = false
+          this.beizhu = ''
+          this.msgSuccess('操作成功')
+          // this.findFirstHandle()
+          // 返回上级路由并关闭当前路由
+          this.$store.state.tagsView.visitedViews.splice(
+            this.$store.state.tagsView.visitedViews.findIndex(
+              (item) => item.path === this.$route.path
+            ),
+            1
+          )
+          // this.$router.push(
+          //   this.$store.state.tagsView.visitedViews[
+          //     this.$store.state.tagsView.visitedViews.length - 1
+          //   ].path
+          // )
+          this.$router.push({
+            path: '/process/firstTrial',
+            name: 'FirstTrial',
+          })
+        })
+        .catch(function () {})
     },
     // 初审结果回显
     async findFirstHandle() {
       try {
         const { data } = await getFirstHandle(this.$route.query.transactionCode)
-        console.log(data)
+        // console.log(data)
         this.textarea = ''
         this.approvalType = null
         this.approvalId = null
         this.textarea = data.advise
         this.approvalType = data.approvalType
         this.approvalId = data.id
+        this.inputbeizhu = data.beizhu
       } catch (error) {}
     },
     // 重新审批
@@ -2894,28 +3623,28 @@ export default {
     },
     // 查询精真估
     findJZG() {
-      this.$refs['form'].validate((valid) => {
-        if (valid) {
-          findJingZhenGu({
-            transactionCode: this.$route.query.transactionCode,
-            provinceId: this.form.city[0],
-            cityId: this.form.city[1],
-            orderName: this.form.name,
-            orderPhone: this.form.phone,
-          })
-            .then((response) => {
-              console.log(response)
-              if (response.msg === '100') {
-                this.msgSuccess('操作成功，请稍后再查看详情')
-              } else {
-                this.msgError(response.data)
-              }
-            })
-            .catch((error) => {})
-        } else {
-          return false
-        }
+      // this.$refs['form'].validate((valid) => {
+      //   if (valid) {
+      findJingZhenGu({
+        transactionCode: this.$route.query.transactionCode,
+        // provinceId: this.form.city[0],
+        // cityId: this.form.city[1],
+        // orderName: this.form.name,
+        // orderPhone: this.form.phone,
       })
+        .then((response) => {
+          // console.log(response)
+          if (response.msg === '100') {
+            this.msgSuccess('操作成功，请稍后再查看详情')
+          } else {
+            this.msgError(response.data)
+          }
+        })
+        .catch((error) => {})
+      // } else {
+      //   return false
+      // }
+      // })
     },
     // 查询精真估结果
     async getJZGData() {
@@ -2923,10 +3652,10 @@ export default {
         const { data } = await getJingZhenGuData(
           this.$route.query.transactionCode
         )
-        console.log(JSON.parse(data))
-        this.JZGData = JSON.parse(data)
+        this.JZGData = JSON.parse(data).Data
       } catch (error) {
-        console.log(error)
+        // console.log(error)
+        this.msgError(error)
       }
     },
     // 获取授信详情
@@ -2936,7 +3665,7 @@ export default {
           this.$route.query.transactionCode,
           this.$route.query.userId
         )
-        console.log(data)
+        // console.log(data)
         if (data.qita.photoFile) {
           data.qita.photoFile.forEach((item) => {
             data[item.fileName] = item.filePath
@@ -2993,7 +3722,7 @@ export default {
         }
         this.creditExtensionData = data
       } catch (error) {
-        console.log(error)
+        // console.log(error)
       }
     },
     // 终审结果回显
@@ -3004,7 +3733,115 @@ export default {
         )
         if (data.advise) {
           this.finalTextarea = data.advise
+          this.lastbeizhu = data.beizhu
         }
+      } catch (error) {}
+    },
+    // 秒批处理结果回显
+    async getApprove() {
+      try {
+        const { data } = await findApprove({
+          transactionCode: this.$route.query.transactionCode,
+        })
+        this.businessbeizhu = data.beizhu
+      } catch (error) {}
+    },
+    // 补充资料
+    async addSupplementData() {
+      if (this.gongchangren) {
+        this.gongchangren = 1
+      } else {
+        this.gongchangren = 0
+      }
+      if (this.gtsqr) {
+        this.gtsqr = 1
+      } else {
+        this.gtsqr = 0
+      }
+      if (this.danbaoren) {
+        this.danbaoren = 1
+      } else {
+        this.danbaoren = 0
+      }
+      if (this.jiafang) {
+        this.jiafang = 1
+      } else {
+        this.jiafang = 0
+      }
+      if (this.fangchan99) {
+        this.fangchan99 = 1
+      } else {
+        this.fangchan99 = 0
+      }
+      if (this.liushui99) {
+        this.liushui99 = 1
+      } else {
+        this.liushui99 = 0
+      }
+      try {
+        await addSupplement({
+          transactionCode: this.$route.query.transactionCode,
+          grantId: this.$store.state.user.userId,
+          grantBy: this.$store.state.user.name,
+          gongchangren: this.gongchangren,
+          gtsqr: this.gtsqr,
+          danbaoren: this.danbaoren,
+          jiafang: this.jiafang,
+          fangchan: this.fangchan99,
+          liushui: this.liushui99,
+        })
+      } catch (error) {
+        // console.log(error)
+      }
+    },
+    handleClose(done) {
+      this.$confirm('确认关闭？')
+        .then((_) => {
+          done()
+        })
+        .catch((_) => {})
+    },
+    // 导航栏
+    tabsLeave(activeName, oldActiveName) {
+      if (activeName === 'third' && !this.ischaxun) {
+        // const loading = this.$loading({
+        //   lock: true, //lock的修改符--默认是false
+        //   text: 'Loading', //显示在加载图标下方的加载文案
+        //   spinner: 'el-icon-loading', //自定义加载图标类名
+        //   background: 'rgba(0, 0, 0, 0.7)', //遮罩层颜色
+        //   target: document.querySelector('#table'), //loadin覆盖的dom元素节点
+        // })
+        axios
+          .post(
+            `http://api.hrfax.cn/valueAddedQuery/eInstalmentQueryValueList.html?orderReportId=${this.firstDetails.borrower.privateCode}&idCard=${this.firstDetails.borrower.idCard}&checkType=2`
+          )
+          .then((res) => {
+            this.fuzhengdata = res.data.data
+            if (this.fuzhengdata.creditScore) {
+              this.fuzhengdata.creditScore[0].detail.reason = this.fuzhengdata.creditScore[0].detail.reason.split(
+                '|'
+              )
+            }
+          })
+          // .then(() => {
+          //   loading.close()
+          // })
+          .catch((res) => {
+            this.msgError(res)
+          })
+        this.ischaxun = true
+      }
+    },
+    // 企查查
+    async getCompanyClick(name) {
+      try {
+        const { data } = await getCompany({
+          name,
+          transactionCode: this.$route.query.transactionCode,
+        })
+        this.companyData = JSON.parse(data)
+        this.dialogCompany = true
+        console.log(JSON.parse(data))
       } catch (error) {}
     },
   },
@@ -3080,5 +3917,53 @@ export default {
 /deep/.el-image-viewer__next,
 /deep/.el-image-viewer__prev {
   display: none;
+}
+.thirdheader {
+  height: 38px;
+  border-radius: 5px;
+  background-color: rgb(24, 144, 255);
+  margin: 20px 0px;
+  padding-left: 50px;
+  color: #fff;
+  line-height: 38px;
+}
+.left {
+  display: flex;
+  float: left;
+  flex-direction: column;
+  width: 200px;
+  height: 200px;
+  padding-top: 60px;
+  font-size: 30px;
+  color: rgb(24, 144, 255);
+  text-align: center;
+  align-items: center;
+}
+.right {
+  height: 200px;
+  padding-left: 200px;
+  div {
+    height: 38px;
+    line-height: 38px;
+    color: #ccc;
+  }
+  li {
+    margin: 5px 0;
+  }
+}
+.company {
+  tr {
+    td {
+      width: 140px;
+      height: 50px;
+      line-height: 50px;
+      padding-left: 15px;
+      background-color: rgb(245, 248, 255);
+    }
+    td:nth-child(2n) {
+      width: 250px;
+      background-color: #fff;
+    }
+  }
 }
 </style>

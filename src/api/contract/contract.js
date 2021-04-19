@@ -1,9 +1,10 @@
 import request from '@/utils/request'
 
 // 获取合同数据
-export function getContract(transactionCode) {
+export function getContract(params) {
     return request({
-        url: '/system/test/hetong?transactionCode=' + transactionCode,
+        url: '/stage/hetong',
         method: 'get',
+        params
     })
 }

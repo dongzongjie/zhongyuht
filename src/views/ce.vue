@@ -123,16 +123,16 @@ export default {
     // 文件上传中处理
     handleFileUploadProgress(event, file, fileList) {
       this.upload.isUploading = true
-      console.log(event)
-      console.log(file)
-      console.log(fileList)
+      // console.log(event)
+      // console.log(file)
+      // console.log(fileList)
     },
     // 文件上传成功处理
     handleFileSuccess(response, file, fileList) {
       this.upload.isUploading = false
       this.form.filePath = response.url
       this.msgSuccess(response.msg)
-      console.log(file)
+      // console.log(file)
     },
     getNumPages() {
       let loadingTask = pdf.createLoadingTask(this.url)
@@ -147,9 +147,9 @@ export default {
     async ceshi1() {
       try {
         const data = await getByToken()
-        console.log(data)
+        // console.log(data)
       } catch (error) {
-        console.log(error)
+        // console.log(error)
       }
     },
     ceshi2() {
@@ -207,9 +207,18 @@ export default {
       })
     },
     ceshi3() {
-      // window.open(
-      //   'http://192.168.31.86:8080/profile/2021/01/15/985a7660-0af1-4aac-801f-1bbd9bf90f66.docx'
-      // )
+      let data = {
+        orderReportId: 'vx001002001823978606475612160',
+        idCard: '410184198811231239',
+        checkType: 2,
+      }
+      axios
+        .post(
+          'http://114.55.55.41:8090/valueAddedQuery/eInstalmentQueryValueList.html?orderReportId=vx001002001823978606475612160&idCard=410184198811231239&checkType=2'
+        )
+        .then((res) => {
+          console.log(res)
+        })
     },
   },
   mounted() {

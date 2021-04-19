@@ -8,7 +8,7 @@
       v-show="showSearch"
       label-width="68px"
     >
-      <el-form-item label="销售团队" prop="team">
+      <!-- <el-form-item label="销售团队" prop="team">
         <el-input
           v-model="queryParams.team"
           placeholder="请输入销售团队"
@@ -17,7 +17,7 @@
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <!-- <el-form-item label="意向贷款期限" prop="repayPeriod">
+      <el-form-item label="意向贷款期限" prop="repayPeriod">
         <el-input
           v-model="queryParams.repayPeriod"
           placeholder="请输入意向贷款期限"
@@ -26,7 +26,19 @@
           @keyup.enter.native="handleQuery"
         />
       </el-form-item> -->
-      <el-form-item label="业务品种" prop="carType">
+      <el-form-item label="状态" prop="updateBy">
+        <el-select
+          v-model="queryParams.updateBy"
+          placeholder="请选择状态"
+          clearable
+          size="small"
+        >
+          <el-option label="已处理" value="1" />
+          <el-option label="征信已拒绝" value="2" />
+          <el-option label="征信已通过" value="3" />
+        </el-select>
+      </el-form-item>
+      <!-- <el-form-item label="业务品种" prop="carType">
         <el-select
           v-model="queryParams.carType"
           placeholder="请选择业务品种"
@@ -37,7 +49,7 @@
           <el-option label="二手车" value="1" />
           <el-option label="新能源" value="2" />
         </el-select>
-      </el-form-item>
+      </el-form-item> -->
       <el-form-item label="客户名称" prop="userId">
         <el-input
           v-model="queryParams.name"
@@ -60,6 +72,18 @@
         >
       </el-form-item>
     </el-form>
+    <!-- 我的客户 -->
+    <el-row :gutter="10" class="mb8">
+      <el-col :span="1.5">
+        <!-- <el-button
+          type="primary"
+          icon="el-icon-user-solid"
+          size="mini"
+          @click="myCustomer"
+          >我的客户</el-button
+        > -->
+      </el-col>
+    </el-row>
     <!-- 表格 -->
     <el-table v-loading="loading" :data="businessList">
       <el-table-column
@@ -69,7 +93,7 @@
         sortable
       />
       <el-table-column label="订单编号" align="center" prop="transactionCode" />
-      <el-table-column label="客户名称" align="center" prop="name" />
+      <el-table-column label="客户名称" align="center" prop="userName" />
       <el-table-column label="销售团队" align="center" prop="team" />
       <el-table-column label="车辆类型" align="center">
         <template slot-scope="scope">
@@ -77,14 +101,14 @@
           <span v-else-if="scope.row.carInformation === 1">商用车</span>
         </template>
       </el-table-column>
-      <!-- <el-table-column label="意向价格" align="center" prop="intentionPrice" />
-      <el-table-column label="意向贷款金额" align="center" prop="loanMoney" />
-      <el-table-column label="意向贷款期限" align="center" prop="repayPeriod" /> -->
+      <el-table-column label="价格" align="center" prop="actualPrice" />
+      <el-table-column label="贷款金额" align="center" prop="loanAmount" />
+      <el-table-column label="贷款期限" align="center" prop="repaymentTerm" />
       <el-table-column label="业务品种" align="center">
         <template slot-scope="scope">
-          <span v-if="scope.row.carType === 0">新车</span>
-          <span v-else-if="scope.row.carType === 1">二手车</span>
-          <span v-else-if="scope.row.carType === 2">新能源</span>
+          <span v-if="scope.row.carType === '0'">新车</span>
+          <span v-else-if="scope.row.carType === '1'">二手车</span>
+          <span v-else-if="scope.row.carType === '2'">新能源</span>
         </template>
       </el-table-column>
       <!-- <el-table-column label="当前操作人" align="center" prop="operator" /> -->
@@ -94,9 +118,20 @@
         class-name="small-padding fixed-width"
       >
         <template slot-scope="scope">
-          <el-button size="mini" type="text" @click="handle(scope.row)"
-            >详情</el-button
-          >
+          <div v-if="!scope.row.updateBy">
+            <el-button size="mini" type="text" @click="handle(scope.row)"
+              >立即处理</el-button
+            >
+          </div>
+          <div v-else-if="scope.row.updateBy == $store.state.user.userId">
+            <el-button size="mini" type="text" @click="handle(scope.row)"
+              >立即处理</el-button
+            >
+            <el-button size="mini" type="text" @click="unlock(scope.row.id)"
+              >解锁</el-button
+            >
+          </div>
+          <div v-else></div>
         </template>
       </el-table-column>
     </el-table>
@@ -113,10 +148,10 @@
 
 <script>
 import { checkRole } from '@/utils/permission'
-import { listBusinessNotPass } from '@/api/process/business'
+import { getFinanceList } from '@/api/finance/finance'
 
 export default {
-  name: 'Contract',
+  name: 'Finance',
   data() {
     return {
       // 遮罩层
@@ -145,6 +180,7 @@ export default {
         repayPeriod: null,
         carType: null,
         name: null,
+        updateBy: null,
       },
       // 表单校验
       rules: {},
@@ -160,7 +196,7 @@ export default {
   watch: {
     $route(to, from) {
       //监听路由是否变化
-      if (to.path == '/contract') {
+      if (to.path == '/finance') {
         this.getList()
       }
     },
@@ -170,7 +206,7 @@ export default {
     /** 查询秒批列表 */
     getList() {
       this.loading = true
-      listBusinessNotPass(this.queryParams).then((response) => {
+      getFinanceList(this.queryParams).then((response) => {
         this.businessList = response.rows
         this.total = response.total
         this.loading = false
@@ -190,19 +226,51 @@ export default {
         repayPeriod: null,
         carType: null,
         name: null,
+        updateBy: null,
       }
       this.handleQuery()
     },
     // 立即处理
     async handle(item) {
+      try {
+        // await updateBusiness({
+        //   id: item.id,
+        //   createBy: this.$store.state.user.userId,
+        // })
+        // this.getList()
+        this.$router.push({
+          path: '/financeDetails',
+          name: 'FinanceDetails',
+          query: {
+            transactionCode: item.transactionCode,
+          },
+        })
+      } catch (error) {
+        this.getList()
+      }
+    },
+    // 解锁
+    async unlock(id) {
+      this.$confirm('确认解锁?', '警告', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning',
+      })
+        .then(deleteOperator(id))
+        .then(() => {
+          this.msgSuccess('解锁成功')
+          this.getList()
+        })
+        .catch(function () {})
+    },
+    // 我的客户
+    myCustomer() {
       this.$router.push({
-        path: '/contractDetails',
-        name: 'ContractDetails',
-        query: {
-          transactionCode: item.transactionCode,
-          userId: item.userId,
-          userName: item.name,
-        },
+        path: '/process/myCustomer',
+        name: 'MyCustomer',
+        // query: {
+        //   userId,
+        // },
       })
     },
   },

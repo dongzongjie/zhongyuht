@@ -219,6 +219,14 @@ export default {
   created() {
     this.getList()
   },
+  watch: {
+    $route(to, from) {
+      //监听路由是否变化
+      if (to.path == '/organization/bank') {
+        this.getList()
+      }
+    },
+  },
   methods: {
     /** 查询bank列表 */
     getList() {

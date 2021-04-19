@@ -3,7 +3,7 @@ import request from '@/utils/request'
 // 查询overdue列表
 export function listOverdue(query) {
     return request({
-        url: '/system/overdue/list',
+        url: '/system/new/yuqi',
         method: 'get',
         params: query
     })

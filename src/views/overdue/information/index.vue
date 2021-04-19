@@ -127,21 +127,13 @@
       @selection-change="handleSelectionChange"
     >
       <!-- <el-table-column type="selection" width="55" align="center" /> -->
-      <el-table-column label="录入时间" align="center" prop="createTime" />
-      <el-table-column label="姓名" align="center" prop="userName" />
-      <el-table-column label="身份证号" align="center" prop="identityCard" />
-      <el-table-column label="经办银行" align="center" />
-      <el-table-column
-        label="分期期数"
-        align="center"
-        prop="installmentPeriod"
-      />
-      <el-table-column
-        label="分期金额"
-        align="center"
-        prop="instalmentAmount"
-      />
-      <el-table-column label="月还款额" align="center" prop="monthlyPayment" />
+      <el-table-column label="时间" align="center" prop="time" />
+      <el-table-column label="姓名" align="center" prop="borrower" />
+      <el-table-column label="银行卡" align="center" prop="bankCard" />
+      <el-table-column label="经办银行" align="center" prop="fundSide" />
+      <el-table-column label="分期期数" align="center" prop="byStages" />
+      <el-table-column label="车辆贷款金额" align="center" prop=" loanAmount" />
+      <el-table-column label="月还款额" align="center" prop="repaymentAmount" />
       <el-table-column
         label="还款日期"
         align="center"
@@ -152,13 +144,9 @@
           <span>{{ parseTime(scope.row.repaymentDate, '{y}-{m}-{d}') }}</span>
         </template>
       </el-table-column>
-      <el-table-column
-        label="应还期数"
-        align="center"
-        prop="shouldApplicable"
-      />
-      <el-table-column label="处理状态" align="center" prop="state" />
-      <el-table-column label="处理人员" align="center" prop="processingStaff" />
+      <el-table-column label="应还期数" align="center" prop="shouldStages" />
+      <!-- <el-table-column label="处理状态" align="center" prop="state" />
+      <el-table-column label="处理人员" align="center" prop="processingStaff" /> -->
       <el-table-column
         label="操作"
         align="center"

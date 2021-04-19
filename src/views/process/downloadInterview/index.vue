@@ -17,7 +17,7 @@
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <!-- <el-form-item label="意向贷款期限" prop="repayPeriod">
+      <el-form-item label="意向贷款期限" prop="repayPeriod">
         <el-input
           v-model="queryParams.repayPeriod"
           placeholder="请输入意向贷款期限"
@@ -25,7 +25,7 @@
           size="small"
           @keyup.enter.native="handleQuery"
         />
-      </el-form-item> -->
+      </el-form-item>
       <el-form-item label="业务品种" prop="carType">
         <el-select
           v-model="queryParams.carType"
@@ -40,7 +40,7 @@
       </el-form-item>
       <el-form-item label="客户名称" prop="userId">
         <el-input
-          v-model="queryParams.name"
+          v-model="queryParams.userName"
           placeholder="请输入客户名称"
           clearable
           size="small"
@@ -69,7 +69,7 @@
         sortable
       />
       <el-table-column label="订单编号" align="center" prop="transactionCode" />
-      <el-table-column label="客户名称" align="center" prop="name" />
+      <el-table-column label="客户名称" align="center" prop="userName" />
       <el-table-column label="销售团队" align="center" prop="team" />
       <el-table-column label="车辆类型" align="center">
         <template slot-scope="scope">
@@ -94,8 +94,8 @@
         class-name="small-padding fixed-width"
       >
         <template slot-scope="scope">
-          <el-button size="mini" type="text" @click="handle(scope.row)"
-            >详情</el-button
+          <el-button size="mini" type="text" @click="downloadClick(scope.row)"
+            >下载</el-button
           >
         </template>
       </el-table-column>
@@ -108,15 +108,23 @@
       :limit.sync="queryParams.pageSize"
       @pagination="getList"
     />
+    <iframe
+      ref="iframe"
+      width="50%"
+      height="1000px"
+      frameborder="0"
+      src="../contract/1/面签表.html"
+      style="position: absolute; top: -9999px; left: -9999px"
+    />
   </div>
 </template>
 
 <script>
-import { checkRole } from '@/utils/permission'
-import { listBusinessNotPass } from '@/api/process/business'
+import { listDownloadInterview } from '@/api/process/interview'
+import { getContract } from '@/api/contract/contract'
 
 export default {
-  name: 'Contract',
+  name: 'DownloadInterview',
   data() {
     return {
       // 遮罩层
@@ -144,7 +152,7 @@ export default {
         team: null,
         repayPeriod: null,
         carType: null,
-        name: null,
+        userName: null,
       },
       // 表单校验
       rules: {},
@@ -152,6 +160,7 @@ export default {
       dialogVisible: false,
       // 文本域
       textarea: '',
+      transferData: {},
     }
   },
   created() {
@@ -160,17 +169,16 @@ export default {
   watch: {
     $route(to, from) {
       //监听路由是否变化
-      if (to.path == '/contract') {
+      if (to.path == '/process/downloadInterview') {
         this.getList()
       }
     },
   },
   methods: {
-    checkRole,
     /** 查询秒批列表 */
     getList() {
       this.loading = true
-      listBusinessNotPass(this.queryParams).then((response) => {
+      listDownloadInterview(this.queryParams).then((response) => {
         this.businessList = response.rows
         this.total = response.total
         this.loading = false
@@ -189,22 +197,38 @@ export default {
         team: null,
         repayPeriod: null,
         carType: null,
-        name: null,
+        userName: null,
       }
       this.handleQuery()
     },
-    // 立即处理
-    async handle(item) {
-      this.$router.push({
-        path: '/contractDetails',
-        name: 'ContractDetails',
-        query: {
-          transactionCode: item.transactionCode,
-          userId: item.userId,
-          userName: item.name,
-        },
+    // 下载
+    downloadClick(item) {
+      this.$confirm('确认下载?', '警告', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning',
       })
+        .then(() => {
+          return getContract({
+            transactionCode: item.transactionCode,
+            userId: item.userId,
+          })
+        })
+        .then((res) => {
+          this.transferData = res.data
+          this.transferData.isDownload = true
+        })
+        .then(() => {
+          this.iframeWin.postMessage(this.transferData)
+        })
+        .then(() => {
+          delete this.transferData.isDownload
+        })
+        .catch(function () {})
     },
+  },
+  mounted() {
+    this.iframeWin = this.$refs.iframe.contentWindow
   },
 }
 </script>

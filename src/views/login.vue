@@ -82,7 +82,7 @@
 import { getCodeImg } from '@/api/login'
 import Cookies from 'js-cookie'
 import { encrypt, decrypt } from '@/utils/jsencrypt'
-import Push from 'push.js'
+// import Push from 'push.js'
 
 export default {
   name: 'Login',
@@ -123,7 +123,7 @@ export default {
   created() {
     this.getCode()
     this.getCookie()
-    Push.Permission.request()
+    // Push.Permission.request()
   },
   methods: {
     getCode() {

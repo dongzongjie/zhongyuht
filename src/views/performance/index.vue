@@ -304,11 +304,11 @@ export default {
     async getPerformance() {
       try {
         const { data } = await findPerformance({ date: this.date })
-        console.log(data)
+        // console.log(data)
         this.performanceData = data
         this.drawLine()
       } catch (error) {
-        console.log(error)
+        // console.log(error)
       }
     },
     //转换时间方法
@@ -342,6 +342,14 @@ export default {
           this.form.performance = null
         })
         .catch(function () {})
+    },
+  },
+  watch: {
+    $route(to, from) {
+      //监听路由是否变化
+      if (to.path == '/performance') {
+        this.getPerformance()
+      }
     },
   },
   created() {

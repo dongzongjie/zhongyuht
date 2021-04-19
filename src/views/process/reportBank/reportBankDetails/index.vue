@@ -554,7 +554,7 @@
               </el-col>
             </el-row>
           </el-card>
-          <el-card class="box-card">
+          <!-- <el-card class="box-card">
             <div style="overflow: hidden">
               <el-button
                 type="primary"
@@ -564,10 +564,10 @@
                 >提交</el-button
               >
             </div>
-          </el-card>
+          </el-card> -->
         </el-form>
       </el-tab-pane>
-      <el-tab-pane label="申报材料" v-if="isCardSubmit">
+      <el-tab-pane label="申报材料">
         <!-- 借款人材料 -->
         <el-card>
           <div slot="header">
@@ -1292,7 +1292,7 @@
           </el-row>
         </el-card>
       </el-tab-pane>
-      <el-tab-pane label="贷款信息" v-if="isCardSubmit">
+      <el-tab-pane label="贷款信息">
         <el-form ref="loanForm" :model="loanForm" :rules="loanRules">
           <!-- 订单信息 -->
           <el-card>
@@ -1955,7 +1955,7 @@
                 type="primary"
                 round
                 style="float: right; margin-right: 100px"
-                @click="loanFormSubmit"
+                @click="cardFormSubmit"
                 >提交</el-button
               >
             </div>
@@ -2563,15 +2563,15 @@ export default {
     async getReportBankData() {
       try {
         const data = await getCardData(this.$route.query.transactionCode)
-        console.log(JSON.parse(data.data))
+        // console.log(JSON.parse(data.data))
         this.cardForm = JSON.parse(data.data)
         this.isCardSubmit = data.state
       } catch (error) {
-        console.log(error)
+        // console.log(error)
       }
       try {
         const data = await getLoanData(this.$route.query.transactionCode)
-        console.log(JSON.parse(data.data))
+        // console.log(JSON.parse(data.data))
         this.loanForm = JSON.parse(data.data)
         this.dataMsg = data.msg
         this.loanForm.req.payMentInfo.cooperateAgencyCode = 'zyhzjg01'
@@ -2583,79 +2583,93 @@ export default {
           this.loanForm.req.guaranteeInfo.mortstype
         )
       } catch (error) {
-        console.log(error)
+        // console.log(error)
       }
     },
     // 贷款信息提交
-    async loanFormSubmit() {
-      this.$refs['loanForm'].validate((valid) => {
-        if (valid) {
-          delete this.loanForm.mortTypeData
-          this.$confirm('请确认已提交申报材料?', '警告', {
-            confirmButtonText: '确定',
-            cancelButtonText: '取消',
-            type: 'warning',
-          })
-            .then(() => {
-              delete this.loanForm.cocomId1
-              delete this.loanForm.cocomId2
-              delete this.loanForm.mortTypeData
-            })
-            .then(() => {
-              return loanSubmit(this.loanForm)
-            })
-            .then(() => {
-              this.msgSuccess('提交成功')
-            })
-            .catch(function (error) {
-              console.log(error)
-            })
-        } else {
-          return false
-        }
-      })
-    },
+    // async loanFormSubmit() {
+    //   this.$refs['loanForm'].validate((valid) => {
+    //     if (valid) {
+    //       delete this.loanForm.mortTypeData
+    //       this.$confirm('请确认已提交申报材料?', '警告', {
+    //         confirmButtonText: '确定',
+    //         cancelButtonText: '取消',
+    //         type: 'warning',
+    //       })
+    //         .then(() => {
+    //           delete this.loanForm.cocomId1
+    //           delete this.loanForm.cocomId2
+    //           delete this.loanForm.mortTypeData
+    //         })
+    //         .then(() => {
+    //           return loanSubmit(this.loanForm)
+    //         })
+    //         .then(() => {
+    //           this.msgSuccess('提交成功')
+    //         })
+    //         .catch(function (error) {
+    //           // console.log(error)
+    //         })
+    //     } else {
+    //       return false
+    //     }
+    //   })
+    // },
     // 开卡信息提交
     async cardFormSubmit() {
       this.$refs['cardForm'].validate((valid) => {
         if (valid) {
-          this.cardForm.transactionCode = this.$route.query.transactionCode
-          this.$confirm('确认提交?', '警告', {
-            confirmButtonText: '确定',
-            cancelButtonText: '取消',
-            type: 'warning',
+          this.$refs['loanForm'].validate((valid) => {
+            if (valid) {
+              this.cardForm.transactionCode = this.$route.query.transactionCode
+              this.$confirm('确认提交?', '警告', {
+                confirmButtonText: '确定',
+                cancelButtonText: '取消',
+                type: 'warning',
+              })
+                .then(() => {
+                  return cardSubmit(this.cardForm)
+                })
+                .then(() => {
+                  delete this.loanForm.cocomId1
+                  delete this.loanForm.cocomId2
+                  delete this.loanForm.mortTypeData
+                })
+                .then(() => {
+                  return loanSubmit(this.loanForm)
+                })
+                .then(() => {
+                  this.msgSuccess('提交成功')
+                  this.getReportBankData()
+                })
+                .catch(function () {})
+            } else {
+              return this.msgError('请填写完整信息')
+            }
           })
-            .then(() => {
-              return cardSubmit(this.cardForm)
-            })
-            .then(() => {
-              this.msgSuccess('提交成功')
-              this.getReportBankData()
-            })
-            .catch(function () {})
         } else {
-          return false
+          return this.msgError('请填写完整信息')
         }
       })
     },
-    materialFormSubmit() {
-      this.$confirm('确认提交?', '警告', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'warning',
-      })
-        .then(() => {
-          for (let i = 1; i < 29; i++) {
-            this.$refs['upload' + i].submit()
-          }
-        })
-        .then(() => {
-          this.msgSuccess('提交成功')
-        })
-        .catch(function (error) {
-          console.log(error)
-        })
-    },
+    // materialFormSubmit() {
+    //   this.$confirm('确认提交?', '警告', {
+    //     confirmButtonText: '确定',
+    //     cancelButtonText: '取消',
+    //     type: 'warning',
+    //   })
+    //     .then(() => {
+    //       for (let i = 1; i < 29; i++) {
+    //         this.$refs['upload' + i].submit()
+    //       }
+    //     })
+    //     .then(() => {
+    //       this.msgSuccess('提交成功')
+    //     })
+    //     .catch(function (error) {
+    //       // console.log(error)
+    //     })
+    // },
   },
   created() {
     this.getReportBankData()

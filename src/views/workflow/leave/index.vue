@@ -522,7 +522,7 @@ export default {
           this.form.leaveEndTime,
         ]
         showVerifyDialog(row.taskId).then((response) => {
-          console.log(response.msg)
+          // console.log(response.msg)
           if ('ModifyApply' === response.msg) {
             this.readonly = false
             this.showVerify.ModifyApply = true
@@ -759,7 +759,7 @@ export default {
       this.instanceId = row.instanceId
     },
     handleSelectChange(val) {
-      console.log(this.form.processParams.B_deptLeaderApproved)
+      // console.log(this.form.processParams.B_deptLeaderApproved)
       this.$forceUpdate()
     },
   },

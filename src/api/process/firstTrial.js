@@ -118,3 +118,12 @@ export function findPhoto(transactionCode, userId) {
         method: 'get',
     })
 }
+
+// 企查查查询公司
+export function getCompany(data) {
+    return request({
+        url: '/system/qcc/get',
+        method: 'post',
+        data
+    })
+}

@@ -152,7 +152,7 @@
               ></el-input>
             </el-form-item>
           </el-col>
-          <el-col :span="24">
+          <!-- <el-col :span="24">
             <el-form-item label="产品竞争对象">
               <el-input
                 v-model="formData.opponent"
@@ -161,7 +161,7 @@
               >
               </el-input>
             </el-form-item>
-          </el-col>
+          </el-col> -->
           <el-col :span="24">
             <el-form-item label="车商详细地址">
               <el-input
@@ -195,7 +195,7 @@
               </div>
             </el-upload>
           </el-col>
-          <el-col :span="24" style="margin-bottom: 20px">
+          <!-- <el-col :span="24" style="margin-bottom: 20px">
             <span style="font-size: 14px">车位照片：</span>
             <el-upload
               ref="stall"
@@ -218,7 +218,7 @@
                 只能上传jpg/png文件，最多上传9张
               </div>
             </el-upload>
-          </el-col>
+          </el-col> -->
           <el-col :span="6">
             <el-form-item label="联系人姓名">
               <el-input
@@ -271,7 +271,10 @@
                 clearable
                 :style="{ width: '100%' }"
               >
-                <el-option label="未知" value="0"></el-option>
+                <el-option label="老板本人" value="老板本人"></el-option>
+                <el-option label="合伙人" value="合伙人"></el-option>
+                <el-option label="门店销售" value="门店销售"></el-option>
+                <el-option label="分期负责人" value="分期负责人"></el-option>
               </el-select>
             </el-form-item>
           </el-col>
@@ -281,7 +284,7 @@
               border
               style="width: 100%"
             >
-              <el-table-column label="账户用途" width="180">
+              <el-table-column label="账户用途">
                 <template slot-scope="scope">
                   <el-input
                     v-model="scope.row.accountUse"
@@ -289,7 +292,7 @@
                   ></el-input>
                 </template>
               </el-table-column>
-              <el-table-column label="账户类型" width="180">
+              <el-table-column label="账户类型">
                 <template slot-scope="scope">
                   <el-input
                     v-model="scope.row.accountType"
@@ -305,7 +308,7 @@
                   ></el-input>
                 </template>
               </el-table-column>
-              <el-table-column label="收款账户证件号码">
+              <el-table-column label="收款账户卡号" width="220px">
                 <template slot-scope="scope">
                   <el-input
                     v-model="scope.row.accountNumber"
@@ -313,22 +316,6 @@
                   ></el-input>
                 </template>
               </el-table-column>
-              <!-- <el-table-column label="放款账户">
-              <template slot-scope="scope">
-                <el-input
-                  v-model="scope.row.loanAccount"
-                  :style="{ width: '100%', height: '100%' }"
-                ></el-input>
-              </template>
-            </el-table-column>
-            <el-table-column label="收款借记卡卡号">
-              <template slot-scope="scope">
-                <el-input
-                  v-model="scope.row.payeeAccount"
-                  :style="{ width: '100%', height: '100%' }"
-                ></el-input>
-              </template>
-            </el-table-column> -->
               <el-table-column label="开户银行">
                 <template slot-scope="scope">
                   <el-input
@@ -341,6 +328,22 @@
                 <template slot-scope="scope">
                   <el-input
                     v-model="scope.row.accountSubBranch"
+                    :style="{ width: '100%', height: '100%' }"
+                  ></el-input>
+                </template>
+              </el-table-column>
+              <el-table-column label="开户所在省">
+                <template slot-scope="scope">
+                  <el-input
+                    v-model="scope.row.accountProvinc"
+                    :style="{ width: '100%', height: '100%' }"
+                  ></el-input>
+                </template>
+              </el-table-column>
+              <el-table-column label="开户所在城市">
+                <template slot-scope="scope">
+                  <el-input
+                    v-model="scope.row.accountCity"
                     :style="{ width: '100%', height: '100%' }"
                   ></el-input>
                 </template>
@@ -365,7 +368,7 @@
             <span style="font-size: 14px">收款人身份证+银行卡：</span>
             <el-upload
               ref="card"
-              :limit="9"
+              :limit="1"
               accept=".jpg, .png"
               list-type="picture-card"
               :action="upload.url"
@@ -381,7 +384,7 @@
             >
               <i slot="default" class="el-icon-plus"></i>
               <div slot="tip" class="el-upload__tip">
-                只能上传jpg/png文件，最多上传9张
+                只能上传jpg/png文件，最多上传1张
               </div>
             </el-upload>
           </el-col>
@@ -389,7 +392,7 @@
             <span style="font-size: 14px">营业执照+身份证（如有）：</span>
             <el-upload
               ref="license"
-              :limit="9"
+              :limit="1"
               accept=".jpg, .png"
               list-type="picture-card"
               :action="upload.url"
@@ -405,7 +408,7 @@
             >
               <i slot="default" class="el-icon-plus"></i>
               <div slot="tip" class="el-upload__tip">
-                只能上传jpg/png文，最多上传9张
+                只能上传jpg/png文，最多上传1张
               </div>
             </el-upload>
           </el-col>
@@ -414,15 +417,10 @@
               <el-input type="textarea" v-model="formData.remark"></el-input>
             </el-form-item>
           </el-col>
-          <el-col :span="24">
-            <el-form-item size="large">
-              <el-button type="primary" @click="submitUpload">提交</el-button>
-            </el-form-item>
-          </el-col>
         </el-form>
       </el-row>
     </el-card>
-    <!-- <div class="module">
+    <div class="module">
       <div class="module-top">
         <i class="el-icon-document"></i>
         <span>合作方案</span>
@@ -431,18 +429,18 @@
           round
           size="mini"
           style="float: right; margin-top: 12px"
-          @click="openDialog({ scheme: [{}] }, 'add')"
+          @click="openDialog({ zyjrCarRate: [{}] }, 'add')"
           >添加合作方案</el-button
         >
       </div>
       <div class="module-box">
         <div
           class="product-box"
-          v-for="(item, index) in form.product"
+          v-for="(item, index) in formData.zyjrCarProgramme"
           :key="index"
         >
           <div class="product-box-top">
-            产品：{{ item.productName }} / {{ item.productCode }}
+            产品：{{ item.name }} / {{ item.code }}
             <el-button
               type="primary"
               round
@@ -462,53 +460,52 @@
           </div>
           <div class="product-box-body">
             <el-row>
-              <el-col :span="8">汽车品牌：{{ item.productBrand }}</el-col>
+              <el-col :span="8">汽车品牌：{{ item.carBrand }}</el-col>
               <el-col :span="8"
-                >车辆类型：<span v-if="item.carType === '0'">新车</span
-                ><span v-if="item.carType === '1'">二手车</span
-                ><span v-if="item.carType === '2'">商用车</span></el-col
+                >车辆类型：<span v-if="item.type === '0'">新车</span
+                ><span v-if="item.type === '1'">二手车</span
+                ><span v-if="item.type === '2'">商用车</span></el-col
               >
-              <el-col :span="8">业务区域：{{ item.businessArea }}</el-col>
+              <el-col :span="8">业务区域：{{ item.area }}</el-col>
               <el-col :span="24"
                 >费用方案：
-                <el-table :data="item.scheme" border style="width: 100%">
-                  <el-table-column
-                    prop="stageNum"
-                    label="分期期数"
-                    align="center"
-                  >
+                <el-table :data="item.zyjrCarRate" border style="width: 100%">
+                  <el-table-column prop="stage" label="分期期数" align="center">
                   </el-table-column>
                   <el-table-column
-                    prop="baseRate"
+                    prop="interestRate"
                     label="银行基准利率"
                     align="center"
                   >
                   </el-table-column>
                   <el-table-column
-                    prop="shouldRate"
+                    prop="ratePayable"
                     label="应付费率"
                     align="center"
                   >
                   </el-table-column>
                 </el-table>
               </el-col>
-              <el-col :span="24">备注：{{ item.productRemark }}</el-col>
+              <el-col :span="24">备注：{{ item.remark }}</el-col>
             </el-row>
           </div>
         </div>
       </div>
-    </div> -->
+    </div>
+    <el-col :span="24" style="margin: 10px">
+      <el-button type="primary" @click="submitUpload">提交</el-button>
+    </el-col>
     <el-dialog :visible.sync="dialogVisible">
       <img width="100%" :src="dialogImageUrl" alt="" />
     </el-dialog>
-    <!-- <el-dialog title="合作方案" :visible.sync="dialogFormVisible" center>
+    <el-dialog title="合作方案" :visible.sync="dialogFormVisible" center>
       <el-form :model="dialogData">
         <h4>基本信息</h4>
         <el-row>
           <el-col :span="12">
             <el-form-item label="方案名称">
               <el-input
-                v-model="dialogData.productName"
+                v-model="dialogData.name"
                 placeholder="请输入方案名称"
                 :style="{ width: '80%' }"
               ></el-input>
@@ -517,7 +514,7 @@
           <el-col :span="12">
             <el-form-item label="产品代码">
               <el-input
-                v-model="dialogData.productCode"
+                v-model="dialogData.code"
                 placeholder="请输入产品代码"
                 :style="{ width: '80%' }"
               ></el-input>
@@ -526,7 +523,7 @@
           <el-col :span="24">
             <el-form-item label="所属银行">
               <el-select
-                v-model="dialogData.belongBank"
+                v-model="dialogData.icbc"
                 :style="{ width: '40%', height: '100%' }"
                 placeholder="请选择所属银行"
               >
@@ -541,7 +538,7 @@
           </el-col>
           <el-col :span="8">
             <el-form-item label="车辆品牌">
-              <el-radio-group v-model="dialogData.productBrand">
+              <el-radio-group v-model="dialogData.carBrand">
                 <el-radio label="不限"></el-radio>
                 <el-radio label="指定品牌"></el-radio>
               </el-radio-group>
@@ -550,7 +547,7 @@
           <el-col
             :span="8"
             style="margin-bottom: 20px"
-            v-if="dialogData.productBrand === '指定品牌'"
+            v-if="dialogData.carBrand === '指定品牌'"
           >
             <el-input
               v-model="dialogData.brandInput"
@@ -561,7 +558,7 @@
           <el-col :span="20">
             <el-form-item label="备注">
               <el-input
-                v-model="dialogData.productRemark"
+                v-model="dialogData.remark"
                 type="textarea"
                 placeholder="请输入备注"
                 :style="{ width: '90%' }"
@@ -574,7 +571,7 @@
           <el-col :span="12">
             <el-form-item label="车辆类型">
               <el-select
-                v-model="dialogData.carType"
+                v-model="dialogData.type"
                 :style="{ width: '70%', height: '100%' }"
                 placeholder="请选择车辆类型"
               >
@@ -586,7 +583,7 @@
           </el-col>
           <el-col :span="24">
             <el-form-item label="业务区域">
-              <el-radio-group v-model="dialogData.businessArea">
+              <el-radio-group v-model="dialogData.area">
                 <el-radio label="不限"></el-radio>
                 <el-radio label="省内"></el-radio>
                 <el-radio label="省外"></el-radio>
@@ -597,7 +594,7 @@
           <el-col
             :span="24"
             style="margin-bottom: 20px"
-            v-if="dialogData.businessArea === '指定区域'"
+            v-if="dialogData.area === '指定区域'"
           >
             <el-input
               v-model="dialogData.areaInput"
@@ -607,7 +604,7 @@
           </el-col>
           <el-col
             :span="18"
-            v-for="(item, index) in dialogData.scheme"
+            v-for="(item, index) in dialogData.zyjrCarRate"
             :key="index"
             style="
               border: 1px solid #ccc;
@@ -618,7 +615,7 @@
             <el-col :span="12">
               <el-form-item label="分期期数">
                 <el-select
-                  v-model="item.stageNum"
+                  v-model="item.stage"
                   :style="{ width: '70%', height: '100%' }"
                   placeholder="请选择分期期数"
                 >
@@ -635,7 +632,7 @@
             <el-col :span="12">
               <el-form-item label="银行基准利率">
                 <el-input
-                  v-model="item.baseRate"
+                  v-model="item.interestRate"
                   suffix-icon="el-icon-zyrz-baifenhao"
                   placeholder="请输入银行基准利率"
                   :style="{ width: '70%' }"
@@ -645,7 +642,7 @@
             <el-col :span="12">
               <el-form-item label="应付费率">
                 <el-input
-                  v-model="item.shouldRate"
+                  v-model="item.ratePayable"
                   suffix-icon="el-icon-zyrz-baifenhao"
                   placeholder="请输入应付费率"
                   :style="{ width: '70%' }"
@@ -655,7 +652,7 @@
             <el-col :span="12">
               <el-form-item label="应收费率">
                 <el-input
-                  v-model="item.shouldPut"
+                  v-model="item.chargeableRate"
                   suffix-icon="el-icon-zyrz-baifenhao"
                   placeholder="请输入应付费率"
                   :style="{ width: '70%' }"
@@ -667,13 +664,13 @@
                 type="primary"
                 round
                 size="mini"
-                @click="dialogData.scheme.splice(index, 1)"
+                @click="dialogData.zyjrCarRate.splice(index, 1)"
                 >删除</el-button
               >
             </el-col>
           </el-col>
           <el-col :span="6" class="addProduct">
-            <div @click="dialogData.scheme.push({})">添加费用方案</div>
+            <div @click="dialogData.zyjrCarRate.push({})">添加费用方案</div>
           </el-col>
         </el-row>
       </el-form>
@@ -681,12 +678,13 @@
         <el-button @click="dialogFormVisible = false">取 消</el-button>
         <el-button type="primary" @click="dialogConfirm">确 定</el-button>
       </div>
-    </el-dialog> -->
+    </el-dialog>
   </div>
 </template>
 <script>
 import { getToken } from '@/utils/auth'
 import { getCar, updateCar, deleteImg } from '@/api/organization/car'
+import { listBank } from '@/api/organization/bank'
 
 export default {
   name: 'CarDetails',
@@ -719,6 +717,7 @@ export default {
         identity: '', // 身份
         remark: '', // 备注
         zyjrCarAccount: [], // 银行账户信息
+        zyjrCarProgramme: [],
       },
       disabled: false,
       // 上传参数
@@ -779,6 +778,7 @@ export default {
   },
   created() {
     this.getCars()
+    this.getBankData()
   },
   mounted() {},
   methods: {
@@ -787,28 +787,42 @@ export default {
       try {
         const { data } = await getCar(this.$route.query.id)
         this.formData = data
+        // console.log(data)
         this.upload.storeList = []
         this.upload.stallList = []
         this.upload.cardList = []
         this.upload.licenseList = []
-        data.sysFileInfo.forEach((item) => {
-          if (item.fileName === 'store') {
-            this.upload.storeList.push({
-              url: item.filePath,
-            })
-          } else if (item.fileName === 'stall') {
-            this.upload.stallList.push({
-              url: item.filePath,
-            })
-          } else if (item.fileName === 'card') {
-            this.upload.cardList.push({
-              url: item.filePath,
-            })
-          } else if (item.fileName === 'license') {
+        if (data.zyjrCarAccount) {
+          if (data.zyjrCarAccount[0]) {
             this.upload.licenseList.push({
-              url: item.filePath,
+              url: data.zyjrCarAccount[0].yingyezhizhao,
+            })
+            this.upload.cardList.push({
+              url: data.zyjrCarAccount[0].card,
             })
           }
+        }
+        data.sysFileInfo.forEach((item) => {
+          this.upload.storeList.push({
+            url: item.filePath,
+          })
+          // if (item.fileName === 'store') {
+          //   this.upload.storeList.push({
+          //     url: item.filePath,
+          //   })
+          // } else if (item.fileName === 'stall') {
+          //   this.upload.stallList.push({
+          //     url: item.filePath,
+          //   })
+          // } else if (item.fileName === 'card') {
+          //   this.upload.cardList.push({
+          //     url: item.filePath,
+          //   })
+          // } else if (item.fileName === 'license') {
+          //   this.upload.licenseList.push({
+          //     url: item.filePath,
+          //   })
+          // }
         })
       } catch (error) {}
     },
@@ -825,6 +839,22 @@ export default {
         })
         .then(() => {
           that.msgSuccess('修改成功')
+          // 返回上级路由并关闭当前路由
+          // this.$store.state.tagsView.visitedViews.splice(
+          //   this.$store.state.tagsView.visitedViews.findIndex(
+          //     (item) => item.path === this.$route.path
+          //   ),
+          //   1
+          // )
+          // this.$router.push(
+          //   this.$store.state.tagsView.visitedViews[
+          //     this.$store.state.tagsView.visitedViews.length - 1
+          //   ].path
+          // )
+          this.$router.push({
+            path: '/organization/parent',
+            name: 'Parent',
+          })
         })
         .catch(function () {})
     },
@@ -854,7 +884,7 @@ export default {
           await deleteImg(file.url)
           this.msgSuccess('删除成功')
         } catch (error) {
-          console.log(error)
+          // console.log(error)
         }
       }
     },
@@ -890,7 +920,7 @@ export default {
         type: 'warning',
       })
         .then(function () {
-          return that.form.product.splice(index, 1)
+          return that.formData.zyjrCarProgramme.splice(index, 1)
         })
         .then(() => {})
         .catch(function () {})
@@ -898,11 +928,18 @@ export default {
     // dialog确认按钮
     dialogConfirm() {
       if (this.dialogStatus === 'add') {
-        this.form.product.push(this.dialogData)
+        this.formData.zyjrCarProgramme.push(this.dialogData)
       } else if (this.dialogStatus === 'edit') {
-        this.form.product[this.dialogIndex] = this.dialogData
+        this.formData.zyjrCarProgramme[this.dialogIndex] = this.dialogData
       }
       this.dialogFormVisible = false
+    },
+    // 获取银行信息
+    async getBankData() {
+      try {
+        const data = await listBank()
+        this.bankData = data.rows
+      } catch (error) {}
     },
   },
 }

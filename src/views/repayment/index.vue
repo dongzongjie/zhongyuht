@@ -165,7 +165,7 @@ export default {
     getList() {
       this.loading = true
       findRepaymentList(this.queryParams).then((response) => {
-        console.log(response)
+        // console.log(response)
         this.reportBankList = response.rows
         this.total = response.total
         this.loading = false

@@ -116,7 +116,7 @@ import { checkRole } from '@/utils/permission'
 import { listInterview } from '@/api/process/interview'
 
 export default {
-  name: 'Contract',
+  name: 'Interview',
   data() {
     return {
       // 遮罩层

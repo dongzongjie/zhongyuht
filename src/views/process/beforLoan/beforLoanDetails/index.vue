@@ -2,6 +2,87 @@
   <div class="app-container" style="font-size: 14px; padding: 20px">
     <el-card>
       <div slot="header">
+        <span>贷款信息</span>
+      </div>
+      <el-row>
+        <el-col :span="6"
+          >总贷款额(元)：{{ creditExtensionData.left.zdke }}</el-col
+        >
+        <el-col :span="6"
+          >申请月供(元)：{{ creditExtensionData.left.sqyg }}</el-col
+        >
+        <el-col :span="6"
+          >申请首付(元)：{{ creditExtensionData.left.sqsf }}</el-col
+        >
+        <el-col :span="6"
+          >车辆售价/元：{{ creditExtensionData.left.actualPrice }}</el-col
+        >
+        <el-col :span="6"
+          >车贷金额：{{ creditExtensionData.left.loanAmount }}</el-col
+        >
+        <el-col :span="6"
+          >还款期限/月：{{ creditExtensionData.left.repaymentTerm }}</el-col
+        >
+        <el-col :span="6"
+          >资金方：{{ creditExtensionData.left.fundSide }}</el-col
+        >
+        <el-col :span="6"
+          >产品类型：{{ creditExtensionData.left.productType }}</el-col
+        >
+        <el-col :span="6"
+          >贷款产品：{{ creditExtensionData.left.loanProduct }}</el-col
+        >
+        <el-col :span="6"
+          >贷款费率：{{ creditExtensionData.left.dkfl }}%</el-col
+        >
+        <el-col :span="6"
+          >平台费率：{{ creditExtensionData.left.interestRate }}%</el-col
+        >
+        <el-col :span="6"
+          >GPS费用：{{ creditExtensionData.left.gpsCost }}</el-col
+        >
+        <el-col :span="6"
+          >续保押金(元)：{{ creditExtensionData.left.deposit }}</el-col
+        >
+        <el-col :span="6"
+          >服务费(元)：{{ creditExtensionData.left.fuwufei }}</el-col
+        >
+      </el-row>
+    </el-card>
+    <el-card>
+      <div slot="header">
+        <span>保险信息</span>
+      </div>
+      <el-row>
+        <el-col :span="6"
+          >保单类型：{{ creditExtensionData.right.policyType }}</el-col
+        >
+        <el-col :span="6"
+          >保险公司：{{ creditExtensionData.right.insuranceCompany }}</el-col
+        >
+        <el-col :span="6"
+          >保险金额(元)：{{ creditExtensionData.right.insuranceAmount }}</el-col
+        >
+        <el-col :span="6"
+          >保单号：{{ creditExtensionData.right.policyCode }}</el-col
+        >
+      </el-row>
+    </el-card>
+    <!-- <el-card>
+      <div slot="header">
+        <span>抵押信息</span>
+      </div>
+      <el-row>
+        <el-col :span="6"
+          >抵押省/市：{{ creditExtensionData.right.mortgageCity }}</el-col
+        >
+        <el-col :span="6"
+          >抵押渠道：{{ creditExtensionData.right.mortgageChannel }}</el-col
+        >
+      </el-row>
+    </el-card> -->
+    <el-card>
+      <div slot="header">
         <span>还款卡</span>
       </div>
       <el-row>
@@ -286,16 +367,101 @@
           >
           </el-image>
         </el-col>
+      </el-row>
+      <div style="margin: 10px 0; font-size: 16px" v-if="photo.icbc">
+        工商银行补充资料
+      </div>
+      <el-row>
         <el-col
           :span="4"
           class="img"
-          v-for="item in photo2.photoFile"
+          v-for="item in photo.icbc"
           :key="item.fileId"
         >
           {{ item.fileName }}
           <el-image
             style="width: 100px; height: 100px"
             :src="item.filePath"
+            :preview-src-list="srcList1"
+          >
+          </el-image>
+        </el-col>
+      </el-row>
+      <div style="margin: 10px 0; font-size: 16px">先放后抵补充资料</div>
+      <el-row>
+        <el-col :span="4" class="img">
+          过户凭证
+          <el-image
+            style="width: 100px; height: 100px"
+            :src="photo.ghpz"
+            :preview-src-list="srcList1"
+          >
+          </el-image>
+        </el-col>
+        <el-col :span="4" class="img">
+          行驶证
+          <el-image
+            style="width: 100px; height: 100px"
+            :src="photo.xsz"
+            :preview-src-list="srcList1"
+          >
+          </el-image>
+        </el-col>
+        <el-col :span="4" class="img">
+          新保险单
+          <el-image
+            style="width: 100px; height: 100px"
+            :src="photo.xbxd"
+            :preview-src-list="srcList1"
+          >
+          </el-image>
+        </el-col>
+      </el-row>
+      <div style="margin: 10px 0; font-size: 16px" v-if="photo.dj12">
+        车辆登记证(过户后)
+      </div>
+      <el-row>
+        <el-col :span="4" class="img" v-if="photo.dj12">
+          登记证信息栏1-2
+          <el-image
+            style="width: 100px; height: 100px"
+            :src="photo.dj12"
+            :preview-src-list="srcList1"
+          >
+          </el-image>
+        </el-col>
+        <el-col :span="4" class="img" v-if="photo.dj34">
+          登记证信息栏3-4
+          <el-image
+            style="width: 100px; height: 100px"
+            :src="photo.dj34"
+            :preview-src-list="srcList1"
+          >
+          </el-image>
+        </el-col>
+        <el-col :span="4" class="img" v-if="photo.dj56">
+          登记证信息栏5-6
+          <el-image
+            style="width: 100px; height: 100px"
+            :src="photo.dj56"
+            :preview-src-list="srcList1"
+          >
+          </el-image>
+        </el-col>
+        <el-col :span="4" class="img" v-if="photo.dj78">
+          登记证信息栏7-8
+          <el-image
+            style="width: 100px; height: 100px"
+            :src="photo.dj78"
+            :preview-src-list="srcList1"
+          >
+          </el-image>
+        </el-col>
+        <el-col :span="4" class="img" v-if="photo.dj910">
+          登记证信息栏9-10
+          <el-image
+            style="width: 100px; height: 100px"
+            :src="photo.dj910"
             :preview-src-list="srcList1"
           >
           </el-image>
@@ -322,12 +488,30 @@
       <div slot="header">
         <span>意见</span>
       </div>
+      <h5 style="font-size: 14px; margin: 10px 0" v-if="zhongshenbeizhu">
+        终审内部意见
+      </h5>
+      <p style="font-size: 14px; text-indent: 2em" v-if="zhongshenbeizhu">
+        {{ zhongshenbeizhu }}
+      </p>
+      <h5 style="font-size: 14px; margin: 10px 0" v-if="shouxinbeizhu">
+        授信内部意见
+      </h5>
+      <p style="font-size: 14px; text-indent: 2em" v-if="shouxinbeizhu">
+        {{ shouxinbeizhu }}
+      </p>
       <el-input
         type="textarea"
         :autosize="{ minRows: 3 }"
-        placeholder="请输入初审意见"
+        placeholder="请输入意见"
         v-model="textarea"
       />
+      <h5 style="font-size: 14px; margin: 10px 0" v-if="inputbeizhu">
+        内部意见
+      </h5>
+      <p style="font-size: 14px; text-indent: 2em" v-if="inputbeizhu">
+        {{ inputbeizhu }}
+      </p>
       <el-button
         v-if="state === '1'"
         type="primary"
@@ -376,6 +560,26 @@
         >
       </div>
     </el-card>
+    <el-dialog
+      title="内部详情"
+      :visible.sync="dialogRemark"
+      width="30%"
+      :before-close="handleClose"
+    >
+      <el-input
+        type="textarea"
+        :rows="2"
+        placeholder="请输入内部详情"
+        v-model="beizhu"
+      >
+      </el-input>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="dialogRemark = false">取 消</el-button>
+        <el-button type="primary" @click="beforLoanHandlePost2"
+          >确 定</el-button
+        >
+      </span>
+    </el-dialog>
   </div>
 </template>
 
@@ -385,6 +589,11 @@ import {
   beforLoanHandle,
   findBeforLoanHandle,
 } from '@/api/process/beforLoan'
+import { getFinalTrialHandle } from '@/api/process/finalTrial'
+import {
+  getCreditHandle,
+  creditExtensionDetails,
+} from '@/api/process/creditExtension'
 
 export default {
   name: 'BeforLoanDetails',
@@ -401,18 +610,32 @@ export default {
       insuranceData: {}, // 保险数据
       state: '', // 贷前处理结果
       type: '', // 返点类型
-      photo: {},
+      photo: {
+        carpic: [],
+        icbc: [],
+        photoFile: [],
+      },
       photo2: {},
       bazaar: '',
       carname: '',
       bank: {},
+      dialogRemark: false,
+      beizhu: '',
+      approvalType2: '',
+      zhongshenbeizhu: '',
+      shouxinbeizhu: '',
+      inputbeizhu: '',
+      creditExtensionData: {
+        left: {},
+        right: {},
+      },
     }
   },
   computed: {},
   watch: {
     $route(to, from) {
       //监听路由是否变化
-      if (to.path == '/process/firstTrialDetails') {
+      if (to.path == '/process/beforLoanDetails') {
         this.getBeforLoanData()
       }
     },
@@ -424,7 +647,7 @@ export default {
         const { data } = await getBeforLoanDetails(
           this.$route.query.transactionCode
         )
-        console.log(data)
+        // console.log(data)
         this.fangkuan = data.fangkuan
         this.Account = data.Account
         this.Account2 = data.Account2
@@ -437,43 +660,87 @@ export default {
         this.carname = data.carname
         this.bank = data.bank
         this.srcList.push(data.bank.pic)
-        data.pic.forEach((item) => {
-          this.GPSdata[item.fileName] = item.filePath
-          this.srcList.push(item.filePath)
-        })
-        data.photo.photoFile.forEach((item) => {
-          this.srcList1.push(item.filePath)
-        })
-        data.photo2.photoFile.forEach((item) => {
-          this.srcList1.push(item.filePath)
-        })
+        if (data.pic) {
+          data.pic.forEach((item) => {
+            this.GPSdata[item.fileName] = item.filePath
+            this.srcList.push(item.filePath)
+          })
+        }
+        if (data.photo.photoFile) {
+          data.photo.photoFile.forEach((item) => {
+            this.srcList1.push(item.filePath)
+          })
+        }
+        if (data.photo.icbc) {
+          data.photo.icbc.forEach((item) => {
+            this.srcList1.push(item.filePath)
+          })
+        }
+        if (data.photo.carpic) {
+          data.photo.carpic.forEach((item) => {
+            this.srcList1.push(item.filePath)
+            data.photo[item.fileName] = item.filePath
+          })
+        }
+        if (data.photo2.photoFile) {
+          data.photo2.photoFile.forEach((item) => {
+            this.srcList1.push(item.filePath)
+          })
+        }
+        this.getCreditExtensionData()
         this.getBeforLoanHandle()
+        this.findFinalHandle()
+        this.findCreditHandle()
       } catch (error) {}
     },
     // 贷前处理结果
     async beforLoanHandlePost(state) {
       if (this.textarea.trim()) {
-        const that = this
-        this.$confirm('确认操作?', '警告', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          type: 'warning',
-        })
-          .then(() => {
-            return beforLoanHandle({
-              state: state,
-              opinion: that.textarea,
-              transactionCode: that.$route.query.transactionCode,
-            })
-          })
-          .then(() => {
-            this.msgSuccess('操作成功')
-            this.getBeforLoanHandle()
-          })
-          .catch(function () {})
+        this.state = state
+        this.dialogRemark = true
       } else {
         this.msgError('请输入意见')
       }
+    },
+    // 贷前处理结果
+    async beforLoanHandlePost2() {
+      const that = this
+      this.$confirm('确认操作?', '警告', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning',
+      })
+        .then(() => {
+          return beforLoanHandle({
+            state: that.state,
+            opinion: that.textarea,
+            transactionCode: that.$route.query.transactionCode,
+            beizhu: that.beizhu,
+          })
+        })
+        .then(() => {
+          this.dialogRemark = false
+          this.beizhu = ''
+          this.msgSuccess('操作成功')
+          // this.getBeforLoanHandle()
+          // 返回上级路由并关闭当前路由
+          this.$store.state.tagsView.visitedViews.splice(
+            this.$store.state.tagsView.visitedViews.findIndex(
+              (item) => item.path === this.$route.path
+            ),
+            1
+          )
+          // this.$router.push(
+          //   this.$store.state.tagsView.visitedViews[
+          //     this.$store.state.tagsView.visitedViews.length - 1
+          //   ].path
+          // )
+          this.$router.push({
+            path: '/process/beforLoan',
+            name: 'BeforLoan',
+          })
+        })
+        .catch(function () {})
     },
     // 贷前结果回显
     async getBeforLoanHandle() {
@@ -483,11 +750,61 @@ export default {
         )
         if (data) {
           this.state = data.state
+          this.inputbeizhu = data.beizhu
           if (data.opinion) {
             this.textarea = data.opinion
           }
         }
       } catch (error) {}
+    },
+    // 终审结果回显
+    async findFinalHandle() {
+      try {
+        const { data } = await getFinalTrialHandle(
+          this.$route.query.transactionCode
+        )
+        if (data) {
+          this.zhongshenbeizhu = data.beizhu
+        }
+      } catch (error) {}
+    },
+    // 授信处理结果回显
+    async findCreditHandle() {
+      try {
+        const { data } = await getCreditHandle(
+          this.$route.query.transactionCode
+        )
+        // console.log(data)
+        if (data) {
+          this.shouxinzhu = data.beizhu
+        }
+      } catch (error) {
+        // console.log(error)
+      }
+    },
+    // 获取授信详情
+    async getCreditExtensionData() {
+      try {
+        const { data } = await creditExtensionDetails(
+          this.$route.query.transactionCode
+        )
+        if (!data.left) {
+          data.left = {}
+        }
+        if (!data.right) {
+          data.right = {}
+        }
+        this.creditExtensionData = data
+      } catch (error) {
+        // console.log(error)
+      }
+    },
+    handleClose(done) {
+      this.$confirm('确认关闭？')
+        .then((_) => {
+          done()
+        })
+        .catch((_) => {})
     },
   },
   created() {

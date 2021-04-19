@@ -354,10 +354,10 @@ export default {
         const { data } = await findOverdueData(
           this.$route.query.transactionCode
         )
-        console.log(data)
+        // console.log(data)
         this.informationData = data
       } catch (error) {
-        console.log(error)
+        // console.log(error)
       }
     },
   },

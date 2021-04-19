@@ -1,20 +1,20 @@
 <template>
   <div class="app-container">
-    <div class="btn-box box1">
+    <!-- <div class="btn-box box1">
       <button @click="goAssignBlock('iframe1', 100)">分期购车垫款委托书</button>
       <button @click="goAssignBlock('iframe2', 100)">咨询服务管理协议</button>
-      <!-- <button @click="goAssignBlock('iframe3', 100)">
+      <button @click="goAssignBlock('iframe3', 100)">
         授 权 处 置 车 辆 承 诺 函
       </button>
       <button @click="goAssignBlock('iframe4', 100)">
         授 权 扣 留 车 辆 承 诺 函
-      </button> -->
+      </button>
       <button @click="goAssignBlock('iframe5', 100)">授权委托书</button>
-      <!-- <button @click="goAssignBlock('iframe6', 100)">授权委托书(2)</button> -->
-      <!-- <button @click="goAssignBlock('iframe7', 100)">申 请 书</button> -->
+      <button @click="goAssignBlock('iframe6', 100)">授权委托书(2)</button>
+      <button @click="goAssignBlock('iframe7', 100)">申 请 书</button>
       <button @click="goAssignBlock('iframe8', 100)">费用确认函</button>
-      <!-- <button @click="goAssignBlock('iframe9', 100)">还款信息确认函</button> -->
-    </div>
+      <button @click="goAssignBlock('iframe9', 100)">还款信息确认函</button>
+    </div> -->
     <!-- <div class="btn-box box2">
       <button @click="goAssignBlock('iframe10', 100)">
         分期购车垫款委托书
@@ -56,13 +56,38 @@
       </button>
       <button @click="goAssignBlock('iframe28', 100)">零售合作协议</button>
     </div> -->
-    <el-button type="primary" round class="assignment" @click="getContractDate"
+    <!-- <el-button type="primary" round class="assignment" @click="getContractDate"
       >自动填写有问题请点击这里</el-button
     >
     <el-button type="primary" round class="download" @click="downloadClick"
-      >一键下载PDF</el-button
+      >一键下载</el-button
     >
-    <h4>分期购车垫款委托书</h4>
+    <el-button
+      type="primary"
+      round
+      class="downloadbank"
+      @click="downloadbankhetong"
+      >下载银行合同</el-button
+    > -->
+    <!-- <a :href="href" target="_blank">对比信息</a> -->
+    <!-- <el-upload
+      class="upload-demo"
+      ref="upload"
+      action="http://114.215.186.186:8080/anxin"
+      :data="uploadData"
+      :file-list="fileList"
+      :auto-upload="false"
+    >
+      <el-button slot="trigger" size="small" type="primary">选取文件</el-button>
+      <el-button
+        style="margin-left: 10px"
+        size="small"
+        type="success"
+        @click="submitUpload"
+        >上传</el-button
+      >
+    </el-upload> -->
+    <!-- <h4>分期购车垫款委托书</h4>
     <iframe
       ref="iframe1"
       width="50%"
@@ -79,7 +104,7 @@
       frameborder="0"
       src="./contract/公司-新车咨询管理服务协议（2）/咨询服务管理协议.html"
       style="margin-left: 20%"
-    />
+    /> -->
     <!-- <h4>授 权 处 置 车 辆 承 诺 函</h4>
     <iframe
       ref="iframe3"
@@ -98,7 +123,7 @@
       src="./contract/公司-新车咨询管理服务协议（2）/授 权 扣 留 车 辆 承 诺 函.html"
       style="margin-left: 20%"
     /> -->
-    <h4>授权委托书</h4>
+    <!-- <h4>授权委托书</h4>
     <iframe
       ref="iframe5"
       width="50%"
@@ -106,7 +131,7 @@
       frameborder="0"
       src="./contract/公司-新车咨询管理服务协议（2）/授权委托书.html"
       style="margin-left: 20%"
-    />
+    /> -->
     <!-- <h4>授权委托书(2)</h4>
     <iframe
       ref="iframe6"
@@ -125,7 +150,7 @@
       src="./contract/公司-新车咨询管理服务协议（2）/申 请 书.html"
       style="margin-left: 20%"
     /> -->
-    <h4>费用确认函</h4>
+    <!-- <h4>费用确认函</h4>
     <iframe
       ref="iframe8"
       width="50%"
@@ -133,7 +158,7 @@
       frameborder="0"
       src="./contract/公司-新车咨询管理服务协议（2）/费用确认函.html"
       style="margin-left: 20%"
-    />
+    /> -->
     <!-- <h4>还款信息确认函</h4>
     <iframe
       ref="iframe9"
@@ -314,6 +339,106 @@
       src="./contract/零售合作协议.html"
       style="margin-left: 20%"
     /> -->
+    <!-- <iframe
+      ref="iframe30"
+      width="50%"
+      height="1000px"
+      frameborder="0"
+      src="./contract/032508545960.html"
+      style="margin-left: 20%; margin-top: 50px"
+    />
+    <iframe
+      ref="iframe31"
+      width="50%"
+      height="1000px"
+      frameborder="0"
+      src="./contract/032508551023.html"
+      style="margin-left: 20%; margin-top: 50px"
+    />
+    <iframe
+      ref="iframe32"
+      width="50%"
+      height="1000px"
+      frameborder="0"
+      src="./contract/032508551725.html"
+      style="margin-left: 20%; margin-top: 50px"
+    />
+    <iframe
+      ref="iframe33"
+      width="50%"
+      height="1000px"
+      frameborder="0"
+      src="./contract/032508552382.html"
+      style="margin-left: 20%; margin-top: 50px"
+    />
+    <iframe
+      ref="iframe34"
+      width="50%"
+      height="1000px"
+      frameborder="0"
+      src="./contract/032508564171.html"
+      style="margin-left: 20%; margin-top: 50px"
+    />
+    <iframe
+      ref="iframe35"
+      width="50%"
+      height="1000px"
+      frameborder="0"
+      src="./contract/032508564739.html"
+      style="margin-left: 20%; margin-top: 50px"
+    />
+    <iframe
+      ref="iframe36"
+      width="50%"
+      height="1000px"
+      frameborder="0"
+      src="./contract/040716490438.html"
+      style="margin-left: 20%; margin-top: 50px"
+    /> -->
+    <el-table :data="tableData">
+      <el-table-column prop="transactionCode" label="订单编号" width="240" />
+      <el-table-column prop="userName" label="客户名称" width="180" />
+      <el-table-column prop="contractName" label="合同" width="240" />
+      <el-table-column label="操作">
+        <template slot-scope="scope">
+          <el-button
+            type="text"
+            v-if="scope.row.contractName != '银行合同'"
+            @click="look(scope.row.contractName)"
+            >查看</el-button
+          >
+          <el-button type="text" @click="download(scope.row.contractName)"
+            >下载</el-button
+          >
+          <el-button
+            type="text"
+            @click="print(scope.row.contractName)"
+            v-if="
+              scope.row.contractName != '银行合同' &&
+              scope.row.contractName != '借款服务合同'
+            "
+            >打印</el-button
+          >
+        </template>
+      </el-table-column>
+    </el-table>
+    <el-dialog :visible.sync="dialogVisible" width="50%">
+      <iframe
+        ref="iframe"
+        width="100%"
+        height="750px"
+        frameborder="0"
+        :src="dialogUrl"
+      />
+    </el-dialog>
+    <iframe
+      ref="iframeno"
+      width="100%"
+      height="750px"
+      frameborder="0"
+      :src="dialogUrl"
+      style="position: absolute; top: -9999px; left: -9999px"
+    />
   </div>
 </template>
 
@@ -322,10 +447,62 @@ import { getContract } from '@/api/contract/contract'
 
 export default {
   name: 'ContractDetails',
+  inject: ['reload'],
   components: {},
   data() {
     return {
       transferData: {},
+      href:
+        'http://www.zhongyuchefu.com/process/finalTrialDetails?transactionCode=' +
+        this.$route.query.transactionCode +
+        '&userId=' +
+        this.$route.query.userId,
+      fileList: [],
+      uploadData: { transactionCode: this.$route.query.transactionCode },
+      tableData: [
+        {
+          contractName: '借款服务合同',
+          transactionCode: this.$route.query.transactionCode,
+          userName: this.$route.query.userName,
+        },
+        {
+          contractName: '借款人委托扣款授权书',
+          transactionCode: this.$route.query.transactionCode,
+          userName: this.$route.query.userName,
+        },
+        {
+          contractName: '授权委托书',
+          transactionCode: this.$route.query.transactionCode,
+          userName: this.$route.query.userName,
+        },
+        {
+          contractName: '抵押担保函',
+          transactionCode: this.$route.query.transactionCode,
+          userName: this.$route.query.userName,
+        },
+        {
+          contractName: '账户新增确认书',
+          transactionCode: this.$route.query.transactionCode,
+          userName: this.$route.query.userName,
+        },
+        {
+          contractName: '零售合作协议',
+          transactionCode: this.$route.query.transactionCode,
+          userName: this.$route.query.userName,
+        },
+        {
+          contractName: '债权转让通知书',
+          transactionCode: this.$route.query.transactionCode,
+          userName: this.$route.query.userName,
+        },
+        {
+          contractName: '银行合同',
+          transactionCode: this.$route.query.transactionCode,
+          userName: this.$route.query.userName,
+        },
+      ],
+      dialogVisible: false,
+      dialogUrl: '',
     }
   },
   computed: {},
@@ -333,8 +510,17 @@ export default {
     $route(to, from) {
       //监听路由是否变化
       if (to.path == '/contractDetails') {
-        this.transferData = {}
-        this.getContractDate()
+        // ;(this.href =
+        //   'http://www.zhongyuchefu.com/process/finalTrialDetails?transactionCode=' +
+        //   this.$route.query.transactionCode +
+        //   '&userId=' +
+        //   this.$route.query.userId),
+        //   (this.transferData = {})
+        // this.$router.go(0)
+        this.reload()
+        this.look()
+        this.dialogVisible = false
+        // this.getContractDate()
       }
     },
   },
@@ -382,24 +568,27 @@ export default {
     // 获取数据
     async getContractDate() {
       try {
-        const { data } = await getContract(this.$route.query.transactionCode)
+        const { data } = await getContract({
+          transactionCode: this.$route.query.transactionCode,
+          userId: this.$route.query.userId,
+        })
         this.transferData = data
         console.log(data)
-        this.assignment()
+        // this.assignment()
       } catch (error) {
         console.log(error)
       }
     },
     // 向html传值
     assignment() {
-      this.iframeWin1.postMessage(this.transferData)
-      this.iframeWin2.postMessage(this.transferData)
+      // this.iframeWin1.postMessage(this.transferData)
+      // this.iframeWin2.postMessage(this.transferData)
       // this.iframeWin3.postMessage(this.transferData)
       // this.iframeWin4.postMessage(this.transferData)
-      this.iframeWin5.postMessage(this.transferData)
+      // this.iframeWin5.postMessage(this.transferData)
       // this.iframeWin6.postMessage(this.transferData)
       // this.iframeWin7.postMessage(this.transferData)
-      this.iframeWin8.postMessage(this.transferData)
+      // this.iframeWin8.postMessage(this.transferData)
       // this.iframeWin9.postMessage(this.transferData)
       // this.iframeWin10.postMessage(this.transferData)
       // this.iframeWin11.postMessage(this.transferData)
@@ -420,6 +609,13 @@ export default {
       // this.iframeWin26.postMessage(this.transferData)
       // this.iframeWin27.postMessage(this.transferData)
       // this.iframeWin28.postMessage(this.transferData)
+      // this.iframeWin30.postMessage(this.transferData)
+      // this.iframeWin31.postMessage(this.transferData)
+      // this.iframeWin32.postMessage(this.transferData)
+      // this.iframeWin33.postMessage(this.transferData)
+      // this.iframeWin34.postMessage(this.transferData)
+      // this.iframeWin35.postMessage(this.transferData)
+      // this.iframeWin36.postMessage(this.transferData)
     },
     // 下载
     downloadClick() {
@@ -439,16 +635,100 @@ export default {
         })
         .catch(function () {})
     },
+    submitUpload() {
+      this.$confirm('确认提交合同', '警告', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning',
+      }).then(() => {
+        this.$refs.upload.submit()
+      })
+    },
+    // 查看合同
+    look(contractName) {
+      this.dialogUrl = './contract/1/' + contractName + '.html'
+      this.getContractDate()
+        .then(() => {
+          this.dialogVisible = true
+        })
+        .then(() => {
+          setTimeout(() => {
+            this.iframeWin = this.$refs.iframe.contentWindow
+          }, 500)
+        })
+        .then(() => {
+          setTimeout(() => {
+            this.iframeWin.postMessage(this.transferData)
+          }, 500)
+        })
+    },
+    // 下载合同
+    download(contractName) {
+      if (contractName === '银行合同') {
+        window.location.href = 'http://114.215.186.186:8888/down/JrukFH6k7JBW'
+      } else {
+        this.dialogUrl = './contract/1/' + contractName + '.html'
+        this.getContractDate()
+          .then(() => {
+            this.transferData.isDownload = true
+          })
+          .then(() => {
+            const loading = this.$loading({
+              lock: true,
+              text: 'Loading',
+              spinner: 'el-icon-loading',
+              background: 'rgba(0, 0, 0, 0.7)',
+            })
+            if (contractName === '借款服务合同') {
+              setTimeout(() => {
+                loading.close()
+              }, 8000)
+            } else {
+              setTimeout(() => {
+                loading.close()
+              }, 1000)
+            }
+          })
+          .then(() => {
+            setTimeout(() => {
+              this.iframeWinno.postMessage(this.transferData)
+            }, 500)
+          })
+          .then(() => {
+            setTimeout(() => {
+              delete this.transferData.isDownload
+            }, 500)
+          })
+      }
+    },
+    // 打印合同
+    print(contractName) {
+      this.dialogUrl = './contract/1/' + contractName + '.html'
+      this.getContractDate()
+        .then(() => {
+          this.transferData.isPrint = true
+        })
+        .then(() => {
+          setTimeout(() => {
+            this.iframeWinno.postMessage(this.transferData)
+          }, 500)
+        })
+        .then(() => {
+          setTimeout(() => {
+            delete this.transferData.isPrint
+          }, 500)
+        })
+    },
   },
   mounted() {
-    this.iframeWin1 = this.$refs.iframe1.contentWindow
-    this.iframeWin2 = this.$refs.iframe2.contentWindow
+    // this.iframeWin1 = this.$refs.iframe1.contentWindow
+    // this.iframeWin2 = this.$refs.iframe2.contentWindow
     // this.iframeWin3 = this.$refs.iframe3.contentWindow
     // this.iframeWin4 = this.$refs.iframe4.contentWindow
-    this.iframeWin5 = this.$refs.iframe5.contentWindow
+    // this.iframeWin5 = this.$refs.iframe5.contentWindow
     // this.iframeWin6 = this.$refs.iframe6.contentWindow
     // this.iframeWin7 = this.$refs.iframe7.contentWindow
-    this.iframeWin8 = this.$refs.iframe8.contentWindow
+    // this.iframeWin8 = this.$refs.iframe8.contentWindow
     // this.iframeWin9 = this.$refs.iframe9.contentWindow
     // this.iframeWin10 = this.$refs.iframe10.contentWindow
     // this.iframeWin11 = this.$refs.iframe11.contentWindow
@@ -469,10 +749,16 @@ export default {
     // this.iframeWin26 = this.$refs.iframe26.contentWindow
     // this.iframeWin27 = this.$refs.iframe27.contentWindow
     // this.iframeWin28 = this.$refs.iframe28.contentWindow
+    // this.iframeWin30 = this.$refs.iframe30.contentWindow
+    // this.iframeWin31 = this.$refs.iframe31.contentWindow
+    // this.iframeWin32 = this.$refs.iframe32.contentWindow
+    // this.iframeWin33 = this.$refs.iframe33.contentWindow
+    // this.iframeWin34 = this.$refs.iframe34.contentWindow
+    // this.iframeWin35 = this.$refs.iframe35.contentWindow
+    // this.iframeWin36 = this.$refs.iframe36.contentWindow
+    this.iframeWinno = this.$refs.iframeno.contentWindow
   },
-  created() {
-    this.getContractDate()
-  },
+  created() {},
 }
 </script>
 
@@ -516,9 +802,32 @@ h4 {
   top: 100px;
   left: 220px;
 }
-.assignment {
+.downloadbank {
   position: fixed;
   top: 150px;
   left: 220px;
+}
+.assignment {
+  position: fixed;
+  top: 200px;
+  left: 220px;
+}
+.upload-demo {
+  position: fixed;
+  top: 250px;
+  left: 220px;
+}
+a {
+  position: fixed;
+  top: 200px;
+  left: 220px;
+  width: 100px;
+  height: 36px;
+  line-height: 36px;
+  text-align: center;
+  background-color: #1890ff;
+  border-radius: 18px;
+  font-size: 14px;
+  color: #fff;
 }
 </style>

@@ -74,14 +74,18 @@
     </el-form>
     <!-- 我的客户 -->
     <el-row :gutter="10" class="mb8">
+      <!-- <right-toolbar
+        :showSearch.sync="showSearch"
+        @queryTable="getList"
+      ></right-toolbar> -->
       <el-col :span="1.5">
-        <!-- <el-button
+        <el-button
           type="primary"
           icon="el-icon-user-solid"
           size="mini"
           @click="myCustomer"
           >我的客户</el-button
-        > -->
+        >
       </el-col>
     </el-row>
     <!-- 表格 -->
@@ -200,7 +204,7 @@ export default {
   watch: {
     $route(to, from) {
       //监听路由是否变化
-      if (to.path == '/process/business/unreviewed') {
+      if (to.path == '/process/business') {
         this.getList()
       }
     },
@@ -272,9 +276,10 @@ export default {
       this.$router.push({
         path: '/process/myCustomer',
         name: 'MyCustomer',
-        // query: {
-        //   userId,
-        // },
+        query: {
+          flow: 'business',
+          flowName: 'Business',
+        },
       })
     },
   },

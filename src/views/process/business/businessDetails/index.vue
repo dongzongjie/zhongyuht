@@ -22,7 +22,13 @@
             >
             <!-- <el-col :span="8">门店：</el-col> -->
             <el-col :span="8" style="color: #999"
-              >真实业务发生地：{{ userDetails.startPage.realAddress }}</el-col
+              >团队：{{ userDetails.team }}</el-col
+            >
+            <el-col :span="8" style="color: #999"
+              >客户经理：{{ userDetails.jingliName }}</el-col
+            >
+            <el-col :span="8" style="color: #999"
+              >客户经理手机号：{{ userDetails.jingliPhoneNo }}</el-col
             >
           </el-row>
         </el-card>
@@ -311,23 +317,70 @@
           :autosize="{ minRows: 3 }"
           placeholder="请输入内容"
           v-model="detailsCredit"
-          v-if="!isDisabled"
         />
-        <p
+        <!-- <p
           v-text="detailsCredit"
           v-if="isDisabled"
           style="font-size: 14px; color: #666"
-        ></p>
+        ></p> -->
+        <h5 style="font-size: 14px; margin: 10px 0" v-if="inputbeizhu">
+          内部意见
+        </h5>
+        <p style="font-size: 14px; text-indent: 2em" v-if="inputbeizhu">
+          {{ inputbeizhu }}
+        </p>
         <el-button
+          v-if="approvalType === 1"
           type="primary"
           round
           style="margin: 20px 10px"
-          v-if="!isDisabled"
-          @click="addCreidClick"
-          >确认</el-button
+          disabled
+          >已通过</el-button
         >
+        <el-button
+          v-else-if="approvalType === 2"
+          type="danger"
+          round
+          style="margin: 20px 10px"
+          disabled
+          >已拒绝</el-button
+        >
+        <div v-else>
+          <el-button
+            type="primary"
+            round
+            style="margin: 20px 10px"
+            @click="dilogClick(1)"
+            >通过</el-button
+          >
+          <el-button
+            type="danger"
+            round
+            style="margin: 20px 10px"
+            @click="dilogClick(2)"
+            >拒绝</el-button
+          >
+        </div>
       </el-tab-pane>
     </el-tabs>
+    <el-dialog
+      title="内部意见"
+      :visible.sync="dialogRemark"
+      width="30%"
+      :before-close="handleClose"
+    >
+      <el-input
+        type="textarea"
+        :rows="2"
+        placeholder="请输入内部意见"
+        v-model="beizhu"
+      >
+      </el-input>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="dialogRemark = false">取 消</el-button>
+        <el-button type="primary" @click="addCreidClick">确 定</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 
@@ -337,6 +390,8 @@ import {
   findDetailsCredit,
   addDetailsCredit,
   getSelectState,
+  approve,
+  findApprove,
 } from '@/api/process/business'
 
 export default {
@@ -359,6 +414,11 @@ export default {
       borrowerSrcList: [], // 借款人查看大图数组
       relationSrcList: [], // 关联人查看大图数组
       guaranteeSrcList: [], // 担保人查看大图数组
+      dialogRemark: false,
+      beizhu: '',
+      approvalType: '',
+      inputbeizhu: '',
+      approvalType2: '',
     }
   },
   computed: {
@@ -394,7 +454,7 @@ export default {
     async getBusinesss() {
       try {
         const { data } = await getBusiness(this.$route.query.transactionCode)
-        console.log(data)
+        // console.log(data)
         // this.userDetails.business = data.zyjrBusiness
         // this.userDetails.borrower = data.zyjrBorrower
         // this.userDetails.relation = data.zyjrRelation
@@ -433,6 +493,7 @@ export default {
         this.credit = ''
         this.detailsCredit = ''
         this.getDetailsCredit()
+        this.getApprove()
         this.findSelectState()
       } catch (error) {}
     },
@@ -457,28 +518,55 @@ export default {
         }
       } catch (error) {}
     },
-    // 点击按钮
-    addCreidClick() {
+    // 确认按钮
+    dilogClick(approvalType) {
       if (this.detailsCredit.trim()) {
-        this.$confirm('确认提交?提交之后无法修改', '警告', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          type: 'warning',
-        })
-          .then(() => {
-            return addDetailsCredit({
-              transactionCode: this.$route.query.transactionCode,
-              details: this.detailsCredit,
-            })
-          })
-          .then(() => {
-            this.msgSuccess('操作成功')
-            this.getDetailsCredit()
-          })
-          .catch(function () {})
+        this.approvalType2 = approvalType
+        this.dialogRemark = true
       } else {
         this.msgError('请填写详版征信')
       }
+    },
+    // 提交按钮
+    addCreidClick() {
+      this.$confirm('确认提交?', '警告', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning',
+      })
+        .then(() => {
+          return approve({
+            transactionCode: this.$route.query.transactionCode,
+            approvalType: this.approvalType2,
+            beizhu: this.beizhu,
+          })
+        })
+        .then(() => {
+          this.addCreid()
+        })
+        .then(() => {
+          this.dialogRemark = false
+          this.beizhu = ''
+          this.msgSuccess('操作成功')
+          // this.getDetailsCredit()
+          // 返回上级路由并关闭当前路由
+          this.$store.state.tagsView.visitedViews.splice(
+            this.$store.state.tagsView.visitedViews.findIndex(
+              (item) => item.path === this.$route.path
+            ),
+            1
+          )
+          // this.$router.push(
+          //   this.$store.state.tagsView.visitedViews[
+          //     this.$store.state.tagsView.visitedViews.length - 1
+          //   ].path
+          // )
+          this.$router.push({
+            path: '/process/business',
+            name: 'Business',
+          })
+        })
+        .catch(function () {})
     },
     // 填写详版征信
     async addCreid() {
@@ -488,6 +576,23 @@ export default {
           details: this.detailsCredit,
         })
       } catch (error) {}
+    },
+    // 处理结果回显
+    async getApprove() {
+      try {
+        const { data } = await findApprove({
+          transactionCode: this.$route.query.transactionCode,
+        })
+        this.approvalType = data.approvalType
+        this.inputbeizhu = data.beizhu
+      } catch (error) {}
+    },
+    handleClose(done) {
+      this.$confirm('确认关闭？')
+        .then((_) => {
+          done()
+        })
+        .catch((_) => {})
     },
   },
   created() {

@@ -26,6 +26,15 @@ export function creditExtensionDetails(transactionCode) {
     })
 }
 
+// 获取授信详情old
+export function creditExtensionDetailsOld(params) {
+    return request({
+        url: '/stage/grant/basic',
+        method: 'get',
+        params
+    })
+}
+
 // 授信操作处理
 export function creditHandle(data) {
     return request({

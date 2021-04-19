@@ -82,14 +82,14 @@ export default {
     async findRepaymentData() {
       try {
         const data = await findRepayment(this.$route.query.transactionCode)
-        console.log(data)
+        // console.log(data)
         if (data.data.code != 0) {
           this.msgError(data.data.msg)
         } else {
           this.repaymentData = data
         }
       } catch (error) {
-        console.log(error)
+        // console.log(error)
       }
     },
   },

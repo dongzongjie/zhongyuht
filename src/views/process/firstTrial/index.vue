@@ -73,18 +73,18 @@
       </el-form-item>
     </el-form>
     <el-row :gutter="10" class="mb8">
-      <right-toolbar
+      <!-- <right-toolbar
         :showSearch.sync="showSearch"
         @queryTable="getList"
-      ></right-toolbar>
+      ></right-toolbar> -->
       <el-col :span="1.5">
-        <!-- <el-button
+        <el-button
           type="primary"
           icon="el-icon-user-solid"
           size="mini"
           @click="myCustomer"
           >我的客户</el-button
-        > -->
+        >
       </el-col>
     </el-row>
     <!-- 表格 -->
@@ -314,7 +314,7 @@ export default {
     getList() {
       this.loading = true
       getFirstTrialList(this.queryParams).then((response) => {
-        console.log(response)
+        // console.log(response)
         this.firstTrialList = response.rows
         this.total = response.total
         this.loading = false
@@ -364,9 +364,10 @@ export default {
     },
     // 查看历史审批意见
     async historyOpinion(transactionCode) {
+      this.historyOpinionData = {}
       try {
         const { data } = await getHistoryOpinion(transactionCode)
-        console.log(data)
+        // console.log(data)
         if (data) {
           this.historyOpinionData = data
           if (data.allowOpinion) {
@@ -378,7 +379,7 @@ export default {
           this.msgSuccess('暂无审批意见！')
         }
       } catch (error) {
-        console.log(error)
+        // console.log(error)
       }
     },
     // 立即处理
@@ -426,9 +427,10 @@ export default {
       this.$router.push({
         path: '/process/myCustomer',
         name: 'MyCustomer',
-        // query: {
-        //   userId,
-        // },
+        query: {
+          flow: 'firstTrial',
+          flowName: 'FirstTrial',
+        },
       })
     },
   },

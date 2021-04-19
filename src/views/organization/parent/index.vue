@@ -180,6 +180,14 @@ export default {
   created() {
     this.getList()
   },
+  watch: {
+    $route(to, from) {
+      //监听路由是否变化
+      if (to.path == '/organization/parent') {
+        this.getList()
+      }
+    },
+  },
   methods: {
     /** 查询【请填写功能名称】列表 */
     getList() {

@@ -76,7 +76,7 @@
       >
         <span style="font-size: 14px">{{ item.questionText }}</span>
         <div style="float: right; margin-right: 20px">
-          <el-button type="primary" size="mini" v-if="item.result === 1"
+          <el-button type="info" size="mini" v-if="item.result === 1"
             >通过</el-button
           >
           <el-button size="mini" v-else>不通过</el-button>
@@ -97,7 +97,7 @@
       >
       </el-input>
       <span style="font-size: 14px; margin-right: 20px">面签结果</span>
-      <el-button type="primary" size="mini" v-if="interviewData.status === 2"
+      <el-button type="info" size="mini" v-if="interviewData.status === 2"
         >通过</el-button
       >
       <el-button size="mini" v-else-if="interviewData.status === 3"
@@ -143,7 +143,7 @@ export default {
         const { data } = await findInterviewData(
           this.$route.query.transactionCode
         )
-        console.log(JSON.parse(data).data)
+        // console.log(JSON.parse(data).data)
         if (JSON.parse(data).code != 0)
           return this.msgError(JSON.parse(data).msg)
         this.interviewData = JSON.parse(data).data
@@ -156,7 +156,7 @@ export default {
         )
         this.questionList = JSON.parse(JSON.parse(data).data.questionList)
       } catch (error) {
-        console.log(error)
+        // console.log(error)
       }
     },
   },

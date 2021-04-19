@@ -102,3 +102,21 @@ export function deleteOperator(id) {
         method: 'get',
     })
 }
+
+// 秒批审批
+export function approve(data) {
+    return request({
+        url: '/stage/add/miaopi',
+        method: 'post',
+        data
+    })
+}
+
+// 秒批审批回显
+export function findApprove(params) {
+    return request({
+        url: '/stage/find/miaopi',
+        method: 'get',
+        params
+    })
+}

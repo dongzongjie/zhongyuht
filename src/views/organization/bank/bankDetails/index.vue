@@ -645,7 +645,7 @@ export default {
           await deleteImg(file.url)
           this.msgSuccess('删除成功')
         } catch (error) {
-          console.log(error)
+          // console.log(error)
         }
       }
     },

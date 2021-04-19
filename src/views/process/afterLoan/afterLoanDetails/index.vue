@@ -321,12 +321,24 @@
       <div slot="header">
         <span>意见</span>
       </div>
+      <h5 style="font-size: 14px; margin: 10px 0" v-if="lastbeizhu">
+        贷前内部意见
+      </h5>
+      <p style="font-size: 14px; text-indent: 2em" v-if="lastbeizhu">
+        {{ lastbeizhu }}
+      </p>
       <el-input
         type="textarea"
         :autosize="{ minRows: 3 }"
-        placeholder="请输入终审意见"
+        placeholder="请输入意见"
         v-model="textarea"
       />
+      <h5 style="font-size: 14px; margin: 10px 0" v-if="inputbeizhu">
+        内部意见
+      </h5>
+      <p style="font-size: 14px; text-indent: 2em" v-if="inputbeizhu">
+        {{ inputbeizhu }}
+      </p>
       <el-button
         v-if="afterData.shenpi.state === '1'"
         type="primary"
@@ -352,11 +364,32 @@
         >
       </div>
     </el-card>
+    <el-dialog
+      title="内部意见"
+      :visible.sync="dialogRemark"
+      width="30%"
+      :before-close="handleClose"
+    >
+      <el-input
+        type="textarea"
+        :rows="2"
+        placeholder="请输入内部意见"
+        v-model="beizhu"
+      >
+      </el-input>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="dialogRemark = false">取 消</el-button>
+        <el-button type="primary" @click="creditExtensionHandle2"
+          >确 定</el-button
+        >
+      </span>
+    </el-dialog>
   </div>
 </template>
 
 <script>
 import { getAfterLoanDetails, afterLoanHandle } from '@/api/process/afterLoan'
+import { findBeforLoanHandle } from '@/api/process/beforLoan'
 
 export default {
   name: 'AfterLoanDetails',
@@ -370,13 +403,19 @@ export default {
       approvalType: '',
       afterData: { shenpi: {}, lvben: {} },
       srcList: [],
+      srcList1: [],
+      dialogRemark: false,
+      beizhu: '',
+      approvalType2: '',
+      lastbeizhu: '',
+      inputbeizhu: '',
     }
   },
   computed: {},
   watch: {
     $route(to, from) {
       //监听路由是否变化
-      if (to.path == '/process/afterTrialDetails') {
+      if (to.path == '/process/afterLoanDetails') {
         this.findAfterLoanData()
       }
     },
@@ -391,37 +430,83 @@ export default {
         if (data.shenpi.opinion) {
           this.textarea = data.shenpi.opinion
         }
+        if (data.shenpi) {
+          this.inputbeizhu = data.shenpi.beizhu
+        }
         this.srcList = data.baoxian
         this.srcList1 = data.zhengshu
-        console.log(data)
+        this.getBeforLoanHandle()
+        // console.log(data)
       } catch (error) {
-        console.log(error)
+        // console.log(error)
       }
     },
     // 贷后
-    async creditExtensionHandle(state) {
+    creditExtensionHandle(state) {
       if (this.textarea.trim()) {
-        const that = this
-        this.$confirm('确认操作?', '警告', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          type: 'warning',
-        })
-          .then(() => {
-            return afterLoanHandle({
-              state: state,
-              opinion: that.textarea,
-              transactionCode: that.$route.query.transactionCode,
-            })
-          })
-          .then(() => {
-            this.msgSuccess('操作成功')
-            this.findAfterLoanData()
-          })
-          .catch(function () {})
+        this.state = state
+        this.dialogRemark = true
       } else {
         this.msgError('请输入意见')
       }
+    },
+    // 贷后
+    async creditExtensionHandle2() {
+      const that = this
+      this.$confirm('确认操作?', '警告', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning',
+      })
+        .then(() => {
+          return afterLoanHandle({
+            state: that.state,
+            opinion: that.textarea,
+            transactionCode: that.$route.query.transactionCode,
+            beizhu: that.beizhu,
+          })
+        })
+        .then(() => {
+          this.dialogRemark = false
+          this.beizhu = ''
+          this.msgSuccess('操作成功')
+          // this.findAfterLoanData()
+          // 返回上级路由并关闭当前路由
+          this.$store.state.tagsView.visitedViews.splice(
+            this.$store.state.tagsView.visitedViews.findIndex(
+              (item) => item.path === this.$route.path
+            ),
+            1
+          )
+          // this.$router.push(
+          //   this.$store.state.tagsView.visitedViews[
+          //     this.$store.state.tagsView.visitedViews.length - 1
+          //   ].path
+          // )
+          this.$router.push({
+            path: '/process/afterLoan',
+            name: 'AfterLoan',
+          })
+        })
+        .catch(function () {})
+    },
+    // 贷前结果回显
+    async getBeforLoanHandle() {
+      try {
+        const { data } = await findBeforLoanHandle(
+          this.$route.query.transactionCode
+        )
+        if (data) {
+          this.lastbeizhu = data.beizhu
+        }
+      } catch (error) {}
+    },
+    handleClose(done) {
+      this.$confirm('确认关闭？')
+        .then((_) => {
+          done()
+        })
+        .catch((_) => {})
     },
   },
   created() {
